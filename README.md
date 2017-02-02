@@ -1,5 +1,5 @@
-# NativeScript-Nativescript-lottie
-NativeScript plugin to expose native Lottie library
+# NativeScript-lottie
+NativeScript plugin to expose Airbnb Lottie library
 
 Fill in a little about your plugin!
 
@@ -10,7 +10,7 @@ This plugin is licensed under the MITlicense by Brad Martin
 To install type
 
 ```
-tns plugin add nativescript-nativescript-lottie
+tns plugin add nativescript-lottie
 ```
 
 ## Usages
