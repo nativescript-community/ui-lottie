@@ -26,7 +26,7 @@ There is a current issue open on the NativeScript Android runtime [repo here](ht
 to  determine the correct approach on placing the files in `assets` for the native library to find the file using Android's `getAssets()` method.
 There are ways to hack around this but right now I don't have the time, so you have to run a build and then move your animation .json files into `platforms/android/src/main/assets`
 for this to work. Then you can execute `tns run android` and the files will transfer to your device/emulator. Hopefully a solution comes along soon without
-this approach as it's not the simplest for beginner NativeScript devs without much Android knowledge.
+this approach as it's not the simplest for beginner NativeScript devs without much Android knowledge. There are some sample animation files in the `sample-effects` folder taken from the Airbnb repo.
 
 I've not setup the propertyChange events for `loop`, `autoPlay` or `src`. Will accept a PR if someone wants to provide the capability of changing properties of the LottieView instance after initial load.
 

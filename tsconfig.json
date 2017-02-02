@@ -6,7 +6,7 @@
         "experimentalDecorators": true,
         "noEmitHelpers": true,
         "noEmitOnError": false,
-        "declaration": true
+        "declaration": false
     },
     "files": [
         "demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
