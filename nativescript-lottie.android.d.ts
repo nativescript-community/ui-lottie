@@ -2,6 +2,7 @@ import { View } from "ui/core/view";
 export declare class LottieView extends View {
     private _src;
     private _loop;
+    private _autoPlay;
     private _cacheStrategy;
     private _android;
     constructor();
@@ -9,15 +10,16 @@ export declare class LottieView extends View {
     readonly _nativeView: any;
     src: string;
     loop: boolean;
-    cacheStrategy: EnumCacheStrategy;
+    cacheStrategy: CacheStrategy;
+    autoPlay: boolean;
     _createUI(): void;
     playAnimation(): void;
     isAnimating(): boolean;
     setProgress(value: any): void;
     cancelAnimation(): void;
 }
-export declare enum EnumCacheStrategy {
-    None = 0,
-    Weak = 1,
-    Strong = 2,
+export declare enum CacheStrategy {
+    None,
+    Weak,
+    Strong,
 }

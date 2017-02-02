@@ -1,67 +1,33 @@
-import { Observable } from 'data/observable';
-declare var com: any;
+import { Observable } from "data/observable";
 import * as app from "application";
-import * as fs from "file-system";
+import { LottieView } from "nativescript-lottie";
 
-let appPath = fs.knownFolders.currentApp().path;
+declare var com: any;
 
 export class HelloWorldModel extends Observable {
+
+    private _myLottie: LottieView;
 
     constructor() {
         super();
     }
 
-
-    public createLottie(args) {
+    public lottieLoaded(args) {
         try {
-            let x = new com.airbnb.lottie.LottieAnimationView(app.android.context);
-            x.setAnimation("pinjump.json");
-            x.loop(true);
-            x.playAnimation();
-
-            args.view = x;
+            this._myLottie = args.object;
+            console.log(args.object.android);
         } catch (error) {
             console.log(error);
         }
     }
 
-    public createLottie2(args) {
-        try {
-            let x = new com.airbnb.lottie.LottieAnimationView(app.android.context);
-            x.setAnimation("lottielogo2.json");
-            x.loop(true);
-            x.playAnimation();
-
-            args.view = x;
-        } catch (error) {
-            console.log(error);
-        }
+    public startLottie() {
+        this._myLottie.playAnimation();
     }
 
-    public createLottie3(args) {
-        try {
-            let x = new com.airbnb.lottie.LottieAnimationView(app.android.context);
-            x.setAnimation("motioncorpse.json");
-            x.loop(true);
-            x.playAnimation();
-
-            args.view = x;
-        } catch (error) {
-            console.log(error);
-        }
+    public stopLottie() {
+        this._myLottie.cancelAnimation();
     }
 
-    public onTap() {
-        try {
-            console.log(com.airbnb.lottie.LottieAnimationView);
-            let x = new com.airbnb.lottie.LottieAnimationView(app.android.context);
-            console.log(x);
-
-            x.setAnimation("pinjump.json");
-            x.loop(true);
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
 }
