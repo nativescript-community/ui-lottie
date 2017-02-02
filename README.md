@@ -1,6 +1,10 @@
 # NativeScript-Lottie
 NativeScript plugin to expose Airbnb Lottie for awesome animations.
 
+[![npm](https://img.shields.io/npm/v/nativescript-lottie.svg)](https://www.npmjs.com/package/nativescript-lottie)
+[![npm](https://img.shields.io/npm/dt/nativescript-lottie.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-lottie)
+
+
 Uses [Airbnb Lottie](https://github.com/airbnb/lottie-android). 
 
 * iOS support for NativeScript will come when I have a little time to write the wrapper. I welcome any PR to provide support. *
