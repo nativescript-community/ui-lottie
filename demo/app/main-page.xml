@@ -2,12 +2,13 @@
     xmlns="http://schemas.nativescript.org/tns.xsd" 
     xmlns:Lottie="nativescript-lottie" navigatingTo="navigatingTo" class="page">
     <Page.actionBar>
-        <ActionBar title="My App" icon="" class="action-bar"></ActionBar>
+        <ActionBar title="Airbnb Lottie" icon="" class="action-bar"></ActionBar>
     </Page.actionBar>
     <StackLayout class="p-20">
-        <Lottie:LottieView src="pinjump.json" loop="true" backgroundColor="#f1f1f1" height="200" />
-        <Label text="Tap the button" class="h1 text-center"/>
-        <Button text="TAP" tap="{{ onTap }}" class="btn btn-primary btn-active"/>
-        <Label text="{{ message }}" class="h2 text-center" textWrap="true"/>
+        <Label text="Just your everyday kick ass NativeScript app using NATIVE ANDROID and iOS libraries.         
+        Thanks Airbnb!!! This is awesome" class="h3 text-center" textWrap="true"/>
+        <!--<Placeholder height="250" creatingView="{{ createLottie }}" />-->
+        <Placeholder height="500" creatingView="{{ createLottie2 }}" />
+        <!--<Placeholder height="200" creatingView="{{ createLottie3 }}" />-->
     </StackLayout>
 </Page>
