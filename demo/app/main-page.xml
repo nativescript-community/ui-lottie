@@ -1,0 +1,13 @@
+<Page 
+    xmlns="http://schemas.nativescript.org/tns.xsd" 
+    xmlns:Lottie="nativescript-lottie" navigatingTo="navigatingTo" class="page">
+    <Page.actionBar>
+        <ActionBar title="My App" icon="" class="action-bar"></ActionBar>
+    </Page.actionBar>
+    <StackLayout class="p-20">
+        <Lottie:LottieView src="pinjump.json" loop="true" backgroundColor="#f1f1f1" height="200" />
+        <Label text="Tap the button" class="h1 text-center"/>
+        <Button text="TAP" tap="{{ onTap }}" class="btn btn-primary btn-active"/>
+        <Label text="{{ message }}" class="h2 text-center" textWrap="true"/>
+    </StackLayout>
+</Page>

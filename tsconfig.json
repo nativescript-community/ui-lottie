@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "removeComments": true,
+        "experimentalDecorators": true,
+        "noEmitHelpers": true,
+        "noEmitOnError": false,
+        "declaration": false
+    },
+    "files": [
+        "demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
+        "demo/node_modules/tns-platform-declarations/android17.d.ts",
+        "demo/node_modules/tns-platform-declarations/ios.d.ts",
+        "demo/node_modules/tns-platform-declarations/org.nativescript.widgets.d.ts",
+        "nativescript-lottie.android.ts",
+        "nativescript-lottie.ios.ts"
+    ],
+    "compileOnSave": false
+}
