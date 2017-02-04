@@ -12,6 +12,7 @@ declare var LAAnimationView: any;
 
 export class LottieView extends View {
   private _src: string;
+  private _autoPlay: boolean;
   private _ios: any;
 
   constructor() {
@@ -33,14 +34,25 @@ export class LottieView extends View {
   set src(value: string) {
     console.log('setting src:', value);
     this._src = value;
+    if (!this._ios) {
+      this._ios = LAAnimationView.animationNamed(this._src);
+    }
+  }
+
+  get autoPlay(): boolean {
+    return this._autoPlay;
+  }
+  set autoPlay(value: boolean) {
+    this._autoPlay = value;
   }
 
   public onLoaded() {
     console.log('lottie onLoaded');
-    if (this._src) {
-      this._ios = LAAnimationView.animationNamed(this._src);
+    if (this._ios) {
       console.log(this._ios);
-      this.playAnimation();
+      if (this._autoPlay) {
+        this.playAnimation();
+      }
     }
   }
 
