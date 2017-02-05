@@ -62,6 +62,7 @@ export class LottieView extends View {
   }
 
   public onLoaded() {
+    super.onLoaded(); // ensure 'loaded' event fires
     // console.log('lottie onLoaded');
     if (this._ios) {
       // console.log(this._ios);
