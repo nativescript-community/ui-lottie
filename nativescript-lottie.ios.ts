@@ -1,8 +1,8 @@
 /**********************************************************************************
-* (c) 2017, Brad Martin.
+* (c) 2017, Nathan Walker.
 * Licensed under the MIT license.
 *
-* Version 1.0.0                                           bradwaynemartin@gmail.com
+* Version 1.0.0                                           walkerrunpdx@gmail.com
 **********************************************************************************/
 "use strict";
 
@@ -49,9 +49,6 @@ export class LottieView extends View {
   set loop(value: boolean) {
     this._loop = value;
     if (this._ios) {
-      // for (let key in this._ios) {
-      //     console.log(key + ': ', this._ios[key]);
-      //   }
       this._ios.loopAnimation = this._loop;
     }
   }
@@ -70,9 +67,6 @@ export class LottieView extends View {
       // console.log(this._ios);
       if (this._autoPlay) {
         // ensure loop is set properly before starting
-        // for (let key in this._ios) {
-        //   console.log(key + ': ', this._ios[key]);
-        // }
         this._ios.loopAnimation = this._loop;
         this.contentModeDefault();
         this.playAnimation();
@@ -117,7 +111,6 @@ export class LottieView extends View {
     }
   }
 
-  // getters
   public progress(): number {
     if (this._ios) {
       return this._ios.animationProgress;
@@ -137,6 +130,8 @@ export class LottieView extends View {
     }
   }
 
+  // ensures a reasonable default contentMode is set
+  // https://github.com/airbnb/lottie-ios#using-lottie
   private contentModeDefault() {
     if (this._ios) {
       if (this._contentMode) {
