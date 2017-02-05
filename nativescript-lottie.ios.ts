@@ -8,11 +8,13 @@
 
 import { View } from "ui/core/view";
 
-declare var LAAnimationView: any;
+declare var LAAnimationView: any, UIViewContentModeScaleAspectFit;
 
 export class LottieView extends View {
   private _src: string;
   private _autoPlay: boolean;
+  private _loop: boolean;
+  private _contentMode: any;
   private _ios: any;
 
   constructor() {
@@ -32,41 +34,117 @@ export class LottieView extends View {
     return this._src;
   }
   set src(value: string) {
-    console.log('setting src:', value);
+    // console.log('setting src:', value);
     this._src = value;
     if (!this._ios) {
       this._ios = LAAnimationView.animationNamed(this._src);
+      this.contentModeDefault();
+    }
+  }
+
+  get loop(): boolean {
+    return this._loop;
+  }
+
+  set loop(value: boolean) {
+    this._loop = value;
+    if (this._ios) {
+      // for (let key in this._ios) {
+      //     console.log(key + ': ', this._ios[key]);
+      //   }
+      this._ios.loopAnimation = this._loop;
     }
   }
 
   get autoPlay(): boolean {
     return this._autoPlay;
   }
+
   set autoPlay(value: boolean) {
     this._autoPlay = value;
   }
 
   public onLoaded() {
-    console.log('lottie onLoaded');
+    // console.log('lottie onLoaded');
     if (this._ios) {
-      console.log(this._ios);
+      // console.log(this._ios);
       if (this._autoPlay) {
+        // ensure loop is set properly before starting
+        // for (let key in this._ios) {
+        //   console.log(key + ': ', this._ios[key]);
+        // }
+        this._ios.loopAnimation = this._loop;
+        this.contentModeDefault();
         this.playAnimation();
       }
     }
   }
 
-  public playAnimation(): void {
-    if (this._ios) {
-      this._ios.playWithCompletion((animationFinished: boolean) => {
-        console.log('animationFinished:', animationFinished);
-      });
-    }
+  public playAnimation(): Promise<any> {
+    return new Promise((resolve) => {
+      if (this._ios) {
+        this._ios.playWithCompletion((animationFinished: boolean) => {
+          // console.log('animationFinished:', animationFinished);
+          resolve(animationFinished);
+        });
+      }
+    })
   }
 
   public cancelAnimation(): void {
     if (this._ios) {
-      console.log('unsupported');
+      this._ios.pause();
+    }
+  }
+
+  public isAnimating(): boolean {
+    if (this._ios) {
+      return this._ios.isAnimationPlaying;
+    } else {
+      return false;
+    }
+  }
+
+  public setProgress(value: number): void {
+    if (typeof value !== 'undefined' && this._ios) {
+      this._ios.animationProgress = value;
+    }
+  }
+
+  public setSpeed(value: number): void {
+    if (this._ios) {
+      this._ios.animationSpeed = value;
+    }
+  }
+
+  // getters
+  public progress(): number {
+    if (this._ios) {
+      return this._ios.animationProgress;
+    }
+  }
+
+  public duration(): number {
+    if (this._ios) {
+      return this._ios.animationDuration;
+    }
+  }
+
+  public set contentMode(mode: any) {
+    this._contentMode = mode;
+    if (this._ios) {
+      this._ios.contentMode = mode;
+    }
+  }
+
+  private contentModeDefault() {
+    if (this._ios) {
+      if (this._contentMode) {
+        this._ios.contentMode = this._contentMode;
+      } else {
+        // default
+        this._ios.contentMode = UIViewContentModeScaleAspectFit;
+      }
     }
   }
 
