@@ -9,13 +9,9 @@ declare var com: any;
 export class HelloWorldModel extends Observable {
 
     private _myLottie: LottieView;
-    private _page: Page;
 
-    constructor(page: Page) {
+    constructor() {
         super();
-        this._page = page;
-        this._myLottie = <LottieView>this._page.getViewById('pinjump');
-        console.log('this._myLottie:', this._myLottie);
     }
 
     public lottieLoaded(args) {
