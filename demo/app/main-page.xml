@@ -9,13 +9,13 @@
             <!--<Label text="Yea... NativeScript supports Lottie - Thanks Airbnb!!!" class="h3" textWrap="true"/>-->
             <!--<StackLayout class="hr-dark"></StackLayout>-->
             <StackLayout orientation="horizontal">
-                <Lottie:LottieView src="B.json" height="60" loop="true" autoPlay="true" />
-                <Lottie:LottieView src="R.json" height="60" loop="true" autoPlay="true" />
-                <Lottie:LottieView src="A.json" height="60" loop="true" autoPlay="true" />
-                <Lottie:LottieView src="D.json" height="60" loop="true" autoPlay="true" />
+                <Lottie:LottieView src="Mobilo/B.json" height="60" loop="true" autoPlay="true" />
+                <Lottie:LottieView src="Mobilo/R.json" height="60" loop="true" autoPlay="true" />
+                <Lottie:LottieView src="Mobilo/A.json" height="60" loop="true" autoPlay="true" />
+                <Lottie:LottieView src="Mobilo/D.json" height="60" loop="true" autoPlay="true" />
             </StackLayout>
             <!--<GridLayout class="p-t-10" rows="auto" columns="*, auto"><Label col="0" text="Loop Animation" textWrap="true" /><Switch col="1" checked="{{ lottieLoop }}" /></GridLayout>-->
-            <Lottie:LottieView src="pinjump.json" height="130" loop="true" loaded="{{ lottieLoaded }}" />
+            <Lottie:LottieView id="pinjump" src="pinjump.json" height="130" loop="true" />
             <GridLayout class="p-t-10" rows="auto" columns="*, *">
                 <Button col="0" text="Start" tap="{{ startLottie }}" />
                 <Button col="1" text="Stop" tap="{{ stopLottie }}" />

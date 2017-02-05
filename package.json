@@ -27,6 +27,12 @@
         "name": "Brad Martin",
         "email": "bradwaynemartin@gmail.com"
     },
+    "contributors": [
+        {
+            "name": "Nathan Walker",
+            "email": "walkerrunpdx@gmail.com"
+        }
+    ],
     "license": {
         "type": "MIT",
         "url": "https://github.com/bradmartin/nativescript-lottie/blob/master/LICENSE"
