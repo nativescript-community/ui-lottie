@@ -1,6 +1,6 @@
 {
     "name": "nativescript-lottie",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "NativeScript plugin to expose native Lottie library",
     "main": "nativescript-lottie",
     "typings": "index.d.ts",
