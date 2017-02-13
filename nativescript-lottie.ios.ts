@@ -8,7 +8,7 @@
 
 import { View } from "ui/core/view";
 
-declare var LAAnimationView: any, UIViewContentModeScaleAspectFit;
+declare var LOTAnimationView: any, UIViewContentModeScaleAspectFit;
 
 export class LottieView extends View {
   private _src: string;
@@ -21,11 +21,11 @@ export class LottieView extends View {
     super();
   }
 
-  /// LAAnimationView
+  /// LOTAnimationView
   get ios(): any {
     return this._ios;
   }
-  /// LAAnimationView
+  /// LOTAnimationView
   get _nativeView(): any {
     return this._ios;
   }
@@ -37,7 +37,7 @@ export class LottieView extends View {
     // console.log('setting src:', value);
     this._src = value;
     if (!this._ios) {
-      this._ios = LAAnimationView.animationNamed(this._src);
+      this._ios = LOTAnimationView.animationNamed(this._src);
       this.contentModeDefault();
     }
   }
