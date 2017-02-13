@@ -44,7 +44,7 @@
     "readmeFilename": "README.md",
     "scripts": {
         "build": "tsc",
-        "demo.ios": "npm run preparedemo && cd demo && tns emulate ios",
+        "demo.ios": "npm run preparedemo && cd demo && tns run ios --emulator",
         "demo.android": "npm run preparedemo && cd demo && tns run android",
         "debug.ios": "npm run preparedemo && cd demo && tns debug ios --emulator",
         "debug.android": "npm run preparedemo && cd demo && tns debug android --emulator",
