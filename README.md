@@ -35,7 +35,10 @@ this approach as it's not the simplest for beginner NativeScript devs without mu
 
 I've not setup the propertyChange events for `loop`, `autoPlay` or `src`. Will accept a PR if someone wants to provide the capability of changing properties of the LottieView instance after initial load.
 
-### XML
+### Angular
+Currently the plugin needs some work to be functional with Angular apps, will accept PRs for sure if someone wants to update the plugin.
+
+### XML (for plain NS apps)
 ```xml
 <Page 
     xmlns="http://schemas.nativescript.org/tns.xsd" 
