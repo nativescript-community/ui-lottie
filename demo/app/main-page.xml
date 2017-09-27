@@ -14,7 +14,7 @@
                 <Lottie:LottieView android:src="S.json" ios:src="Mobilo/S.json" height="60" loop="true" autoPlay="true" />
                 <Lottie:LottieView android:src="D.json" ios:src="Mobilo/D.json" height="60" loop="true" autoPlay="true" />
             </StackLayout>
-            <GridLayout class="p-t-10" rows="auto" columns="*, auto"><Label col="0" text="Loop Animation" textWrap="true" /><Switch col="1" checked="{{ lottieLoop }}" /></GridLayout>
+            <!-- <GridLayout class="p-t-10" rows="auto" columns="*, auto"><Label col="0" text="Loop Animation" textWrap="true" /><Switch col="1" checked="{{ lottieLoop }}" /></GridLayout> -->
              <Lottie:LottieView src="pinjump.json" height="130" loop="true" loaded="{{ lottieLoaded }}" /> 
             <GridLayout class="p-t-10" rows="auto" columns="*, *">
                 <Button col="0" text="Start" tap="{{ startLottie }}" />
