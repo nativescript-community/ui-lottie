@@ -7,8 +7,6 @@
 "use strict";
 
 import { View } from "tns-core-modules/ui/content-view";
-import { fromResource } from "tns-core-modules/image-source";
-import { knownFolders } from "file-system";
 
 declare var com: any;
 declare var android: any;
