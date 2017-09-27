@@ -6,7 +6,8 @@
 **********************************************************************************/
 "use strict";
 
-import { View } from "tns-core-modules/ui/content-view";
+import { View, Property } from "tns-core-modules/ui/content-view";
+import { LottieViewBase, srcProperty, loopProperty, autoPlayProperty } from "./nativescript-lottie.common";
 
 declare var com: any;
 declare var android: any;
@@ -14,11 +15,9 @@ declare var org: any;
 
 const LottieAnimationView: any = com.airbnb.lottie.LottieAnimationView;
 
-export class LottieView extends View {
-  private _src: string;
-  private _loop: boolean;
-  private _autoPlay: boolean;
-  private _cacheStrategy: CacheStrategy;
+export class LottieView extends LottieViewBase {
+
+  public cacheStrategy: CacheStrategy;
 
   constructor() {
     super();
@@ -29,54 +28,26 @@ export class LottieView extends View {
     return this.nativeView;
   }
 
-  get src(): string {
-    return this._src;
-  }
-  set src(value: string) {
-    this._src = value;
-  }
-
-  get loop(): boolean {
-    return this._loop;
-  }
-  set loop(value: boolean) {
-    this._loop = value;
-  }
-
-  get cacheStrategy(): CacheStrategy {
-    return this._cacheStrategy;
-  }
-  set cacheStrategy(value: CacheStrategy) {
-    this._cacheStrategy = value;
-  }
-
-  get autoPlay(): boolean {
-    return this._autoPlay;
-  }
-  set autoPlay(value: boolean) {
-    this._autoPlay = value;
-  }
-
   public createNativeView(): View {
     let nativeView = new LottieAnimationView(this._context);
 
     try {
 
-      if (this._src) {
-        if (this._cacheStrategy) {
-          nativeView.setAnimation(this._src, this._cacheStrategy);
+      if (this.src) {
+        if (this.cacheStrategy) {
+          nativeView.setAnimation(this.src, this.cacheStrategy);
         } else {
-          nativeView.setAnimation(this._src);
+          nativeView.setAnimation(this.src);
         }
       } else {
         throw new Error("The src property is required.");
       }
 
-      if (this._loop) {
+      if (this.loop) {
         nativeView.loop(true);
       }
 
-      if (this._autoPlay) {
+      if (this.autoPlay) {
         nativeView.playAnimation();
       }
 
@@ -87,6 +58,22 @@ export class LottieView extends View {
     return nativeView;
   }
 
+  // [srcProperty.setNative](src: string) {
+
+  // }
+
+  // [loopProperty.setNative](loop: boolean) {
+
+  // }
+
+  // [cacheStrategyProperty.setNative](cacheStrategy: CacheStrategy) {
+
+  // }
+
+  // [autoPlayProperty.setNative](autoPlay: boolean) {
+
+  // }
+
 
   public playAnimation(): void {
     if (this.nativeView) {
@@ -96,11 +83,11 @@ export class LottieView extends View {
 
 
   public isAnimating(): boolean {
+    let isAnimating = false;
     if (this.nativeView.isAnimating()) {
-      return true;
-    } else {
-      return false;
+      isAnimating = true;
     }
+    return isAnimating;
   }
 
 
@@ -118,6 +105,12 @@ export class LottieView extends View {
   }
 
 }
+
+const cacheStrategyProperty = new Property<LottieView, CacheStrategy>({
+  name: "cacheStrategy"
+});
+
+cacheStrategyProperty.register(LottieView);
 
 /**
  * Caching strategy for compositions that will be reused frequently.
