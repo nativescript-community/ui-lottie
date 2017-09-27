@@ -3,6 +3,7 @@
 .tscache/
 /demo/node_modules/
 /demo/platforms/
+/demo/app/temp/
 node_modules/
 .settings/
 

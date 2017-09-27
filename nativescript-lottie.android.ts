@@ -6,7 +6,9 @@
 **********************************************************************************/
 "use strict";
 
-import { View } from "ui/core/view";
+import { View } from "tns-core-modules/ui/content-view";
+import { fromResource } from "tns-core-modules/image-source";
+import { knownFolders } from "file-system";
 
 declare var com: any;
 declare var android: any;
@@ -19,7 +21,6 @@ export class LottieView extends View {
   private _loop: boolean;
   private _autoPlay: boolean;
   private _cacheStrategy: CacheStrategy;
-  private _android: any; /// com.airbnb.lottie.LottieAnimationView;
 
   constructor() {
     super();
@@ -27,11 +28,7 @@ export class LottieView extends View {
 
   /// com.airbnb.lottie.LottieAnimationView
   get android(): any {
-    return this._android;
-  }
-  ///com.airbnb.lottie.LottieAnimationView
-  get _nativeView(): any {
-    return this._android;
+    return this.nativeView;
   }
 
   get src(): string {
@@ -62,32 +59,46 @@ export class LottieView extends View {
     this._autoPlay = value;
   }
 
+  public createNativeView(): View {
+    let nativeView = new LottieAnimationView(this._context);
 
-  public _createUI(): void {
     try {
-      this._android = new LottieAnimationView(this._context);
-      this._android.setAnimation(this._src, this._cacheStrategy);
-      this._android.loop(this._loop);
 
-      if (this._autoPlay) {
-        this._android.playAnimation();
+      if (this._src) {
+        if (this._cacheStrategy) {
+          nativeView.setAnimation(this._src, this._cacheStrategy);
+        } else {
+          nativeView.setAnimation(this._src);
+        }
+      } else {
+        throw new Error("The src property is required.");
       }
 
-    } catch (err) {
-      console.log(err);
+      if (this._loop) {
+        nativeView.loop(true);
+      }
+
+      if (this._autoPlay) {
+        nativeView.playAnimation();
+      }
+
+    } catch (error) {
+      console.log(error);
     }
+
+    return nativeView;
   }
 
 
   public playAnimation(): void {
-    if (this._android) {
-      this._android.playAnimation();
+    if (this.nativeView) {
+      this.nativeView.playAnimation();
     }
   }
 
 
   public isAnimating(): boolean {
-    if (this._android.isAnimating()) {
+    if (this.nativeView.isAnimating()) {
       return true;
     } else {
       return false;
@@ -97,14 +108,14 @@ export class LottieView extends View {
 
   public setProgress(value): void {
     if (value) {
-      this._android.setProgress(value);
+      this.nativeView.setProgress(value);
     }
   }
 
 
   public cancelAnimation(): void {
-    if (this._android) {
-      this._android.cancelAnimation();
+    if (this.nativeView) {
+      this.nativeView.cancelAnimation();
     }
   }
 

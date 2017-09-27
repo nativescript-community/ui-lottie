@@ -1,17 +1,29 @@
 {
     "compilerOptions": {
-        "target": "es5",
         "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
         "removeComments": true,
-        "experimentalDecorators": true,
+        "preserveConstEnums": true,
+        "sourceMap": false,
+        "declaration": false,
+        "noLib": false,
         "noEmitHelpers": true,
-        "noEmitOnError": false,
-        "declaration": false
+        "experimentalDecorators": true,
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "./node_modules/tns-core-modules/*",
+                "./node_modules/*"
+            ]
+        }
     },
-    "files": [
-        "demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
-        "nativescript-lottie.android.ts",
-        "nativescript-lottie.ios.ts"
-    ],
-    "compileOnSave": false
+    "exclude": [
+        "node_modules",
+        "platforms"
+    ]
 }
