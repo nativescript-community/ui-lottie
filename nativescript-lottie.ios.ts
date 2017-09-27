@@ -7,13 +7,11 @@
 "use strict";
 
 import { View } from "tns-core-modules/ui/content-view";
+import { LottieViewBase, srcProperty, loopProperty, autoPlayProperty } from "./nativescript-lottie.common";
 
 declare var LOTAnimationView: any, UIViewContentModeScaleAspectFit;
 
-export class LottieView extends View {
-  private _src: string;
-  private _autoPlay: boolean;
-  private _loop: boolean;
+export class LottieView extends LottieViewBase {
   private _contentMode: any;
 
   constructor() {
@@ -25,43 +23,29 @@ export class LottieView extends View {
     return this.nativeView;
   }
 
-  get src(): string {
-    return this._src;
-  }
-  set src(value: string) {
-    // console.log('setting src:', value);
-    this._src = value;
+  [srcProperty.setNative](src: string) {
     if (!this.nativeView) {
-      this.nativeView = LOTAnimationView.animationNamed(this._src);
+      this.nativeView = LOTAnimationView.animationNamed(src);
       this.contentModeDefault();
     }
   }
 
-  get loop(): boolean {
-    return this._loop;
-  }
-
-  set loop(value: boolean) {
-    this._loop = value;
+  [loopProperty.setNative](loop: boolean) {
     if (this.nativeView) {
-      this.nativeView.loopAnimation = this._loop;
+      this.nativeView.loopAnimation = loop;
     }
   }
 
-  get autoPlay(): boolean {
-    return this._autoPlay;
-  }
+  // [autoPlayProperty.setNative](autoPlay: boolean) {
 
-  set autoPlay(value: boolean) {
-    this._autoPlay = value;
-  }
+  // }
 
   public onLoaded() {
     super.onLoaded(); // ensure 'loaded' event fires
     if (this.nativeView) {
-      if (this._autoPlay) {
+      if (this.autoPlay) {
         // ensure loop is set properly before starting
-        this.nativeView.loopAnimation = this._loop;
+        this.nativeView.loopAnimation = this.loop;
         this.contentModeDefault();
         this.playAnimation();
       }

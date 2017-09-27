@@ -1,13 +1,11 @@
 import { View } from "tns-core-modules/ui/content-view";
 
 export declare class LottieView extends View {
-    private _src;
-    private _loop;
-    private _cacheStrategy;
     constructor();
     src: string;
     loop: boolean;
     cacheStrategy: EnumCacheStrategy;
+    autoPlay: boolean;
     createNativeView(): View;
     playAnimation(): void;
     isAnimating(): boolean;
