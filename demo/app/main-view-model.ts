@@ -1,6 +1,4 @@
-import { Observable } from "data/observable";
-import { Page } from "ui/page";
-import * as app from "application";
+import { EventData, Observable } from "tns-core-modules/data/observable";
 import { isIOS } from 'platform';
 import { LottieView } from "nativescript-lottie";
 
@@ -31,6 +29,4 @@ export class HelloWorldModel extends Observable {
     public stopLottie() {
         this._myLottie.cancelAnimation();
     }
-
-
 }

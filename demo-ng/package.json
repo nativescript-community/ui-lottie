@@ -1,0 +1,33 @@
+{
+  "description": "NativeScript Application",
+  "license": "SEE LICENSE IN <your-license-filename>",
+  "readme": "NativeScript Application",
+  "repository": "<fill-your-repository-here>",
+  "nativescript": {
+    "id": "org.nativescript.demong",
+    "tns-ios": {
+      "version": "3.0.1"
+    }
+  },
+  "dependencies": {
+    "@angular/animations": "~4.2.0",
+    "@angular/common": "~4.2.0",
+    "@angular/compiler": "~4.2.0",
+    "@angular/core": "~4.2.0",
+    "@angular/forms": "~4.2.0",
+    "@angular/http": "~4.2.0",
+    "@angular/platform-browser": "~4.2.0",
+    "@angular/router": "~4.2.0",
+    "nativescript-angular": "~4.2.0",
+    "nativescript-lottie": "file:///Users/rhanb/Documents/DevLove/Plugins/nativescript-lottie",
+    "nativescript-theme-core": "~1.0.2",
+    "reflect-metadata": "~0.1.8",
+    "rxjs": "~5.4.2",
+    "tns-core-modules": "~3.1.0",
+    "zone.js": "~0.8.2"
+  },
+  "devDependencies": {
+    "nativescript-dev-typescript": "~0.5.0",
+    "typescript": "~2.4.2"
+  }
+}

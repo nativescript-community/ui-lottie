@@ -6,16 +6,13 @@
 **********************************************************************************/
 "use strict";
 
-import { View } from "ui/core/view";
+import { View } from "tns-core-modules/ui/content-view";
+import { LottieViewBase, srcProperty, loopProperty, autoPlayProperty } from "./nativescript-lottie.common";
 
 declare var LOTAnimationView: any, UIViewContentModeScaleAspectFit;
 
-export class LottieView extends View {
-  private _src: string;
-  private _autoPlay: boolean;
-  private _loop: boolean;
+export class LottieView extends LottieViewBase {
   private _contentMode: any;
-  private _ios: any;
 
   constructor() {
     super();
@@ -23,52 +20,32 @@ export class LottieView extends View {
 
   /// LOTAnimationView
   get ios(): any {
-    return this._ios;
-  }
-  /// LOTAnimationView
-  get _nativeView(): any {
-    return this._ios;
+    return this.nativeView;
   }
 
-  get src(): string {
-    return this._src;
-  }
-  set src(value: string) {
-    // console.log('setting src:', value);
-    this._src = value;
-    if (!this._ios) {
-      this._ios = LOTAnimationView.animationNamed(this._src);
+  [srcProperty.setNative](src: string) {
+    if (!this.nativeView) {
+      this.nativeView = LOTAnimationView.animationNamed(src);
       this.contentModeDefault();
     }
   }
 
-  get loop(): boolean {
-    return this._loop;
-  }
-
-  set loop(value: boolean) {
-    this._loop = value;
-    if (this._ios) {
-      this._ios.loopAnimation = this._loop;
+  [loopProperty.setNative](loop: boolean) {
+    if (this.nativeView) {
+      this.nativeView.loopAnimation = loop;
     }
   }
 
-  get autoPlay(): boolean {
-    return this._autoPlay;
-  }
+  // [autoPlayProperty.setNative](autoPlay: boolean) {
 
-  set autoPlay(value: boolean) {
-    this._autoPlay = value;
-  }
+  // }
 
   public onLoaded() {
     super.onLoaded(); // ensure 'loaded' event fires
-    // console.log('lottie onLoaded');
-    if (this._ios) {
-      // console.log(this._ios);
-      if (this._autoPlay) {
+    if (this.nativeView) {
+      if (this.autoPlay) {
         // ensure loop is set properly before starting
-        this._ios.loopAnimation = this._loop;
+        this.nativeView.loopAnimation = this.loop;
         this.contentModeDefault();
         this.playAnimation();
       }
@@ -77,8 +54,8 @@ export class LottieView extends View {
 
   public playAnimation(): Promise<any> {
     return new Promise((resolve) => {
-      if (this._ios) {
-        this._ios.playWithCompletion((animationFinished: boolean) => {
+      if (this.nativeView) {
+        this.nativeView.playWithCompletion((animationFinished: boolean) => {
           // console.log('animationFinished:', animationFinished);
           resolve(animationFinished);
         });
@@ -87,59 +64,59 @@ export class LottieView extends View {
   }
 
   public cancelAnimation(): void {
-    if (this._ios) {
-      this._ios.pause();
+    if (this.nativeView) {
+      this.nativeView.pause();
     }
   }
 
   public isAnimating(): boolean {
-    if (this._ios) {
-      return this._ios.isAnimationPlaying;
+    if (this.nativeView) {
+      return this.nativeView.isAnimationPlaying;
     } else {
       return false;
     }
   }
 
   public setProgress(value: number): void {
-    if (typeof value !== 'undefined' && this._ios) {
-      this._ios.animationProgress = value;
+    if (typeof value !== 'undefined' && this.nativeView) {
+      this.nativeView.animationProgress = value;
     }
   }
 
   public setSpeed(value: number): void {
-    if (this._ios) {
-      this._ios.animationSpeed = value;
+    if (this.nativeView) {
+      this.nativeView.animationSpeed = value;
     }
   }
 
   public progress(): number {
-    if (this._ios) {
-      return this._ios.animationProgress;
+    if (this.nativeView) {
+      return this.nativeView.animationProgress;
     }
   }
 
   public duration(): number {
-    if (this._ios) {
-      return this._ios.animationDuration;
+    if (this.nativeView) {
+      return this.nativeView.animationDuration;
     }
   }
 
   public set contentMode(mode: any) {
     this._contentMode = mode;
-    if (this._ios) {
-      this._ios.contentMode = mode;
+    if (this.nativeView) {
+      this.nativeView.contentMode = mode;
     }
   }
 
   // ensures a reasonable default contentMode is set
   // https://github.com/airbnb/lottie-ios#using-lottie
   private contentModeDefault() {
-    if (this._ios) {
+    if (this.nativeView) {
       if (this._contentMode) {
-        this._ios.contentMode = this._contentMode;
+        this.nativeView.contentMode = this._contentMode;
       } else {
         // default
-        this._ios.contentMode = UIViewContentModeScaleAspectFit;
+        this.nativeView.contentMode = UIViewContentModeScaleAspectFit;
       }
     }
   }
