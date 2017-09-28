@@ -3,6 +3,10 @@
 .tscache/
 /demo/node_modules/
 /demo/platforms/
+/demo/app/temp/
+/demo-ng/node_modules/
+/demo-ng/platforms/
+/demo-ng/app/temp/
 node_modules/
 .settings/
 
