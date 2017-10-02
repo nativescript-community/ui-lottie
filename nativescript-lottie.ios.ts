@@ -6,7 +6,6 @@
 **********************************************************************************/
 "use strict";
 
-import { View } from "tns-core-modules/ui/content-view";
 import { LottieViewBase, srcProperty, loopProperty, autoPlayProperty } from "./nativescript-lottie.common";
 
 declare var LOTAnimationView: any, UIViewContentModeScaleAspectFit;

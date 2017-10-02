@@ -8,5 +8,5 @@ android {
 }
 
 dependencies {
-     compile "com.airbnb.android:lottie:1.0.0"
+     compile "com.airbnb.android:lottie:2.2.5"
 }
