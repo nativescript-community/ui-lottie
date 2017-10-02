@@ -1,4 +1,4 @@
-import { View } from "tns-core-modules/ui/content-view";
+import { View } from "tns-core-modules/ui/core/view";
 
 export declare class LottieView extends View {
     constructor();

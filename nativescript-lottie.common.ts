@@ -6,7 +6,8 @@
 **********************************************************************************/
 "use strict";
 
-import { View, Property } from "tns-core-modules/ui/content-view";
+import { View } from "tns-core-modules/ui/core/view";
+import { Property } from "tns-core-modules/ui/core/properties";
 
 export class LottieViewBase extends View {
     public src: string;
