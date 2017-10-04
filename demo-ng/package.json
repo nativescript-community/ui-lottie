@@ -5,11 +5,11 @@
   "repository": "<fill-your-repository-here>",
   "nativescript": {
     "id": "org.nativescript.demong",
-    "tns-ios": {
-      "version": "3.0.1"
-    },
     "tns-android": {
-      "version": "3.0.1"
+      "version": "3.2.0"
+    },
+    "tns-ios": {
+      "version": "3.2.0"
     }
   },
   "dependencies": {
@@ -26,7 +26,7 @@
     "nativescript-theme-core": "~1.0.2",
     "reflect-metadata": "~0.1.8",
     "rxjs": "~5.4.2",
-    "tns-core-modules": "~3.1.0",
+    "tns-core-modules": "^3.2.0",
     "zone.js": "~0.8.2"
   },
   "devDependencies": {

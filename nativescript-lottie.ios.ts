@@ -15,6 +15,7 @@ export class LottieView extends LottieViewBase {
 
   constructor() {
     super();
+    this.nativeView = LOTAnimationView;
   }
 
   /// LOTAnimationView
@@ -23,21 +24,23 @@ export class LottieView extends LottieViewBase {
   }
 
   [srcProperty.setNative](src: string) {
-    if (!this.nativeView) {
+    console.log('setting src:', src);
+    //if (!this.nativeView) {
       this.nativeView = LOTAnimationView.animationNamed(src);
       this.contentModeDefault();
-    }
+    //}
   }
 
   [loopProperty.setNative](loop: boolean) {
+    console.log('setting src:', loop);
     if (this.nativeView) {
       this.nativeView.loopAnimation = loop;
     }
   }
 
-  // [autoPlayProperty.setNative](autoPlay: boolean) {
-
-  // }
+  [autoPlayProperty.setNative](autoPlay: boolean) {
+    console.log('setting autoPlay', autoPlay);
+  }
 
   public onLoaded() {
     super.onLoaded(); // ensure 'loaded' event fires
@@ -88,13 +91,13 @@ export class LottieView extends LottieViewBase {
     }
   }
 
-  public progress(): number {
+  public progress() {
     if (this.nativeView) {
       return this.nativeView.animationProgress;
     }
   }
 
-  public duration(): number {
+  public duration() {
     if (this.nativeView) {
       return this.nativeView.animationDuration;
     }

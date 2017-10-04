@@ -7,7 +7,7 @@
 "use strict";
 
 import { View } from "tns-core-modules/ui/core/view";
-import {Property} from 'tns-core-modules/ui/core/properties';
+import { Property } from 'tns-core-modules/ui/core/properties';
 import { LottieViewBase, srcProperty, loopProperty, autoPlayProperty } from "./nativescript-lottie.common";
 
 declare var com: any;
@@ -35,11 +35,7 @@ export class LottieView extends LottieViewBase {
     try {
 
       if (this.src) {
-        if (this.cacheStrategy) {
-          nativeView.setAnimation(this.src, this.cacheStrategy);
-        } else {
-          nativeView.setAnimation(this.src);
-        }
+        this.setSrc(this.src);
       } else {
         throw new Error("The src property is required.");
       }
@@ -53,27 +49,47 @@ export class LottieView extends LottieViewBase {
       }
 
     } catch (error) {
-      console.log(error);
+      throw error;
     }
 
     return nativeView;
   }
 
-  // [srcProperty.setNative](src: string) {
+  [srcProperty.setNative](src: string) {
+    console.log('setting src: ', src);
+    this.setSrc(src);
+  }
 
-  // }
+  private setSrc(src: string) {
+    if (this.cacheStrategy) {
+      this.nativeView.setAnimation(src, this.cacheStrategy);
+    } else {
+      this.nativeView.setAnimation(src);
+    }
+  }
 
-  // [loopProperty.setNative](loop: boolean) {
+  [loopProperty.setNative](loop: boolean) {
+    console.log('setting loop: ', loop);
+    if (loop) {
+      this.nativeView.loop(true);
+    } else {
+      this.nativeView.loop(false);
+    }
+  }
 
-  // }
+  [cacheStrategyProperty.setNative](cacheStrategy: CacheStrategy) {
+    console.log('setting cacheStrategy: ', cacheStrategy);
+    this.setSrc(this.src);
+  }
 
-  // [cacheStrategyProperty.setNative](cacheStrategy: CacheStrategy) {
-
-  // }
-
-  // [autoPlayProperty.setNative](autoPlay: boolean) {
-
-  // }
+  [autoPlayProperty.setNative](autoPlay: boolean) {
+    console.log('setting autoPlay: ', autoPlay);
+    if (autoPlay) {
+      this.playAnimation();
+    } else {
+      this.cancelAnimation();
+    }
+  }
 
 
   public playAnimation(): void {
