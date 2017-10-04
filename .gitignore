@@ -18,3 +18,4 @@ node_modules/
 *.zip
 *.js
 *.log
+nativescript-lottie.*.d.ts
