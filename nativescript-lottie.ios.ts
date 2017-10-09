@@ -6,6 +6,8 @@
 **********************************************************************************/
 "use strict";
 
+import { View } from "tns-core-modules/ui/core/view";
+import { Property } from 'tns-core-modules/ui/core/properties';
 import { LottieViewBase, srcProperty, loopProperty, autoPlayProperty } from "./nativescript-lottie.common";
 
 declare var LOTAnimationView: any, UIViewContentModeScaleAspectFit;
@@ -15,7 +17,15 @@ export class LottieView extends LottieViewBase {
 
   constructor() {
     super();
-    this.nativeView = LOTAnimationView;
+    //this.nativeView = LOTAnimationView.animationNamed("Mobilo/B.json");
+    //MPCoachMarks.alloc().init
+    //this.nativeView = LOTAnimationView.alloc().init();
+    //this.nativeView
+    setTimeout(() => {
+      console.log(this.src);
+      this.nativeView = LOTAnimationView.animationNamed(this.src);
+    });
+    //console.log(this.src);
   }
 
   /// LOTAnimationView
@@ -23,28 +33,34 @@ export class LottieView extends LottieViewBase {
     return this.nativeView;
   }
 
+  public initNativeView() {
+  }
+
   [srcProperty.setNative](src: string) {
-    console.log('setting src:', src);
-    //if (!this.nativeView) {
-      this.nativeView = LOTAnimationView.animationNamed(src);
-      this.contentModeDefault();
-    //}
+    console.log('setting src: ', src);
+    //this.nativeView = LOTAnimationView.animationNamed(src);
+    // if (!this.nativeView) {
+    //   this.nativeView = LOTAnimationView.animationNamed(src);
+    //   this.contentModeDefault();
+    // }
   }
 
   [loopProperty.setNative](loop: boolean) {
-    console.log('setting src:', loop);
-    if (this.nativeView) {
-      this.nativeView.loopAnimation = loop;
-    }
+    console.log("setting loop: ", loop);
+    // if (this.nativeView) {
+    //   this.nativeView.loopAnimation = loop;
+    // }
   }
 
-  [autoPlayProperty.setNative](autoPlay: boolean) {
-    console.log('setting autoPlay', autoPlay);
-  }
+  // [autoPlayProperty.setNative](autoPlay: boolean) {
+
+  // }
 
   public onLoaded() {
     super.onLoaded(); // ensure 'loaded' event fires
+    console.log('onLoad plugin side');
     if (this.nativeView) {
+      console.log('nativeView exists');
       if (this.autoPlay) {
         // ensure loop is set properly before starting
         this.nativeView.loopAnimation = this.loop;

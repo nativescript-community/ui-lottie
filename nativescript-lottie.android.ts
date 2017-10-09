@@ -35,9 +35,11 @@ export class LottieView extends LottieViewBase {
     try {
 
       if (this.src) {
-        this.setSrc(this.src);
-      } else {
-        throw new Error("The src property is required.");
+        if (this.cacheStrategy) {
+          nativeView.setAnimation(this.src, this.cacheStrategy);
+        } else {
+          nativeView.setAnimation(this.src);
+        }
       }
 
       if (this.loop) {
@@ -77,10 +79,10 @@ export class LottieView extends LottieViewBase {
     }
   }
 
-  [cacheStrategyProperty.setNative](cacheStrategy: CacheStrategy) {
-    console.log('setting cacheStrategy: ', cacheStrategy);
-    this.setSrc(this.src);
-  }
+  // [cacheStrategyProperty.setNative](cacheStrategy: CacheStrategy) {
+  //   console.log('setting cacheStrategy: ', cacheStrategy);
+  //   this.setSrc(this.src);
+  // }
 
   [autoPlayProperty.setNative](autoPlay: boolean) {
     console.log('setting autoPlay: ', autoPlay);
