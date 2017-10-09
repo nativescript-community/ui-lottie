@@ -13,7 +13,7 @@ registerElement('LottieView', () => LottieView);
 export class AppComponent {
     public animationIndex: number = 0;
     public loop: boolean = true;
-    public src: string = "Mobilo/B.json";
+    public src: string;
     public autoPlay: boolean = true;
     public animations: Array<string>;
 
@@ -21,6 +21,7 @@ export class AppComponent {
 
 
     constructor() {
+        this.src = "HamburgerArrow.json";
         this.animations = [
             "Mobilo/B.json",
             "Mobilo/D.json",
@@ -37,7 +38,6 @@ export class AppComponent {
         } else {
             this.src = this.animations[this.animationIndex];
         }
-        console.log(this.src);
     }
 
     lottieViewLoaded(event) {
