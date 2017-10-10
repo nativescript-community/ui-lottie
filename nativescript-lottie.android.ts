@@ -8,7 +8,7 @@
 
 import { View } from "tns-core-modules/ui/core/view";
 import { Property } from 'tns-core-modules/ui/core/properties';
-import { LottieViewBase, srcProperty, loopProperty, autoPlayProperty } from "./nativescript-lottie.common";
+import { LottieViewBase, srcProperty, loopProperty, autoPlayProperty, cacheStrategyProperty } from "./nativescript-lottie.common";
 
 declare var com: any;
 declare var android: any;
@@ -18,7 +18,7 @@ const LottieAnimationView: any = com.airbnb.lottie.LottieAnimationView;
 
 export class LottieView extends LottieViewBase {
 
-  public cacheStrategy: CacheStrategy;
+  private _srcSet: boolean = false;
 
   constructor() {
     super();
@@ -59,7 +59,10 @@ export class LottieView extends LottieViewBase {
 
   [srcProperty.setNative](src: string) {
     console.log('setting src: ', src);
-    this.setSrc(src);
+    if (!this._srcSet) {
+      this.setSrc(src);
+      this._srcSet = true;
+    }
   }
 
   private setSrc(src: string) {
@@ -71,7 +74,6 @@ export class LottieView extends LottieViewBase {
   }
 
   [loopProperty.setNative](loop: boolean) {
-    console.log('setting loop: ', loop);
     if (loop) {
       this.nativeView.loop(true);
     } else {
@@ -79,13 +81,12 @@ export class LottieView extends LottieViewBase {
     }
   }
 
-  // [cacheStrategyProperty.setNative](cacheStrategy: CacheStrategy) {
-  //   console.log('setting cacheStrategy: ', cacheStrategy);
-  //   this.setSrc(this.src);
-  // }
+  [cacheStrategyProperty.setNative](cacheStrategy: CacheStrategy) {
+    console.log('setting cacheStrategy: ', cacheStrategy);
+    this.setSrc(this.src);
+  }
 
   [autoPlayProperty.setNative](autoPlay: boolean) {
-    console.log('setting autoPlay: ', autoPlay);
     if (autoPlay) {
       this.playAnimation();
     } else {
@@ -124,12 +125,6 @@ export class LottieView extends LottieViewBase {
   }
 
 }
-
-const cacheStrategyProperty = new Property<LottieView, CacheStrategy>({
-  name: "cacheStrategy"
-});
-
-cacheStrategyProperty.register(LottieView);
 
 /**
  * Caching strategy for compositions that will be reused frequently.

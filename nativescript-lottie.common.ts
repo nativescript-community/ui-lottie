@@ -8,11 +8,13 @@
 
 import { View } from "tns-core-modules/ui/core/view";
 import { Property } from "tns-core-modules/ui/core/properties";
+import { CacheStrategy } from "./nativescript-lottie.android";
 
 export class LottieViewBase extends View {
     public src: string;
     public loop: boolean;
     public autoPlay: boolean;
+    public cacheStrategy: CacheStrategy;
 }
 
 export const srcProperty = new Property<LottieViewBase, string>({
@@ -32,4 +34,11 @@ export const autoPlayProperty = new Property<LottieViewBase, boolean>({
 });
 
 autoPlayProperty.register(LottieViewBase);
+
+export const cacheStrategyProperty = new Property<LottieViewBase, CacheStrategy>({
+    name: "cacheStrategy"
+});
+
+cacheStrategyProperty.register(LottieViewBase);
+
 
