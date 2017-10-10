@@ -23,21 +23,19 @@ export class AppComponent {
     constructor() {
         this.src = "HamburgerArrow.json";
         this.animations = [
-            "Mobilo/B.json",
-            "Mobilo/D.json",
-            "Mobilo/N.json",
-            "Mobilo/R.json",
-            "Mobilo/S.json",
+            "EmptyState.json"
         ]
     }
 
     next() {
+        console.log("next");
         this.animationIndex++;
-        if (this.animationIndex >= this.animations.length) {
-            this.animationIndex = 0;
-        } else {
-            this.src = this.animations[this.animationIndex];
-        }
+        // if (this.animationIndex >= this.animations.length) {
+        //     this.animationIndex = 0;
+        // } else {
+        //     this.src = this.animations[this.animationIndex];
+        // }
+        this.src = "EmptyState.json";
     }
 
     lottieViewLoaded(event) {

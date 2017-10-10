@@ -3,7 +3,9 @@
 <ScrollView>
     <StackLayout class="p-10">
         <Label text="Yea... NativeScript supports Lottie - Thanks Airbnb!!!" class="h3" textWrap="true"></Label>
-        <LottieView [src]="src" height="130" [loop]="loop" [autoPlay]="autoPlay" (loaded)="lottieViewLoaded($event)"></LottieView>
+
+        <LottieView width="150" height="150" [src]="src" [loop]="loop" [autoPlay]="autoPlay" (loaded)="lottieViewLoaded($event)"></LottieView>
+
         <StackLayout class="hr-dark"></StackLayout>
         <Button text="Next" (tap)="next()"></Button>
         <!-- <StackLayout orientation="horizontal">
