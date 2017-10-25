@@ -58,11 +58,7 @@ export class LottieView extends LottieViewBase {
   }
 
   [srcProperty.setNative](src: string) {
-    console.log('setting src: ', src);
-    if (!this._srcSet) {
-      this.setSrc(src);
-      this._srcSet = true;
-    }
+    this.setSrc(src);
   }
 
   private setSrc(src: string) {
@@ -76,19 +72,23 @@ export class LottieView extends LottieViewBase {
   [loopProperty.setNative](loop: boolean) {
     if (loop) {
       this.nativeView.loop(true);
+      if (this.autoPlay && !this.isAnimating()) {
+        this.playAnimation();
+      }
     } else {
       this.nativeView.loop(false);
     }
   }
 
   [cacheStrategyProperty.setNative](cacheStrategy: CacheStrategy) {
-    console.log('setting cacheStrategy: ', cacheStrategy);
     this.setSrc(this.src);
   }
 
   [autoPlayProperty.setNative](autoPlay: boolean) {
     if (autoPlay) {
-      this.playAnimation();
+      if (!this.isAnimating()) {
+        this.playAnimation();
+      }
     } else {
       this.cancelAnimation();
     }
@@ -111,8 +111,8 @@ export class LottieView extends LottieViewBase {
   }
 
 
-  public setProgress(value): void {
-    if (value) {
+  public setProgress(value: number): void {
+    if (this.nativeView && value) {
       this.nativeView.setProgress(value);
     }
   }

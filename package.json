@@ -50,7 +50,7 @@
     "demo.ios": "npm run preparedemo && cd demo && tns run ios --emulator",
     "demo.ng.ios": "npm run preparedemong && cd demo-ng && tns run ios",
     "demo.android": "npm run preparedemo && cd demo && tns run android",
-    "demo.ng.android": "npm run preparedemong && cd demo-ng && tns run ios",
+    "demo.ng.android": "npm run preparedemong && cd demo-ng && tns run android",
     "debug.ios": "npm run preparedemo && cd demo && tns debug ios --emulator",
     "debug.android": "npm run preparedemo && cd demo && tns debug android --emulator",
     "preparedemong": "npm run build && cd demo-ng && tns plugin remove nativescript-lottie && tns plugin add ../ && tns install",
