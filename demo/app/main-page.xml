@@ -4,32 +4,13 @@
     <Page.actionBar>
         <ActionBar title="Airbnb Lottie" icon="" class="action-bar"></ActionBar>
     </Page.actionBar>
-    
-    <ScrollView>
-        <StackLayout class="p-10">
-            <!--<Label text="Yea... NativeScript supports Lottie - Thanks Airbnb!!!" class="h3" textWrap="true"/>-->
-            <!--<StackLayout class="hr-dark"></StackLayout>-->
-            <StackLayout orientation="vertical">
-                <Lottie:LottieView src="{{ src }} " height="150" loop="{{ loop }}" autoPlay="{{ autoPlay }}" loaded="{{ lottieLoaded }}" />
-                <!-- <Lottie:LottieView android:src="N.json" ios:src="Mobilo/N.json" height="60" loop="true" autoPlay="true" />
-                <Lottie:LottieView android:src="S.json" ios:src="Mobilo/S.json" height="60" loop="true" autoPlay="true" />
-                <Lottie:LottieView android:src="D.json" ios:src="{{ src }}" height="60" loop="true" autoPlay="true" /> -->
-            </StackLayout>
-            <GridLayout class="p-t-10" rows="auto" columns="*">
-                <Button col="0" text="Next" tap="{{ next }}" width="200" height="100"/>
-            </GridLayout>
-            <!-- <GridLayout class="p-t-10" rows="auto" columns="*, auto"><Label col="0" text="Loop Animation" textWrap="true" /><Switch col="1" checked="{{ lottieLoop }}" /></GridLayout> -->
-             <!-- <Lottie:LottieView src="pinjump.json" height="130" loop="true" loaded="{{ lottieLoaded }}" /> 
-            <GridLayout class="p-t-10" rows="auto" columns="*, *">
-                <Button col="0" text="Start" tap="{{ startLottie }}" />
-                <Button col="1" text="Stop" tap="{{ stopLottie }}" />
-            </GridLayout>
-            <GridLayout class="p-t-10" rows="auto, auto" columns="*, *">
-                <Lottie:LottieView col="0" src="EmptyState.json" autoPlay="true" height="100" loop="true" />
-                <Lottie:LottieView col="1" src="HamburgerArrow.json" autoPlay="true" height="100" loop="true" />
-                <Lottie:LottieView row="1" col="0" src="LottieLogo1.json" autoPlay="true" height="100" loop="true" />
-                <Lottie:LottieView row="1" col="1" src="LottieLogo2.json" autoPlay="true" height="100" loop="true" />
-            </GridLayout> -->
+    <StackLayout class="p-10">
+        <StackLayout orientation="vertical">
+            <Lottie:LottieView src="{{ src }} " height="150" loop="{{ loop }}" autoPlay="{{ autoPlay }}" loaded="{{ lottieLoaded }}" />
         </StackLayout>
-    </ScrollView>
+        <GridLayout class="p-t-10" rows="auto" columns="*, *">
+            <Button class="btn btn-primary p-t-10" col="0" text="Next" tap="{{ next }}" />
+            <Button class="btn btn-primary p-t-10" col="1" text="Start/Stop" tap="{{ startOrStopAnimation }}" />
+        </GridLayout>
+    </StackLayout>
 </Page>

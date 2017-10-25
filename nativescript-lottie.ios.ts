@@ -6,42 +6,23 @@
 **********************************************************************************/
 "use strict";
 
-import { View } from "tns-core-modules/ui/core/view";
+import { View, layout } from "tns-core-modules/ui/core/view";
 import { Property } from 'tns-core-modules/ui/core/properties';
 import { LottieViewBase, srcProperty, loopProperty, autoPlayProperty } from "./nativescript-lottie.common";
 import { topmost } from "tns-core-modules/ui/frame/frame";
 
 declare var LOTAnimationView: any,
-  LOTComposition: any,
   UIViewContentModeScaleAspectFit: any,
   CGRectMake: any,
-  UIView: any,
-  CGRectGetWidth: any;
+  UIView: any;
 
-class TestView extends View {
-  constructor() {
-    super();
-  }
-
-  public createNativeView(): View {
-
-    let nativeView = LOTAnimationView.animationNamed("HamburgerArrow.json");
-
-    return nativeView;
-  }
-}
 export class LottieView extends LottieViewBase {
 
   private _contentMode: any;
-  private _srcSet: boolean;
   private _animationView: any;
 
   constructor() {
     super();
-
-
-    // this.nativeView = LOTAnimationView.animationNamed("HamburgerArrow.json");
-    // this.contentModeDefault();
     this.nativeView = new UIView();
   }
 
@@ -52,44 +33,40 @@ export class LottieView extends LottieViewBase {
   }
 
   [srcProperty.setNative](src: string) {
-
-    console.log(src);
     if (this._animationView) {
       this._animationView.removeFromSuperview();
       this._animationView = null;
     }
+    this.createAnimationView(src);
+  }
 
+  private createAnimationView(src: string) {
     this._animationView = LOTAnimationView.animationNamed(src);
     this.contentModeDefault();
-    console.log(this.ios.center.x);
-    this.ios.autoresizesSubviews = true;
     this.ios.addSubview(this._animationView);
-    //this.ios.bringSubviewToFront(this._animationView);
-    //this._animationView.bounds = this.ios.bounds;
-    let newFrame = CGRectMake(0, 0, 150, 150);
-    this._animationView.frame = newFrame;
-    // this._animationView.frame.origin.x = 0;
-    // this._animationView.frame.origin.y = 0;
-    // this._animationView.frame.size.width = this.width;
-    // this._animationView.frame.size.height = this.height;
-    // this.ios.bounds = this._animationView.bounds;
-    this.playAnimation();
-    //topmost().ios.controller.view.addSubview(this._animationView);
-    //this.playAnimation();
-    // console.log(this.nativeView.addSubView);
-    // this.nativeView.view.addSubView(animationView);
 
-    // let comp = LOTComposition.
-    // this.nativeView = LOTAnimationView.animationNamed(src);
-    // this.contentModeDefault();
-    // this._srcSet = true;
-    // }
+    let newFrameHeight = this.getMeasuredHeight() > 0 ? this.getMeasuredHeight() / 2 : (typeof this.height === "number" ? this.height : 150),
+      newFrameWidth = this.getMeasuredWidth() > 0 ? this.getMeasuredWidth() / 2 : (typeof this.width === "number" ? this.width : 150);
+
+    let newFrame = CGRectMake(0, 0, newFrameWidth, newFrameHeight);
+    this._animationView.frame = newFrame;
+
+    if (this.loop) {
+      this._animationView.loopAnimation = this.loop;
+    }
+
+    if (this.autoPlay) {
+      this.playAnimation();
+    }
+
   }
 
   [loopProperty.setNative](loop: boolean) {
-    console.log("setting loop: ", loop);
     if (this._animationView) {
-      this._animationView.loopAnimation = this.loop;
+      this._animationView.loopAnimation = loop;
+      if (this.autoPlay && !this.isAnimating() && loop) {
+        this.playAnimation();
+      }
     }
   }
 
@@ -97,7 +74,9 @@ export class LottieView extends LottieViewBase {
     if (autoPlay) {
       this._animationView.loopAnimation = this.loop;
       this.contentModeDefault();
-      this.playAnimation();
+      if (!this.isAnimating()) {
+        this.playAnimation();
+      }
     } else {
       if (this.isAnimating()) {
         this.cancelAnimation();
@@ -107,10 +86,20 @@ export class LottieView extends LottieViewBase {
 
   public onLoaded() {
     super.onLoaded(); // ensure 'loaded' event fires
-    console.log(this.ios.frame.size.width, this.ios.frame.size.height);
-    console.log(this.effectiveWidth, this.effectiveHeight);
-    console.log(this.height, this.width);
-    console.log(this.getMeasuredHeight(), this.getMeasuredWidth());
+  }
+
+  public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    const nativeView = this.nativeView;
+    if (nativeView) {
+      const width = layout.getMeasureSpecSize(widthMeasureSpec);
+      const height = layout.getMeasureSpecSize(heightMeasureSpec);
+      this.setMeasuredDimension(width, height);
+      if (this._animationView) {
+        let newFrame = CGRectMake(0, 0, width / 2, height / 2);
+        this._animationView.frame = newFrame;
+      }
+    }
   }
 
   public playAnimation(): Promise<any> {

@@ -4,10 +4,13 @@
     <StackLayout class="p-10">
         <Label text="Yea... NativeScript supports Lottie - Thanks Airbnb!!!" class="h3" textWrap="true"></Label>
 
-        <LottieView width="150" height="150" [src]="src" [loop]="loop" [autoPlay]="autoPlay" (loaded)="lottieViewLoaded($event)"></LottieView>
+        <LottieView width="auto" height="150" [src]="src" [loop]="loop" [autoPlay]="autoPlay" (loaded)="lottieViewLoaded($event)"></LottieView>
 
-        <StackLayout class="hr-dark"></StackLayout>
-        <Button text="Next" (tap)="next()"></Button>
+        <StackLayout class="hr-grey"></StackLayout>
+        <StackLayout orientation="horizontal">
+            <Button text="Next" class="p-10 button" (tap)="next()"></Button>
+            <Button text="Stop loop" class="p-10 button" (tap)="stopLoop()"></Button>
+        </StackLayout>
         <!-- <StackLayout orientation="horizontal">
             <LottieView android:src="B.json" ios:src="Mobilo/B.json" height="60" loop="true" autoPlay="true"></LottieView>
             <LottieView android:src="N.json" ios:src="Mobilo/N.json" height="60" loop="true" autoPlay="true"></LottieView>

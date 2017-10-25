@@ -24,13 +24,12 @@ export class HelloWorldModel extends Observable {
 
     constructor() {
         super();
-        this.src = "Mobilo/D.json";
+        this.src = this.animations[this.animationIndex];
         this.loop = true;
         this.autoPlay = true;
     }
 
     public lottieLoaded(args) {
-        console.log('lottieLoaded demo side');
         try {
             this._myLottie = args.object;
             console.log(isIOS ? args.object.ios : args.object.android);
@@ -40,20 +39,19 @@ export class HelloWorldModel extends Observable {
     }
 
     public next() {
-        // if (this.animationIndex >= this.animations.length) {
-        //     this.animationIndex = 0;
-        // } else {
-        //     this.animationIndex++;
-        // }
-        // this.src = this.animations[this.animationIndex];
-        console.log('next');
+        if (this.animationIndex >= this.animations.length) {
+            this.animationIndex = 0;
+        } else {
+            this.animationIndex++;
+        }
+        this.src = this.animations[this.animationIndex];
     }
 
-    public startLottie() {
-        this._myLottie.playAnimation();
-    }
-
-    public stopLottie() {
-        this._myLottie.cancelAnimation();
+    public startOrStopAnimation() {
+        if (this._myLottie.isAnimating()) {
+            this._myLottie.cancelAnimation();
+        } else {
+            this._myLottie.playAnimation();
+        }
     }
 }

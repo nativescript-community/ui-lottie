@@ -21,21 +21,32 @@ export class AppComponent {
 
 
     constructor() {
-        this.src = "HamburgerArrow.json";
         this.animations = [
-            "EmptyState.json"
-        ]
+            // "HamburgerArrow.json",
+            // "EmptyState.json",
+            // "9squares-AlBoardman.json",
+            // "TwitterHeart.json"
+            "Mobilo/A.json",
+            "Mobilo/D.json",
+            "Mobilo/N.json",
+            "Mobilo/S.json"
+        ];
+        this.src = this.animations[this.animationIndex];
     }
 
     next() {
         console.log("next");
         this.animationIndex++;
-        // if (this.animationIndex >= this.animations.length) {
-        //     this.animationIndex = 0;
-        // } else {
-        //     this.src = this.animations[this.animationIndex];
-        // }
-        this.src = "EmptyState.json";
+        if (this.animationIndex >= this.animations.length) {
+            this.animationIndex = 0;
+        }
+        this.src = this.animations[this.animationIndex];
+
+        //        this.src = "EmptyState.json";
+    }
+
+    stopLoop() {
+        this.loop = !this.loop;
     }
 
     lottieViewLoaded(event) {

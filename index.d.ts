@@ -9,8 +9,9 @@ export declare class LottieView extends View {
     createNativeView(): View;
     playAnimation(): void;
     isAnimating(): boolean;
-    setProgress(value: any): void;
+    setProgress(value: number): void;
     cancelAnimation(): void;
+    contentMode: any;
 }
 
 export declare enum EnumCacheStrategy {
