@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { registerElement } from 'nativescript-angular';
-import { LottieView } from './temp';
+import { LottieView } from 'nativescript-lottie';
 
 
 registerElement('LottieView', () => LottieView);
@@ -22,10 +22,6 @@ export class AppComponent {
 
     constructor() {
         this.animations = [
-            // "HamburgerArrow.json",
-            // "EmptyState.json",
-            // "9squares-AlBoardman.json",
-            // "TwitterHeart.json"
             "Mobilo/A.json",
             "Mobilo/D.json",
             "Mobilo/N.json",
@@ -35,18 +31,23 @@ export class AppComponent {
     }
 
     next() {
-        console.log("next");
         this.animationIndex++;
         if (this.animationIndex >= this.animations.length) {
             this.animationIndex = 0;
         }
         this.src = this.animations[this.animationIndex];
-
-        //        this.src = "EmptyState.json";
     }
 
     stopLoop() {
         this.loop = !this.loop;
+    }
+
+    stopAnimation() {
+        this._lottieView.cancelAnimation();
+    }
+
+    playAnimation() {
+        this._lottieView.playAnimation();
     }
 
     lottieViewLoaded(event) {

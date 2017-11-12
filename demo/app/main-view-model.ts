@@ -8,22 +8,23 @@ declare var com: any;
 export class HelloWorldModel extends Observable {
 
     private _myLottie: LottieView;
-    private animations: Array<string> = [
-        "Mobilo/D.json",
-        "Mobilo/A.json",
-        "Mobilo/B.json",
-        "Mobilo/N.json",
-        "Mobilo/R.json",
-        "Mobilo/S.json",
-    ];
+    private animations: string[];
     private animationIndex: number = 0;
 
-    public src;
-    public loop;
-    public autoPlay;
+    public src: string;
+    public loop: boolean;
+    public autoPlay: boolean;
 
     constructor() {
         super();
+        this.animations = [
+            "Mobilo/D.json",
+            "Mobilo/A.json",
+            "Mobilo/B.json",
+            "Mobilo/N.json",
+            "Mobilo/R.json",
+            "Mobilo/S.json"
+        ];
         this.src = this.animations[this.animationIndex];
         this.loop = true;
         this.autoPlay = true;
@@ -31,18 +32,18 @@ export class HelloWorldModel extends Observable {
 
     public lottieLoaded(args) {
         try {
-            this._myLottie = args.object;
+            this._myLottie = <LottieView>args.object;
             console.log(isIOS ? args.object.ios : args.object.android);
         } catch (error) {
             console.log(error);
         }
+        
     }
 
     public next() {
+        this.animationIndex++;
         if (this.animationIndex >= this.animations.length) {
             this.animationIndex = 0;
-        } else {
-            this.animationIndex++;
         }
         this.src = this.animations[this.animationIndex];
     }
@@ -53,5 +54,9 @@ export class HelloWorldModel extends Observable {
         } else {
             this._myLottie.playAnimation();
         }
+    }
+
+    public stopLoop() {
+        this.loop = !this.loop;
     }
 }
