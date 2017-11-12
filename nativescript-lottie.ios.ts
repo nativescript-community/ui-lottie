@@ -45,10 +45,12 @@ export class LottieView extends LottieViewBase {
     this.contentModeDefault();
     this.ios.addSubview(this._animationView);
 
-    let newFrameHeight = this.getMeasuredHeight() > 0 ? this.getMeasuredHeight() / 2 : (typeof this.height === "number" ? this.height : 150),
-      newFrameWidth = this.getMeasuredWidth() > 0 ? this.getMeasuredWidth() / 2 : (typeof this.width === "number" ? this.width : 150);
+
+    let newFrameHeight = typeof this.height === "number" ? this.height : (this.getMeasuredHeight() > 0 ? this.getMeasuredHeight() / 2 : 150),
+      newFrameWidth = typeof this.width === "number" ? this.width : (this.getMeasuredWidth() > 0 ? this.getMeasuredWidth() / 3 : 150);
 
     let newFrame = CGRectMake(0, 0, newFrameWidth, newFrameHeight);
+
     this._animationView.frame = newFrame;
 
     if (this.loop) {
@@ -64,15 +66,11 @@ export class LottieView extends LottieViewBase {
   [loopProperty.setNative](loop: boolean) {
     if (this._animationView) {
       this._animationView.loopAnimation = loop;
-      if (this.autoPlay && !this.isAnimating() && loop) {
-        this.playAnimation();
-      }
     }
   }
 
   [autoPlayProperty.setNative](autoPlay: boolean) {
     if (autoPlay) {
-      this._animationView.loopAnimation = this.loop;
       this.contentModeDefault();
       if (!this.isAnimating()) {
         this.playAnimation();
@@ -92,11 +90,13 @@ export class LottieView extends LottieViewBase {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     const nativeView = this.nativeView;
     if (nativeView) {
-      const width = layout.getMeasureSpecSize(widthMeasureSpec);
-      const height = layout.getMeasureSpecSize(heightMeasureSpec);
-      this.setMeasuredDimension(width, height);
+      const measuredWidth = layout.getMeasureSpecSize(widthMeasureSpec);
+      const measuredHeight = layout.getMeasureSpecSize(heightMeasureSpec);
+      const width = (typeof this.width === "number") ? this.width : measuredWidth / 3;
+      const height = (typeof this.height === "number") ? this.height : measuredHeight / 2;
+      this.setMeasuredDimension(measuredWidth, measuredHeight);
       if (this._animationView) {
-        let newFrame = CGRectMake(0, 0, width / 2, height / 2);
+        let newFrame = CGRectMake(0, 0, width, height);
         this._animationView.frame = newFrame;
       }
     }
@@ -129,28 +129,45 @@ export class LottieView extends LottieViewBase {
     return result;
   }
 
-  public setProgress(value: number): void {
+  public set progress(value: number) {
     if (typeof value !== 'undefined' && this._animationView) {
-      this._animationView.animationProgress = value;
+      this._animationView.setAnimationProgress(value);
     }
   }
 
-  public setSpeed(value: number): void {
+  public get progress(): number {
+    return this._animationView.animationProgress;
+  }
+
+  public set frame(frame: number) {
+    if (this._animationView) {
+      this._animationView.setProgressWithFrame(frame);
+    }
+  }
+
+  public get frame() {
+    return this._animationView.animationProgress;
+  }
+
+  public set speed(value: number) {
     if (this._animationView) {
       this._animationView.animationSpeed = value;
     }
   }
 
-  public progress() {
-    if (this._animationView) {
-      return this._animationView.animationProgress;
-    }
+  public get speed(): number {
+    return this._animationView.getSpeed();
   }
 
-  public duration() {
+
+  public get duration(): any {
     if (this._animationView) {
       return this._animationView.animationDuration;
     }
+  }
+
+  public get contentMode(): any {
+    return this._contentMode;
   }
 
   public set contentMode(mode: any) {

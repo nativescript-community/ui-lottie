@@ -1,5 +1,18 @@
 //default elements
 android {
+
+    allprojects {
+        repositories {
+            jcenter()
+            maven {
+                url "https://maven.google.com"
+            }
+        }
+    }
+
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+
     productFlavors {
         "nativescriptlottie" {
             dimension "nativescriptlottie"
@@ -8,5 +21,7 @@ android {
 }
 
 dependencies {  
-  compile 'com.airbnb.android:lottie:2.2.5'
+    def supportLibrariesVersion = '26.1.0'
+    compile "com.android.support:support-compat:${supportLibrariesVersion}"
+    compile 'com.airbnb.android:lottie:2.2.5'
 }
