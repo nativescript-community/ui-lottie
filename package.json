@@ -1,7 +1,7 @@
 {
   "name": "nativescript-lottie",
-  "version": "1.1.2",
-  "description": "NativeScript plugin to expose native Lottie library",
+  "version": "1.2.0",
+  "description": "NativeScript plugin to expose AirBnB Lottie library",
   "main": "nativescript-lottie",
   "typings": "index.d.ts",
   "nativescript": {
@@ -34,11 +34,16 @@
     {
       "name": "Nathan Walker",
       "email": "walkerrunpdx@gmail.com"
+    },
+    {
+      "name": "JB",
+      "url": "https://github.com/rhanb"
     }
   ],
   "license": {
     "type": "MIT",
-    "url": "https://github.com/bradmartin/nativescript-lottie/blob/master/LICENSE"
+    "url":
+      "https://github.com/bradmartin/nativescript-lottie/blob/master/LICENSE"
   },
   "bugs": {
     "url": "https://github.com/bradmartin/nativescript-lottie/issues"
