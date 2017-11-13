@@ -53,23 +53,23 @@
   "scripts": {
     "build": "tsc",
     "demo.ios": "npm run preparedemo && cd demo && tns run ios --emulator",
+    "demo.ng.ios": "npm run preparedemong && cd demo-ng && tns run ios",
     "demo.android": "npm run preparedemo && cd demo && tns run android",
+    "demo.ng.android": "npm run preparedemong && cd demo-ng && tns run android",
     "debug.ios": "npm run preparedemo && cd demo && tns debug ios --emulator",
-    "debug.android":
-      "npm run preparedemo && cd demo && tns debug android --emulator",
-    "preparedemo":
-      "npm run build && cd demo && tns plugin remove nativescript-lottie && tns plugin add .. && tns install",
-    "setup":
-      "cd demo && npm install && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
+    "debug.android": "npm run preparedemo && cd demo && tns debug android --emulator",
+    "preparedemong": "npm run build && cd demo-ng && tns plugin remove nativescript-lottie && tns plugin add ../ && tns install",
+    "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-lottie && tns plugin add .. && tns install",
+    "setup": "cd demo && npm install && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
     "start": "npm run demo.android"
   },
   "devDependencies": {
-    "tns-core-modules": "^3.0.1",
-    "tns-platform-declarations": "^3.0.1",
-    "typescript": "^2.2.2"
+    "tns-core-modules": "^3.2.0",
+    "tns-platform-declarations": "^3.2.0",
+    "typescript": "^2.5.2"
   },
   "peerDependencies": {
-    "tns-core-modules": "^3.0.1"
+    "tns-core-modules": "^3.2.0"
   },
   "dependencies": {}
 }
