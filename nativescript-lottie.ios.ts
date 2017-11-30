@@ -131,7 +131,7 @@ export class LottieView extends LottieViewBase {
 
   public set progress(value: number) {
     if (typeof value !== 'undefined' && this._animationView) {
-      this._animationView.setAnimationProgress(value);
+      this._animationView.animationProgress = value;
     }
   }
 
