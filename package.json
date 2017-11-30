@@ -1,6 +1,6 @@
 {
   "name": "nativescript-lottie",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "NativeScript plugin to expose AirBnB Lottie library",
   "main": "nativescript-lottie",
   "typings": "index.d.ts",
@@ -38,6 +38,10 @@
     {
       "name": "JB",
       "url": "https://github.com/rhanb"
+    },
+    {
+      "name": "Dirk Rudolph",
+      "url": "https://github.com/Buuhuu"
     }
   ],
   "license": {
@@ -57,10 +61,14 @@
     "demo.android": "npm run preparedemo && cd demo && tns run android",
     "demo.ng.android": "npm run preparedemong && cd demo-ng && tns run android",
     "debug.ios": "npm run preparedemo && cd demo && tns debug ios --emulator",
-    "debug.android": "npm run preparedemo && cd demo && tns debug android --emulator",
-    "preparedemong": "npm run build && cd demo-ng && tns plugin remove nativescript-lottie && tns plugin add ../ && tns install",
-    "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-lottie && tns plugin add .. && tns install",
-    "setup": "cd demo && npm install && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
+    "debug.android":
+      "npm run preparedemo && cd demo && tns debug android --emulator",
+    "preparedemong":
+      "npm run build && cd demo-ng && tns plugin remove nativescript-lottie && tns plugin add ../ && tns install",
+    "preparedemo":
+      "npm run build && cd demo && tns plugin remove nativescript-lottie && tns plugin add .. && tns install",
+    "setup":
+      "cd demo && npm install && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
     "start": "npm run demo.android"
   },
   "devDependencies": {
