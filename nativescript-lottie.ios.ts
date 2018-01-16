@@ -54,7 +54,7 @@ export class LottieView extends LottieViewBase {
     this._animationView.frame = newFrame;
 
     if (this.loop) {
-      this._animationView.loopAnimation = this.loop;
+      this.setLoopAnimation(this.loop);
     }
 
     if (this.autoPlay) {
@@ -64,6 +64,10 @@ export class LottieView extends LottieViewBase {
   }
 
   [loopProperty.setNative](loop: boolean) {
+    this.setLoopAnimation(this.loop);
+  }
+
+  private setLoopAnimation(loop: boolean) {
     if (this._animationView) {
       this._animationView.loopAnimation = loop;
     }
@@ -71,7 +75,9 @@ export class LottieView extends LottieViewBase {
 
   [autoPlayProperty.setNative](autoPlay: boolean) {
     if (autoPlay) {
+      this.setLoopAnimation(this.loop);
       this.contentModeDefault();
+
       if (!this.isAnimating()) {
         this.playAnimation();
       }
@@ -129,45 +135,28 @@ export class LottieView extends LottieViewBase {
     return result;
   }
 
-  public set progress(value: number) {
+  public setProgress(value: number): void {
     if (typeof value !== 'undefined' && this._animationView) {
       this._animationView.animationProgress = value;
     }
   }
 
-  public get progress(): number {
-    return this._animationView.animationProgress;
-  }
-
-  public set frame(frame: number) {
-    if (this._animationView) {
-      this._animationView.setProgressWithFrame(frame);
-    }
-  }
-
-  public get frame() {
-    return this._animationView.animationProgress;
-  }
-
-  public set speed(value: number) {
+  public setSpeed(value: number): void {
     if (this._animationView) {
       this._animationView.animationSpeed = value;
     }
   }
 
-  public get speed(): number {
-    return this._animationView.getSpeed();
-  }
-
-
-  public get duration(): any {
+  public progress(): number {
     if (this._animationView) {
-      return this._animationView.animationDuration;
+      return this._animationView.animationProgress;
     }
   }
 
-  public get contentMode(): any {
-    return this._contentMode;
+  public duration(): number {
+    if (this._animationView) {
+      return this._animationView.animationDuration;
+    }
   }
 
   public set contentMode(mode: any) {
