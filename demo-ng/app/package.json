@@ -3,6 +3,6 @@
     "v8Flags": "--expose_gc"
   },
   "main": "main.js",
-  "name": "tns-template-hello-world-ng",
-  "version": "3.1.2"
+  "name": "tns-template-blank-ng",
+  "version": "3.4.2"
 }

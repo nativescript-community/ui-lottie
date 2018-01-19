@@ -1,0 +1,15 @@
+<!-- https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet -->
+<ActionBar title="Airbnb Lottie Ng" icon="" class="action-bar"></ActionBar>
+<ScrollView>
+    <GridLayout rows="auto, auto, auto, auto" columns="*" class="p-10">
+        <Label row="0" col="0" text="Yea... NativeScript supports Lottie - Thanks Airbnb!!!" class="h3" textWrap="true"></Label>
+        <LottieView row="1" col="0" width="100" height="150" [src]="src" [loop]="loop" [autoPlay]="autoPlay" (loaded)="lottieViewLoaded($event)"></LottieView>
+        <StackLayout row="2" class="hr-grey"></StackLayout>
+        <FlexboxLayout row="3" flexDirection="row" flexWrap="wrap">
+            <Button text="Next" class="p-10 btn btn-primary" (tap)="next()"></Button>
+            <Button text="Stop loop" class="p-10 btn btn-primary" (tap)="stopLoop()"></Button>
+            <Button text="Start animation" class="p-10 btn btn-primary" (tap)="playAnimation()"></Button>
+            <Button text="Stop animation" class="p-10 btn btn-primary" (tap)="stopAnimation()"></Button>
+        </FlexboxLayout>
+    </GridLayout>
+</ScrollView>

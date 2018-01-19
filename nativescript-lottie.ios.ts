@@ -147,13 +147,13 @@ export class LottieView extends LottieViewBase {
     }
   }
 
-  public progress(): number {
+  public progress() {
     if (this._animationView) {
       return this._animationView.animationProgress;
     }
   }
 
-  public duration(): number {
+  public duration() {
     if (this._animationView) {
       return this._animationView.animationDuration;
     }
