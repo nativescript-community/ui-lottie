@@ -23,5 +23,5 @@ android {
 dependencies {  
     def supportLibrariesVersion = '26.1.0'
     compile "com.android.support:support-compat:${supportLibrariesVersion}"
-    compile 'com.airbnb.android:lottie:2.2.5'
+    compile 'com.airbnb.android:lottie:2.3.1'
 }
