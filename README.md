@@ -13,14 +13,6 @@ _The .gif does not do the fluid animations justice_
 
 ![LottieView](screens/lottieDemo.gif)
 
-## Contributors
-
-[Nathan Walker](https://github.com/NathanWalker) - thanks for handling the iOS piece :thumbsup:
-
-## License
-
-This plugin is licensed under the MITlicense by Brad Martin
-
 ## Installation
 
 To install execute:
@@ -28,18 +20,11 @@ To install execute:
 ```
 tns plugin add nativescript-lottie
 ```
+# Usage
 
-## Notice
+## Plain {N}
 
-There is a current issue open on the NativeScript Android runtime [repo here](https://github.com/NativeScript/android-runtime/issues/700)
-to determine the correct approach on placing the files in `assets` for the native library to find the file using Android's `getAssets()` method.
-There are ways to hack around this but right now I don't have the time, so you have to run a build and then move your animation .json files into `platforms/android/src/main/assets`
-for this to work. Then you can execute `tns run android` and the files will transfer to your device/emulator. Hopefully a solution comes along soon without
-this approach as it's not the simplest for beginner NativeScript devs without much Android knowledge. There are some sample animation files in the `sample-effects` folder taken from the Airbnb repo.
-
-The propertyChange events for `loop`, `autoPlay` or `src` are not currently wired together. Will accept a PR if someone wants to provide the capability of changing properties of the LottieView instance after initial load.
-
-### XML (for plain NS apps)
+### XML 
 
 ```xml
 <Page
@@ -61,14 +46,89 @@ public yourLoadedEvent(args) {
 }
 ```
 
-## Methods
+## {N} with Angular
 
-* `startAnimation()` - starts the animation for the LottieView instance.
-* `cancelAnimation()` - pauses the animation for the LottieView instance.
-* `isAnimating()` - returns true if the LottieView is animating, else false.
+### XML
+
+```xml
+<StackLayout>
+    <LottieView width="100" height="150" [src]="src" [loop]="loop" [autoPlay]="autoPlay" (loaded)="lottieViewLoaded($event)">     </LottieView>
+</StackLayout>
+```
+### Component
+
+```typescript
+import { Component } from "@angular/core";
+import { registerElement } from 'nativescript-angular';
+import { LottieView } from 'nativescript-lottie';
+
+registerElement('LottieView', () => LottieView);
+
+@Component({
+    templateUrl: "home.component.html",
+    moduleId: module.id
+})
+export class HomeComponent {
+
+    public loop: boolean = true;
+    public src: string;
+    public autoPlay: boolean = true;
+    public animations: Array<string>;
+
+    private _lottieView: LottieView;
+    
+    constructor() {
+        this.animations = [
+            "Mobilo/A.json",
+            "Mobilo/D.json",
+            "Mobilo/N.json",
+            "Mobilo/S.json"
+        ];
+        this.src = this.animations[0];
+    }
+
+    lottieViewLoaded(event) {
+        this._lottieView = <LottieView>event.object;
+    }
+}
+```
+## Assets
+
+:warning: This plugin uses the [nativescript-dev-assets](https://github.com/rhanb/nativescript-dev-assets) hook to sync the `assets` files for Android to avoid the following [issue](https://github.com/NativeScript/android-runtime/issues/700).
+
+:fire: You can find animations in the `sample-effects` folder.
+
+### Android
+
+Place your animations files in your `app/assets` folder.
+
+![Android](screens/android_assets.png)
+
+### iOS
+
+Place your animations files in your `app/App_Resources/iOS/` folder.
+
+![iOS](screens/ios_assets.png)
 
 ## Properties
 
-* `autoPlay: boolean` - set true and the LottieView will start animating when it loads.
-* `loop: boolean` - set true to continuously loop the animation.
-* `src: string` - the .json file for the animation.
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `autoPlay` | `boolean` | `false` | Start LottieView animation on load if `true`. |
+| `loop` | `boolean` | `false` | Loop continuously animation if `true`. |
+| `src` | `string` | `null` | Animation path to ` .json` file. |
+
+## Methods
+
+| Method | Return | Parameters | Description | 
+| --- | --- | --- | --- | 
+| `startAnimation` | `void`| None | Starts the animation for the LottieView instance. |
+| `cancelAnimation` | `void`| None | Pauses the animation for the LottieView instance. |
+| `isAnimating` | `boolean`| None | Returns true if the LottieView is animating, else false. |
+
+## Contributors
+
+[<img alt="Brad Martin" src="https://avatars0.githubusercontent.com/u/6006148?s=400&v=4" width="117">](https://github.com/bradmartin) | [<img alt="Nathan Walker" src="https://avatars0.githubusercontent.com/u/457187?s=400&v=4" width="117">](https://github.com/NathanWalker/) | [<img alt="Jean-Baptiste Aniel" src="https://avatars3.githubusercontent.com/u/9477179?s=460&v=4" width="117">](https://github.com/rhanb)|
+:---: |:---: |:---:|
+[bradmartin](https://github.com/bradmartin)|[NathanWalker](https://github.com/NathanWalker) |[rhanb](https://github.com/rhanb) |
+
