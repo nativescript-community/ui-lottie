@@ -110,13 +110,21 @@ Place your animations files in your `app/App_Resources/iOS/` folder.
 
 ![iOS](screens/ios_assets.png)
 
-## Properties
+## Properties (bindable)
 
 | Property | Type | Default | Description |
 | --- | --- | --- | --- |
 | `autoPlay` | `boolean` | `false` | Start LottieView animation on load if `true`. |
 | `loop` | `boolean` | `false` | Loop continuously animation if `true`. |
 | `src` | `string` | `null` | Animation path to ` .json` file. |
+
+## Properties
+
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `progress` | `number` | `0` | Get/set the progress of the animation. |
+| `speed` | `number` | `1` | Get/set the animation's speed |
+
 
 ## Methods
 
