@@ -135,28 +135,41 @@ export class LottieView extends LottieViewBase {
     return result;
   }
 
-  public setProgress(value: number): void {
+  public set progress(value: number) {
     if (typeof value !== 'undefined' && this._animationView) {
       this._animationView.animationProgress = value;
     }
   }
 
-  public setSpeed(value: number): void {
+  public get progress(): number {
+    let progress = null;
     if (this._animationView) {
+      progress = this._animationView.animationProgress;
+    }
+    return progress;
+  }
+
+  
+  public set speed(value: number){
+    if (typeof value !== 'undefined' && this._animationView) {
       this._animationView.animationSpeed = value;
     }
   }
 
-  public progress() {
+  public get speed(): number {
+    let speed = null;
     if (this._animationView) {
-      return this._animationView.animationProgress;
+      speed  = this._animationView.animationSpeed;
     }
+    return speed;
   }
 
-  public duration() {
+  public get duration(): number {
+    let duration = null;
     if (this._animationView) {
-      return this._animationView.animationDuration;
+      duration = this._animationView.animationDuration;
     }
+    return duration;
   }
 
   public set contentMode(mode: any) {

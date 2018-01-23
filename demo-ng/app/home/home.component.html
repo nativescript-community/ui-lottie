@@ -10,6 +10,7 @@
             <Button text="Stop loop" class="p-10 btn btn-primary" (tap)="stopLoop()"></Button>
             <Button text="Start animation" class="p-10 btn btn-primary" (tap)="playAnimation()"></Button>
             <Button text="Stop animation" class="p-10 btn btn-primary" (tap)="stopAnimation()"></Button>
+            <Slider (valueChange)="onSliderChange($event)" minValue="0" [maxValue]="maxProgress"></Slider>
         </FlexboxLayout>
     </GridLayout>
 </ScrollView>

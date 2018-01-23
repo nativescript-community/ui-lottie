@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { registerElement } from 'nativescript-angular';
 import { LottieView } from 'nativescript-lottie';
+import { Slider } from "tns-core-modules/ui/slider/slider";
 
 registerElement('LottieView', () => LottieView);
 
@@ -15,6 +16,7 @@ export class HomeComponent {
     public loop: boolean = true;
     public src: string;
     public autoPlay: boolean = true;
+    public maxProgress: number;
     public animations: Array<string>;
 
     private _lottieView: LottieView;
@@ -52,6 +54,12 @@ export class HomeComponent {
 
     lottieViewLoaded(event) {
         this._lottieView = <LottieView>event.object;
+        this.maxProgress = this._lottieView.duration;
+    }
+
+    onSliderChange(event) {
+        let slider = <Slider>event.object;
+        this._lottieView.progress = slider.value;
     }
 
 }

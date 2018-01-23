@@ -18,8 +18,6 @@ const LottieAnimationView: any = com.airbnb.lottie.LottieAnimationView;
 
 export class LottieView extends LottieViewBase {
 
-  private _srcSet: boolean = false;
-
   constructor() {
     super();
   }
@@ -115,10 +113,40 @@ export class LottieView extends LottieViewBase {
   }
 
 
-  public setProgress(value: number): void {
+  public set progress(value: number) {
     if (this.nativeView && value) {
       this.nativeView.setProgress(value);
     }
+  }
+
+  public get progress(): number {
+    let progress = null;
+    if (this.nativeView) {
+      progress = this.nativeView.getProgress();
+    }
+    return progress;
+  }
+
+  public get speed(): number {
+    let speed = null;
+    if (this.nativeView) {
+      this.nativeView.getSpeed();
+    }
+    return speed;
+  }
+
+  public set speed(newSpeed: number) {
+    if (this.nativeView) {
+      this.nativeView.setSpeed(newSpeed);
+    }
+  }
+
+  public get duration(): number {
+    let duration = null;
+    if (this.nativeView) {
+      duration = this.nativeView.getDuration();
+    }
+    return duration;
   }
 
 
