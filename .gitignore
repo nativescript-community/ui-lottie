@@ -4,12 +4,16 @@
 /demo/node_modules/
 /demo/platforms/
 /demo/app/temp/
+/demo/app/assets/
 /demo-ng/node_modules/
 /demo-ng/platforms/
 /demo-ng/app/temp/
 /demo-ng/app/assets/
 node_modules/
 .settings/
+
+**/App_Resources/
+**/hooks/
 
 .DS_Store
 *.js.map

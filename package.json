@@ -46,8 +46,7 @@
   ],
   "license": {
     "type": "MIT",
-    "url":
-      "https://github.com/bradmartin/nativescript-lottie/blob/master/LICENSE"
+    "url": "https://github.com/bradmartin/nativescript-lottie/blob/master/LICENSE"
   },
   "bugs": {
     "url": "https://github.com/bradmartin/nativescript-lottie/issues"
@@ -61,15 +60,12 @@
     "demo.android": "npm run preparedemo && cd demo && tns run android",
     "demo.ng.android": "npm run preparedemong && cd demo-ng && tns run android",
     "debug.ios": "npm run preparedemo && cd demo && tns debug ios --emulator",
-    "debug.android":
-      "npm run preparedemo && cd demo && tns debug android --emulator",
-    "preparedemong":
-      "npm run build && cd demo-ng && tns plugin remove nativescript-lottie && tns plugin add ../ && tns install",
-    "preparedemo":
-      "npm run build && cd demo && tns plugin remove nativescript-lottie && tns plugin add .. && tns install",
-    "setup":
-      "cd demo && npm install && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
-    "start": "npm run demo.android"
+    "debug.android": "npm run preparedemo && cd demo && tns debug android --emulator",
+    "preparedemong": "npm run build && cd demo-ng && tns plugin remove nativescript-lottie && tns plugin add ../ && tns install",
+    "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-lottie && tns plugin add .. && tns install",
+    "setup": "cd demo && npm install && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
+    "start": "npm run demo.android",
+    "postinstall": "cd ../../ && tns install nativescript-dev-assets"
   },
   "devDependencies": {
     "tns-core-modules": "^3.2.0",
