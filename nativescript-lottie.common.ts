@@ -6,7 +6,7 @@
 **********************************************************************************/
 "use strict";
 
-import { View } from "tns-core-modules/ui/core/view";
+import { View, booleanConverter } from "tns-core-modules/ui/core/view";
 import { Property } from "tns-core-modules/ui/core/properties";
 import { CacheStrategy } from "./nativescript-lottie.android";
 
@@ -24,13 +24,17 @@ export const srcProperty = new Property<LottieViewBase, string>({
 srcProperty.register(LottieViewBase);
 
 export const loopProperty = new Property<LottieViewBase, boolean>({
-    name: "loop"
+    name: "loop",
+    defaultValue: false,
+    valueConverter: booleanConverter,
 });
 
 loopProperty.register(LottieViewBase);
 
 export const autoPlayProperty = new Property<LottieViewBase, boolean>({
-    name: "autoPlay"
+    name: "autoPlay",
+    defaultValue: false,
+    valueConverter: booleanConverter
 });
 
 autoPlayProperty.register(LottieViewBase);
