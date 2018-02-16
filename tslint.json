@@ -6,9 +6,11 @@
 			"node_modules",
 			"hooks",
 			"platforms",
+			"index.d.ts",
 			"app/async-await.ts",
-			"app/svg/**",
-			"app/vendor-platform.ios.ts"
+			"demo-ng/app/vendor.ts",
+			"demo-ng/app/vendor-platform.android.ts",
+			"demo-ng/app/vendor-platform.ios.ts"
 		]
 	},
 	"jsRules": {},
