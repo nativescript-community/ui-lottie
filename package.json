@@ -71,7 +71,9 @@
 		"setup":
 			"cd demo && npm install && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
 		"start": "npm run demo.android",
-		"postinstall": "cd ../../ && tns install nativescript-dev-assets"
+		"postinstall": "cd ../../ && tns install nativescript-dev-assets",
+		"tslint":
+			"tslint --config './tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'"
 	},
 	"devDependencies": {
 		"tns-core-modules": "^3.2.0",
@@ -79,7 +81,8 @@
 		"lint-staged": "^4.2.3",
 		"husky": "^0.14.3",
 		"prettier": "~1.10.2",
-		"typescript": "^2.5.2"
+		"typescript": "^2.5.2",
+		"tslint": "5.9.1"
 	},
 	"peerDependencies": {
 		"tns-core-modules": "^3.2.0"
