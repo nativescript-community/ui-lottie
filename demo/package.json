@@ -23,7 +23,7 @@
     "babylon": "6.4.5",
     "lazy": "1.0.11",
     "nativescript-dev-android-snapshot": "^0.*.*",
-    "nativescript-dev-assets": "0.0.5",
+    "nativescript-dev-assets": "0.0.6",
     "nativescript-dev-typescript": "~0.6.0",
     "tns-core-modules": "^3.4.0",
     "tns-platform-declarations": "^3.4.0",
