@@ -42,7 +42,7 @@
 		"quotemark": [false, "single"],
 		"comment-format": [true, "check-space"],
 		"jsdoc-format": false,
-		"indent": [true, "tabs"]
+		"indent": [false, "tabs"]
 	},
 	"rulesDirectory": []
 }

@@ -17,14 +17,23 @@ _The .gif does not do the fluid animations justice_
 
 To install execute:
 
+### NativeScript 4x
+
 ```
 tns plugin add nativescript-lottie
 ```
+
+### NativeScript 3x-
+
+```
+tns plugin add nativescript-lottie@1.4.0
+```
+
 # Usage
 
 ## Plain {N}
 
-### XML 
+### XML
 
 ```xml
 <Page
@@ -38,7 +47,7 @@ tns plugin add nativescript-lottie
 
 ### TS
 
-```TS
+```typescript
 import { LottieView } from "nativescript-lottie";
 
 public yourLoadedEvent(args) {
@@ -55,88 +64,76 @@ public yourLoadedEvent(args) {
     <LottieView width="100" height="150" [src]="src" [loop]="loop" [autoPlay]="autoPlay" (loaded)="lottieViewLoaded($event)">     </LottieView>
 </StackLayout>
 ```
+
 ### Component
 
 ```typescript
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { registerElement } from 'nativescript-angular';
 import { LottieView } from 'nativescript-lottie';
 
 registerElement('LottieView', () => LottieView);
 
 @Component({
-    templateUrl: "home.component.html",
-    moduleId: module.id
+  templateUrl: 'home.component.html',
+  moduleId: module.id
 })
 export class HomeComponent {
+  public loop: boolean = true;
+  public src: string;
+  public autoPlay: boolean = true;
+  public animations: Array<string>;
 
-    public loop: boolean = true;
-    public src: string;
-    public autoPlay: boolean = true;
-    public animations: Array<string>;
+  private _lottieView: LottieView;
 
-    private _lottieView: LottieView;
-    
-    constructor() {
-        this.animations = [
-            "Mobilo/A.json",
-            "Mobilo/D.json",
-            "Mobilo/N.json",
-            "Mobilo/S.json"
-        ];
-        this.src = this.animations[0];
-    }
+  constructor() {
+    this.animations = ['Mobilo/A.json', 'Mobilo/D.json', 'Mobilo/N.json', 'Mobilo/S.json'];
+    this.src = this.animations[0];
+  }
 
-    lottieViewLoaded(event) {
-        this._lottieView = <LottieView>event.object;
-    }
+  lottieViewLoaded(event) {
+    this._lottieView = <LottieView>event.object;
+  }
 }
 ```
-## Assets
 
-:warning: This plugin uses the [nativescript-dev-assets](https://github.com/rhanb/nativescript-dev-assets) hook to sync the `assets` files for Android to avoid the following [issue](https://github.com/NativeScript/android-runtime/issues/700).
+## Assets
 
 :fire: You can find animations in the `sample-effects` folder.
 
 ### Android
 
-Place your animations files in your `app/assets` folder.
-
-![Android](screens/android_assets.png)
+Place your animation files in the NS app's `app_resources/android/src/main/assets` folder.
 
 ### iOS
 
 Place your animations files in your `app/App_Resources/iOS/` folder.
 
-![iOS](screens/ios_assets.png)
-
 ## Properties (bindable)
 
-| Property | Type | Default | Description |
-| --- | --- | --- | --- |
+| Property   | Type      | Default | Description                                   |
+| ---------- | --------- | ------- | --------------------------------------------- |
 | `autoPlay` | `boolean` | `false` | Start LottieView animation on load if `true`. |
-| `loop` | `boolean` | `false` | Loop continuously animation if `true`. |
-| `src` | `string` | `null` | Animation path to ` .json` file. |
+| `loop`     | `boolean` | `false` | Loop continuously animation if `true`.        |
+| `src`      | `string`  | `null`  | Animation path to `.json` file.               |
 
 ## Properties
 
-| Property | Type | Default | Description |
-| --- | --- | --- | --- |
-| `progress` | `number` | `0` | Get/set the progress of the animation. |
-| `speed` | `number` | `1` | Get/set the animation's speed |
-
+| Property   | Type     | Default | Description                            |
+| ---------- | -------- | ------- | -------------------------------------- |
+| `progress` | `number` | `0`     | Get/set the progress of the animation. |
+| `speed`    | `number` | `1`     | Get/set the animation's speed          |
 
 ## Methods
 
-| Method | Return | Parameters | Description | 
-| --- | --- | --- | --- | 
-| `startAnimation` | `void`| None | Starts the animation for the LottieView instance. |
-| `cancelAnimation` | `void`| None | Pauses the animation for the LottieView instance. |
-| `isAnimating` | `boolean`| None | Returns true if the LottieView is animating, else false. |
+| Method            | Return    | Parameters | Description                                              |
+| ----------------- | --------- | ---------- | -------------------------------------------------------- |
+| `startAnimation`  | `void`    | None       | Starts the animation for the LottieView instance.        |
+| `cancelAnimation` | `void`    | None       | Pauses the animation for the LottieView instance.        |
+| `isAnimating`     | `boolean` | None       | Returns true if the LottieView is animating, else false. |
 
 ## Contributors
 
-[<img alt="Brad Martin" src="https://avatars0.githubusercontent.com/u/6006148?s=400&v=4" width="117">](https://github.com/bradmartin) | [<img alt="Nathan Walker" src="https://avatars0.githubusercontent.com/u/457187?s=400&v=4" width="117">](https://github.com/NathanWalker/) | [<img alt="Jean-Baptiste Aniel" src="https://avatars3.githubusercontent.com/u/9477179?s=460&v=4" width="117">](https://github.com/rhanb)|
-:---: |:---: |:---:|
-[bradmartin](https://github.com/bradmartin)|[NathanWalker](https://github.com/NathanWalker) |[rhanb](https://github.com/rhanb) |
-
+| [<img alt="Brad Martin" src="https://avatars0.githubusercontent.com/u/6006148?s=400&v=4" width="117">](https://github.com/bradmartin) | [<img alt="Nathan Walker" src="https://avatars0.githubusercontent.com/u/457187?s=400&v=4" width="117">](https://github.com/NathanWalker/) | [<img alt="Jean-Baptiste Aniel" src="https://avatars3.githubusercontent.com/u/9477179?s=460&v=4" width="117">](https://github.com/rhanb) |
+| :-----------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: |
+|                                              [bradmartin](https://github.com/bradmartin)                                              |                                              [NathanWalker](https://github.com/NathanWalker)                                              |                                                    [rhanb](https://github.com/rhanb)                                                     |

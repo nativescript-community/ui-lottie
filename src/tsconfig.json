@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"module": "commonjs",
+		"declaration": false,
+		"removeComments": true,
+		"noLib": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"lib": ["es6", "dom"],
+		"sourceMap": true,
+		"pretty": true,
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"noEmitHelpers": false,
+		"noEmitOnError": false,
+		"noImplicitAny": false,
+		"noImplicitReturns": true,
+		"noImplicitUseStrict": false,
+		"noFallthroughCasesInSwitch": true
+	},
+	"exclude": ["node_modules", "demo-ng", "demo"],
+	"files": [
+		"nativescript-lottie.android.ts",
+		"nativescript-lottie.common.ts",
+		"nativescript-lottie.ios.ts"
+	],
+	"compileOnSave": false
+}

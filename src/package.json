@@ -1,0 +1,81 @@
+{
+  "name": "nativescript-lottie",
+  "version": "2.0.0",
+  "description": "NativeScript plugin to expose AirBnB Lottie library",
+  "main": "nativescript-lottie",
+  "typings": "index.d.ts",
+  "nativescript": {
+    "platforms": {
+      "android": "3.0.1",
+      "ios": "3.0.1"
+    },
+    "tns-ios": {
+      "version": "3.0.1"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bradmartin/nativescript-lottie.git"
+  },
+  "keywords": ["NativeScript", "nativescript-lottie", "Lottie", "Android", "iOS", "TypeScript", "bradmartin"],
+  "author": {
+    "name": "Brad Martin",
+    "email": "bradwaynemartin@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Nathan Walker",
+      "email": "walkerrunpdx@gmail.com"
+    },
+    {
+      "name": "JB",
+      "url": "https://github.com/rhanb"
+    },
+    {
+      "name": "Dirk Rudolph",
+      "url": "https://github.com/Buuhuu"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bradmartin/nativescript-lottie/issues"
+  },
+  "homepage": "https://github.com/bradmartin/nativescript-lottie",
+  "readmeFilename": "README.md",
+  "scripts": {
+    "precommit": "lint-staged",
+    "tsc": "tsc -skipLibCheck",
+    "build": "npm i && tsc && npm run build.native",
+    "build.native": "node scripts/build-native.js",
+    "demo.ios": "npm run preparedemo && cd demo && tns run ios --emulator",
+    "demo.ng.ios": "npm run preparedemong && cd demo-ng && tns run ios",
+    "demo.android": "npm run preparedemo && cd demo && tns run android",
+    "demo.ng.android": "npm run preparedemong && cd demo-ng && tns run android",
+    "debug.ios": "npm run preparedemo && cd demo && tns debug ios --emulator",
+    "debug.android": "npm run preparedemo && cd demo && tns debug android --emulator",
+    "preparedemong":
+      "npm run build && cd demo-ng && tns plugin remove nativescript-lottie && tns plugin add ../ && tns install",
+    "preparedemo":
+      "npm run build && cd demo && tns plugin remove nativescript-lottie && tns plugin add .. && tns install",
+    "setup": "cd demo && npm install && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
+    "start": "npm run demo.android",
+    "tslint": "tslint --config './tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'",
+    "prepack": "npm run build.native"
+  },
+  "devDependencies": {
+    "tns-core-modules": "^4.0.0",
+    "tns-platform-declarations": "^4.0.0",
+    "lint-staged": "^7.0.4",
+    "husky": "^0.14.3",
+    "prettier": "~1.10.2",
+    "typescript": "^2.8.3",
+    "tslint": "5.9.1",
+    "prompt": "^1.0.0",
+    "rimraf": "^2.5.0",
+    "semver": "^5.5.0"
+  },
+  "dependencies": {},
+  "lint-staged": {
+    "*.{ts, js, json, scss, md}": ["tslint", "prettier --write", "git add"]
+  }
+}

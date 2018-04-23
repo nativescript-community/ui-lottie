@@ -24,3 +24,4 @@ node_modules/
 *.js
 *.log
 nativescript-lottie.*.d.ts
+!src/scripts/*.js
