@@ -33,7 +33,7 @@ node_modules/
 *.gz
 *.zip
 
-!*.d.ts
+!index.d.ts
 
 references.d.ts
 tsconfig.json
