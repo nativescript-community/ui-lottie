@@ -43,3 +43,14 @@ export const cacheStrategyProperty = new Property<LottieViewBase, CacheStrategy>
 });
 
 cacheStrategyProperty.register(LottieViewBase);
+
+export interface Theme {
+  keyPath: string[];
+  value: string;
+}
+
+export const themeProperty = new Property<LottieViewBase, Theme[]>({
+  name: 'theme'
+});
+
+themeProperty.register(LottieViewBase);

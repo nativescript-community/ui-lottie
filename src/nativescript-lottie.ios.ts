@@ -6,10 +6,20 @@
  **********************************************************************************/
 /// <reference path="./node_modules/tns-platform-declarations/ios.d.ts" />
 
-import { layout } from 'tns-core-modules/ui/core/view';
-import { LottieViewBase, srcProperty, loopProperty, autoPlayProperty } from './nativescript-lottie.common';
+import { Color, layout } from 'tns-core-modules/ui/core/view';
+import {
+  LottieViewBase,
+  srcProperty,
+  loopProperty,
+  autoPlayProperty,
+  themeProperty,
+  Theme
+} from './nativescript-lottie.common';
 import { screen } from 'tns-core-modules/platform';
+
 declare var LOTAnimationView: any;
+declare var LOTKeypath: any;
+declare var LOTColorValueCallback: any;
 
 export class LottieView extends LottieViewBase {
   private _contentMode: any;
@@ -85,6 +95,27 @@ export class LottieView extends LottieViewBase {
       if (this.isAnimating()) {
         this.cancelAnimation();
       }
+    }
+  }
+
+  // todo: add more dynamic properties
+  public [themeProperty.setNative](value: Theme[]) {
+    this.setTheme(value);
+  }
+
+  public setTheme(value: Theme[]) {
+    if (!this._animationView) {
+      setTimeout(() => this.setTheme(value), 50);
+      return;
+    }
+
+    if (value && value.length) {
+      value.forEach(dynamicValue => {
+        const callBack = LOTColorValueCallback.withCGColor(new Color(dynamicValue.value).ios.CGColor);
+        dynamicValue.keyPath.push('Color');
+        const keyPath = LOTKeypath.keypathWithString(dynamicValue.keyPath.join('.'));
+        this._animationView.setValueDelegateForKeypath(callBack, keyPath);
+      });
     }
   }
 
