@@ -1,6 +1,6 @@
 {
   "name": "nativescript-lottie",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "NativeScript plugin to expose AirBnB Lottie library",
   "main": "nativescript-lottie",
   "typings": "index.d.ts",
@@ -42,6 +42,10 @@
     {
       "name": "Dirk Rudolph",
       "url": "https://github.com/Buuhuu"
+    },
+    {
+      "name": "Hamdi Wanis",
+      "url": "https://github.com/hamdiwanis"
     }
   ],
   "license": "MIT",
