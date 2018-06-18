@@ -10,6 +10,7 @@ export class HelloWorldModel extends Observable {
   public src: string;
   public loop: boolean;
   public autoPlay: boolean;
+  public theme;
 
   constructor() {
     super();
@@ -55,5 +56,14 @@ export class HelloWorldModel extends Observable {
 
   public toggleLoop() {
     this._myLottie.loop = !this._myLottie.loop;
+  }
+
+  setTheme = color => () => {
+    let theme = [
+      {keyPath: ['Shirt', 'Group 5', 'Fill 1'], value: color},
+      {keyPath: ['LeftArmWave', 'LeftArm','Group 6', 'Fill 1'], value: color},
+      {keyPath: ['RightArm', 'Group 6', 'Fill 1'], value: color}
+    ];
+    this.set('theme', theme);
   }
 }
