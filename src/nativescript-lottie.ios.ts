@@ -6,11 +6,9 @@
  **********************************************************************************/
 /// <reference path="./node_modules/tns-platform-declarations/ios.d.ts" />
 
-import { View, layout } from 'tns-core-modules/ui/core/view';
-import { Property } from 'tns-core-modules/ui/core/properties';
-import { topmost } from 'tns-core-modules/ui/frame/frame';
+import { layout } from 'tns-core-modules/ui/core/view';
 import { LottieViewBase, srcProperty, loopProperty, autoPlayProperty } from './nativescript-lottie.common';
-
+import { screen } from 'tns-core-modules/platform';
 declare var LOTAnimationView: any;
 
 export class LottieView extends LottieViewBase {
@@ -37,14 +35,18 @@ export class LottieView extends LottieViewBase {
   }
 
   private createAnimationView(src: string) {
+    if (!this.getMeasuredHeight()) {
+      setTimeout(() => this.createAnimationView(src), 50);
+      return;
+    }
+
     this._animationView = LOTAnimationView.animationNamed(src);
     this.contentModeDefault();
     this.ios.addSubview(this._animationView);
 
-    const newFrameHeight =
-      typeof this.height === 'number' ? this.height : this.getMeasuredHeight() > 0 ? this.getMeasuredHeight() / 2 : 150;
-    const newFrameWidth =
-      typeof this.width === 'number' ? this.width : this.getMeasuredWidth() > 0 ? this.getMeasuredWidth() / 3 : 150;
+    const scale = screen.mainScreen.scale;
+    const newFrameHeight = this.getMeasuredHeight() / scale;
+    const newFrameWidth = this.getMeasuredWidth() / scale;
 
     const newFrame = CGRectMake(0, 0, newFrameWidth, newFrameHeight);
 
@@ -96,8 +98,10 @@ export class LottieView extends LottieViewBase {
     if (nativeView) {
       const measuredWidth = layout.getMeasureSpecSize(widthMeasureSpec);
       const measuredHeight = layout.getMeasureSpecSize(heightMeasureSpec);
-      const width = typeof this.width === 'number' ? this.width : measuredWidth / 3;
-      const height = typeof this.height === 'number' ? this.height : measuredHeight / 2;
+
+      const scale = screen.mainScreen.scale;
+      const width = typeof this.width === 'number' ? this.width : measuredWidth / scale;
+      const height = typeof this.height === 'number' ? this.height : measuredHeight / scale;
       this.setMeasuredDimension(measuredWidth, measuredHeight);
       if (this._animationView) {
         const newFrame = CGRectMake(0, 0, width, height);
