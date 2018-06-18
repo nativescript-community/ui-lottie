@@ -19,7 +19,7 @@ export class LottieView extends LottieViewBase {
 
   constructor() {
     super();
-    this.nativeView = new UIView();
+    this.nativeView = UIView.new();
   }
 
   /// LOTAnimationView
