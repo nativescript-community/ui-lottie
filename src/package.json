@@ -1,6 +1,6 @@
 {
   "name": "nativescript-lottie",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "NativeScript plugin to expose AirBnB Lottie library",
   "main": "nativescript-lottie",
   "typings": "index.d.ts",
@@ -17,7 +17,15 @@
     "type": "git",
     "url": "https://github.com/bradmartin/nativescript-lottie.git"
   },
-  "keywords": ["NativeScript", "nativescript-lottie", "Lottie", "Android", "iOS", "TypeScript", "bradmartin"],
+  "keywords": [
+    "NativeScript",
+    "nativescript-lottie",
+    "Lottie",
+    "Android",
+    "iOS",
+    "TypeScript",
+    "bradmartin"
+  ],
   "author": {
     "name": "Brad Martin",
     "email": "bradwaynemartin@gmail.com"
@@ -34,6 +42,10 @@
     {
       "name": "Dirk Rudolph",
       "url": "https://github.com/Buuhuu"
+    },
+    {
+      "name": "Hamdi Wanis",
+      "url": "https://github.com/hamdiwanis"
     }
   ],
   "license": "MIT",
@@ -47,16 +59,15 @@
     "tsc": "tsc -skipLibCheck",
     "build": "npm i && tsc && npm run build.native",
     "build.native": "node scripts/build-native.js",
-    "demo.ios": "npm run preparedemo && cd demo && tns run ios --emulator",
-    "demo.ng.ios": "npm run preparedemong && cd demo-ng && tns run ios",
-    "demo.android": "npm run preparedemo && cd demo && tns run android",
-    "demo.ng.android": "npm run preparedemong && cd demo-ng && tns run android",
-    "debug.ios": "npm run preparedemo && cd demo && tns debug ios --emulator",
-    "debug.android": "npm run preparedemo && cd demo && tns debug android --emulator",
-    "preparedemong":
-      "npm run build && cd demo-ng && tns plugin remove nativescript-lottie && tns plugin add ../ && tns install",
-    "preparedemo":
-      "npm run build && cd demo && tns plugin remove nativescript-lottie && tns plugin add .. && tns install",
+    "plugin.tscwatch": "npm run tsc -- -w",
+    "demo.ios": "npm run preparedemo && cd ../demo && tns run ios --syncAllFiles",
+    "demo.ng.ios": "npm run preparedemong && cd ../demo-ng && tns run ios --syncAllFiles",
+    "demo.android": "npm run preparedemo && cd ../demo && tns run android --syncAllFiles",
+    "demo.ng.android": "npm run preparedemong && cd ../demo-ng && tns run android --syncAllFiles",
+    "debug.ios": "npm run preparedemo && cd ../demo && tns debug ios --emulator",
+    "debug.android": "npm run preparedemo && cd ../demo  && tns debug android --emulator",
+    "preparedemong": "npm run build && cd ../demo-ng && tns plugin remove nativescript-lottie && tns plugin add ../src && tns install",
+    "preparedemo": "npm run build && cd ../demo && tns plugin remove nativescript-lottie && tns plugin add ../src && tns install",
     "setup": "cd demo && npm install && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
     "start": "npm run demo.android",
     "tslint": "tslint --config './tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**'",
@@ -76,6 +87,10 @@
   },
   "dependencies": {},
   "lint-staged": {
-    "*.{ts, js, json, scss, md}": ["tslint", "prettier --write", "git add"]
+    "*.{ts, js, json, scss, md}": [
+      "tslint",
+      "prettier --write",
+      "git add"
+    ]
   }
 }

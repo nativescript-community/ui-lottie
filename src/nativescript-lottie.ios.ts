@@ -6,12 +6,20 @@
  **********************************************************************************/
 /// <reference path="./node_modules/tns-platform-declarations/ios.d.ts" />
 
-import { View, layout } from 'tns-core-modules/ui/core/view';
-import { Property } from 'tns-core-modules/ui/core/properties';
-import { topmost } from 'tns-core-modules/ui/frame/frame';
-import { LottieViewBase, srcProperty, loopProperty, autoPlayProperty } from './nativescript-lottie.common';
+import { Color, layout } from 'tns-core-modules/ui/core/view';
+import {
+  LottieViewBase,
+  srcProperty,
+  loopProperty,
+  autoPlayProperty,
+  themeProperty,
+  Theme
+} from './nativescript-lottie.common';
+import { screen } from 'tns-core-modules/platform';
 
 declare var LOTAnimationView: any;
+declare var LOTKeypath: any;
+declare var LOTColorValueCallback: any;
 
 export class LottieView extends LottieViewBase {
   private _contentMode: any;
@@ -19,7 +27,7 @@ export class LottieView extends LottieViewBase {
 
   constructor() {
     super();
-    this.nativeView = new UIView();
+    this.nativeView = UIView.new();
   }
 
   /// LOTAnimationView
@@ -37,14 +45,18 @@ export class LottieView extends LottieViewBase {
   }
 
   private createAnimationView(src: string) {
+    if (!this.getMeasuredHeight()) {
+      setTimeout(() => this.createAnimationView(src), 50);
+      return;
+    }
+
     this._animationView = LOTAnimationView.animationNamed(src);
     this.contentModeDefault();
     this.ios.addSubview(this._animationView);
 
-    const newFrameHeight =
-      typeof this.height === 'number' ? this.height : this.getMeasuredHeight() > 0 ? this.getMeasuredHeight() / 2 : 150;
-    const newFrameWidth =
-      typeof this.width === 'number' ? this.width : this.getMeasuredWidth() > 0 ? this.getMeasuredWidth() / 3 : 150;
+    const scale = screen.mainScreen.scale;
+    const newFrameHeight = this.getMeasuredHeight() / scale;
+    const newFrameWidth = this.getMeasuredWidth() / scale;
 
     const newFrame = CGRectMake(0, 0, newFrameWidth, newFrameHeight);
 
@@ -86,6 +98,27 @@ export class LottieView extends LottieViewBase {
     }
   }
 
+  // todo: add more dynamic properties
+  public [themeProperty.setNative](value: Theme[]) {
+    this.setTheme(value);
+  }
+
+  public setTheme(value: Theme[]) {
+    if (!this._animationView) {
+      setTimeout(() => this.setTheme(value), 50);
+      return;
+    }
+
+    if (value && value.length) {
+      value.forEach(dynamicValue => {
+        const callBack = LOTColorValueCallback.withCGColor(new Color(dynamicValue.value).ios.CGColor);
+        dynamicValue.keyPath.push('Color');
+        const keyPath = LOTKeypath.keypathWithString(dynamicValue.keyPath.join('.'));
+        this._animationView.setValueDelegateForKeypath(callBack, keyPath);
+      });
+    }
+  }
+
   public onLoaded() {
     super.onLoaded(); // ensure 'loaded' event fires
   }
@@ -96,8 +129,10 @@ export class LottieView extends LottieViewBase {
     if (nativeView) {
       const measuredWidth = layout.getMeasureSpecSize(widthMeasureSpec);
       const measuredHeight = layout.getMeasureSpecSize(heightMeasureSpec);
-      const width = typeof this.width === 'number' ? this.width : measuredWidth / 3;
-      const height = typeof this.height === 'number' ? this.height : measuredHeight / 2;
+
+      const scale = screen.mainScreen.scale;
+      const width = typeof this.width === 'number' ? this.width : measuredWidth / scale;
+      const height = typeof this.height === 'number' ? this.height : measuredHeight / scale;
       this.setMeasuredDimension(measuredWidth, measuredHeight);
       if (this._animationView) {
         const newFrame = CGRectMake(0, 0, width, height);
