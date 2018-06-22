@@ -6,15 +6,19 @@
  **********************************************************************************/
 /// <reference path="./node_modules/tns-platform-declarations/android.d.ts" />
 
-import { View } from 'tns-core-modules/ui/core/view';
-import { Property } from 'tns-core-modules/ui/core/properties';
+import { Color, View } from 'tns-core-modules/ui/core/view';
 import {
   LottieViewBase,
   srcProperty,
   loopProperty,
   autoPlayProperty,
-  cacheStrategyProperty
+  cacheStrategyProperty,
+  Theme,
+  themeProperty
 } from './nativescript-lottie.common';
+
+const LottieProperty = com.airbnb.lottie.LottieProperty;
+const LottieHelper = com.nativescript_lottie.LottieHelper;
 
 declare var com: any;
 
@@ -91,6 +95,25 @@ export class LottieView extends LottieViewBase {
       if (this.isAnimating()) {
         this.cancelAnimation();
       }
+    }
+  }
+
+  // todo: add more dynamic properties
+  public [themeProperty.setNative](value: Theme[]) {
+    this.setTheme(value);
+  }
+
+  public setTheme(value: Theme[]) {
+    if (!this.nativeView) {
+      return;
+    }
+
+    if (value && value.length) {
+      value.forEach(dynamicValue => {
+        const callBack = LottieHelper.getIntCallback(new Color(dynamicValue.value).android);
+        const keyPath = LottieHelper.keyPath(dynamicValue.keyPath);
+        this.nativeView.addValueCallback(keyPath, LottieProperty.COLOR, callBack);
+      });
     }
   }
 
