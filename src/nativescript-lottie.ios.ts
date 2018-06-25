@@ -67,7 +67,12 @@ export class LottieView extends LottieViewBase {
     }
 
     if (this.autoPlay) {
-      this.playAnimation();
+      this.playAnimation().then(finished => {
+        // ignore
+        // TODO: could add debug mode which would log that it finished
+      }, err => {
+        // ignore (however note todo above)
+      });
     }
   }
 
@@ -89,7 +94,12 @@ export class LottieView extends LottieViewBase {
       this.contentModeDefault();
 
       if (!this.isAnimating()) {
-        this.playAnimation();
+        this.playAnimation().then(finished => {
+          // ignore
+          // TODO: could add debug mode which would log that it finished
+        }, err => {
+          // ignore (however note todo above)
+        });
       }
     } else {
       if (this.isAnimating()) {
