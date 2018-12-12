@@ -38,7 +38,10 @@ export const autoPlayProperty = new Property<LottieViewBase, boolean>({
 
 autoPlayProperty.register(LottieViewBase);
 
-export const cacheStrategyProperty = new Property<LottieViewBase, CacheStrategy>({
+export const cacheStrategyProperty = new Property<
+  LottieViewBase,
+  CacheStrategy
+>({
   name: 'cacheStrategy'
 });
 
