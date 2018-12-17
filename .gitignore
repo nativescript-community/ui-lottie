@@ -22,3 +22,5 @@ node_modules/
 *.log
 nativescript-lottie.*.d.ts
 !src/scripts/*.js
+!demo/webpack.config.js
+!demo-ng/webpack.config.js
