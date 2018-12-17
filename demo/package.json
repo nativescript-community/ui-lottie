@@ -4,7 +4,10 @@
   "readme": "NativeScript Application",
   "repository": "<fill-your-repository-here>",
   "nativescript": {
-    "id": "org.nativescript.demo"
+    "id": "org.nativescript.demo",
+    "tns-android": {
+      "version": "5.0.0"
+    }
   },
   "dependencies": {
     "nativescript-lottie": "file:../src",

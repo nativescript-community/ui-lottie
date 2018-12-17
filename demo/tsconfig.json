@@ -1,21 +1,32 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "skipLibCheck": true,
-    "noImplicitAny": false,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "declaration": false,
-    "noLib": false,
-    "noEmitHelpers": true,
-    "experimentalDecorators": true,
-    "lib": ["es6", "dom"],
-    "baseUrl": ".",
-    "paths": {
-      "*": ["./node_modules/tns-core-modules/*", "./node_modules/*"],
-      "~/*": ["app/*"]
-    }
-  },
-  "exclude": ["node_modules", "platforms"]
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "skipLibCheck": true,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "declaration": false,
+        "noLib": false,
+        "noEmitHelpers": true,
+        "experimentalDecorators": true,
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "./node_modules/tns-core-modules/*",
+                "./node_modules/*"
+            ],
+            "~/*": [
+                "app/*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "platforms"
+    ]
 }
