@@ -1,5 +1,4 @@
-<Page 
-    xmlns="http://schemas.nativescript.org/tns.xsd"
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
     xmlns:Lottie="nativescript-lottie" navigatingTo="navigatingTo" class="page">
     <Page.actionBar>
         <ActionBar title="Airbnb Lottie" icon="" class="action-bar"></ActionBar>
