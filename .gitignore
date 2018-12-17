@@ -12,9 +12,6 @@
 node_modules/
 .settings/
 
-**/App_Resources/
-**/hooks/
-
 .DS_Store
 *.js.map
 *.tar
