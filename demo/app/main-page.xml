@@ -7,18 +7,18 @@
         <GridLayout rows="auto, auto, auto, auto, auto" columns="*" class="p-10">
             <Label row="0" col="0" text="Since NativeScript is native Android and iOS it easily supports Lottie - Thanks Airbnb!!!" class="h3" textWrap="true"></Label>
             <StackLayout row="1" orientation="vertical">
-                <Lottie:LottieView src="{{ src }}" height="150" width="auto" loop="{{ loop }}" autoPlay="{{ autoPlay }}" loaded="{{ lottieLoaded }}" />
+                <Lottie:LottieView height="150" width="auto" loaded="{{ firstLottieLoaded }}" />
             </StackLayout>
             <StackLayout row="2" class="hr-grey"></StackLayout>
             <StackLayout row="3">
                 <Button text="Next" class="p-10 btn btn-primary" tap="{{ next }}"></Button>
                 <Button text="Toggle looping" class="p-10 btn btn-primary" tap="{{ toggleLoop }}"></Button>
-                <Button text="Start animation" class="p-10 btn btn-primary" tap="{{ startOrStopAnimation }}"></Button>
-                <Button text="Stop animation" class="p-10 btn btn-primary" tap="{{ startOrStopAnimation }}"></Button>
+                <Button text="Start / Stop" class="p-10 btn btn-primary" tap="{{ toggleAnimation }}"></Button>
+                <!-- <Slider width="100%" valueChange="{{ onSliderChange }}" minValue="0" maxValue="{{ maxProgress }}"></Slider> -->
             </StackLayout>
 
             <StackLayout row="4">
-                <Lottie:LottieView src="happybirthday.json" theme="{{ theme }}" height="400" width="auto" loop="true" autoPlay="true"/>
+                <Lottie:LottieView height="400" width="auto" loaded="{{ secondLottieLoaded }}"/>
 
                 <WrapLayout height="120" width="100%">
                     <StackLayout height="50%" width="20%" backgroundColor="red" tap="{{ setTheme('red') }}"/>

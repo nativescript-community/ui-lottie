@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { registerElement } from 'nativescript-angular';
 import { LottieView } from 'nativescript-lottie';
-import { Slider } from 'tns-core-modules/ui/slider/slider';
+import { Color } from 'tns-core-modules/color/color';
 
 registerElement('LottieView', () => LottieView);
 
@@ -11,52 +11,79 @@ registerElement('LottieView', () => LottieView);
   moduleId: module.id
 })
 export class HomeComponent {
+
   public animationIndex: number = 0;
-  public loop: boolean = true;
-  public src: string;
-  public autoPlay: boolean = true;
-  public maxProgress: number;
-  public animations: Array<string>;
+  public animations: Array<string> = [
+    'Mobilo/B.json',
+    'Mobilo/A.json',
+    'Mobilo/D.json',
+    'Mobilo/N.json',
+    'Mobilo/R.json',
+    'Mobilo/S.json'
+  ];
 
-  private _lottieView: LottieView;
+  /**
+   * For demoing cycling through the sample animations.
+   */
+  private _lottieViewOne: LottieView;
+  
+  /**
+   * For demoing changing colors dynamically at runtime.
+   */
+  private _lottieViewTwo: LottieView;
 
-  constructor() {
-    this.animations = [
-      'Mobilo/A.json',
-      'Mobilo/D.json',
-      'Mobilo/N.json',
-      'Mobilo/S.json'
-    ];
-    this.src = this.animations[this.animationIndex];
+  public firstLottieLoaded(event) {
+    this._lottieViewOne = <LottieView>event.object;
+    this._lottieViewOne.autoPlay = true;
+    this._lottieViewOne.loop = true;
+    this._lottieViewOne.src = this.animations[this.animationIndex];
+    this._lottieViewOne.completionBlock = (animationFinished: boolean) => {
+      console.log(`completionBlock animationFinished: ${animationFinished}`);
+    };
   }
 
-  next() {
+  public secondLottieLoaded(event) {
+    this._lottieViewTwo = <LottieView>event.object;
+    this._lottieViewTwo.autoPlay = true;
+    this._lottieViewTwo.loop = true;
+    this._lottieViewTwo.src = 'AndroidWave.json';
+  }
+
+  public next() {
     this.animationIndex++;
     if (this.animationIndex >= this.animations.length) {
       this.animationIndex = 0;
     }
-    this.src = this.animations[this.animationIndex];
+    this._lottieViewOne.src = this.animations[this.animationIndex];
   }
 
-  stopLoop() {
-    this.loop = !this.loop;
+  public toggleAnimation() {
+    if (this._lottieViewOne.isAnimating()) {
+      this._lottieViewOne.cancelAnimation();
+    } else {
+      this._lottieViewOne.playAnimation();
+    }
   }
 
-  stopAnimation() {
-    this._lottieView.cancelAnimation();
+  public toggleLoop() {
+    this._lottieViewOne.loop = !this._lottieViewOne.loop;
   }
 
-  playAnimation() {
-    this._lottieView.playAnimation();
-  }
+  // // TODO: get slider working
+  // public onSliderChange(event) {
+  //   const slider = <Slider>event.object;
+  //   this._lottieViewOne.progress = slider.value;
+  // }
 
-  lottieViewLoaded(event) {
-    this._lottieView = <LottieView>event.object;
-    this.maxProgress = this._lottieView.duration;
-  }
-
-  onSliderChange(event) {
-    let slider = <Slider>event.object;
-    this._lottieView.progress = slider.value;
+  public setTheme(value) {
+    const color = new Color(value);
+    const keyPaths = [
+      ['Shirt', 'Group 5', 'Fill 1'],
+      ['LeftArmWave', 'LeftArm', 'Group 6', 'Fill 1'],
+      ['RightArm', 'Group 6', 'Fill 1']
+    ];
+    keyPaths.forEach((keyPath) => {
+      this._lottieViewTwo.setColorValueDelegateForKeyPath(color, keyPath);
+    });
   }
 }

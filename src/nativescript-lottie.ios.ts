@@ -11,9 +11,7 @@ import {
   LottieViewBase,
   srcProperty,
   loopProperty,
-  autoPlayProperty,
-  themeProperty,
-  Theme
+  autoPlayProperty
 } from './nativescript-lottie.common';
 import { screen } from 'tns-core-modules/platform';
 
@@ -114,28 +112,18 @@ export class LottieView extends LottieViewBase {
     }
   }
 
-  // todo: add more dynamic properties
-  public [themeProperty.setNative](value: Theme[]) {
-    this.setTheme(value);
-  }
-
-  public setTheme(value: Theme[]) {
-    if (!this._animationView) {
-      setTimeout(() => this.setTheme(value), 50);
-      return;
-    }
-
-    if (value && value.length) {
-      value.forEach(dynamicValue => {
-        const callBack = LOTColorValueCallback.withCGColor(
-          new Color(dynamicValue.value).ios.CGColor
-        );
-        dynamicValue.keyPath.push('Color');
-        const keyPath = LOTKeypath.keypathWithString(
-          dynamicValue.keyPath.join('.')
-        );
-        this._animationView.setValueDelegateForKeypath(callBack, keyPath);
-      });
+  public setColorValueDelegateForKeyPath(
+    value: Color,
+    keyPath: string[]
+  ): void {
+    if (this._animationView && value && keyPath && keyPath.length) {
+      if (keyPath[keyPath.length - 1].toLowerCase() !== 'color') {
+        keyPath.push('Color'); // ios expects the property as the last item in the keyPath
+      }
+      this._animationView.setValueDelegateForKeypath(
+        LOTColorValueCallback.withCGColor(value.ios.CGColor),
+        LOTKeypath.keypathWithString(keyPath.join('.'))
+      );
     }
   }
 
@@ -167,7 +155,9 @@ export class LottieView extends LottieViewBase {
     return new Promise((resolve, reject) => {
       if (this._animationView) {
         this._animationView.playWithCompletion((animationFinished: boolean) => {
-          // console.log('animationFinished:', animationFinished);
+          if (this.completionBlock) {
+            this.completionBlock(animationFinished);
+          }
           resolve(animationFinished);
         });
       } else {

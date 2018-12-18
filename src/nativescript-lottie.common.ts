@@ -14,6 +14,7 @@ export class LottieViewBase extends View {
   public loop: boolean;
   public autoPlay: boolean;
   public cacheStrategy: CacheStrategy;
+  public completionBlock: (animationFinished: boolean) => void;
 }
 
 export const srcProperty = new Property<LottieViewBase, string>({
@@ -46,14 +47,3 @@ export const cacheStrategyProperty = new Property<
 });
 
 cacheStrategyProperty.register(LottieViewBase);
-
-export interface Theme {
-  keyPath: string[];
-  value: string;
-}
-
-export const themeProperty = new Property<LottieViewBase, Theme[]>({
-  name: 'theme'
-});
-
-themeProperty.register(LottieViewBase);

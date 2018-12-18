@@ -7,6 +7,9 @@
     "id": "org.nativescript.demotemp",
     "tns-android": {
       "version": "5.0.0"
+    },
+    "tns-ios": {
+      "version": "5.0.0"
     }
   },
   "dependencies": {
@@ -20,12 +23,12 @@
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
     "nativescript-angular": "~7.0.0",
+    "nativescript-lottie": "file:../src",
     "nativescript-theme-core": "~1.0.4",
     "reflect-metadata": "~0.1.8",
     "rxjs": "~6.3.0",
     "tns-core-modules": "~5.0.2",
-    "zone.js": "^0.8.26",
-    "nativescript-lottie": "../src"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@nativescript/schematics": "~0.4.0",

@@ -1,38 +1,93 @@
-import { View } from 'tns-core-modules/ui/core/view';
+import { View, Color } from 'tns-core-modules/ui/core/view';
 
 export declare class LottieView extends View {
-  constructor();
-  readonly ios: any;
+  /**
+   * LottieAnimationView
+   */
   readonly android: any;
+
+  /**
+   * LOTAnimationView
+   */
+  readonly ios: any;
+
   constructor();
-  src: string;
-  loop: boolean;
-  cacheStrategy: EnumCacheStrategy;
+
+  /**
+   * Flag determining whether the animation should start playing as soon as the view is ready.
+   */
   autoPlay: boolean;
-  createNativeView(): View;
-  onLoaded(): void;
-  //both platforms
-  playAnimation(): void;
-  cancelAnimation(): void;
-  isAnimating(): boolean;
-  readonly duration: number;
-  progress: number;
-  speed: number;
-  frame: number;
-  //android specific
-  resumeAnimation(): void;
-  minProgress: number;
-  maxProgress: number;
-  setMinAndMaxProgress(minProgress: number, maxProgress: number): void;
-  scale: number;
-  minFrame: number;
-  setMinAndMaxFrame(minFrame: number, maxFrame: number): void;
-  maxFrame: number;
-  performanceTrackingEnabled: boolean;
-  readonly performanceTracker: any;
-  reverseAnimationSpeed(): void;
-  //ios specific
+
+  /**
+   * Caching strategy for compositions that will be reused frequently.
+   * Weak or Strong indicators the GC reference strength of the composition in the cache.
+   */
+  cacheStrategy: EnumCacheStrategy;
+
+  /**
+   * Completion block to be executed upon completion of the animation.
+   * The animation is considered complete when it finishes playing and is no longer looping.
+   */
+  completionBlock: (animationFinished: boolean) => void;
+
+  /**
+   * (iOS only) The current UIViewContentMode.
+   */
   contentMode: any;
+
+  /**
+   * The duration of the animation.
+   */
+  readonly duration: number;
+
+  /**
+   * Flag determining whether the animation should loop or not.
+   */
+  loop: boolean;
+
+  /**
+   * The current progress of the animation.
+   */
+  progress: number;
+
+  /**
+   * The current speed of the animation.
+   */
+  speed: number;
+
+  /**
+   * The current source of the animation.
+   */
+  src: string;
+
+  /**
+   * (Android) Cancels the animation.
+   *
+   * (iOS) Pauses the animation.
+   */
+  cancelAnimation(): void;
+
+  /**
+   * Returns true if the view is currently animating.
+   */
+  isAnimating(): boolean;
+
+  /**
+   * Sets the provided color value on each property that matches the specified keyPath.
+   * @param {Color} value value
+   * @param {string[]} keyPath keyPath
+   */
+  setColorValueDelegateForKeyPath(value: Color, keyPath: string[]): void;
+
+  /**
+   * Callback for when the view has loaded.
+   */
+  onLoaded(): void;
+
+  /**
+   * Plays the animation from the beginning.
+   */
+  playAnimation(): void;
 }
 
 export declare enum EnumCacheStrategy {
@@ -40,3 +95,8 @@ export declare enum EnumCacheStrategy {
   Weak = 1,
   Strong = 2
 }
+
+// export interface Theme {
+//   keyPath: string[];
+//   value: string;
+// }
