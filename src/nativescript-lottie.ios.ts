@@ -67,7 +67,15 @@ export class LottieView extends LottieViewBase {
     }
 
     if (this.autoPlay) {
-      this.playAnimation();
+      this.playAnimation().then(
+        finished => {
+          // ignore
+          // TODO: could add debug mode which would log that it finished
+        },
+        err => {
+          // ignore (however note todo above)
+        }
+      );
     }
   }
 
@@ -89,7 +97,15 @@ export class LottieView extends LottieViewBase {
       this.contentModeDefault();
 
       if (!this.isAnimating()) {
-        this.playAnimation();
+        this.playAnimation().then(
+          finished => {
+            // ignore
+            // TODO: could add debug mode which would log that it finished
+          },
+          err => {
+            // ignore (however note todo above)
+          }
+        );
       }
     } else {
       if (this.isAnimating()) {
@@ -111,9 +127,13 @@ export class LottieView extends LottieViewBase {
 
     if (value && value.length) {
       value.forEach(dynamicValue => {
-        const callBack = LOTColorValueCallback.withCGColor(new Color(dynamicValue.value).ios.CGColor);
+        const callBack = LOTColorValueCallback.withCGColor(
+          new Color(dynamicValue.value).ios.CGColor
+        );
         dynamicValue.keyPath.push('Color');
-        const keyPath = LOTKeypath.keypathWithString(dynamicValue.keyPath.join('.'));
+        const keyPath = LOTKeypath.keypathWithString(
+          dynamicValue.keyPath.join('.')
+        );
         this._animationView.setValueDelegateForKeypath(callBack, keyPath);
       });
     }
@@ -131,8 +151,10 @@ export class LottieView extends LottieViewBase {
       const measuredHeight = layout.getMeasureSpecSize(heightMeasureSpec);
 
       const scale = screen.mainScreen.scale;
-      const width = typeof this.width === 'number' ? this.width : measuredWidth / scale;
-      const height = typeof this.height === 'number' ? this.height : measuredHeight / scale;
+      const width =
+        typeof this.width === 'number' ? this.width : measuredWidth / scale;
+      const height =
+        typeof this.height === 'number' ? this.height : measuredHeight / scale;
       this.setMeasuredDimension(measuredWidth, measuredHeight);
       if (this._animationView) {
         const newFrame = CGRectMake(0, 0, width, height);

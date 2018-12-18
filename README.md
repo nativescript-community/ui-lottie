@@ -129,7 +129,7 @@ Place your animations files in your `app/App_Resources/iOS/` folder.
 
 | Method            | Return    | Parameters | Description                                              |
 | ----------------- | --------- | ---------- | -------------------------------------------------------- |
-| `startAnimation`  | `void`    | None       | Starts the animation for the LottieView instance.        |
+| `playAnimation`   | `void`    | None       | Plays the animation for the LottieView instance.        |
 | `cancelAnimation` | `void`    | None       | Pauses the animation for the LottieView instance.        |
 | `isAnimating`     | `boolean` | None       | Returns true if the LottieView is animating, else false. |
 

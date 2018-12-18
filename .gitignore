@@ -12,9 +12,6 @@
 node_modules/
 .settings/
 
-**/App_Resources/
-**/hooks/
-
 .DS_Store
 *.js.map
 *.tar
@@ -25,3 +22,5 @@ node_modules/
 *.log
 nativescript-lottie.*.d.ts
 !src/scripts/*.js
+!demo/webpack.config.js
+!demo-ng/webpack.config.js

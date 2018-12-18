@@ -1,0 +1,50 @@
+<!--
+  https://docs.nativescript.org/angular/core-concepts/angular-navigation.html#page-router-outlet
+-->
+<ActionBar title="Airbnb Lottie Ng" icon="" class="action-bar"></ActionBar>
+<ScrollView>
+  <GridLayout rows="auto, auto, auto, auto" columns="*" class="p-10">
+    <label
+      row="0"
+      col="0"
+      text="Yea... NativeScript supports Lottie - Thanks Airbnb!!!"
+      class="h3"
+      textWrap="true"
+    ></label>
+    <LottieView
+      row="1"
+      col="0"
+      width="100"
+      height="150"
+      [src]="src"
+      [loop]="loop"
+      [autoPlay]="autoPlay"
+      (loaded)="lottieViewLoaded($event)"
+    ></LottieView>
+    <StackLayout row="2" class="hr-grey"></StackLayout>
+    <FlexboxLayout row="3" flexDirection="row" flexWrap="wrap">
+      <button text="Next" class="p-10 btn btn-primary" (tap)="next()"></button>
+      <button
+        text="Stop loop"
+        class="p-10 btn btn-primary"
+        (tap)="stopLoop()"
+      ></button>
+      <button
+        text="Start animation"
+        class="p-10 btn btn-primary"
+        (tap)="playAnimation()"
+      ></button>
+      <button
+        text="Stop animation"
+        class="p-10 btn btn-primary"
+        (tap)="stopAnimation()"
+      ></button>
+      <Slider
+        width="100"
+        (valueChange)="onSliderChange($event)"
+        minValue="0"
+        [maxValue]="maxProgress"
+      ></Slider>
+    </FlexboxLayout>
+  </GridLayout>
+</ScrollView>

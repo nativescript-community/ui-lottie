@@ -60,10 +60,13 @@ export class HelloWorldModel extends Observable {
 
   setTheme = color => () => {
     let theme = [
-      {keyPath: ['Shirt', 'Group 5', 'Fill 1'], value: color},
-      {keyPath: ['LeftArmWave', 'LeftArm','Group 6', 'Fill 1'], value: color},
-      {keyPath: ['RightArm', 'Group 6', 'Fill 1'], value: color}
+      { keyPath: ['Shirt', 'Group 5', 'Fill 1'], value: color },
+      {
+        keyPath: ['LeftArmWave', 'LeftArm', 'Group 6', 'Fill 1'],
+        value: color
+      },
+      { keyPath: ['RightArm', 'Group 6', 'Fill 1'], value: color }
     ];
     this.set('theme', theme);
-  }
+  };
 }
