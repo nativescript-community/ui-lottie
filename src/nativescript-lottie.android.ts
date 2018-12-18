@@ -110,9 +110,15 @@ export class LottieView extends LottieViewBase {
 
     if (value && value.length) {
       value.forEach(dynamicValue => {
-        const callBack = LottieHelper.getIntCallback(new Color(dynamicValue.value).android);
+        const callBack = LottieHelper.getIntCallback(
+          new Color(dynamicValue.value).android
+        );
         const keyPath = LottieHelper.keyPath(dynamicValue.keyPath);
-        this.nativeView.addValueCallback(keyPath, LottieProperty.COLOR, callBack);
+        this.nativeView.addValueCallback(
+          keyPath,
+          LottieProperty.COLOR,
+          callBack
+        );
       });
     }
   }

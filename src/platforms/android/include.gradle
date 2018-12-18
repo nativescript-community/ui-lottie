@@ -3,5 +3,5 @@ dependencies {
    compile "com.android.support:support-v4:${supportLibrariesVersion}"
    compile "com.android.support:appcompat-v7:${supportLibrariesVersion}"
    debugCompile "com.android.support:design:${supportLibrariesVersion}"
-   compile 'com.airbnb.android:lottie:2.5.5'
+   compile 'com.airbnb.android:lottie:2.6.0'
 }
