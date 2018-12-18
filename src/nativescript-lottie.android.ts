@@ -12,13 +12,12 @@ import {
   srcProperty,
   loopProperty,
   autoPlayProperty,
-  cacheStrategyProperty,
-  Theme,
-  themeProperty
+  cacheStrategyProperty
 } from './nativescript-lottie.common';
 
 const LottieProperty = com.airbnb.lottie.LottieProperty;
-const LottieHelper = com.nativescript_lottie.LottieHelper;
+const LottieKeyPath = com.airbnb.lottie.model.KeyPath;
+const LottieValueCallback = com.airbnb.lottie.value.LottieValueCallback;
 
 declare var com: any;
 
@@ -36,6 +35,26 @@ export class LottieView extends LottieViewBase {
     const nativeView = new com.airbnb.lottie.LottieAnimationView(this._context);
 
     try {
+      nativeView.addAnimatorListener(
+        new android.animation.Animator.AnimatorListener({
+          onAnimationCancel: _animator => {
+            if (this.completionBlock) {
+              this.completionBlock(false);
+            }
+          },
+          onAnimationEnd: _animator => {
+            if (this.completionBlock) {
+              this.completionBlock(true);
+            }
+          },
+          onAnimationRepeat: _animator => {
+            console.log('onAnimationRepeat');
+          },
+          onAnimationStart: _animator => {
+            console.log('onAnimationStart');
+          }
+        })
+      );
       if (this.src) {
         if (this.cacheStrategy) {
           nativeView.setAnimation(this.src, this.cacheStrategy);
@@ -56,6 +75,13 @@ export class LottieView extends LottieViewBase {
     }
 
     return nativeView;
+  }
+
+  public disposeNativeView(): void {
+    this.nativeView.removeAllAnimatorListeners();
+    this.nativeView = null;
+
+    super.disposeNativeView();
   }
 
   public [srcProperty.setNative](src: string) {
@@ -82,7 +108,7 @@ export class LottieView extends LottieViewBase {
     }
   }
 
-  public [cacheStrategyProperty.setNative](cacheStrategy: CacheStrategy) {
+  public [cacheStrategyProperty.setNative](_cacheStrategy: CacheStrategy) {
     this.setSrc(this.src);
   }
 
@@ -98,28 +124,29 @@ export class LottieView extends LottieViewBase {
     }
   }
 
-  // todo: add more dynamic properties
-  public [themeProperty.setNative](value: Theme[]) {
-    this.setTheme(value);
-  }
-
-  public setTheme(value: Theme[]) {
-    if (!this.nativeView) {
-      return;
-    }
-
-    if (value && value.length) {
-      value.forEach(dynamicValue => {
-        const callBack = LottieHelper.getIntCallback(
-          new Color(dynamicValue.value).android
-        );
-        const keyPath = LottieHelper.keyPath(dynamicValue.keyPath);
-        this.nativeView.addValueCallback(
-          keyPath,
-          LottieProperty.COLOR,
-          callBack
-        );
+  public setColorValueDelegateForKeyPath(
+    value: Color,
+    keyPath: string[]
+  ): void {
+    if (this.nativeView && value && keyPath && keyPath.length) {
+      if (keyPath[keyPath.length - 1].toLowerCase() === 'color') {
+        keyPath.pop(); // android specifies the property as an enum parameter.
+        if (keyPath.length === 0) {
+          return;
+        }
+      }
+      const nativeKeyPath: java.lang.String[] = Array.create(
+        java.lang.String,
+        keyPath.length
+      );
+      keyPath.forEach((key, index) => {
+        nativeKeyPath[index] = new java.lang.String(key);
       });
+      this.nativeView.addValueCallback(
+        new LottieKeyPath(nativeKeyPath),
+        LottieProperty.COLOR,
+        new LottieValueCallback(new java.lang.Integer(value.android))
+      );
     }
   }
 
