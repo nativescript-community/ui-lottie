@@ -13,6 +13,7 @@ export class DemoViewModel extends Observable {
     'Mobilo/R.json',
     'Mobilo/S.json'
   ];
+  public thirdLottieProgressTo: string = 'Try it!';
 
   /**
    * For demoing cycling through the sample animations.
@@ -23,6 +24,11 @@ export class DemoViewModel extends Observable {
    * For demoing changing colors dynamically at runtime.
    */
   private _lottieViewTwo: LottieView;
+
+  /**
+   * For demoing partially animating a composition.
+   */
+  private _lottieViewThree: LottieView;
 
   public firstLottieLoaded(event) {
     this._lottieViewOne = event.object as LottieView;
@@ -39,6 +45,13 @@ export class DemoViewModel extends Observable {
     this._lottieViewTwo.autoPlay = true;
     this._lottieViewTwo.loop = true;
     this._lottieViewTwo.src = 'AndroidWave.json';
+  }
+
+  public thirdLottieLoaded(event) {
+    this._lottieViewThree = event.object as LottieView;
+    this._lottieViewThree.autoPlay = false;
+    this._lottieViewThree.loop = false;
+    this._lottieViewThree.src = 'Mobilo/N.json';
   }
 
   public next() {
@@ -61,12 +74,6 @@ export class DemoViewModel extends Observable {
     this._lottieViewOne.loop = !this._lottieViewOne.loop;
   }
 
-  // // TODO: get slider working
-  // public onSliderChange(event) {
-  //   const slider = event.object as Slider;
-  //   this._lottieViewOne.progress = slider.value;
-  // }
-
   public setTheme = value => () => {
     const color = new Color(value);
     const keyPaths = [
@@ -78,5 +85,13 @@ export class DemoViewModel extends Observable {
       this._lottieViewTwo.setColorValueDelegateForKeyPath(color, keyPath);
     });
   };
+
+  public setThirdLottieRandomProgress() {
+    const precision = 2;
+    const multiplier = Math.pow(10, precision || 0);
+    const toProgress = Math.round(Math.random() * multiplier) / multiplier;
+    this.set('thirdLottieProgressTo', `Animated to ${toProgress}`);
+    this._lottieViewThree.playAnimationFromProgressToProgress(0, toProgress);
+  }
 
 }

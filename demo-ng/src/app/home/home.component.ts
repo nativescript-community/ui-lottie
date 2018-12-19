@@ -21,6 +21,7 @@ export class HomeComponent {
     'Mobilo/R.json',
     'Mobilo/S.json'
   ];
+  public thirdLottieProgressTo: string = 'Try it!';
 
   /**
    * For demoing cycling through the sample animations.
@@ -32,13 +33,18 @@ export class HomeComponent {
    */
   private _lottieViewTwo: LottieView;
 
+  /**
+   * For demoing partially animating a composition.
+   */
+  private _lottieViewThree: LottieView;
+
   public firstLottieLoaded(event) {
     this._lottieViewOne = <LottieView>event.object;
     this._lottieViewOne.autoPlay = true;
     this._lottieViewOne.loop = true;
     this._lottieViewOne.src = this.animations[this.animationIndex];
     this._lottieViewOne.completionBlock = (animationFinished: boolean) => {
-      console.log(`completionBlock animationFinished: ${animationFinished}`);
+      console.log(`lottieViewOne completionBlock animationFinished: ${animationFinished}`);
     };
   }
 
@@ -47,6 +53,13 @@ export class HomeComponent {
     this._lottieViewTwo.autoPlay = true;
     this._lottieViewTwo.loop = true;
     this._lottieViewTwo.src = 'AndroidWave.json';
+  }
+
+  public thirdLottieLoaded(event) {
+    this._lottieViewThree = <LottieView>event.object;
+    this._lottieViewThree.autoPlay = false;
+    this._lottieViewThree.loop = false;
+    this._lottieViewThree.src = 'Mobilo/N.json';
   }
 
   public next() {
@@ -69,12 +82,6 @@ export class HomeComponent {
     this._lottieViewOne.loop = !this._lottieViewOne.loop;
   }
 
-  // // TODO: get slider working
-  // public onSliderChange(event) {
-  //   const slider = <Slider>event.object;
-  //   this._lottieViewOne.progress = slider.value;
-  // }
-
   public setTheme(value) {
     const color = new Color(value);
     const keyPaths = [
@@ -85,5 +92,13 @@ export class HomeComponent {
     keyPaths.forEach((keyPath) => {
       this._lottieViewTwo.setColorValueDelegateForKeyPath(color, keyPath);
     });
+  }
+
+  public setThirdLottieRandomProgress() {
+    const precision = 2;
+    const multiplier = Math.pow(10, precision || 0);
+    const toProgress = Math.round(Math.random() * multiplier) / multiplier;
+    this.thirdLottieProgressTo = `Animated to ${toProgress}`;
+    this._lottieViewThree.playAnimationFromProgressToProgress(0, toProgress);
   }
 }

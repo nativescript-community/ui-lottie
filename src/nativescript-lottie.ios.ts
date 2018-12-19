@@ -18,6 +18,7 @@ import { screen } from 'tns-core-modules/platform';
 declare var LOTAnimationView: any;
 declare var LOTKeypath: any;
 declare var LOTColorValueCallback: any;
+declare var LOTNumberInterpolatorCallback: any;
 
 export class LottieView extends LottieViewBase {
   private _contentMode: any;
@@ -151,7 +152,7 @@ export class LottieView extends LottieViewBase {
     }
   }
 
-  public playAnimation(): Promise<any> {
+  public playAnimation(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (this._animationView) {
         this._animationView.playWithCompletion((animationFinished: boolean) => {
@@ -160,6 +161,30 @@ export class LottieView extends LottieViewBase {
           }
           resolve(animationFinished);
         });
+      } else {
+        reject(new Error("The iOS lottie view isn't loaded yet."));
+      }
+    });
+  }
+
+  public playAnimationFromProgressToProgress(
+    startProgress: number,
+    endProgress: number
+  ): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      if (this._animationView) {
+        startProgress = startProgress ? clamp(startProgress) : 0;
+        endProgress = endProgress ? clamp(endProgress) : 1;
+        this._animationView.playFromProgressToProgressWithCompletion(
+          startProgress,
+          endProgress,
+          (animationFinished: boolean) => {
+            if (this.completionBlock) {
+              this.completionBlock(animationFinished);
+            }
+            resolve(animationFinished);
+          }
+        );
       } else {
         reject(new Error("The iOS lottie view isn't loaded yet."));
       }
@@ -235,4 +260,8 @@ export class LottieView extends LottieViewBase {
       }
     }
   }
+}
+
+function clamp(val: number, min: number = 0, max: number = 1) {
+  return val > max ? max : val < min ? min : val;
 }
