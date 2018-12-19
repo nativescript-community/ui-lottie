@@ -153,6 +153,33 @@ export class LottieView extends LottieViewBase {
     }
   }
 
+  public setOpacityValueDelegateForKeyPath(
+    value: number,
+    keyPath: string[]
+  ): void {
+    if (this.nativeView && value && keyPath && keyPath.length) {
+      if (keyPath[keyPath.length - 1].toLowerCase() === 'opacity') {
+        keyPath.pop();
+        if (keyPath.length === 0) {
+          return;
+        }
+      }
+      const nativeKeyPath: java.lang.String[] = Array.create(
+        java.lang.String,
+        keyPath.length
+      );
+      keyPath.forEach((key, index) => {
+        nativeKeyPath[index] = new java.lang.String(key);
+      });
+      value = clamp(value);
+      this.nativeView.addValueCallback(
+        new LottieKeyPath(nativeKeyPath),
+        LottieProperty.OPACITY,
+        new LottieValueCallback(new java.lang.Integer(value * 100))
+      );
+    }
+  }
+
   public playAnimation(): void {
     if (this.nativeView) {
       this.nativeView.setMinAndMaxProgress(

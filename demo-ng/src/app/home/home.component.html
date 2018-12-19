@@ -38,7 +38,7 @@
         (loaded)="secondLottieLoaded($event)"
       ></LottieView>
       <label
-        text="You can even change colors at run time!"
+        text="You can even change opacity and colors at run time!"
         class="h3"
         textWrap="true"
       ></label>
@@ -54,6 +54,11 @@
           <StackLayout height="50%" width="20%" backgroundColor="#2f4f4f" (tap)="setTheme('#2f4f4f')"></StackLayout>
           <StackLayout height="50%" width="20%" backgroundColor="#8b4513" (tap)="setTheme('#8b4513')"></StackLayout>
       </WrapLayout>
+      <button
+        text="Random Opacity"
+        class="p-10 btn btn-primary"
+        (tap)="setSecondLottieRandomOpacity()"
+      ></button>
     </StackLayout>
     <StackLayout row="2">
         <LottieView

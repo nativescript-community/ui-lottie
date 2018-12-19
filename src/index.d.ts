@@ -80,6 +80,13 @@ export declare class LottieView extends View {
   setColorValueDelegateForKeyPath(value: Color, keyPath: string[]): void;
 
   /**
+   * Sets the provided opacity value on each property that matches the specified keyPath.
+   * @param value value
+   * @param keyPath keyPath
+   */
+  setOpacityValueDelegateForKeyPath(value: number, keyPath: string[]): void;
+
+  /**
    * Callback for when the view has loaded.
    */
   onLoaded(): void;

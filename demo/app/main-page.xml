@@ -35,6 +35,11 @@
                 <StackLayout height="50%" width="20%" backgroundColor="#2f4f4f" tap="{{ setTheme('#2f4f4f') }}"/>
                 <StackLayout height="50%" width="20%" backgroundColor="#8b4513" tap="{{ setTheme('#8b4513') }}"/>
             </WrapLayout>
+            <button
+                text="Random Opacity"
+                class="p-10 btn btn-primary"
+                tap="{{ setSecondLottieRandomOpacity }}"
+            ></button>
         </StackLayout>
         <StackLayout row="2">
             <Lottie:LottieView 

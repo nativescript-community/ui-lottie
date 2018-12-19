@@ -2,6 +2,12 @@ import { Observable } from 'tns-core-modules/data/observable';
 import { LottieView } from 'nativescript-lottie';
 import { Color } from 'tns-core-modules/color/color';
 
+const ANDROID_WAVE_KEYPATHS = [
+  ['Shirt', 'Group 5', 'Fill 1'],
+  ['LeftArmWave', 'LeftArm', 'Group 6', 'Fill 1'],
+  ['RightArm', 'Group 6', 'Fill 1']
+];
+
 export class DemoViewModel extends Observable {
   
   public animationIndex: number = 0;
@@ -76,22 +82,27 @@ export class DemoViewModel extends Observable {
 
   public setTheme = value => () => {
     const color = new Color(value);
-    const keyPaths = [
-      ['Shirt', 'Group 5', 'Fill 1'],
-      ['LeftArmWave', 'LeftArm', 'Group 6', 'Fill 1'],
-      ['RightArm', 'Group 6', 'Fill 1']
-    ];
-    keyPaths.forEach((keyPath) => {
+    ANDROID_WAVE_KEYPATHS.forEach((keyPath) => {
       this._lottieViewTwo.setColorValueDelegateForKeyPath(color, keyPath);
     });
   };
 
+  public setSecondLottieRandomOpacity() {
+    const opacity = getRandomWithPrecision(2)
+    ANDROID_WAVE_KEYPATHS.forEach((keyPath) => {
+      this._lottieViewTwo.setOpacityValueDelegateForKeyPath(opacity, keyPath);
+    });
+  }
+
   public setThirdLottieRandomProgress() {
-    const precision = 2;
-    const multiplier = Math.pow(10, precision || 0);
-    const toProgress = Math.round(Math.random() * multiplier) / multiplier;
+    const toProgress = getRandomWithPrecision(2);
     this.set('thirdLottieProgressTo', `Animated to ${toProgress}`);
     this._lottieViewThree.playAnimationFromProgressToProgress(0, toProgress);
   }
 
+}
+
+function getRandomWithPrecision(precision?: number): number {
+  const multiplier = Math.pow(10, precision || 0);
+  return Math.round(Math.random() * multiplier) / multiplier;
 }
