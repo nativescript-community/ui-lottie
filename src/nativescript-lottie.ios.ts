@@ -18,7 +18,7 @@ import { screen } from 'tns-core-modules/platform';
 declare var LOTAnimationView: any;
 declare var LOTKeypath: any;
 declare var LOTColorValueCallback: any;
-declare var LOTNumberInterpolatorCallback: any;
+declare var LOTNumberValueCallback: any;
 
 export class LottieView extends LottieViewBase {
   private _contentMode: any;
@@ -123,6 +123,22 @@ export class LottieView extends LottieViewBase {
       }
       this._animationView.setValueDelegateForKeypath(
         LOTColorValueCallback.withCGColor(value.ios.CGColor),
+        LOTKeypath.keypathWithString(keyPath.join('.'))
+      );
+    }
+  }
+
+  public setOpacityValueDelegateForKeyPath(
+    value: number,
+    keyPath: string[]
+  ): void {
+    if (this._animationView && value && keyPath && keyPath.length) {
+      if (keyPath[keyPath.length - 1].toLowerCase() !== 'opacity') {
+        keyPath.push('Opacity'); // ios expects the property as the last item in the keyPath
+      }
+      value = clamp(value);
+      this._animationView.setValueDelegateForKeypath(
+        LOTNumberValueCallback.withFloatValue(value),
         LOTKeypath.keypathWithString(keyPath.join('.'))
       );
     }
