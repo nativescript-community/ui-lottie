@@ -18,7 +18,7 @@
             </StackLayout>
 
             <StackLayout row="4">
-                <Lottie:LottieView src="happybirthday.json" theme="{{ theme }}" height="400" width="auto" loop="true" autoPlay="true"/>
+                <Lottie:LottieView src="AndroidWave.json" theme="{{ theme }}" height="400" width="auto" loop="true" autoPlay="true"/>
 
                 <WrapLayout height="120" width="100%">
                     <StackLayout height="50%" width="20%" backgroundColor="red" tap="{{ setTheme('red') }}"/>
