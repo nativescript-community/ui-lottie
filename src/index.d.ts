@@ -88,6 +88,16 @@ export declare class LottieView extends View {
    * Plays the animation from the beginning.
    */
   playAnimation(): void;
+
+  /**
+   * Plays the animation from the specified start and end progress values (between 0 and 1).
+   * @param startProgress progress value to start the animation from.
+   * @param endProgress progress value to end the animation at.
+   */
+  playAnimationFromProgressToProgress(
+    startProgress: number,
+    endProgress: number
+  ): void;
 }
 
 export declare enum EnumCacheStrategy {
@@ -95,8 +105,3 @@ export declare enum EnumCacheStrategy {
   Weak = 1,
   Strong = 2
 }
-
-// export interface Theme {
-//   keyPath: string[];
-//   value: string;
-// }

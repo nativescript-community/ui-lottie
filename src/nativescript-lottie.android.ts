@@ -19,6 +19,9 @@ const LottieProperty = com.airbnb.lottie.LottieProperty;
 const LottieKeyPath = com.airbnb.lottie.model.KeyPath;
 const LottieValueCallback = com.airbnb.lottie.value.LottieValueCallback;
 
+const DEFAULT_MAX_PROGRESS: number = 1;
+const DEFAULT_MIN_PROGRESS: number = 0;
+
 declare var com: any;
 
 export class LottieView extends LottieViewBase {
@@ -48,10 +51,10 @@ export class LottieView extends LottieViewBase {
             }
           },
           onAnimationRepeat: _animator => {
-            console.log('onAnimationRepeat');
+            // console.log('onAnimationRepeat');
           },
           onAnimationStart: _animator => {
-            console.log('onAnimationStart');
+            // console.log('onAnimationStart');
           }
         })
       );
@@ -152,6 +155,22 @@ export class LottieView extends LottieViewBase {
 
   public playAnimation(): void {
     if (this.nativeView) {
+      this.nativeView.setMinAndMaxProgress(
+        DEFAULT_MIN_PROGRESS,
+        DEFAULT_MAX_PROGRESS
+      );
+      this.nativeView.playAnimation();
+    }
+  }
+
+  public playAnimationFromProgressToProgress(
+    startProgress: number,
+    endProgress: number
+  ): void {
+    if (this.nativeView) {
+      startProgress = startProgress ? clamp(startProgress) : 0;
+      endProgress = endProgress ? clamp(endProgress) : 1;
+      this.nativeView.setMinAndMaxProgress(startProgress, endProgress);
       this.nativeView.playAnimation();
     }
   }
@@ -215,4 +234,8 @@ export enum CacheStrategy {
   None = com.airbnb.lottie.LottieAnimationView.CacheStrategy.None,
   Weak = com.airbnb.lottie.LottieAnimationView.CacheStrategy.Weak,
   Strong = com.airbnb.lottie.LottieAnimationView.CacheStrategy.Strong
+}
+
+function clamp(val: number, min: number = 0, max: number = 1) {
+  return val > max ? max : val < min ? min : val;
 }
