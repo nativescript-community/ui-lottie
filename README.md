@@ -17,7 +17,7 @@ _The .gif does not do the fluid animations justice_
 
 To install execute:
 
-### NativeScript 4x
+### NativeScript 5x
 
 ```
 tns plugin add nativescript-lottie
@@ -103,7 +103,7 @@ export class HomeComponent {
 
 ### Android
 
-Place your animation files in the NS app's `app_resources/android/src/main/assets` folder.
+Place your animation files in the NS app's `app/App_Resources/Android/src/main/assets` folder.
 
 ### iOS
 
@@ -116,22 +116,26 @@ Place your animations files in your `app/App_Resources/iOS/` folder.
 | `autoPlay` | `boolean` | `false` | Start LottieView animation on load if `true`. |
 | `loop`     | `boolean` | `false` | Loop continuously animation if `true`.        |
 | `src`      | `string`  | `null`  | Animation path to `.json` file.               |
-| `theme`    | `{ keyPath: string[], value: string }[]`  | `null`  | keyPath is the path to layer in your json file (i.e in After Effect) and  value is the layer color              |
 
 ## Properties
 
-| Property   | Type     | Default | Description                            |
-| ---------- | -------- | ------- | -------------------------------------- |
-| `progress` | `number` | `0`     | Get/set the progress of the animation. |
-| `speed`    | `number` | `1`     | Get/set the animation's speed          |
+| Property           | Type                | Default | Description                                                                                                                                               |
+| ------------------ | ------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `completionBlock`  | `(boolean) => void` | `null`  | Completion block to be executed upon completion of the animation. The animation is considered complete when it finishes playing and is no longer looping. |
+| `duration`         | `number`            | `null`  | Get the duration of the animation.                                                                                                                        |
+| `progress`         | `number`            | `0`     | Get/set the progress of the animation.                                                                                                                    |
+| `speed`            | `number`            | `1`     | Get/set the speed of the animation.                                                                                                                       |
 
 ## Methods
 
-| Method            | Return    | Parameters | Description                                              |
-| ----------------- | --------- | ---------- | -------------------------------------------------------- |
-| `playAnimation`   | `void`    | None       | Plays the animation for the LottieView instance.        |
-| `cancelAnimation` | `void`    | None       | Pauses the animation for the LottieView instance.        |
-| `isAnimating`     | `boolean` | None       | Returns true if the LottieView is animating, else false. |
+| Method                                | Return    | Parameters                 | Description                                                                                                                 |
+| ------------------------------------- | --------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `cancelAnimation`                     | `void`    | None                       | Pauses the animation for the LottieView instance.                                                                           |
+| `isAnimating`                         | `boolean` | None                       | Returns true if the LottieView is animating, else false.                                                                    |
+| `playAnimation`                       | `void`    | None                       | Plays the animation for the LottieView instance.                                                                            |
+| `playAnimationFromProgressToProgress` | `void`    | startProgress, endProgress | Plays the animation for the LottieView instance from the specified start and end progress values (between 0 and 1).         |
+| `setColorValueDelegateForKeyPath`     | `void`    | value, keyPath             | Sets the provided color value on each property that matches the specified keyPath in the LottieView instance.               |
+| `setOpacityValueDelegateForKeyPath`   | `void`    | value, keyPath             | Sets the provided opacity value (0 - 1) on each property that matches the specified keyPath in the LottieView instance.     |
 
 ## Contributors
 

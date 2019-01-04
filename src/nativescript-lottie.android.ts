@@ -51,10 +51,10 @@ export class LottieView extends LottieViewBase {
             }
           },
           onAnimationRepeat: _animator => {
-            // console.log('onAnimationRepeat');
+            // noop
           },
           onAnimationStart: _animator => {
-            // console.log('onAnimationStart');
+            // noop
           }
         })
       );
