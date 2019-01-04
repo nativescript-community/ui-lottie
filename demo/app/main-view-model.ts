@@ -27,7 +27,7 @@ export class DemoViewModel extends Observable {
   private _lottieViewOne: LottieView;
 
   /**
-   * For demoing changing colors dynamically at runtime.
+   * For demoing changing colors and opacity dynamically at runtime.
    */
   private _lottieViewTwo: LottieView;
 
@@ -83,14 +83,14 @@ export class DemoViewModel extends Observable {
   public setTheme = value => () => {
     const color = new Color(value);
     ANDROID_WAVE_KEYPATHS.forEach((keyPath) => {
-      this._lottieViewTwo.setColorValueDelegateForKeyPath(color, keyPath);
+      this._lottieViewTwo.setColorValueDelegateForKeyPath(color, [...keyPath]);
     });
   };
 
   public setSecondLottieRandomOpacity() {
-    const opacity = getRandomWithPrecision(2)
+    const opacity = getRandomWithPrecision(2);
     ANDROID_WAVE_KEYPATHS.forEach((keyPath) => {
-      this._lottieViewTwo.setOpacityValueDelegateForKeyPath(opacity, keyPath);
+      this._lottieViewTwo.setOpacityValueDelegateForKeyPath(opacity, [...keyPath]);
     });
   }
 

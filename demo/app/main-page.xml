@@ -19,7 +19,7 @@
         <StackLayout row="1">
             <Lottie:LottieView height="300" width="auto" loaded="{{ secondLottieLoaded }}" />
             <label
-                text="You can even change colors at run time!"
+                text="You can even change colors and opacity at run time!"
                 class="h3"
                 textWrap="true"
             ></label>

@@ -1,4 +1,4 @@
-import { View, Color } from 'tns-core-modules/ui/core/view';
+import { Color, View } from 'tns-core-modules/ui/core/view';
 
 export declare class LottieView extends View {
   /**
@@ -74,15 +74,11 @@ export declare class LottieView extends View {
 
   /**
    * Sets the provided color value on each property that matches the specified keyPath.
-   * @param {Color} value value
-   * @param {string[]} keyPath keyPath
    */
   setColorValueDelegateForKeyPath(value: Color, keyPath: string[]): void;
 
   /**
    * Sets the provided opacity value on each property that matches the specified keyPath.
-   * @param value value
-   * @param keyPath keyPath
    */
   setOpacityValueDelegateForKeyPath(value: number, keyPath: string[]): void;
 
@@ -98,8 +94,6 @@ export declare class LottieView extends View {
 
   /**
    * Plays the animation from the specified start and end progress values (between 0 and 1).
-   * @param startProgress progress value to start the animation from.
-   * @param endProgress progress value to end the animation at.
    */
   playAnimationFromProgressToProgress(
     startProgress: number,
