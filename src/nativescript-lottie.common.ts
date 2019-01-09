@@ -15,6 +15,7 @@ export class LottieViewBase extends View {
   public autoPlay: boolean;
   public cacheStrategy: CacheStrategy;
   public completionBlock: (animationFinished: boolean) => void;
+  public loadedBlock: () => void;
 }
 
 export const srcProperty = new Property<LottieViewBase, string>({

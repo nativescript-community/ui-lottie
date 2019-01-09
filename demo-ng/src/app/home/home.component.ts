@@ -44,14 +44,16 @@ export class HomeComponent {
    */
   private _lottieViewThree: LottieView;
 
+  /**
+   * For demoing the completion block (i.e for async work).
+   */
+  private _lottieViewFour: LottieView;
+
   public firstLottieLoaded(event) {
     this._lottieViewOne = <LottieView>event.object;
     this._lottieViewOne.autoPlay = true;
     this._lottieViewOne.loop = true;
     this._lottieViewOne.src = this.animations[this.animationIndex];
-    this._lottieViewOne.completionBlock = (animationFinished: boolean) => {
-      console.log(`lottieViewOne completionBlock animationFinished: ${animationFinished}`);
-    };
   }
 
   public secondLottieLoaded(event) {
@@ -63,9 +65,19 @@ export class HomeComponent {
 
   public thirdLottieLoaded(event) {
     this._lottieViewThree = <LottieView>event.object;
-    this._lottieViewThree.autoPlay = false;
+    this._lottieViewThree.autoPlay = true;
     this._lottieViewThree.loop = false;
     this._lottieViewThree.src = 'Mobilo/N.json';
+  }
+
+  public fourthLottieLoaded(event) {
+    this._lottieViewFour = <LottieView>event.object;
+    this._lottieViewFour.loadedBlock = () => {
+      this.setFourthLottieToLoadingState();
+    };
+    this._lottieViewFour.autoPlay = false;
+    this._lottieViewFour.loop = true;
+    this._lottieViewFour.src = 'doughnut.json';
   }
 
   public next() {
@@ -103,9 +115,26 @@ export class HomeComponent {
   }
 
   public setThirdLottieRandomProgress() {
-    const toProgress = getRandomWithPrecision(2)
-    this.thirdLottieProgressTo = `Animated to ${toProgress}`;
-    this._lottieViewThree.playAnimationFromProgressToProgress(0, toProgress);
+    const progress = getRandomWithPrecision(2)
+    this.thirdLottieProgressTo = `Animated to ${progress}`;
+    this._lottieViewThree.playAnimationFromProgressToProgress(0, progress);
+  }
+
+  public setFourthLottieToLoadingState() {
+    this._lottieViewFour.loop = true;
+    this._lottieViewFour.playAnimationFromProgressToProgress(0, 0.5);
+  }
+
+  public setFourthLottieToLoadedState() {
+    this._lottieViewFour.completionBlock = (animationFinished: boolean) => {
+      console.log(`lottieViewFour completionBlock animationFinished: ${animationFinished}`);
+
+      this._lottieViewFour.playAnimationFromProgressToProgress(0.5, 0.85);
+      this._lottieViewFour.completionBlock = null;
+    };
+
+    // Trigger the completion block by disabling looping and allowing the final loop to lapse.
+    this._lottieViewFour.loop = false;
   }
 }
 

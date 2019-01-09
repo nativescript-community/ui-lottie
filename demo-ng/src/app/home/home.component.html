@@ -3,7 +3,7 @@
 -->
 <ActionBar title="Airbnb Lottie Ng" icon="" class="action-bar"></ActionBar>
 <ScrollView>
-  <GridLayout rows="auto, auto, auto" columns="*" class="p-10">
+  <GridLayout rows="auto, auto, auto, auto" columns="*" class="p-10">
     <StackLayout row="0">
         <label
         text="Since NativeScript is native Android and iOS it easily supports Lottie - Thanks Airbnb!!!"
@@ -80,6 +80,23 @@
         text="Random Progress"
         class="p-10 btn btn-primary"
         (tap)="setThirdLottieRandomProgress()"
+      ></button>
+    </StackLayout>
+    <StackLayout row="3">
+      <LottieView
+      height="300"
+      width="auto"
+      (loaded)="fourthLottieLoaded($event)"
+      ></LottieView>
+      <button
+      text="Reset To Loading"
+      class="p-10 btn btn-primary"
+      (tap)="setFourthLottieToLoadingState()"
+      ></button>
+      <button
+      text="Transition To Loaded"
+      class="p-10 btn btn-primary"
+      (tap)="setFourthLottieToLoadedState()"
       ></button>
     </StackLayout>
   </GridLayout>

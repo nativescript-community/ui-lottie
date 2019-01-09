@@ -36,6 +36,11 @@ export class DemoViewModel extends Observable {
    */
   private _lottieViewThree: LottieView;
 
+  /**
+   * For demoing the completion block (i.e for async work).
+   */
+  private _lottieViewFour: LottieView;
+
   public firstLottieLoaded(event) {
     this._lottieViewOne = event.object as LottieView;
     this._lottieViewOne.autoPlay = true;
@@ -58,6 +63,16 @@ export class DemoViewModel extends Observable {
     this._lottieViewThree.autoPlay = false;
     this._lottieViewThree.loop = false;
     this._lottieViewThree.src = 'Mobilo/N.json';
+  }
+
+  public fourthLottieLoaded(event) {
+    this._lottieViewFour = event.object as LottieView;
+    this._lottieViewFour.loadedBlock = () => {
+      this.setFourthLottieToLoadingState();
+    };
+    this._lottieViewFour.autoPlay = false;
+    this._lottieViewFour.loop = true;
+    this._lottieViewFour.src = 'doughnut.json';
   }
 
   public next() {
@@ -98,6 +113,23 @@ export class DemoViewModel extends Observable {
     const toProgress = getRandomWithPrecision(2);
     this.set('thirdLottieProgressTo', `Animated to ${toProgress}`);
     this._lottieViewThree.playAnimationFromProgressToProgress(0, toProgress);
+  }
+
+  public setFourthLottieToLoadingState() {
+    this._lottieViewFour.loop = true;
+    this._lottieViewFour.playAnimationFromProgressToProgress(0, 0.5);
+  }
+
+  public setFourthLottieToLoadedState() {
+    this._lottieViewFour.completionBlock = (animationFinished: boolean) => {
+      console.log(`lottieViewFour completionBlock animationFinished: ${animationFinished}`);
+
+      this._lottieViewFour.playAnimationFromProgressToProgress(0.5, 0.85);
+      this._lottieViewFour.completionBlock = null;
+    };
+
+    // Trigger the completion block by disabling looping and allowing the final loop to lapse.
+    this._lottieViewFour.loop = false;
   }
 
 }

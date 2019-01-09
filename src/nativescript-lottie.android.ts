@@ -25,77 +25,43 @@ const DEFAULT_MIN_PROGRESS: number = 0;
 declare var com: any;
 
 export class LottieView extends LottieViewBase {
-  constructor() {
-    super();
-  }
-
   /// com.airbnb.lottie.LottieAnimationView
   get android(): any {
     return this.nativeView;
   }
 
   public createNativeView(): View {
-    const nativeView = new com.airbnb.lottie.LottieAnimationView(this._context);
+    return new com.airbnb.lottie.LottieAnimationView(this._context);
+  }
 
-    try {
-      nativeView.addAnimatorListener(
-        new android.animation.Animator.AnimatorListener({
-          onAnimationCancel: _animator => {
-            if (this.completionBlock) {
-              this.completionBlock(false);
-            }
-          },
-          onAnimationEnd: _animator => {
-            if (this.completionBlock) {
-              this.completionBlock(true);
-            }
-          },
-          onAnimationRepeat: _animator => {
-            // noop
-          },
-          onAnimationStart: _animator => {
-            // noop
+  public initNativeView(): void {
+    this.nativeView.addAnimatorListener(
+      new android.animation.Animator.AnimatorListener({
+        onAnimationCancel: _animator => {
+          if (this.completionBlock) {
+            this.completionBlock(false);
           }
-        })
-      );
-      if (this.src) {
-        if (this.cacheStrategy) {
-          nativeView.setAnimation(this.src, this.cacheStrategy);
-        } else {
-          nativeView.setAnimation(this.src);
+        },
+        onAnimationEnd: _animator => {
+          if (this.completionBlock) {
+            this.completionBlock(true);
+          }
+        },
+        onAnimationRepeat: _animator => {
+          // noop
+        },
+        onAnimationStart: _animator => {
+          // noop
         }
-      }
+      })
+    );
 
-      if (this.loop) {
-        nativeView.loop(true);
-      }
-
-      if (this.autoPlay) {
-        nativeView.playAnimation();
-      }
-    } catch (error) {
-      throw error;
+    if (this.src) {
+      this.setSrc(this.src);
     }
 
-    return nativeView;
-  }
-
-  public disposeNativeView(): void {
-    this.nativeView.removeAllAnimatorListeners();
-    this.nativeView = null;
-
-    super.disposeNativeView();
-  }
-
-  public [srcProperty.setNative](src: string) {
-    this.setSrc(src);
-  }
-
-  private setSrc(src: string) {
-    if (this.cacheStrategy) {
-      this.nativeView.setAnimation(src, this.cacheStrategy);
-    } else {
-      this.nativeView.setAnimation(src);
+    if (this.loop) {
+      this.nativeView.loop(this.loop);
     }
 
     if (this.autoPlay) {
@@ -103,16 +69,54 @@ export class LottieView extends LottieViewBase {
     }
   }
 
-  public [loopProperty.setNative](loop: boolean) {
-    if (loop) {
-      this.nativeView.loop(true);
-    } else {
-      this.nativeView.loop(false);
+  public disposeNativeView(): void {
+    this.nativeView.removeAllAnimatorListeners();
+
+    super.disposeNativeView();
+  }
+
+  public onLoaded(): void {
+    super.onLoaded();
+
+    if (this.loadedBlock) {
+      this.loadedBlock();
+    }
+  }
+
+  public [srcProperty.setNative](src: string) {
+    this.setSrc(src);
+  }
+
+  private setSrc(src: string) {
+    if (this.nativeView) {
+      if (this.cacheStrategy) {
+        this.nativeView.setAnimation(src, this.cacheStrategy);
+      } else {
+        this.nativeView.setAnimation(src);
+      }
+
+      if (this.loop) {
+        this.setLoopAnimation(this.loop);
+      }
+
+      if (this.autoPlay) {
+        this.playAnimation();
+      }
     }
   }
 
   public [cacheStrategyProperty.setNative](_cacheStrategy: CacheStrategy) {
     this.setSrc(this.src);
+  }
+
+  public [loopProperty.setNative](loop: boolean) {
+    this.setLoopAnimation(loop);
+  }
+
+  private setLoopAnimation(loop: boolean): void {
+    if (this.nativeView) {
+      this.nativeView.loop(loop);
+    }
   }
 
   public [autoPlayProperty.setNative](autoPlay: boolean) {
@@ -203,11 +207,7 @@ export class LottieView extends LottieViewBase {
   }
 
   public isAnimating(): boolean {
-    let isAnimating = false;
-    if (this.nativeView.isAnimating()) {
-      isAnimating = true;
-    }
-    return isAnimating;
+    return this.nativeView ? this.nativeView.isAnimating() : false;
   }
 
   public set progress(value: number) {
@@ -216,34 +216,22 @@ export class LottieView extends LottieViewBase {
     }
   }
 
-  public get progress(): number {
-    let progress = null;
-    if (this.nativeView) {
-      progress = this.nativeView.getProgress();
-    }
-    return progress;
+  public get progress(): number | undefined {
+    return this.nativeView ? this.nativeView.getProgress() : undefined;
   }
 
-  public get speed(): number {
-    const speed = null;
-    if (this.nativeView) {
-      this.nativeView.getSpeed();
-    }
-    return speed;
+  public get speed(): number | undefined {
+    return this.nativeView ? this.nativeView.getSpeed() : undefined;
   }
 
-  public set speed(newSpeed: number) {
-    if (this.nativeView) {
-      this.nativeView.setSpeed(newSpeed);
+  public set speed(value: number) {
+    if (this.nativeView && value) {
+      this.nativeView.setSpeed(value);
     }
   }
 
-  public get duration(): number {
-    let duration = null;
-    if (this.nativeView) {
-      duration = this.nativeView.getDuration();
-    }
-    return duration;
+  public get duration(): number | undefined {
+    return this.nativeView ? this.nativeView.getDuration() : undefined;
   }
 
   public cancelAnimation(): void {

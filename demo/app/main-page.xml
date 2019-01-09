@@ -4,7 +4,7 @@
         <ActionBar title="Airbnb Lottie" icon="" class="action-bar"></ActionBar>
     </Page.actionBar>
     <ScrollView>
-        <GridLayout rows="auto, auto, auto" columns="*" class="p-10">
+        <GridLayout rows="auto, auto, auto, auto" columns="*" class="p-10">
         <StackLayout row="0">
             <label
                 text="Since NativeScript is native Android and iOS it easily supports Lottie - Thanks Airbnb!!!"
@@ -47,21 +47,38 @@
                 width="auto" 
                 loaded="{{ thirdLottieLoaded }}" 
             />
-        <label
-            text="Or partially animate your composition!"
-            class="h3"
-            textWrap="true"
-        ></label>
-        <label
-            text="{{ thirdLottieProgressTo }}"
-            class="h3"
-            textWrap="true"
-        ></label>
-        <button
-            text="Random Progress"
-            class="p-10 btn btn-primary"
-            tap="{{ setThirdLottieRandomProgress }}"
-        ></button>
+            <label
+                text="Or partially animate your composition!"
+                class="h3"
+                textWrap="true"
+            ></label>
+            <label
+                text="{{ thirdLottieProgressTo }}"
+                class="h3"
+                textWrap="true"
+            ></label>
+            <button
+                text="Random Progress"
+                class="p-10 btn btn-primary"
+                tap="{{ setThirdLottieRandomProgress }}"
+            ></button>
+        </StackLayout>
+        <StackLayout row="3">
+            <Lottie:LottieView
+                height="300"
+                width="auto"
+                loaded="{{ fourthLottieLoaded }}"
+            />
+            <button
+                text="Reset To Loading"
+                class="p-10 btn btn-primary"
+                tap="{{ setFourthLottieToLoadingState }}"
+            ></button>
+            <button
+                text="Transition To Loaded"
+                class="p-10 btn btn-primary"
+                tap="{{ setFourthLottieToLoadedState }}"
+            ></button>
         </StackLayout>
         </GridLayout>
     </ScrollView>
