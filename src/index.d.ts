@@ -15,6 +15,7 @@ export declare class LottieView extends View {
 
   /**
    * Flag determining whether the animation should start playing as soon as the view is ready.
+   * Uses playAnimation; if you want to autoPlay using playAnimationFromProgressToProgress, set this false and use the loadedBlock.
    */
   autoPlay: boolean;
 
@@ -25,7 +26,7 @@ export declare class LottieView extends View {
   cacheStrategy: EnumCacheStrategy;
 
   /**
-   * Completion block to be executed upon completion of the animation.
+   * Block to be executed upon completion of the animation.
    * The animation is considered complete when it finishes playing and is no longer looping.
    */
   completionBlock: (animationFinished: boolean) => void;
@@ -38,7 +39,7 @@ export declare class LottieView extends View {
   /**
    * The duration of the animation.
    */
-  readonly duration: number;
+  readonly duration: number | undefined;
 
   /**
    * Flag determining whether the animation should loop or not.
@@ -46,19 +47,24 @@ export declare class LottieView extends View {
   loop: boolean;
 
   /**
+   * Block to be executed when the view has loaded.
+   */
+  loadedBlock: () => void;
+
+  /**
    * The current progress of the animation.
    */
-  progress: number;
+  progress: number | undefined;
 
   /**
    * The current speed of the animation.
    */
-  speed: number;
+  speed: number | undefined;
 
   /**
    * The current source of the animation.
    */
-  src: string;
+  src: string | undefined;
 
   /**
    * (Android) Cancels the animation.
@@ -81,11 +87,6 @@ export declare class LottieView extends View {
    * Sets the provided opacity value on each property that matches the specified keyPath.
    */
   setOpacityValueDelegateForKeyPath(value: number, keyPath: string[]): void;
-
-  /**
-   * Callback for when the view has loaded.
-   */
-  onLoaded(): void;
 
   /**
    * Plays the animation from the beginning.
