@@ -72,12 +72,10 @@ export class HomeComponent {
 
   public fourthLottieLoaded(event) {
     this._lottieViewFour = <LottieView>event.object;
-    this._lottieViewFour.loadedBlock = () => {
-      this.setFourthLottieToLoadingState();
-    };
     this._lottieViewFour.autoPlay = false;
-    this._lottieViewFour.loop = true;
     this._lottieViewFour.src = 'doughnut.json';
+
+    this.setFourthLottieToLoadingState();
   }
 
   public next() {

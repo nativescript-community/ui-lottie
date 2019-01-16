@@ -67,12 +67,10 @@ export class DemoViewModel extends Observable {
 
   public fourthLottieLoaded(event) {
     this._lottieViewFour = event.object as LottieView;
-    this._lottieViewFour.loadedBlock = () => {
-      this.setFourthLottieToLoadingState();
-    };
     this._lottieViewFour.autoPlay = false;
-    this._lottieViewFour.loop = true;
     this._lottieViewFour.src = 'doughnut.json';
+
+    this.setFourthLottieToLoadingState();
   }
 
   public next() {

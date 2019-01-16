@@ -15,7 +15,6 @@ export declare class LottieView extends View {
 
   /**
    * Flag determining whether the animation should start playing as soon as the view is ready.
-   * Uses playAnimation; if you want to autoPlay using playAnimationFromProgressToProgress, set this false and use the loadedBlock.
    */
   autoPlay: boolean;
 
@@ -45,11 +44,6 @@ export declare class LottieView extends View {
    * Flag determining whether the animation should loop or not.
    */
   loop: boolean;
-
-  /**
-   * Block to be executed when the view has loaded.
-   */
-  loadedBlock: () => void;
 
   /**
    * The current progress of the animation.

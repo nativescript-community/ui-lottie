@@ -47,14 +47,6 @@ export class LottieView extends LottieViewBase {
     }
   }
 
-  public onLoaded(): void {
-    super.onLoaded();
-
-    if (this.loadedBlock) {
-      this.loadedBlock();
-    }
-  }
-
   public [srcProperty.setNative](src: string) {
     this.setSrc(src);
   }
