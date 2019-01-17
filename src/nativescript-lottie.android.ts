@@ -7,6 +7,7 @@
 /// <reference path="./node_modules/tns-platform-declarations/android.d.ts" />
 
 import { Color, View } from 'tns-core-modules/ui/core/view';
+import { clamp } from './utils';
 import {
   LottieViewBase,
   srcProperty,
@@ -241,8 +242,4 @@ export enum CacheStrategy {
   None = com.airbnb.lottie.LottieAnimationView.CacheStrategy.None,
   Weak = com.airbnb.lottie.LottieAnimationView.CacheStrategy.Weak,
   Strong = com.airbnb.lottie.LottieAnimationView.CacheStrategy.Strong
-}
-
-function clamp(val: number, min: number = 0, max: number = 1) {
-  return val > max ? max : val < min ? min : val;
 }
