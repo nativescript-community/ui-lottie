@@ -7,6 +7,7 @@
 /// <reference path="./node_modules/tns-platform-declarations/ios.d.ts" />
 
 import { Color, View } from 'tns-core-modules/ui/core/view';
+import { clamp } from './utils';
 import {
   LottieViewBase,
   srcProperty,
@@ -203,8 +204,4 @@ export class LottieView extends LottieViewBase {
       }
     }
   }
-}
-
-function clamp(val: number, min: number = 0, max: number = 1) {
-  return val > max ? max : val < min ? min : val;
 }
