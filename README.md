@@ -7,6 +7,10 @@ NativeScript plugin to expose Airbnb Lottie for awesome animations.
 
 Uses [Airbnb Lottie](https://github.com/airbnb/lottie-android) for Android and [iOS Lottie](https://github.com/airbnb/lottie-ios) for iOS.
 
+## Changelog
+
+All notable changes to this project will be documented in the [changelog](changelog.md).
+
 ## Demo Screen
 
 _The .gif does not do the fluid animations justice_
