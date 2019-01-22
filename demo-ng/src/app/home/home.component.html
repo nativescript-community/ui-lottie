@@ -4,47 +4,100 @@
 <ActionBar title="Airbnb Lottie Ng" icon="" class="action-bar"></ActionBar>
 <ScrollView>
   <GridLayout rows="auto, auto, auto, auto" columns="*" class="p-10">
-    <label
-      row="0"
-      col="0"
-      text="Yea... NativeScript supports Lottie - Thanks Airbnb!!!"
-      class="h3"
-      textWrap="true"
-    ></label>
-    <LottieView
-      row="1"
-      col="0"
-      width="100"
-      height="150"
-      [src]="src"
-      [loop]="loop"
-      [autoPlay]="autoPlay"
-      (loaded)="lottieViewLoaded($event)"
-    ></LottieView>
-    <StackLayout row="2" class="hr-grey"></StackLayout>
-    <FlexboxLayout row="3" flexDirection="row" flexWrap="wrap">
-      <button text="Next" class="p-10 btn btn-primary" (tap)="next()"></button>
-      <button
-        text="Stop loop"
-        class="p-10 btn btn-primary"
-        (tap)="stopLoop()"
+    <StackLayout row="0">
+        <label
+        text="Since NativeScript is native Android and iOS it easily supports Lottie - Thanks Airbnb!!!"
+        class="h3"
+        textWrap="true"
+      ></label>
+      <LottieView
+        height="300"
+        width="auto"
+        (loaded)="firstLottieLoaded($event)"
+      ></LottieView>
+      <button 
+        text="Next" 
+        class="p-10 btn btn-primary" 
+        (tap)="next()"
       ></button>
       <button
-        text="Start animation"
+        text="Toggle looping"
         class="p-10 btn btn-primary"
-        (tap)="playAnimation()"
+        (tap)="toggleLoop()"
       ></button>
       <button
-        text="Stop animation"
+        text="Start / Stop"
         class="p-10 btn btn-primary"
-        (tap)="stopAnimation()"
+        (tap)="toggleAnimation()"
       ></button>
-      <Slider
-        width="100"
-        (valueChange)="onSliderChange($event)"
-        minValue="0"
-        [maxValue]="maxProgress"
-      ></Slider>
-    </FlexboxLayout>
+    </StackLayout>
+    <StackLayout row="1">
+        <LottieView
+        height="300"
+        width="auto"
+        (loaded)="secondLottieLoaded($event)"
+      ></LottieView>
+      <label
+        text="You can even change colors and opacity at run time!"
+        class="h3"
+        textWrap="true"
+      ></label>
+      <WrapLayout height="120" width="100%">
+          <StackLayout height="50%" width="20%" backgroundColor="red" (tap)="setTheme('red')"></StackLayout>
+          <StackLayout height="50%" width="20%" backgroundColor="gold" (tap)="setTheme('gold')"></StackLayout>
+          <StackLayout height="50%" width="20%" backgroundColor="green" (tap)="setTheme('green')"></StackLayout>
+          <StackLayout height="50%" width="20%" backgroundColor="orange" (tap)="setTheme('orange')"></StackLayout>
+          <StackLayout height="50%" width="20%" backgroundColor="gray" (tap)="setTheme('gray')"></StackLayout>
+          <StackLayout height="50%" width="20%" backgroundColor="#191970" (tap)="setTheme('#191970')"></StackLayout>
+          <StackLayout height="50%" width="20%" backgroundColor="#00bfff" (tap)="setTheme('#00bfff')"></StackLayout>
+          <StackLayout height="50%" width="20%" backgroundColor="#8b008b" (tap)="setTheme('#8b008b')"></StackLayout>
+          <StackLayout height="50%" width="20%" backgroundColor="#2f4f4f" (tap)="setTheme('#2f4f4f')"></StackLayout>
+          <StackLayout height="50%" width="20%" backgroundColor="#8b4513" (tap)="setTheme('#8b4513')"></StackLayout>
+      </WrapLayout>
+      <button
+        text="Random Opacity"
+        class="p-10 btn btn-primary"
+        (tap)="setSecondLottieRandomOpacity()"
+      ></button>
+    </StackLayout>
+    <StackLayout row="2">
+        <LottieView
+        height="300"
+        width="auto"
+        (loaded)="thirdLottieLoaded($event)"
+      ></LottieView>
+      <label
+        text="Or partially animate your composition!"
+        class="h3"
+        textWrap="true"
+      ></label>
+      <label
+        [text]="thirdLottieProgressTo"
+        class="h3"
+        textWrap="true"
+      ></label>
+      <button
+        text="Random Progress"
+        class="p-10 btn btn-primary"
+        (tap)="setThirdLottieRandomProgress()"
+      ></button>
+    </StackLayout>
+    <StackLayout row="3">
+      <LottieView
+      height="300"
+      width="auto"
+      (loaded)="fourthLottieLoaded($event)"
+      ></LottieView>
+      <button
+      text="Reset To Loading"
+      class="p-10 btn btn-primary"
+      (tap)="setFourthLottieToLoadingState()"
+      ></button>
+      <button
+      text="Transition To Loaded"
+      class="p-10 btn btn-primary"
+      (tap)="setFourthLottieToLoadedState()"
+      ></button>
+    </StackLayout>
   </GridLayout>
 </ScrollView>

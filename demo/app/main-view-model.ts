@@ -1,40 +1,76 @@
-import { EventData, Observable } from 'tns-core-modules/data/observable';
-import { isIOS } from 'tns-core-modules/platform';
+import { Observable } from 'tns-core-modules/data/observable';
 import { LottieView } from 'nativescript-lottie';
+import { Color } from 'tns-core-modules/color/color';
 
-export class HelloWorldModel extends Observable {
-  private _myLottie: LottieView;
-  private animations: string[];
-  private animationIndex: number = 0;
+const ANDROID_WAVE_KEYPATHS = [
+  ['Shirt', 'Group 5', 'Fill 1'],
+  ['LeftArmWave', 'LeftArm', 'Group 6', 'Fill 1'],
+  ['RightArm', 'Group 6', 'Fill 1']
+];
 
-  public src: string;
-  public loop: boolean;
-  public autoPlay: boolean;
-  public theme;
+export class DemoViewModel extends Observable {
+  
+  public animationIndex: number = 0;
+  public animations: string[] = [
+    'Mobilo/B.json',
+    'Mobilo/A.json',
+    'Mobilo/D.json',
+    'Mobilo/N.json',
+    'Mobilo/R.json',
+    'Mobilo/S.json'
+  ];
+  public thirdLottieProgressTo: string = 'Try it!';
 
-  constructor() {
-    super();
-    this.animations = [
-      'Mobilo/B.json',
-      'Mobilo/A.json',
-      'Mobilo/D.json',
-      'Mobilo/N.json',
-      'Mobilo/R.json',
-      'Mobilo/S.json'
-    ];
-    // set the initial src and props for the LottieView
-    this.src = this.animations[this.animationIndex];
-    this.loop = true;
-    this.autoPlay = true;
+  /**
+   * For demoing cycling through the sample animations.
+   */
+  private _lottieViewOne: LottieView;
+
+  /**
+   * For demoing changing colors and opacity dynamically at runtime.
+   */
+  private _lottieViewTwo: LottieView;
+
+  /**
+   * For demoing partially animating a composition.
+   */
+  private _lottieViewThree: LottieView;
+
+  /**
+   * For demoing the completion block (i.e for async work).
+   */
+  private _lottieViewFour: LottieView;
+
+  public firstLottieLoaded(event) {
+    this._lottieViewOne = event.object as LottieView;
+    this._lottieViewOne.autoPlay = true;
+    this._lottieViewOne.loop = true;
+    this._lottieViewOne.src = this.animations[this.animationIndex];
+    this._lottieViewOne.completionBlock = (animationFinished: boolean) => {
+      console.log(`completionBlock animationFinished: ${animationFinished}`);
+    };
   }
 
-  public lottieLoaded(args) {
-    try {
-      this._myLottie = args.object as LottieView;
-      console.log(isIOS ? args.object.ios : args.object.android);
-    } catch (error) {
-      console.log(error);
-    }
+  public secondLottieLoaded(event) {
+    this._lottieViewTwo = event.object as LottieView;
+    this._lottieViewTwo.autoPlay = true;
+    this._lottieViewTwo.loop = true;
+    this._lottieViewTwo.src = 'AndroidWave.json';
+  }
+
+  public thirdLottieLoaded(event) {
+    this._lottieViewThree = event.object as LottieView;
+    this._lottieViewThree.autoPlay = false;
+    this._lottieViewThree.loop = false;
+    this._lottieViewThree.src = 'Mobilo/N.json';
+  }
+
+  public fourthLottieLoaded(event) {
+    this._lottieViewFour = event.object as LottieView;
+    this._lottieViewFour.autoPlay = false;
+    this._lottieViewFour.src = 'doughnut.json';
+
+    this.setFourthLottieToLoadingState();
   }
 
   public next() {
@@ -42,31 +78,61 @@ export class HelloWorldModel extends Observable {
     if (this.animationIndex >= this.animations.length) {
       this.animationIndex = 0;
     }
-    // set the src directly, propertyChange events are not wired up on the component yet
-    this._myLottie.src = this.animations[this.animationIndex];
+    this._lottieViewOne.src = this.animations[this.animationIndex];
   }
 
-  public startOrStopAnimation() {
-    if (this._myLottie.isAnimating()) {
-      this._myLottie.cancelAnimation();
+  public toggleAnimation() {
+    if (this._lottieViewOne.isAnimating()) {
+      this._lottieViewOne.cancelAnimation();
     } else {
-      this._myLottie.playAnimation();
+      this._lottieViewOne.playAnimation();
     }
   }
 
   public toggleLoop() {
-    this._myLottie.loop = !this._myLottie.loop;
+    this._lottieViewOne.loop = !this._lottieViewOne.loop;
   }
 
-  setTheme = color => () => {
-    let theme = [
-      { keyPath: ['Shirt', 'Group 5', 'Fill 1'], value: color },
-      {
-        keyPath: ['LeftArmWave', 'LeftArm', 'Group 6', 'Fill 1'],
-        value: color
-      },
-      { keyPath: ['RightArm', 'Group 6', 'Fill 1'], value: color }
-    ];
-    this.set('theme', theme);
+  public setTheme = value => () => {
+    const color = new Color(value);
+    ANDROID_WAVE_KEYPATHS.forEach((keyPath) => {
+      this._lottieViewTwo.setColorValueDelegateForKeyPath(color, [...keyPath]);
+    });
   };
+
+  public setSecondLottieRandomOpacity() {
+    const opacity = getRandomWithPrecision(2);
+    ANDROID_WAVE_KEYPATHS.forEach((keyPath) => {
+      this._lottieViewTwo.setOpacityValueDelegateForKeyPath(opacity, [...keyPath]);
+    });
+  }
+
+  public setThirdLottieRandomProgress() {
+    const toProgress = getRandomWithPrecision(2);
+    this.set('thirdLottieProgressTo', `Animated to ${toProgress}`);
+    this._lottieViewThree.playAnimationFromProgressToProgress(0, toProgress);
+  }
+
+  public setFourthLottieToLoadingState() {
+    this._lottieViewFour.loop = true;
+    this._lottieViewFour.playAnimationFromProgressToProgress(0, 0.5);
+  }
+
+  public setFourthLottieToLoadedState() {
+    this._lottieViewFour.completionBlock = (animationFinished: boolean) => {
+      console.log(`lottieViewFour completionBlock animationFinished: ${animationFinished}`);
+
+      this._lottieViewFour.playAnimationFromProgressToProgress(0.5, 0.85);
+      this._lottieViewFour.completionBlock = null;
+    };
+
+    // Trigger the completion block by disabling looping and allowing the final loop to lapse.
+    this._lottieViewFour.loop = false;
+  }
+
+}
+
+function getRandomWithPrecision(precision?: number): number {
+  const multiplier = Math.pow(10, precision || 0);
+  return Math.round(Math.random() * multiplier) / multiplier;
 }
