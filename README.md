@@ -21,21 +21,15 @@ _The .gif does not do the fluid animations justice_
 
 To install execute:
 
-### NativeScript 5x
+### NativeScript
 
 ```
 tns plugin add nativescript-lottie
 ```
 
-### NativeScript 3x-
-
-```
-tns plugin add nativescript-lottie@1.4.0
-```
-
 # Usage
 
-## Plain {N}
+## Plain NativeScript
 
 ### XML
 
@@ -55,11 +49,11 @@ tns plugin add nativescript-lottie@1.4.0
 import { LottieView } from "nativescript-lottie";
 
 public yourLoadedEvent(args) {
-    this._myLottie: LottieView = args.object; /// this is the instance of the LottieAnimationView
+    this._myLottie = args.object as LottieView; /// this is the instance of the LottieAnimationView
 }
 ```
 
-## {N} with Angular
+## Angular NativeScript
 
 ### XML
 
@@ -91,7 +85,12 @@ export class HomeComponent {
   private _lottieView: LottieView;
 
   constructor() {
-    this.animations = ['Mobilo/A.json', 'Mobilo/D.json', 'Mobilo/N.json', 'Mobilo/S.json'];
+    this.animations = [
+      'Mobilo/A.json',
+      'Mobilo/D.json',
+      'Mobilo/N.json',
+      'Mobilo/S.json'
+    ];
     this.src = this.animations[0];
   }
 
@@ -123,26 +122,26 @@ Place your animations files in your `app/App_Resources/iOS/` folder.
 
 ## Properties
 
-| Property           | Type                | Default | Description                                                                                                                                               |
-| ------------------ | ------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `completionBlock`  | `(boolean) => void` | `null`  | Completion block to be executed upon completion of the animation. The animation is considered complete when it finishes playing and is no longer looping. |
-| `duration`         | `number`            | `null`  | Get the duration of the animation.                                                                                                                        |
-| `progress`         | `number`            | `0`     | Get/set the progress of the animation.                                                                                                                    |
-| `speed`            | `number`            | `1`     | Get/set the speed of the animation.                                                                                                                       |
+| Property          | Type                | Default | Description                                                                                                                                               |
+| ----------------- | ------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `completionBlock` | `(boolean) => void` | `null`  | Completion block to be executed upon completion of the animation. The animation is considered complete when it finishes playing and is no longer looping. |
+| `duration`        | `number`            | `null`  | Get the duration of the animation.                                                                                                                        |
+| `progress`        | `number`            | `0`     | Get/set the progress of the animation.                                                                                                                    |
+| `speed`           | `number`            | `1`     | Get/set the speed of the animation.                                                                                                                       |
 
 ## Methods
 
-| Method                                | Return    | Parameters                 | Description                                                                                                                 |
-| ------------------------------------- | --------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `cancelAnimation`                     | `void`    | None                       | Pauses the animation for the LottieView instance.                                                                           |
-| `isAnimating`                         | `boolean` | None                       | Returns true if the LottieView is animating, else false.                                                                    |
-| `playAnimation`                       | `void`    | None                       | Plays the animation for the LottieView instance.                                                                            |
-| `playAnimationFromProgressToProgress` | `void`    | startProgress, endProgress | Plays the animation for the LottieView instance from the specified start and end progress values (between 0 and 1).         |
-| `setColorValueDelegateForKeyPath`     | `void`    | value, keyPath             | Sets the provided color value on each property that matches the specified keyPath in the LottieView instance.               |
-| `setOpacityValueDelegateForKeyPath`   | `void`    | value, keyPath             | Sets the provided opacity value (0 - 1) on each property that matches the specified keyPath in the LottieView instance.     |
+| Method                                | Return    | Parameters                 | Description                                                                                                             |
+| ------------------------------------- | --------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `cancelAnimation`                     | `void`    | None                       | Pauses the animation for the LottieView instance.                                                                       |
+| `isAnimating`                         | `boolean` | None                       | Returns true if the LottieView is animating, else false.                                                                |
+| `playAnimation`                       | `void`    | None                       | Plays the animation for the LottieView instance.                                                                        |
+| `playAnimationFromProgressToProgress` | `void`    | startProgress, endProgress | Plays the animation for the LottieView instance from the specified start and end progress values (between 0 and 1).     |
+| `setColorValueDelegateForKeyPath`     | `void`    | value, keyPath             | Sets the provided color value on each property that matches the specified keyPath in the LottieView instance.           |
+| `setOpacityValueDelegateForKeyPath`   | `void`    | value, keyPath             | Sets the provided opacity value (0 - 1) on each property that matches the specified keyPath in the LottieView instance. |
 
 ## Contributors
 
-| [<img alt="Brad Martin" src="https://avatars0.githubusercontent.com/u/6006148?s=400&v=4" width="117">](https://github.com/bradmartin) | [<img alt="Nathan Walker" src="https://avatars0.githubusercontent.com/u/457187?s=400&v=4" width="117">](https://github.com/NathanWalker/) | [<img alt="Jean-Baptiste Aniel" src="https://avatars3.githubusercontent.com/u/9477179?s=460&v=4" width="117">](https://github.com/rhanb) | [<img alt="HamdiWanis" src="https://avatars3.githubusercontent.com/u/11708544?s=460&v=4" width="117">](https://github.com/hamdiwanis)    | [<img alt="itstheceo" src="https://avatars2.githubusercontent.com/u/5218201?s=460&v=4" width="117">](https://github.com/itstheceo)       |
-| :-----------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: |
-|                                              [bradmartin](https://github.com/bradmartin)                                              |                                              [NathanWalker](https://github.com/NathanWalker)                                              |                                                    [rhanb](https://github.com/rhanb)                                                     |                                                    [HamdiWanis](https://github.com/hamdiwanis)                                           |                                                    [itstheceo](https://github.com/itstheceo)                                             |
+| [<img alt="Brad Martin" src="https://avatars0.githubusercontent.com/u/6006148?s=400&v=4" width="117">](https://github.com/bradmartin) | [<img alt="Nathan Walker" src="https://avatars0.githubusercontent.com/u/457187?s=400&v=4" width="117">](https://github.com/NathanWalker/) | [<img alt="Jean-Baptiste Aniel" src="https://avatars3.githubusercontent.com/u/9477179?s=460&v=4" width="117">](https://github.com/rhanb) | [<img alt="HamdiWanis" src="https://avatars3.githubusercontent.com/u/11708544?s=460&v=4" width="117">](https://github.com/hamdiwanis) | [<img alt="itstheceo" src="https://avatars2.githubusercontent.com/u/5218201?s=460&v=4" width="117">](https://github.com/itstheceo) |
+| :-----------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: |
+|                                              [bradmartin](https://github.com/bradmartin)                                              |                                              [NathanWalker](https://github.com/NathanWalker)                                              |                                                    [rhanb](https://github.com/rhanb)                                                     |                                              [HamdiWanis](https://github.com/hamdiwanis)                                              |                                             [itstheceo](https://github.com/itstheceo)                                              |
