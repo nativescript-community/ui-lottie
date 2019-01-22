@@ -6,16 +6,13 @@
   "nativescript": {
     "id": "org.nativescript.demo",
     "tns-android": {
-      "version": "5.0.0"
-    },
-    "tns-ios": {
-      "version": "5.0.0"
+      "version": "5.1.0"
     }
   },
   "dependencies": {
     "nativescript-lottie": "file:../src",
     "nativescript-theme-core": "~1.0.4",
-    "tns-core-modules": "^5.1.0"
+    "tns-core-modules": "^5.1.2"
   },
   "devDependencies": {
     "babel-traverse": "6.4.5",
@@ -24,7 +21,7 @@
     "lazy": "1.0.11",
     "nativescript-dev-android-snapshot": "^0.*.*",
     "nativescript-dev-typescript": "~0.7.8",
-    "tns-platform-declarations": "^5.1.0",
+    "tns-platform-declarations": "^5.1.2",
     "typescript": "^2.8.2"
   }
 }

@@ -9,7 +9,6 @@ const ANDROID_WAVE_KEYPATHS = [
 ];
 
 export class DemoViewModel extends Observable {
-  
   public animationIndex: number = 0;
   public animations: string[] = [
     'Mobilo/B.json',
@@ -95,15 +94,17 @@ export class DemoViewModel extends Observable {
 
   public setTheme = value => () => {
     const color = new Color(value);
-    ANDROID_WAVE_KEYPATHS.forEach((keyPath) => {
+    ANDROID_WAVE_KEYPATHS.forEach(keyPath => {
       this._lottieViewTwo.setColorValueDelegateForKeyPath(color, [...keyPath]);
     });
   };
 
   public setSecondLottieRandomOpacity() {
     const opacity = getRandomWithPrecision(2);
-    ANDROID_WAVE_KEYPATHS.forEach((keyPath) => {
-      this._lottieViewTwo.setOpacityValueDelegateForKeyPath(opacity, [...keyPath]);
+    ANDROID_WAVE_KEYPATHS.forEach(keyPath => {
+      this._lottieViewTwo.setOpacityValueDelegateForKeyPath(opacity, [
+        ...keyPath
+      ]);
     });
   }
 
@@ -120,7 +121,9 @@ export class DemoViewModel extends Observable {
 
   public setFourthLottieToLoadedState() {
     this._lottieViewFour.completionBlock = (animationFinished: boolean) => {
-      console.log(`lottieViewFour completionBlock animationFinished: ${animationFinished}`);
+      console.log(
+        `lottieViewFour completionBlock animationFinished: ${animationFinished}`
+      );
 
       this._lottieViewFour.playAnimationFromProgressToProgress(0.5, 0.85);
       this._lottieViewFour.completionBlock = null;
@@ -129,7 +132,6 @@ export class DemoViewModel extends Observable {
     // Trigger the completion block by disabling looping and allowing the final loop to lapse.
     this._lottieViewFour.loop = false;
   }
-
 }
 
 function getRandomWithPrecision(precision?: number): number {
