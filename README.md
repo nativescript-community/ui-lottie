@@ -9,7 +9,7 @@ Uses [Airbnb Lottie](https://github.com/airbnb/lottie-android) for Android and [
 
 ## Changelog
 
-All notable changes to this project will be documented in the [changelog](changelog.md).
+All notable changes to this project will be documented in the [changelog](CHANGELOG.md).
 
 ## Demo Screen
 
