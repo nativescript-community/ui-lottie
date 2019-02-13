@@ -1,4 +1,6 @@
 import { Color, View } from 'tns-core-modules/ui/core/view';
+import { SrcMode } from './src-mode';
+export { SrcMode } from './src-mode';
 
 export declare class LottieView extends View {
   /**
@@ -59,6 +61,11 @@ export declare class LottieView extends View {
    * The current source of the animation.
    */
   src: string | undefined;
+
+  /**
+   * The current SrcMode of the animation, defaults to SrcMode.File.
+   */
+  srcMode: SrcMode;
 
   /**
    * (Android) Cancels the animation.

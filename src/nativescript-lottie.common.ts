@@ -8,9 +8,11 @@
 import { View, booleanConverter } from 'tns-core-modules/ui/core/view';
 import { Property } from 'tns-core-modules/ui/core/properties';
 import { CacheStrategy } from './nativescript-lottie.android';
+import { SrcMode } from './src-mode';
 
 export class LottieViewBase extends View {
   public src: string;
+  public srcMode: SrcMode = SrcMode.File;
   public loop: boolean;
   public autoPlay: boolean;
   public cacheStrategy: CacheStrategy;

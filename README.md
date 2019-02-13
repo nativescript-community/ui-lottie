@@ -162,6 +162,7 @@ Place your animations files in your `app/App_Resources/iOS/` folder.
 | `duration`        | `number`            | `null`  | Get the duration of the animation.                                                                                                                        |
 | `progress`        | `number`            | `0`     | Get/set the progress of the animation.                                                                                                                    |
 | `speed`           | `number`            | `1`     | Get/set the speed of the animation.                                                                                                                       |
+| `srcMode`         | `SrcMode`           | `File`  | Get/set the SrcMode of the animation.                                                                                                                     |
 
 ## Methods
 

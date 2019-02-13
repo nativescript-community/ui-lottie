@@ -14,6 +14,7 @@ import {
   loopProperty,
   autoPlayProperty
 } from './nativescript-lottie.common';
+import { SrcMode } from './src-mode';
 
 declare var LOTAnimationView: any;
 declare var LOTKeypath: any;
@@ -54,7 +55,20 @@ export class LottieView extends LottieViewBase {
 
   private setSrc(src: string): void {
     if (this.nativeView) {
-      this.nativeView.setAnimationNamed(src);
+      if (this.srcMode === SrcMode.File) {
+        this.nativeView.setAnimationNamed(src);
+      } else if (this.srcMode === SrcMode.Json) {
+        const data = NSString.stringWithString(this.src).dataUsingEncoding(
+          NSUTF8StringEncoding
+        );
+        const dict = NSJSONSerialization.JSONObjectWithDataOptionsError(
+          data,
+          kNilOptions
+        );
+        this.nativeView.setAnimationFromJSON(dict);
+      } else {
+        throw new Error('Unimplemented SrcMode specified.');
+      }
 
       if (this.loop) {
         this.setLoopAnimation(this.loop);

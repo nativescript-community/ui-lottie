@@ -4,6 +4,10 @@ All notable changes to this project from 2019-01-21 will be documented in this f
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Added
+- Added the `srcMode` property for switching how compositions are loaded; supports loading from json file, or in-memory json.
+
 ## [3.0.0] - 2019-01-22
 ### Added
 - Added documentation to the interface.

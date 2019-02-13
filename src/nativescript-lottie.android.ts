@@ -15,6 +15,7 @@ import {
   autoPlayProperty,
   cacheStrategyProperty
 } from './nativescript-lottie.common';
+import { SrcMode } from './src-mode';
 
 const LottieProperty = com.airbnb.lottie.LottieProperty;
 const LottieKeyPath = com.airbnb.lottie.model.KeyPath;
@@ -83,9 +84,21 @@ export class LottieView extends LottieViewBase {
   private setSrc(src: string) {
     if (this.nativeView) {
       if (this.cacheStrategy) {
-        this.nativeView.setAnimation(src, this.cacheStrategy);
+        if (this.srcMode === SrcMode.File) {
+          this.nativeView.setAnimation(src, this.cacheStrategy);
+        } else if (this.srcMode === SrcMode.Json) {
+          this.nativeView.setAnimationFromJson(src, null);
+        } else {
+          throw new Error('Unimplemented SrcMode specified.');
+        }
       } else {
-        this.nativeView.setAnimation(src);
+        if (this.srcMode === SrcMode.File) {
+          this.nativeView.setAnimation(src);
+        } else if (this.srcMode === SrcMode.Json) {
+          this.nativeView.setAnimationFromJson(src, null);
+        } else {
+          throw new Error('Unimplemented SrcMode specified.');
+        }
       }
 
       if (this.loop) {

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { registerElement } from 'nativescript-angular';
-import { LottieView } from 'nativescript-lottie';
+import { LottieView, SrcMode } from 'nativescript-lottie';
 import { Color } from 'tns-core-modules/color/color';
+import { HAPPY_BIRTHDAY_SRC } from '../../src-mode-demo';
 
 registerElement('LottieView', () => LottieView);
 
@@ -49,6 +50,11 @@ export class HomeComponent {
    */
   private _lottieViewFour: LottieView;
 
+  /**
+   * For demoing SrcMode (loading compositions using in-memory json).
+   */
+  private _lottieViewFive: LottieView;
+
   public firstLottieLoaded(event) {
     this._lottieViewOne = <LottieView>event.object;
     this._lottieViewOne.autoPlay = true;
@@ -76,6 +82,14 @@ export class HomeComponent {
     this._lottieViewFour.src = 'doughnut.json';
 
     this.setFourthLottieToLoadingState();
+  }
+
+  public fifthLottieLoaded(event) {
+    this._lottieViewFive = <LottieView>event.object;
+    this._lottieViewFive.autoPlay = true;
+    this._lottieViewFive.loop = true;
+    this._lottieViewFive.srcMode = SrcMode.Json;
+    this._lottieViewFive.src = HAPPY_BIRTHDAY_SRC;
   }
 
   public next() {

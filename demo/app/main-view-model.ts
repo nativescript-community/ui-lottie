@@ -1,6 +1,7 @@
 import { Observable } from 'tns-core-modules/data/observable';
-import { LottieView } from 'nativescript-lottie';
+import { LottieView, SrcMode } from 'nativescript-lottie';
 import { Color } from 'tns-core-modules/color/color';
+import { HAPPY_BIRTHDAY_SRC } from './src-mode-demo';
 
 const ANDROID_WAVE_KEYPATHS = [
   ['Shirt', 'Group 5', 'Fill 1'],
@@ -40,6 +41,11 @@ export class DemoViewModel extends Observable {
    */
   private _lottieViewFour: LottieView;
 
+  /**
+   * For demoing SrcMode (loading compositions using in-memory json).
+   */
+  private _lottieViewFive: LottieView;
+
   public firstLottieLoaded(event) {
     this._lottieViewOne = event.object as LottieView;
     this._lottieViewOne.autoPlay = true;
@@ -70,6 +76,14 @@ export class DemoViewModel extends Observable {
     this._lottieViewFour.src = 'doughnut.json';
 
     this.setFourthLottieToLoadingState();
+  }
+
+  public fifthLottieLoaded(event) {
+    this._lottieViewFive = event.object as LottieView;
+    this._lottieViewFive.autoPlay = true;
+    this._lottieViewFive.loop = true;
+    this._lottieViewFive.srcMode = SrcMode.Json;
+    this._lottieViewFive.src = HAPPY_BIRTHDAY_SRC;
   }
 
   public next() {
