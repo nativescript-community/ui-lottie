@@ -87,7 +87,7 @@ export class LottieView extends LottieViewBase {
         if (this.srcMode === SrcMode.File) {
           this.nativeView.setAnimation(src, this.cacheStrategy);
         } else if (this.srcMode === SrcMode.Json) {
-          this.nativeView.setAnimationFromJson(src, null);
+          this.nativeView.setAnimationFromJson(src, this.cacheStrategy);
         } else {
           throw new Error('Unimplemented SrcMode specified.');
         }
