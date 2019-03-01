@@ -4,7 +4,10 @@
   "readme": "NativeScript Application",
   "repository": "<fill-your-repository-here>",
   "nativescript": {
-    "id": "org.nativescript.demotemp"
+    "id": "org.nativescript.demotemp",
+    "tns-android": {
+      "version": "5.2.1"
+    }
   },
   "dependencies": {
     "@angular/animations": "~7.2.0",

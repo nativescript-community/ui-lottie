@@ -1,0 +1,29 @@
+{
+  "nativescript": {
+    "id": "org.nativescript.demovue",
+    "tns-android": {
+      "version": "5.2.1"
+    }
+  },
+  "description": "NativeScript Application",
+  "license": "SEE LICENSE IN <your-license-filename>",
+  "repository": "<fill-your-repository-here>",
+  "dependencies": {
+    "nativescript-lottie": "file:../src",
+    "nativescript-theme-core": "~1.0.4",
+    "nativescript-vue": "~2.0.2",
+    "tns-core-modules": "~5.2.2"
+  },
+  "devDependencies": {
+    "@babel/core": "~7.1.0",
+    "@babel/preset-env": "~7.1.0",
+    "babel-loader": "~8.0.0",
+    "nativescript-dev-webpack": "~0.20.2",
+    "nativescript-vue-template-compiler": "~2.0.2",
+    "node-sass": "~4.9.0",
+    "vue-loader": "~15.4.0",
+    "typescript": "~3.1.6"
+  },
+  "gitHead": "59b6da006346fedb5bb201fcc9cd7d204a69a82f",
+  "readme": "NativeScript Application"
+}
