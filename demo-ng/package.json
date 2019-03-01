@@ -25,11 +25,11 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@nativescript/schematics": "~0.5.1",
-    "nativescript-dev-typescript": "~0.8.0",
-    "nativescript-dev-webpack": "~0.20.2",
     "@angular/compiler-cli": "~7.2.0",
-    "@ngtools/webpack": "~7.2.0"
+    "@nativescript/schematics": "~0.5.1",
+    "@ngtools/webpack": "~7.2.0",
+    "nativescript-dev-typescript": "~0.8.0",
+    "nativescript-dev-webpack": "^0.20.2"
   },
   "scripts": {
     "build.plugin": "cd ../src && npm run build",

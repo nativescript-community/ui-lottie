@@ -42,9 +42,7 @@ module.exports = env => {
         sourceMap, // --env.sourceMap
         hmr, // --env.hmr,
     } = env;
-    const externals = (env.externals || []).map((e) => { // --env.externals
-        return new RegExp(e + ".*");
-    });
+    const externals = nsWebpack.getConvertedExternals(env.externals);
 
     const appFullPath = resolve(projectRoot, appPath);
     const appResourcesFullPath = resolve(projectRoot, appResourcesPath);
@@ -86,8 +84,8 @@ module.exports = env => {
             alias: {
                 '~': appFullPath
             },
-            // don't resolve symlinks to symlinked modules
-            symlinks: false
+            // resolve symlinks to symlinked modules
+            symlinks: true
         },
         resolveLoader: {
             // don't resolve symlinks to symlinked loaders
@@ -190,8 +188,11 @@ module.exports = env => {
                 {
                     test: /\.ts$/,
                     use: {
-                        loader: "awesome-typescript-loader",
-                        options: { configFileName: "tsconfig.tns.json" },
+                        loader: "ts-loader",
+                        options: {
+                            configFile: "tsconfig.tns.json",
+                            allowTsInNodeModules: true,
+                        },
                     }
                 },
             ]
