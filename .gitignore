@@ -24,3 +24,5 @@ nativescript-lottie.*.d.ts
 !src/scripts/*.js
 !demo/webpack.config.js
 !demo-ng/webpack.config.js
+!demo/karma.conf.js
+!demo-ng/karma.conf.js
