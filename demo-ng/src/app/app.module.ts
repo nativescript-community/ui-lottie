@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 @NgModule({
   bootstrap: [AppComponent],
   imports: [NativeScriptModule, AppRoutingModule],
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule {}
