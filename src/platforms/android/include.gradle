@@ -1,7 +1,7 @@
 dependencies {
    def supportLibrariesVersion = '27.1.1'
-   compile "com.android.support:support-v4:${supportLibrariesVersion}"
-   compile "com.android.support:appcompat-v7:${supportLibrariesVersion}"
-   debugCompile "com.android.support:design:${supportLibrariesVersion}"
-   compile 'com.airbnb.android:lottie:2.6.0'
+   implementation "com.android.support:support-v4:${supportLibrariesVersion}"
+   implementation "com.android.support:appcompat-v7:${supportLibrariesVersion}"
+   debugImplementation "com.android.support:design:${supportLibrariesVersion}"
+   implementation 'com.airbnb.android:lottie:2.6.0'
 }
