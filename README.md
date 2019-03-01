@@ -99,9 +99,11 @@ export class HomeComponent {
   }
 }
 ```
+
 ## Vue NativeScript
 
 ### Bootstrap (probably in app.js)
+
 ```
 Vue.registerElement('LottieView', () => require('nativescript-lottie').LottieView);
 ```
@@ -142,6 +144,7 @@ Vue.registerElement('LottieView', () => require('nativescript-lottie').LottieVie
 Place your animation files in the NS app's `app/App_Resources/Android/src/main/assets` folder.
 
 Note: In a nativescript-vue project the above folder may not exist. Place the files in `platforms/android/app/src/main/assets`.
+
 ### iOS
 
 Place your animations files in your `app/App_Resources/iOS/` folder.
