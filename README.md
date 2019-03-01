@@ -21,17 +21,15 @@ _The .gif does not do the fluid animations justice_
 
 To install execute:
 
-### NativeScript
-
 ```
 tns plugin add nativescript-lottie
 ```
 
-# Usage
+## Usage
 
-## Plain NativeScript
+### NativeScript (Core)
 
-### XML
+#### XML
 
 ```xml
 <Page
@@ -43,7 +41,7 @@ tns plugin add nativescript-lottie
 </Page>
 ```
 
-### TS
+#### TS
 
 ```typescript
 import { LottieView } from "nativescript-lottie";
@@ -53,9 +51,11 @@ public yourLoadedEvent(args) {
 }
 ```
 
-## Angular NativeScript
+---
 
-### XML
+### NativeScript Angular
+
+#### XML
 
 ```xml
 <StackLayout>
@@ -63,7 +63,7 @@ public yourLoadedEvent(args) {
 </StackLayout>
 ```
 
-### Component
+#### Component
 
 ```typescript
 import { Component } from '@angular/core';
@@ -100,17 +100,22 @@ export class HomeComponent {
 }
 ```
 
-## Vue NativeScript
+---
+
+## NativeScript Vue
 
 ### Bootstrap (probably in app.js)
 
-```
-Vue.registerElement('LottieView', () => require('nativescript-lottie').LottieView);
+```typescript
+Vue.registerElement(
+  'LottieView',
+  () => require('nativescript-lottie').LottieView
+);
 ```
 
 ### Component
 
-```
+```xml
 <template>
     <Page class="page">
         <StackLayout>
@@ -134,6 +139,8 @@ Vue.registerElement('LottieView', () => require('nativescript-lottie').LottieVie
     };
 </script>
 ```
+
+---
 
 ## Assets
 
