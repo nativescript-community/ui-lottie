@@ -1,11 +1,31 @@
-# NativeScript-Lottie
+<a align="center" href="https://www.npmjs.com/package/nativescript-lottie">
+    <h2 align="center">NativeScript-Lottie</h2>
+</a>
+<h4 align="center">NativeScript plugin to expose Airbnb Lottie for awesome animations.</h4>
 
-NativeScript plugin to expose Airbnb Lottie for awesome animations.
-
-[![npm](https://img.shields.io/npm/v/nativescript-lottie.svg)](https://www.npmjs.com/package/nativescript-lottie)
-[![npm](https://img.shields.io/npm/dt/nativescript-lottie.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-lottie)
-
-Uses [Airbnb Lottie](https://github.com/airbnb/lottie-android) for Android and [iOS Lottie](https://github.com/airbnb/lottie-ios) for iOS.
+<p align="center">
+ <a href="https://www.npmjs.com/package/nativescript-lottie">
+        <img src="https://img.shields.io/npm/v/nativescript-lottie.svg" alt="npm">
+    </a>
+    <a href="https://www.npmjs.com/package/nativescript-lottie">
+        <img src="https://img.shields.io/npm/dt/nativescript-lottie.svg?label=npm%20downloads" alt="npm">
+    </a>
+     <a href="https://travis-ci.org/bradmartin/nativescript-lottie">
+        <img src="https://travis-ci.org/bradmartin/nativescript-lottie.svg?branch=master" alt="travis build">
+    </a>
+    <a href="https://github.com/bradmartin/nativescript-lottie/stargazers">
+        <img src="https://img.shields.io/github/stars/bradmartin/nativescript-lottie.svg" alt="stars">
+    </a>
+     <a href="https://github.com/bradmartin/nativescript-lottie/network">
+        <img src="https://img.shields.io/github/forks/bradmartin/nativescript-lottie.svg" alt="forks">
+    </a>
+    <a href="https://github.com/bradmartin/nativescript-lottie/blob/master/LICENSE">
+        <img src="https://img.shields.io/github/license/bradmartin/nativescript-lottie.svg" alt="license">
+    </a>
+    <a href="https://paypal.me/bradwayne88">
+        <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="donate">
+    </a>
+</p>
 
 ## Changelog
 
