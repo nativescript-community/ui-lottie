@@ -1,0 +1,43 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "linterOptions": {
+    "exclude": [
+      "node_modules",
+      "hooks",
+      "platforms",
+      "src/index.d.ts",
+      "app/async-await.ts"
+    ]
+  },
+  "jsRules": {},
+  "rules": {
+    "no-reference": false,
+    "arrow-parens": false,
+    "adjacent-overload-signatures": false,
+    "max-line-length": [false, 180],
+    "member-ordering": [false],
+    "no-console": [false],
+    "no-duplicate-variable": true,
+    "no-trailing-whitespace": false,
+    "object-literal-sort-keys": false,
+    "object-literal-key-quotes": false,
+    "ordered-imports": [false],
+    "interface-name": [false, "never-prefix"],
+    "only-arrow-functions": [true, "allow-named-functions"],
+    "prefer-const": true,
+    "semicolon": [false, "never"],
+    "trailing-comma": [false],
+    "variable-name": [
+      false,
+      "allow-leading-underscore",
+      "check-format",
+      "ban-keywords"
+    ],
+    "quotemark": [false, "single"],
+    "comment-format": [true, "check-space"],
+    "jsdoc-format": false,
+    "indent": [false, "tabs"]
+  },
+  "rulesDirectory": []
+}
