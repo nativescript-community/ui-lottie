@@ -17,9 +17,8 @@ const ANDROID_WAVE_KEYPATHS = [
   moduleId: module.id
 })
 export class HomeComponent {
-
   public animationIndex: number = 0;
-  public animations: Array<string> = [
+  public animations: string[] = [
     'Mobilo/B.json',
     'Mobilo/A.json',
     'Mobilo/D.json',
@@ -33,7 +32,7 @@ export class HomeComponent {
    * For demoing cycling through the sample animations.
    */
   private _lottieViewOne: LottieView;
-  
+
   /**
    * For demoing changing colors and opacity dynamically at runtime.
    */
@@ -50,28 +49,28 @@ export class HomeComponent {
   private _lottieViewFour: LottieView;
 
   public firstLottieLoaded(event) {
-    this._lottieViewOne = <LottieView>event.object;
+    this._lottieViewOne = event.object as LottieView;
     this._lottieViewOne.autoPlay = true;
     this._lottieViewOne.loop = true;
     this._lottieViewOne.src = this.animations[this.animationIndex];
   }
 
   public secondLottieLoaded(event) {
-    this._lottieViewTwo = <LottieView>event.object;
+    this._lottieViewTwo = event.object as LottieView;
     this._lottieViewTwo.autoPlay = true;
     this._lottieViewTwo.loop = true;
     this._lottieViewTwo.src = 'AndroidWave.json';
   }
 
   public thirdLottieLoaded(event) {
-    this._lottieViewThree = <LottieView>event.object;
+    this._lottieViewThree = event.object as LottieView;
     this._lottieViewThree.autoPlay = true;
     this._lottieViewThree.loop = false;
     this._lottieViewThree.src = 'Mobilo/N.json';
   }
 
   public fourthLottieLoaded(event) {
-    this._lottieViewFour = <LottieView>event.object;
+    this._lottieViewFour = event.object as LottieView;
     this._lottieViewFour.autoPlay = false;
     this._lottieViewFour.src = 'doughnut.json';
 
@@ -100,20 +99,22 @@ export class HomeComponent {
 
   public setTheme(value) {
     const color = new Color(value);
-    ANDROID_WAVE_KEYPATHS.forEach((keyPath) => {
+    ANDROID_WAVE_KEYPATHS.forEach(keyPath => {
       this._lottieViewTwo.setColorValueDelegateForKeyPath(color, [...keyPath]);
     });
   }
 
   public setSecondLottieRandomOpacity() {
     const opacity = getRandomWithPrecision(2);
-    ANDROID_WAVE_KEYPATHS.forEach((keyPath) => {
-      this._lottieViewTwo.setOpacityValueDelegateForKeyPath(opacity, [...keyPath]);
+    ANDROID_WAVE_KEYPATHS.forEach(keyPath => {
+      this._lottieViewTwo.setOpacityValueDelegateForKeyPath(opacity, [
+        ...keyPath
+      ]);
     });
   }
 
   public setThirdLottieRandomProgress() {
-    const progress = getRandomWithPrecision(2)
+    const progress = getRandomWithPrecision(2);
     this.thirdLottieProgressTo = `Animated to ${progress}`;
     this._lottieViewThree.playAnimationFromProgressToProgress(0, progress);
   }
@@ -125,7 +126,9 @@ export class HomeComponent {
 
   public setFourthLottieToLoadedState() {
     this._lottieViewFour.completionBlock = (animationFinished: boolean) => {
-      console.log(`lottieViewFour completionBlock animationFinished: ${animationFinished}`);
+      console.log(
+        `lottieViewFour completionBlock animationFinished: ${animationFinished}`
+      );
 
       this._lottieViewFour.playAnimationFromProgressToProgress(0.5, 0.85);
       this._lottieViewFour.completionBlock = null;
