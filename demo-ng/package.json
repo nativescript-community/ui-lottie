@@ -25,6 +25,10 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
+    "jasmine-core": "3.3.0",
+    "karma": "4.0.1",
+    "karma-jasmine": "1.1.2",
+    "karma-nativescript-launcher": "0.4.0",
     "@angular/compiler-cli": "~7.2.0",
     "@nativescript/schematics": "~0.5.1",
     "@ngtools/webpack": "~7.2.0",
