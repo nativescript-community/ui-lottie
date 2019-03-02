@@ -1,108 +1,4 @@
-branches:
-  only:
-    - master
-matrix:
-  include:
-    - stage: 'Lint'
-      language: node_js
-      os: linux
-      node_js: '8'
-      script: cd src && npm run ci.tslint && cd ../demo && npm run ci.tslint
-    ## Build Plain NS App
-    - stage: 'Build Core'
-    - os: linux
-      env: 
-        - BuildAndroid="28"
-      language: android
-      jdk: oraclejdk8
-      before_install: nvm install 8.11.4
-      script:
-        - cd src && npm i && npm run tsc && cd ../demo && tns build android
-    - os: osx
-      env:
-        - BuildiOS="12.0"
-        - Xcode="10.0"
-      osx_image: xcode10.0
-      language: node_js
-      node_js: '8'
-      jdk: oraclejdk8
-      script:
-        - cd src && npm i && npm run tsc && cd ../demo && tns build ios
-
-    ## Webpack Plain NS Apps
-    - stage: 'Webpack Core'
-      os: osx
-      env:
-        - Webpack="iOS"
-      osx_image: xcode10.0
-      language: node_js
-      node_js: '8'
-      jdk: oraclejdk8
-      script: cd demo && npm run build.plugin && npm i && tns build ios --bundle --env.uglify
-    - os: linux
-      language: android
-      env:
-        - Webpack="Android"
-      jdk: oraclejdk8
-      before_install: nvm install 8.11.4
-      script: cd demo && npm run build.plugin && npm i && tns build android --bundle --env.uglify --env.snapshot
-
-    ## Webpack Angular App
-    - stage: 'Webpack Angular'
-    - os: Linux
-      language: android
-      env:
-        - WebpackAndroid="28"
-        - Type="Angular"
-      jdk: oraclejdk8
-      before_install: nvm install 8
-      script:
-        - cd src && npm run build
-        - cd ../publish && sh pack.sh
-        - cd ../demo-angular && tns plugin add ../publish/package/*.tgz
-        - npm i && tns build android --bundle --env.uglify --env.snapshot --env.aot
-        - os: osx
-      env:
-        - WebpackiOS="12.0"
-        - Type="Angular"
-      osx_image: xcode10.0
-      language: node_js
-      node_js: '8'
-      jdk: oraclejdk8
-      before_script: pod repo update
-      script:
-        - cd src && npm run build && npm pack
-        - cd ../demo-angular && tns plugin add ../src/*.tgz
-        - npm i && tns build ios --bundle --env.uglify --env.aot
-
-    ## Tests
-    - stage: 'Tests'
-    - os: linux
-      language: android
-      dist: precise
-      jdk: oraclejdk8
-      env:
-        - Android="UnitTests"
-      before_script:
-        - echo no | android create avd --force -n test -t android-21 -b armeabi-v7a
-        - emulator -avd test -no-audio -no-window &
-        - android-wait-for-emulator
-      before_install:
-        - nvm install 8
-      script:
-        - cd src && npm i && npm run tsc && npm run tslint && cd ../demo && tns build android
-        - travis_wait travis_retry tns test android --justlaunch
-    - os: osx
-      language: node_js
-      node_js: '8'
-      jdk: oraclejdk8
-      env:
-        - iOS="UnitTests"
-      osx_image: xcode10.0
-      script:
-        - cd src && npm i && npm run tsc && npm run tslint && cd ../demo && tns build ios
-        - travis_wait travis_retry tns test ios --justlaunch
-
+---
 android:
   components:
     - tools
@@ -111,12 +7,107 @@ android:
     - android-28
     - extra-android-m2repository
     - sys-img-armeabi-v7a-android-21
-
 before_install:
-  - sudo pip install --upgrade pip
-  - sudo pip install six
-
+  - 'sudo pip install --upgrade pip'
+  - 'sudo pip install six'
+branches:
+  only:
+    - master
 install:
-  - echo no | npm install -g nativescript
-  - tns usage-reporting disable
-  - tns error-reporting disable
+  - 'echo no | npm install -g nativescript'
+  - 'tns usage-reporting disable'
+  - 'tns error-reporting disable'
+matrix:
+  include:
+    - language: node_js
+      node_js: '8'
+      os: linux
+      script: 'cd src && npm run ci.tslint && cd ../demo && npm run ci.tslint'
+      stage: Lint
+    - stage: 'Build Core'
+    - before_install: 'nvm install 8.11.4'
+      env:
+        - BuildAndroid="28"
+      jdk: oraclejdk8
+      language: android
+      os: linux
+      script:
+        - 'cd src && npm i && npm run tsc && cd ../demo && tns build android'
+    - env:
+        - BuildiOS="12.0"
+        - Xcode="10.0"
+      jdk: oraclejdk8
+      language: node_js
+      node_js: '8'
+      os: osx
+      osx_image: xcode10.0
+      script:
+        - 'cd src && npm i && npm run tsc && cd ../demo && tns build ios'
+    - env:
+        - Webpack="iOS"
+      jdk: oraclejdk8
+      language: node_js
+      node_js: '8'
+      os: osx
+      osx_image: xcode10.0
+      script: 'cd demo && npm run build.plugin && npm i && tns build ios --bundle --env.uglify'
+      stage: 'Webpack Core'
+    - before_install: 'nvm install 8.11.4'
+      env:
+        - Webpack="Android"
+      jdk: oraclejdk8
+      language: android
+      os: linux
+      script: 'cd demo && npm run build.plugin && npm i && tns build android --bundle --env.uglify --env.snapshot'
+    - stage: 'Webpack Angular'
+    - before_install: 'nvm install 8'
+      env:
+        - WebpackAndroid="28"
+        - Type="Angular"
+      jdk: oraclejdk8
+      language: android
+      os: Linux
+      script:
+        - 'cd src && npm run build'
+        - 'cd ../publish && sh pack.sh'
+        - 'cd ../demo-angular && tns plugin add ../publish/package/*.tgz'
+        - 'npm i && tns build android --bundle --env.uglify --env.snapshot --env.aot'
+    - before_script: 'pod repo update'
+      env:
+        - WebpackiOS="12.0"
+        - Type="Angular"
+      jdk: oraclejdk8
+      language: node_js
+      node_js: '8'
+      os: osx
+      osx_image: xcode10.0
+      script:
+        - 'cd src && npm run build && npm pack'
+        - 'cd ../demo-angular && tns plugin add ../src/*.tgz'
+        - 'npm i && tns build ios --bundle --env.uglify --env.aot'
+    - stage: Tests
+    - before_install:
+        - 'nvm install 8'
+      before_script:
+        - 'echo no | android create avd --force -n test -t android-21 -b armeabi-v7a'
+        - 'emulator -avd test -no-audio -no-window &'
+        - android-wait-for-emulator
+      dist: precise
+      env:
+        - Android="UnitTests"
+      jdk: oraclejdk8
+      language: android
+      os: linux
+      script:
+        - 'cd src && npm i && npm run tsc && npm run tslint && cd ../demo && tns build android'
+        - 'travis_wait travis_retry tns test android --justlaunch'
+    - env:
+        - iOS="UnitTests"
+      jdk: oraclejdk8
+      language: node_js
+      node_js: '8'
+      os: osx
+      osx_image: xcode10.0
+      script:
+        - 'cd src && npm i && npm run tsc && npm run tslint && cd ../demo && tns build ios'
+        - 'travis_wait travis_retry tns test ios --justlaunch'
