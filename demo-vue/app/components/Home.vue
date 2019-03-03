@@ -20,7 +20,7 @@
 export default {
   computed: {
     message() {
-      return 'Blank {N}-Vue app';
+      return 'Lottie {N}-Vue Demo App';
     }
   }
 };
