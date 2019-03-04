@@ -5,81 +5,41 @@
     </Page.actionBar>
     <ScrollView>
         <GridLayout rows="auto, auto, auto, auto" columns="*" class="p-10">
-        <StackLayout row="0">
-            <label
-                text="Since NativeScript is native Android and iOS it easily supports Lottie - Thanks Airbnb!!!"
-                class="h3"
-                textWrap="true"
-            ></label>
-            <Lottie:LottieView height="300" width="auto" loaded="{{ firstLottieLoaded }}" />
-            <Button text="Next" class="p-10 btn btn-primary" tap="{{ next }}"></Button>
-            <Button text="Toggle looping" class="p-10 btn btn-primary" tap="{{ toggleLoop }}"></Button>
-            <Button text="Start / Stop" class="p-10 btn btn-primary" tap="{{ toggleAnimation }}"></Button>
-        </StackLayout>
-        <StackLayout row="1">
-            <Lottie:LottieView height="300" width="auto" loaded="{{ secondLottieLoaded }}" />
-            <label
-                text="You can even change colors and opacity at run time!"
-                class="h3"
-                textWrap="true"
-            ></label>
-            <WrapLayout height="120" width="100%">
-                <StackLayout height="50%" width="20%" backgroundColor="red" tap="{{ setTheme('red') }}"/>
-                <StackLayout height="50%" width="20%" backgroundColor="gold" tap="{{ setTheme('gold') }}"/>
-                <StackLayout height="50%" width="20%" backgroundColor="green" tap="{{ setTheme('green') }}"/>
-                <StackLayout height="50%" width="20%" backgroundColor="orange" tap="{{ setTheme('orange') }}"/>
-                <StackLayout height="50%" width="20%" backgroundColor="gray" tap="{{ setTheme('gray') }}"/>
-                <StackLayout height="50%" width="20%" backgroundColor="#191970" tap="{{ setTheme('#191970') }}"/>
-                <StackLayout height="50%" width="20%" backgroundColor="#00bfff" tap="{{ setTheme('#00bfff') }}"/>
-                <StackLayout height="50%" width="20%" backgroundColor="#8b008b" tap="{{ setTheme('#8b008b') }}"/>
-                <StackLayout height="50%" width="20%" backgroundColor="#2f4f4f" tap="{{ setTheme('#2f4f4f') }}"/>
-                <StackLayout height="50%" width="20%" backgroundColor="#8b4513" tap="{{ setTheme('#8b4513') }}"/>
-            </WrapLayout>
-            <button
-                text="Random Opacity"
-                class="p-10 btn btn-primary"
-                tap="{{ setSecondLottieRandomOpacity }}"
-            ></button>
-        </StackLayout>
-        <StackLayout row="2">
-            <Lottie:LottieView 
-                height="300" 
-                width="auto" 
-                loaded="{{ thirdLottieLoaded }}" 
-            />
-            <label
-                text="Or partially animate your composition!"
-                class="h3"
-                textWrap="true"
-            ></label>
-            <label
-                text="{{ thirdLottieProgressTo }}"
-                class="h3"
-                textWrap="true"
-            ></label>
-            <button
-                text="Random Progress"
-                class="p-10 btn btn-primary"
-                tap="{{ setThirdLottieRandomProgress }}"
-            ></button>
-        </StackLayout>
-        <StackLayout row="3">
-            <Lottie:LottieView
-                height="300"
-                width="auto"
-                loaded="{{ fourthLottieLoaded }}"
-            />
-            <button
-                text="Reset To Loading"
-                class="p-10 btn btn-primary"
-                tap="{{ setFourthLottieToLoadingState }}"
-            ></button>
-            <button
-                text="Transition To Loaded"
-                class="p-10 btn btn-primary"
-                tap="{{ setFourthLottieToLoadedState }}"
-            ></button>
-        </StackLayout>
+            <StackLayout row="0">
+                <label text="Since NativeScript is native Android and iOS it easily supports Lottie - Thanks Airbnb!!!" class="h2" textWrap="true"></label>
+                <Lottie:LottieView height="300" width="auto" loaded="{{ firstLottieLoaded }}" />
+                <Button text="Next" class="p-10 btn btn-primary" tap="{{ next }}"></Button>
+                <Button text="Toggle looping" class="p-10 btn btn-primary" tap="{{ toggleLoop }}"></Button>
+                <Button text="Start / Stop" class="p-10 btn btn-primary" tap="{{ toggleAnimation }}"></Button>
+            </StackLayout>
+            <StackLayout row="1">
+                <Lottie:LottieView height="300" width="auto" loaded="{{ secondLottieLoaded }}" />
+                <label text="You can even change colors and opacity at run time!" class="h3" textWrap="true"></label>
+                <WrapLayout height="120" width="100%">
+                    <StackLayout height="50%" width="20%" backgroundColor="red" tap="{{ setTheme('red') }}"/>
+                    <StackLayout height="50%" width="20%" backgroundColor="gold" tap="{{ setTheme('gold') }}"/>
+                    <StackLayout height="50%" width="20%" backgroundColor="green" tap="{{ setTheme('green') }}"/>
+                    <StackLayout height="50%" width="20%" backgroundColor="orange" tap="{{ setTheme('orange') }}"/>
+                    <StackLayout height="50%" width="20%" backgroundColor="gray" tap="{{ setTheme('gray') }}"/>
+                    <StackLayout height="50%" width="20%" backgroundColor="#191970" tap="{{ setTheme('#191970') }}"/>
+                    <StackLayout height="50%" width="20%" backgroundColor="#00bfff" tap="{{ setTheme('#00bfff') }}"/>
+                    <StackLayout height="50%" width="20%" backgroundColor="#8b008b" tap="{{ setTheme('#8b008b') }}"/>
+                    <StackLayout height="50%" width="20%" backgroundColor="#2f4f4f" tap="{{ setTheme('#2f4f4f') }}"/>
+                    <StackLayout height="50%" width="20%" backgroundColor="#8b4513" tap="{{ setTheme('#8b4513') }}"/>
+                </WrapLayout>
+                <button text="Random Opacity" class="p-10 btn btn-primary" tap="{{ setSecondLottieRandomOpacity }}"></button>
+            </StackLayout>
+            <StackLayout row="2">
+                <Lottie:LottieView height="300" width="auto" loaded="{{ thirdLottieLoaded }}" />
+                <label text="Or partially animate your composition!" class="h3" textWrap="true"></label>
+                <label text="{{ thirdLottieProgressTo }}" class="h3" textWrap="true"></label>
+                <button text="Random Progress" class="p-10 btn btn-primary" tap="{{ setThirdLottieRandomProgress }}"></button>
+            </StackLayout>
+            <StackLayout row="3">
+                <Lottie:LottieView height="300" width="auto" loaded="{{ fourthLottieLoaded }}" />
+                <button text="Reset To Loading" class="p-10 btn btn-primary" tap="{{ setFourthLottieToLoadingState }}"></button>
+                <button text="Transition To Loaded" class="p-10 btn btn-primary" tap="{{ setFourthLottieToLoadedState }}"></button>
+            </StackLayout>
         </GridLayout>
     </ScrollView>
 </Page>
