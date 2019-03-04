@@ -63,7 +63,7 @@ matrix:
       os: linux
       script:
         - "cd src && npm run build && npm pack"
-        - cd ../demo-angular && tns plugin add ../src/*.tgz
+        - "cd ../demo-angular && tns plugin add ../src/*.tgz"
         - "npm i && tns build android --bundle --env.uglify --env.aot"
     ## iOS Webpack
     - env:
@@ -77,7 +77,7 @@ matrix:
       osx_image: xcode10
       script:
         - "cd src && npm run build && npm pack"
-        - cd ../demo-angular && tns plugin add ../src/*.tgz
+        - "cd ../demo-angular && tns plugin add ../src/*.tgz"
         - "npm i && tns build ios --bundle --env.uglify --env.aot"
     # Tests
     - stage: Tests
@@ -89,7 +89,7 @@ matrix:
       before_script:
         - "echo no | android create avd --force -n test -t android-21 -b armeabi-v7a"
         - "emulator -avd test -no-audio -no-window &"
-        - android-wait-for-emulator
+        - "android-wait-for-emulator"
       dist: precise
       jdk: oraclejdk8
       language: android
