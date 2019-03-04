@@ -12,6 +12,17 @@ matrix:
       script: "cd src && npm run ci.tslint && cd ../demo && npm run ci.tslint"
       # Build Core App
     - stage: "Build"
+    ## iOS Core Build
+    - env:
+        - BuildiOS="12.0"
+        - Xcode="10.0"
+      language: node_js
+      os: osx
+      jdk: oraclejdk8
+      node_js: "8"
+      osx_image: xcode10
+      script:
+        - "cd src && npm i && npm run tsc && cd ../demo && tns build ios"
     ## Android Core Build
     - env:
         - BuildAndroid="28"
