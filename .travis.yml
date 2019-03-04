@@ -57,7 +57,7 @@ matrix:
     - env:
         - WebpackAndroid="28"
         - Type="Angular"
-      before_install: "nvm install 8"
+      before_install: "nvm install 8.11.4"
       jdk: oraclejdk8
       language: android
       os: linux
