@@ -82,9 +82,10 @@ export class LottieView extends LottieViewBase {
 
   private setSrc(src: string) {
     if (this.nativeView) {
-      
+      // allows passing the lottie json asset without the file extension
+      // github issue: https://github.com/bradmartin/nativescript-lottie/issues/37
       src = /.json$/.test(src) ? src : `${src}.json`;
-      
+
       if (this.cacheStrategy) {
         this.nativeView.setAnimation(src, this.cacheStrategy);
       } else {
