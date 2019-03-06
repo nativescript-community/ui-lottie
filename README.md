@@ -16,12 +16,6 @@
     <a href="https://github.com/bradmartin/nativescript-lottie/stargazers">
         <img src="https://img.shields.io/github/stars/bradmartin/nativescript-lottie.svg" alt="stars">
     </a>
-     <a href="https://github.com/bradmartin/nativescript-lottie/network">
-        <img src="https://img.shields.io/github/forks/bradmartin/nativescript-lottie.svg" alt="forks">
-    </a>
-    <a href="https://github.com/bradmartin/nativescript-lottie/blob/master/LICENSE">
-        <img src="https://img.shields.io/github/license/bradmartin/nativescript-lottie.svg" alt="license">
-    </a>
     <a href="https://paypal.me/bradwayne88">
         <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="donate">
     </a>
