@@ -82,6 +82,9 @@ export class LottieView extends LottieViewBase {
 
   private setSrc(src: string) {
     if (this.nativeView) {
+      
+      src = /.json$/.test(src) ? src : `${src}.json`;
+      
       if (this.cacheStrategy) {
         this.nativeView.setAnimation(src, this.cacheStrategy);
       } else {
