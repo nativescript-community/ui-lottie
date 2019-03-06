@@ -32,14 +32,14 @@ jobs:
       node_js: "8"
       script: "cd src && npm run ci.tslint && cd ../demo && npm run ci.tslint"
     - stage: build
-    - env:
+    - os: linux
+      env:
         - BuildAndroid="28"
       language: android
-      before_install: "nvm install 8.11.4"
       jdk: oraclejdk8
-      os: linux
+      before_install: nvm install 8.11.4
       script:
-        - "cd src && npm i && npm run tsc && cd ../demo && tns build android"
+        - cd src && npm i && npm run tsc && cd ../demo && tns build android
 # matrix:
 #   include:
 #     # Lint
