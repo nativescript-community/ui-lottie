@@ -11,11 +11,11 @@ const ANDROID_WAVE_KEYPATHS = [
 export class DemoViewModel extends Observable {
   public animationIndex: number = 0;
   public animations: string[] = [
-    'Mobilo/B.json',
+    'Mobilo/B',
     'Mobilo/A.json',
     'Mobilo/D.json',
-    'Mobilo/N.json',
-    'Mobilo/R.json',
+    'Mobilo/N',
+    'Mobilo/R',
     'Mobilo/S.json'
   ];
   public thirdLottieProgressTo: string = 'Try it!';
@@ -61,13 +61,13 @@ export class DemoViewModel extends Observable {
     this._lottieViewThree = event.object as LottieView;
     this._lottieViewThree.autoPlay = false;
     this._lottieViewThree.loop = false;
-    this._lottieViewThree.src = 'Mobilo/N.json';
+    this._lottieViewThree.src = 'Mobilo/N';
   }
 
   public fourthLottieLoaded(event) {
     this._lottieViewFour = event.object as LottieView;
     this._lottieViewFour.autoPlay = false;
-    this._lottieViewFour.src = 'doughnut.json';
+    this._lottieViewFour.src = 'doughnut';
 
     this.setFourthLottieToLoadingState();
   }
