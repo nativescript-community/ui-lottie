@@ -62,7 +62,7 @@ matrix:
       # Webpack Core Apps
     - stage: webpack core
       ## Android Webpack
-    - env:
+      env:
         - OS="Android28"
       before_install: "nvm install 8.11.4"
       jdk: oraclejdk8
