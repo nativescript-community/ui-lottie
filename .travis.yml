@@ -2,6 +2,23 @@ branches:
   only:
     - master
 
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-28.0.3
+    - android-28
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - sys-img-armeabi-v7a-android-21
+before_script:
+  - "sudo pip install --upgrade pip"
+  - "sudo pip install six"
+install:
+  - "echo no | npm install -g nativescript"
+  - "tns usage-reporting disable"
+  - "tns error-reporting disable"
+
 stages:
   - lint
   - build
@@ -10,10 +27,22 @@ stages:
 jobs:
   include:
     - stage: lint
-      script: ./lint
+      language: node_js
+      os: linux
+      node_js: "8"
+      script: "cd src && npm run ci.tslint && cd ../demo && npm run ci.tslint"
     - stage: build
-      script: ./build
-
+    - env:
+        - BuildiOS="12.0"
+        - Xcode="10.0"
+      language: node_js
+      os: osx
+      jdk: oraclejdk8
+      node_js: "8"
+      osx_image: xcode10
+      script:
+        - "cd src && npm i"
+        - "npm run tsc && cd ../demo && tns build ios"
 # matrix:
 #   include:
 #     # Lint
@@ -131,22 +160,6 @@ jobs:
 #         - "cd src && npm i && npm run tsc && npm run tslint && cd ../demo && tns build ios"
 #         - "travis_wait travis_retry tns test ios --justlaunch"
 
-android:
-  components:
-    - tools
-    - platform-tools
-    - build-tools-28.0.3
-    - android-28
-    - extra-google-m2repository
-    - extra-android-m2repository
-    - sys-img-armeabi-v7a-android-21
-before_script:
-  - "sudo pip install --upgrade pip"
-  - "sudo pip install six"
-install:
-  - "echo no | npm install -g nativescript"
-  - "tns usage-reporting disable"
-  - "tns error-reporting disable"
 # branches:
 #   only:
 #     - master
