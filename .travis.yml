@@ -2,6 +2,13 @@ branches:
   only:
     - master
 
+stages:
+  - lint
+  - build core
+  - webpack core
+  - webpack angular
+  - tests
+
 android:
   components:
     - tools
@@ -29,7 +36,7 @@ matrix:
         - "cd src && npm run ci.tslint"
         - "cd ../demo && npm run ci.tslint"
       # Build Core App
-    - stage: Build_Core
+    - stage: build core
       ## Android Core Build
       env:
         - OS="Android28"
@@ -53,7 +60,7 @@ matrix:
         - "cd src && npm i && npm run tsc"
         - "cd ../demo && tns build ios"
       # Webpack Core Apps
-    - stage: "Webpack_Core"
+    - stage: webpack core
       ## Android Webpack
     - env:
         - OS="Android28"
@@ -77,7 +84,7 @@ matrix:
         - "cd demo && npm run build.plugin"
         - "npm i && tns build ios --bundle --env.uglify"
     ## Webpack Angular
-    - stage: "Webpack_Angular"
+    - stage: webpack angular
       ## Android Angular Webpack
       env:
         - OS="Android28"
