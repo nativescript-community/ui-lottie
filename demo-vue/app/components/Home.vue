@@ -11,7 +11,8 @@
           <Span :text="message"/>
         </FormattedString>
       </Label>
-      <LottieView src="AndroidWave.json" height="130" loop="true" autoplay="true"></LottieView>
+      <LottieView src="AndroidWave.json" height="200" loop="true" autoplay="true"></LottieView>
+      <LottieView src="Mobilo/N" height="200" loop="true" autoplay="true"></LottieView>
     </StackLayout>
   </Page>
 </template>
