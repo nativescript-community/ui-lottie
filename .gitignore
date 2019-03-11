@@ -31,3 +31,6 @@ nativescript-lottie.*.d.ts
 
 !demo/app/tests/tests.js
 !demo-ng/app/tests/tests.js
+
+## Vue demo
+!demo-vue/**/*.js
