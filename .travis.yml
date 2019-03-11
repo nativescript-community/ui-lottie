@@ -7,6 +7,7 @@ stages:
   - build core
   - webpack core
   - webpack angular
+  - webpack vue
   - tests
 
 android:
@@ -59,7 +60,7 @@ matrix:
       script:
         - "cd src && npm i && npm run tsc"
         - "cd ../demo && tns build ios"
-      # Webpack Core Apps
+      # Webpack Core App
     - stage: webpack core
       ## Android Webpack
       env:
@@ -109,6 +110,30 @@ matrix:
         - "cd src && npm run build && npm pack"
         - "cd ../demo-angular && tns plugin add ../src/*.tgz"
         - "npm i && tns build ios --bundle --env.uglify --env.aot"
+    # Webpack Vue App
+    - stage: webpack vue
+      ## Android Webpack
+      env:
+        - OS="Android28"
+      before_install: "nvm install 8.11.4"
+      jdk: oraclejdk8
+      language: android
+      os: linux
+      script:
+        - "cd demo-vue && npm run build.plugin"
+        - "npm i && tns build android --bundle --env.uglify"
+    ## iOS Webpack
+    - env:
+        - OS="iOS12.0"
+        - Xcode="10.0"
+      jdk: oraclejdk8
+      language: node_js
+      node_js: "8"
+      os: osx
+      osx_image: xcode10
+      script:
+        - "cd demo-vue && npm run build.plugin"
+        - "npm i && tns build ios --bundle --env.uglify"
     # Tests
     - stage: tests
       ## Android Tests
