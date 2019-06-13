@@ -7,21 +7,8 @@
 /// <reference path="./node_modules/tns-platform-declarations/android.d.ts" />
 
 import { Color, View } from 'tns-core-modules/ui/core/view';
+import { autoPlayProperty, cacheStrategyProperty, loopProperty, LottieViewBase, srcProperty } from './nativescript-lottie.common';
 import { clamp } from './utils';
-import {
-  LottieViewBase,
-  srcProperty,
-  loopProperty,
-  autoPlayProperty,
-  cacheStrategyProperty
-} from './nativescript-lottie.common';
-
-const LottieProperty = com.airbnb.lottie.LottieProperty;
-const LottieKeyPath = com.airbnb.lottie.model.KeyPath;
-const LottieValueCallback = com.airbnb.lottie.value.LottieValueCallback;
-
-const DEFAULT_MAX_PROGRESS: number = 1;
-const DEFAULT_MIN_PROGRESS: number = 0;
 
 declare var com: any;
 
@@ -147,9 +134,11 @@ export class LottieView extends LottieViewBase {
         nativeKeyPath[index] = new java.lang.String(key);
       });
       this.nativeView.addValueCallback(
-        new LottieKeyPath(nativeKeyPath),
-        LottieProperty.COLOR,
-        new LottieValueCallback(new java.lang.Integer(value.android))
+        new com.airbnb.lottie.model.KeyPath(nativeKeyPath),
+        com.airbnb.lottie.LottieProperty.COLOR,
+        new com.airbnb.lottie.value.LottieValueCallback(
+          new java.lang.Integer(value.android)
+        )
       );
     }
   }
@@ -174,19 +163,18 @@ export class LottieView extends LottieViewBase {
       });
       value = clamp(value);
       this.nativeView.addValueCallback(
-        new LottieKeyPath(nativeKeyPath),
-        LottieProperty.OPACITY,
-        new LottieValueCallback(new java.lang.Integer(value * 100))
+        new com.airbnb.lottie.model.KeyPath(nativeKeyPath),
+        com.airbnb.lottie.LottieProperty.OPACITY,
+        new com.airbnb.lottie.value.LottieValueCallback(
+          new java.lang.Integer(value * 100)
+        )
       );
     }
   }
 
   public playAnimation(): void {
     if (this.nativeView) {
-      this.nativeView.setMinAndMaxProgress(
-        DEFAULT_MIN_PROGRESS,
-        DEFAULT_MAX_PROGRESS
-      );
+      this.nativeView.setMinAndMaxProgress(0, 1);
       this.nativeView.playAnimation();
     }
   }
