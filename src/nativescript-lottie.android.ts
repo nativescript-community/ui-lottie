@@ -4,11 +4,36 @@
  *
  * Version 1.0.0                                           bradwaynemartin@gmail.com
  **********************************************************************************/
-/// <reference path="./node_modules/tns-platform-declarations/android.d.ts" />
+/// <reference path="./node_modules/tns-platform-declarations/android-28.d.ts" />
 
 import { Color, View } from 'tns-core-modules/ui/core/view';
-import { autoPlayProperty, cacheStrategyProperty, loopProperty, LottieViewBase, srcProperty } from './nativescript-lottie.common';
+import {
+  autoPlayProperty,
+  loopProperty,
+  LottieViewBase,
+  srcProperty
+} from './nativescript-lottie.common';
 import { clamp } from './utils';
+
+let LottieProperty;
+let LottieKeyPath;
+let LottieValueCallback;
+
+function initProps() {
+  if (!LottieProperty) {
+    LottieProperty = com.airbnb.lottie.LottieProperty;
+  }
+
+  if (!LottieKeyPath) {
+    LottieKeyPath = com.airbnb.lottie.model.KeyPath;
+  }
+
+  if (!LottieValueCallback) {
+    LottieValueCallback = com.airbnb.lottie.value.LottieValueCallback;
+  }
+}
+const DEFAULT_MAX_PROGRESS: number = 1;
+const DEFAULT_MIN_PROGRESS: number = 0;
 
 declare var com: any;
 
@@ -19,6 +44,7 @@ export class LottieView extends LottieViewBase {
   }
 
   public createNativeView(): View {
+    initProps();
     return new com.airbnb.lottie.LottieAnimationView(this._context);
   }
 
@@ -73,11 +99,7 @@ export class LottieView extends LottieViewBase {
       // github issue: https://github.com/bradmartin/nativescript-lottie/issues/37
       src = /.json$/.test(src) ? src : `${src}.json`;
 
-      if (this.cacheStrategy) {
-        this.nativeView.setAnimation(src, this.cacheStrategy);
-      } else {
-        this.nativeView.setAnimation(src);
-      }
+      this.nativeView.setAnimation(src);
 
       if (this.loop) {
         this.setLoopAnimation(this.loop);
@@ -87,10 +109,6 @@ export class LottieView extends LottieViewBase {
         this.playAnimation();
       }
     }
-  }
-
-  public [cacheStrategyProperty.setNative](_cacheStrategy: CacheStrategy) {
-    this.setSrc(this.src);
   }
 
   public [loopProperty.setNative](loop: boolean) {
@@ -134,11 +152,9 @@ export class LottieView extends LottieViewBase {
         nativeKeyPath[index] = new java.lang.String(key);
       });
       this.nativeView.addValueCallback(
-        new com.airbnb.lottie.model.KeyPath(nativeKeyPath),
-        com.airbnb.lottie.LottieProperty.COLOR,
-        new com.airbnb.lottie.value.LottieValueCallback(
-          new java.lang.Integer(value.android)
-        )
+        new LottieKeyPath(nativeKeyPath),
+        LottieProperty.COLOR,
+        new LottieValueCallback(new java.lang.Integer(value.android))
       );
     }
   }
@@ -163,11 +179,9 @@ export class LottieView extends LottieViewBase {
       });
       value = clamp(value);
       this.nativeView.addValueCallback(
-        new com.airbnb.lottie.model.KeyPath(nativeKeyPath),
-        com.airbnb.lottie.LottieProperty.OPACITY,
-        new com.airbnb.lottie.value.LottieValueCallback(
-          new java.lang.Integer(value * 100)
-        )
+        new LottieKeyPath(nativeKeyPath),
+        LottieProperty.OPACITY,
+        new LottieValueCallback(new java.lang.Integer(value * 100))
       );
     }
   }
@@ -224,14 +238,4 @@ export class LottieView extends LottieViewBase {
       this.nativeView.cancelAnimation();
     }
   }
-}
-
-/**
- * Caching strategy for compositions that will be reused frequently.
- * Weak or Strong indicates the GC reference strength of the composition in the cache.
- */
-export enum CacheStrategy {
-  None = com.airbnb.lottie.LottieAnimationView.CacheStrategy.None,
-  Weak = com.airbnb.lottie.LottieAnimationView.CacheStrategy.Weak,
-  Strong = com.airbnb.lottie.LottieAnimationView.CacheStrategy.Strong
 }

@@ -12,7 +12,9 @@
       "~/*": ["src/*"],
       "*": ["./node_modules/tns-core-modules/*", "./node_modules/*"]
     }
-  },
+  },"files": [
+    "./src/main.ts"
+  ],
   "include": ["../src", "**/*"],
   "exclude": [
     "node_modules",
