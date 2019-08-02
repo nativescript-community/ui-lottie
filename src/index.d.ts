@@ -19,12 +19,6 @@ export declare class LottieView extends View {
   autoPlay: boolean;
 
   /**
-   * Caching strategy for compositions that will be reused frequently.
-   * Weak or Strong indicators the GC reference strength of the composition in the cache.
-   */
-  cacheStrategy: EnumCacheStrategy;
-
-  /**
    * Block to be executed upon completion of the animation.
    * The animation is considered complete when it finishes playing and is no longer looping.
    */
@@ -94,10 +88,4 @@ export declare class LottieView extends View {
     startProgress: number,
     endProgress: number
   ): void;
-}
-
-export declare enum EnumCacheStrategy {
-  None = 0,
-  Weak = 1,
-  Strong = 2
 }
