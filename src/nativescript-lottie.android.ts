@@ -7,12 +7,7 @@
 /// <reference path="./node_modules/tns-platform-declarations/android-28.d.ts" />
 
 import { Color, View } from 'tns-core-modules/ui/core/view';
-import {
-  autoPlayProperty,
-  loopProperty,
-  LottieViewBase,
-  srcProperty
-} from './nativescript-lottie.common';
+import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty } from './nativescript-lottie.common';
 import { clamp } from './utils';
 
 let LottieProperty;
