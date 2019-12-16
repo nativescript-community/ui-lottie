@@ -7,13 +7,8 @@
 /// <reference path="./node_modules/tns-platform-declarations/ios.d.ts" />
 
 import { Color, View } from 'tns-core-modules/ui/core/view';
+import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty } from './nativescript-lottie.common';
 import { clamp } from './utils';
-import {
-  LottieViewBase,
-  srcProperty,
-  loopProperty,
-  autoPlayProperty
-} from './nativescript-lottie.common';
 
 declare var LOTAnimationView: any;
 declare var LOTKeypath: any;

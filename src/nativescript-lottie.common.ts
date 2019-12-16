@@ -5,8 +5,8 @@
  * Version 1.0.0                                           walkerrunpdx@gmail.com
  **********************************************************************************/
 
-import { View, booleanConverter } from 'tns-core-modules/ui/core/view';
 import { Property } from 'tns-core-modules/ui/core/properties';
+import { booleanConverter, View } from 'tns-core-modules/ui/core/view';
 
 export class LottieViewBase extends View {
   public src: string;
