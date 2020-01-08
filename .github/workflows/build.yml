@@ -17,7 +17,7 @@ jobs:
           node-version: "10.x"
 
       - name: Build Plugin Source
-        run: cd src && npm i && tsc
+        run: cd src && npm i && npm i -g typescript && tsc
 
       - name: Lint
         run: cd src && npm run tslint
