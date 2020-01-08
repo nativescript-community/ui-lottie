@@ -11,7 +11,7 @@
         <img src="https://img.shields.io/npm/dt/nativescript-lottie.svg?label=npm%20downloads" alt="npm">
     </a>
      <a href="https://travis-ci.org/bradmartin/nativescript-lottie">
-        <img src="https://travis-ci.org/bradmartin/nativescript-lottie.svg?branch=master" alt="travis build">
+        <img src="https://github.com/github/bradmartin/workflows/Build%20CI/badge.svg" alt="Action Build">
     </a>
     <a href="https://github.com/bradmartin/nativescript-lottie/stargazers">
         <img src="https://img.shields.io/github/stars/bradmartin/nativescript-lottie.svg" alt="stars">
