@@ -17,11 +17,10 @@ jobs:
           node-version: "10.x"
 
       - name: Build Plugin Source
-        run: |
-          cd src && npm i && tsc
+        run: cd src && npm i && tsc
 
       - name: Lint
-        run: npm run tslint
+        run: cd src && npm run tslint
 
       - name: Setup JDK 1.8
         uses: actions/setup-java@v1
@@ -30,5 +29,5 @@ jobs:
 
       - name: Build Android Demo App
         run: |
-          cd ../demo
+          cd demo
           tns build android --env.uglify
