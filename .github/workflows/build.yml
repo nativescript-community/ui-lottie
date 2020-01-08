@@ -27,6 +27,12 @@ jobs:
         with:
           java-version: 1.8
 
+      - name: Setup NativeScript CLI
+        run: |
+          echo no | npm ci -g nativescript
+          tns usage-reporting disable
+          tns error-reporting disable
+
       - name: Build Android Demo App
         run: |
           cd demo
