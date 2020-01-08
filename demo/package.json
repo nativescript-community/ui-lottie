@@ -6,27 +6,27 @@
   "nativescript": {
     "id": "org.nativescript.demo",
     "tns-android": {
-      "version": "6.0.0"
+      "version": "6.3.1"
     },
     "tns-ios": {
-      "version": "6.0.1"
+      "version": "6.3.0"
     }
   },
   "dependencies": {
     "nativescript-lottie": "file:../src",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-unit-test-runner": "0.7.0",
-    "tns-core-modules": "6.0.1"
+    "tns-core-modules": "^6.3.2"
   },
   "devDependencies": {
     "jasmine-core": "3.3.0",
     "karma": "4.1.0",
     "karma-jasmine": "2.0.1",
     "karma-nativescript-launcher": "0.4.0",
-    "nativescript-dev-webpack": "1.0.1",
-    "tns-platform-declarations": "6.0.1",
-    "tslint": "~5.13.1",
-    "typescript": "3.4.5",
+    "nativescript-dev-webpack": "1.4.1",
+    "tns-platform-declarations": "^6.3.2",
+    "tslint": "~5.20.1",
+    "typescript": "3.7.4",
     "karma-webpack": "3.0.5"
   },
   "scripts": {
