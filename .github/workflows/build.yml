@@ -29,7 +29,7 @@ jobs:
 
       - name: Setup NativeScript CLI
         run: |
-          echo no | sudo npm install nativescript -g --unsafe-perm
+          echo no | npm i -g nativescript
           tns usage-reporting disable
           tns error-reporting disable
 
