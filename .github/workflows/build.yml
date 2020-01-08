@@ -40,6 +40,6 @@ jobs:
 
       - name: Build Android Demo App
         run: |
-          tns doctor
           cd demo
           tns build android --env.uglify
+          tns build ios --env.uglify
