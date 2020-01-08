@@ -42,4 +42,7 @@ jobs:
         run: |
           cd demo
           tns build android --env.uglify
+      - name: Build iOS Demo App
+        run: |
+          cd demo
           tns build ios --env.uglify
