@@ -27,6 +27,11 @@ jobs:
         with:
           java-version: 1.8
 
+      - name: Install PIP
+        run: |
+          sudo pip install --upgrade pip
+          sudo pip install six
+
       - name: Setup NativeScript CLI
         run: |
           echo no | npm i -g nativescript
