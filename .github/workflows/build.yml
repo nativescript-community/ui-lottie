@@ -29,11 +29,12 @@ jobs:
 
       - name: Setup NativeScript CLI
         run: |
-          echo no | npm i -g nativescript
+          echo no | sudo npm install nativescript -g --unsafe-perm
           tns usage-reporting disable
           tns error-reporting disable
 
       - name: Build Android Demo App
         run: |
+          tns doctor
           cd demo
           tns build android --env.uglify
