@@ -36,5 +36,6 @@ jobs:
       - name: Build Android Demo App
         run: |
           tns doctor
+          tns setup
           cd demo
           tns build android --env.uglify
