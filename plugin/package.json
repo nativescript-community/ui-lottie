@@ -1,6 +1,6 @@
 {
   "name": "nativescript-akylas-lottie",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "NativeScript plugin to expose AirBnB Lottie library",
   "main": "nativescript-lottie",
   "typings": "index.d.ts",
@@ -55,6 +55,5 @@
     "url": "https://github.com/farfromrefug/nativescript-lottie/issues"
   },
   "homepage": "https://github.com/farfromrefug/nativescript-lottie",
-  "readmeFilename": "README.md",
-  "dependencies": {}
+  "readmeFilename": "README.md"
 }
