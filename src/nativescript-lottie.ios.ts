@@ -104,7 +104,6 @@ export class LottieView extends LottieViewBase {
     }
 
     public playAnimation(): void {
-        console.log('playAnimation', !!this.nativeView);
         if (this.nativeView) {
             this.nativeView.playWithCompletion((animationFinished: boolean) => {
                 if (this.completionBlock) {
