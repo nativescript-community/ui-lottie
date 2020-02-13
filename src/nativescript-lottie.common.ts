@@ -5,8 +5,9 @@
  * Version 1.0.0                                           walkerrunpdx@gmail.com
  **********************************************************************************/
 
-import { Property } from 'tns-core-modules/ui/core/properties';
-import { booleanConverter, View } from 'tns-core-modules/ui/core/view';
+import { Property } from '@nativescript/core/ui/core/properties';
+import { booleanConverter, View } from '@nativescript/core/ui/core/view';
+
 
 export class LottieViewBase extends View {
   public src: string;
@@ -36,3 +37,9 @@ export const autoPlayProperty = new Property<LottieViewBase, boolean>({
 });
 
 autoPlayProperty.register(LottieViewBase);
+
+export const renderModeProperty = new Property<LottieViewBase, number>({
+  name: 'renderMode'
+});
+
+renderModeProperty.register(LottieViewBase);
