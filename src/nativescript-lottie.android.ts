@@ -99,7 +99,6 @@ export class LottieView extends LottieViewBase {
     }
 
     [srcProperty.setNative](src: string) {
-        console.log('srcProperty', src, this.loop, this.autoPlay);
 
         if (src.startsWith('{')) {
             this.nativeView.setAnimationFromJson(src);
@@ -140,7 +139,6 @@ export class LottieView extends LottieViewBase {
     }
 
     private setLoopAnimation(loop: boolean): void {
-        console.log('setLoopAnimation', loop);
         if (this.nativeView) {
             this.nativeView.loop(loop);
         }
@@ -192,7 +190,6 @@ export class LottieView extends LottieViewBase {
     }
 
     public playAnimation(): void {
-        console.log('playAnimation');
         if (this.nativeView) {
             this.nativeView.setMinAndMaxProgress(0, 1);
             this.nativeView.playAnimation();
