@@ -4,199 +4,179 @@
  *
  * Version 1.0.0                                           walkerrunpdx@gmail.com
  **********************************************************************************/
-/// <reference path="./node_modules/tns-platform-declarations/ios.d.ts" />
 
-import { Color, View } from 'tns-core-modules/ui/core/view';
+import { Color, View } from '@nativescript/core/ui/core/view';
 import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty } from './nativescript-lottie.common';
+import { RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
+import { knownFolders, path } from '@nativescript/core/file-system';
 import { clamp } from './utils';
 
-declare var LOTAnimationView: any;
-declare var LOTKeypath: any;
-declare var LOTColorValueCallback: any;
-declare var LOTNumberValueCallback: any;
-
 export class LottieView extends LottieViewBase {
-  private _contentMode: any;
-
-  /// LOTAnimationView
-  get ios(): any {
-    return this.nativeView;
-  }
-
-  public createNativeView(): View {
-    return LOTAnimationView.alloc().initWithFrame(CGRectMake(0, 0, 0, 0));
-  }
-
-  public initNativeView(): void {
-    this.contentModeDefault();
-
-    if (this.src) {
-      this.setSrc(this.src);
+    // private _contentMode: UIViewContentMode;
+    nativeView: CompatibleAnimationView;
+    /// LOTAnimationView
+    get ios(): any {
+        return this.nativeView;
     }
 
-    if (this.loop) {
-      this.setLoopAnimation(this.loop);
+    public createNativeView() {
+        const view = CompatibleAnimationView.new();
+        view.contentMode = UIViewContentMode.ScaleAspectFit;
+        return view;
     }
 
-    if (this.autoPlay) {
-      this.playAnimation();
+    public initNativeView(): void {
+        super.initNativeView();
+        this.nativeView.translatesAutoresizingMaskIntoConstraints = true;
     }
-  }
-
-  public [srcProperty.setNative](src: string) {
-    this.setSrc(src);
-  }
-
-  private setSrc(src: string): void {
-    if (this.nativeView) {
-      this.nativeView.setAnimationNamed(src);
-
-      if (this.loop) {
-        this.setLoopAnimation(this.loop);
-      }
-
-      if (this.autoPlay) {
-        this.playAnimation();
-      }
-    }
-  }
-
-  public [loopProperty.setNative](loop: boolean) {
-    this.setLoopAnimation(loop);
-  }
-
-  private setLoopAnimation(loop: boolean): void {
-    if (this.nativeView) {
-      this.nativeView.loopAnimation = loop;
-    }
-  }
-
-  public [autoPlayProperty.setNative](autoPlay: boolean) {
-    if (autoPlay) {
-      this.setLoopAnimation(this.loop);
-      this.contentModeDefault();
-
-      if (!this.isAnimating()) {
-        this.playAnimation();
-      }
-    } else {
-      if (this.isAnimating()) {
-        this.cancelAnimation();
-      }
-    }
-  }
-
-  public setColorValueDelegateForKeyPath(
-    value: Color,
-    keyPath: string[]
-  ): void {
-    if (this.nativeView && value && keyPath && keyPath.length) {
-      if (keyPath[keyPath.length - 1].toLowerCase() !== 'color') {
-        keyPath.push('Color'); // ios expects the property as the last item in the keyPath
-      }
-      this.nativeView.setValueDelegateForKeypath(
-        LOTColorValueCallback.withCGColor(value.ios.CGColor),
-        LOTKeypath.keypathWithString(keyPath.join('.'))
-      );
-    }
-  }
-
-  public setOpacityValueDelegateForKeyPath(
-    value: number,
-    keyPath: string[]
-  ): void {
-    if (this.nativeView && value && keyPath && keyPath.length) {
-      if (keyPath[keyPath.length - 1].toLowerCase() !== 'opacity') {
-        keyPath.push('Opacity'); // ios expects the property as the last item in the keyPath
-      }
-      value = clamp(value);
-      this.nativeView.setValueDelegateForKeypath(
-        LOTNumberValueCallback.withFloatValue(value),
-        LOTKeypath.keypathWithString(keyPath.join('.'))
-      );
-    }
-  }
-
-  public playAnimation(): void {
-    if (this.nativeView) {
-      this.nativeView.playWithCompletion((animationFinished: boolean) => {
-        if (this.completionBlock) {
-          this.completionBlock(animationFinished);
+    
+    [srcProperty.setNative](src: string) { 
+        if (src.startsWith('{')) {
+            this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithJson(src);
+        } else {
+            if (src.indexOf('~/') === 0) {
+                let filePath = `${path.join(knownFolders.currentApp().path, src.replace('~/', ''))}`;
+                if (!/.(json|zip)$/.test(filePath)) {
+                    filePath += '.json';
+                }
+                this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithFilepath(filePath);
+            } else {
+                const resName = src.replace(RESOURCE_PREFIX, '');
+                this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(resName.replace('.json', ''), NSBundle.mainBundle);
+            }
         }
-      });
     }
-  }
 
-  public playAnimationFromProgressToProgress(
-    startProgress: number,
-    endProgress: number
-  ): void {
-    if (this.nativeView) {
-      startProgress = startProgress ? clamp(startProgress) : 0;
-      endProgress = endProgress ? clamp(endProgress) : 1;
-      this.nativeView.playFromProgressToProgressWithCompletion(
-        startProgress,
-        endProgress,
-        (animationFinished: boolean) => {
-          if (this.completionBlock) {
-            this.completionBlock(animationFinished);
-          }
+
+    [loopProperty.setNative](loop: boolean) {
+        this.setLoopAnimation(loop);
+    }
+
+    private setLoopAnimation(loop: boolean): void {
+        if (this.nativeView) {
+            this.nativeView.loopAnimationCount = loop ? -1 : 0;
         }
-      );
     }
-  }
 
-  public cancelAnimation(): void {
-    if (this.nativeView) {
-      this.nativeView.pause();
+    [autoPlayProperty.setNative](autoPlay: boolean) {
+        if (autoPlay) {
+            this.setLoopAnimation(this.loop);
+
+            if (!this.isAnimating()) {
+                this.playAnimation();
+            }
+        } else {
+            if (this.isAnimating()) {
+                this.cancelAnimation();
+            }
+        }
     }
-  }
 
-  public isAnimating(): boolean {
-    return this.nativeView ? this.nativeView.isAnimationPlaying : false;
-  }
+    public setColorValueDelegateForKeyPath(value: Color, keyPath: string[]): void {
+        if (this.nativeView && value && keyPath && keyPath.length) {
+            if (keyPath[keyPath.length - 1].toLowerCase() !== 'color') {
+                keyPath.push('Color'); // ios expects the property as the last item in the keyPath
+            }
 
-  public set progress(value: number) {
-    if (this.nativeView && value) {
-      this.nativeView.animationProgress = value;
+            this.nativeView.setColorValueForKeypath(value.ios, CompatibleAnimationKeypath.alloc().initWithKeypath(keyPath.join('.')));
+        }
     }
-  }
 
-  public get progress(): number | undefined {
-    return this.nativeView ? this.nativeView.animationProgress : undefined;
-  }
+    public setOpacityValueDelegateForKeyPath(value: number, keyPath: string[]): void {
+        if (this.nativeView && value && keyPath && keyPath.length) {
+            if (keyPath[keyPath.length - 1].toLowerCase() !== 'opacity') {
+                keyPath.push('Opacity'); // ios expects the property as the last item in the keyPath
+            }
 
-  public set speed(value: number) {
-    if (this.nativeView && value) {
-      this.nativeView.animationSpeed = value;
+            this.nativeView.setFloatValueForKeypath(value, CompatibleAnimationKeypath.alloc().initWithKeypath(keyPath.join('.')));
+        }
+        // TODO: not working
+        // if (this.nativeView && value && keyPath && keyPath.length) {
+        //   if (keyPath[keyPath.length - 1].toLowerCase() !== 'opacity') {
+        //     keyPath.push('Opacity'); // ios expects the property as the last item in the keyPath
+        //   }
+        //   value = clamp(value);
+        //   this.nativeView.getValue(
+        //     LOTNumberValueCallback.withFloatValue(value),
+        //     AnimationKeypath.keypathWithString(keyPath.join('.'))
+        //   );
+        // }
     }
-  }
 
-  public get speed(): number | undefined {
-    return this.nativeView ? this.nativeView.animationSpeed : undefined;
-  }
-
-  public get duration(): number | undefined {
-    return this.nativeView ? this.nativeView.animationDuration : undefined;
-  }
-
-  public set contentMode(mode: any) {
-    this._contentMode = mode;
-    if (this.nativeView) {
-      this.nativeView.contentMode = mode;
+    public playAnimation(): void {
+        console.log('playAnimation', !!this.nativeView);
+        if (this.nativeView) {
+            this.nativeView.playWithCompletion((animationFinished: boolean) => {
+                if (this.completionBlock) {
+                    this.completionBlock(animationFinished);
+                }
+            });
+        }
     }
-  }
 
-  // ensures a reasonable default contentMode is set
-  // https://github.com/airbnb/lottie-ios#using-lottie
-  private contentModeDefault(): void {
-    if (this.nativeView) {
-      if (this._contentMode) {
-        this.nativeView.contentMode = this._contentMode;
-      } else {
-        // default
-        this.nativeView.contentMode = UIViewContentMode.ScaleAspectFit;
-      }
+    public playAnimationFromProgressToProgress(startProgress: number, endProgress: number): void {
+        if (this.nativeView) {
+            startProgress = startProgress ? clamp(startProgress) : 0;
+            endProgress = endProgress ? clamp(endProgress) : 1;
+            this.nativeView.playFromProgressToProgressCompletion(startProgress, endProgress, (animationFinished: boolean) => {
+                if (this.completionBlock) {
+                    this.completionBlock(animationFinished);
+                }
+            });
+        }
     }
-  }
+
+    public cancelAnimation(): void {
+        if (this.nativeView) {
+            this.nativeView.pause();
+        }
+    }
+
+    public isAnimating(): boolean {
+        return this.nativeView ? this.nativeView.isAnimationPlaying : false;
+    }
+
+    public set progress(value: number) {
+        if (this.nativeView && value) {
+            this.nativeView.currentProgress = value;
+        }
+    }
+
+    public get progress(): number | undefined {
+        return this.nativeView ? this.nativeView.currentProgress : undefined;
+    }
+
+    public set speed(value: number) {
+        if (this.nativeView && value) {
+            this.nativeView.animationSpeed = value;
+        }
+    }
+
+    public get speed(): number | undefined {
+        return this.nativeView ? this.nativeView.animationSpeed : undefined;
+    }
+
+    public get duration(): number | undefined {
+        return this.nativeView && this.nativeView.animationDuration;
+    }
+
+    public set contentMode(mode: any) {
+        // this._contentMode = mode;
+        if (this.nativeView) {
+            this.nativeView.contentMode = mode;
+        }
+    }
+
+    // ensures a reasonable default contentMode is set
+    // https://github.com/airbnb/lottie-ios#using-lottie
+    // private contentModeDefault(): void {
+    //     if (this.nativeView) {
+    //         if (this._contentMode) {
+    //             this.nativeView.contentMode = this._contentMode;
+    //         } else {
+    //             // default
+    //             this.nativeView.contentMode = UIViewContentMode.ScaleAspectFit;
+    //         }
+    //     }
+    // }
 }

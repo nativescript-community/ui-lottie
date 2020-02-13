@@ -10,7 +10,7 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"],
-      "*": ["./node_modules/tns-core-modules/*", "./node_modules/*"]
+      "*": ["./node_modules/@nativescript/core/*", "./node_modules/*"]
     }
   },"files": [
     "./src/main.ts"

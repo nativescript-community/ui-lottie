@@ -1,36 +1,70 @@
-.idea/
-.vscode/
-.tscache/
-/demo/node_modules/
-/demo/platforms/
-/demo/app/temp/
-/demo/app/assets/
-/demo-angular/node_modules/
-/demo-angular/platforms/
-/demo-angular/app/temp/
-/demo-angular/app/assets/
-node_modules/
-.settings/
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
 
 .DS_Store
-*.js.map
-*.tar
-*.tgz
-*.gz
-*.zip
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+bin
+obj
+.vs
+.tscache
+*.user
 *.js
+*.map
+!gruntfile.js
+node_modules
+*.tmp.*
+demo/platforms
+demo/lib
+demo-ng/platforms
+demo-ng/lib
+demo-ng/**/*.css
+!webpack.*.js
+report
 *.log
-nativescript-lottie.*.d.ts
-!src/scripts/*.js
-!demo/webpack.config.js
-!demo-angular/webpack.config.js
-!demo-vue/webpack.config.js
-
-!demo/karma.conf.js
-!demo-angular/karma.conf.js
-
-!demo/app/tests/tests.js
-!demo-angular/app/tests/tests.js
-
-## Vue demo
-!demo-vue/**/*.js
+/platforms
+/package-lock.json
+plugin/*.d.ts
+/plugin/typings
+/plugin/README.md
+/pnpm-lock.yaml
+*.aar
+/demo-vue/platforms

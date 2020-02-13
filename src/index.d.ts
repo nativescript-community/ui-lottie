@@ -1,13 +1,19 @@
-import { Color, View } from 'tns-core-modules/ui/core/view';
+import { Color, View } from '@nativescript/core/ui/core/view';
 
-export declare class LottieView extends View {
+export enum RenderMode {
+  AUTOMATIC,
+  HARDWARE,
+  SOFTWARE
+}
+
+export class LottieView extends View {
   /**
    * LottieAnimationView
    */
   readonly android: any;
 
   /**
-   * LOTAnimationView
+   * AnimationView
    */
   readonly ios: any;
 

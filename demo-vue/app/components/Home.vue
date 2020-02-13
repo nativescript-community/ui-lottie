@@ -6,13 +6,11 @@
 
     <StackLayout>
       <Label class="info" horizontalAlignment="center" verticalAlignment="center">
-        <FormattedString>
-          <Span class="fa" text.decode="&#xf135; "/>
+          <Span class="fa" text.decode="&#xf135;"/>
           <Span :text="message"/>
-        </FormattedString>
       </Label>
-      <LottieView src="AndroidWave.json" height="200" loop="true" autoplay="true"></LottieView>
-      <LottieView src="Mobilo/N" height="200" loop="true" autoplay="true"></LottieView>
+      <LottieView src="AndroidWave.json"  loop="true" autoPlay="true" backgroundColor="red" horizontalAlignment="center"></LottieView>
+      <LottieView src="~/assets/Mobilo/N"  loop="true" autoPlay="true" backgroundColor="green" horizontalAlignment="center"></LottieView>
     </StackLayout>
   </Page>
 </template>

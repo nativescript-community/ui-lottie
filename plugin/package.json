@@ -1,0 +1,60 @@
+{
+  "name": "nativescript-akylas-lottie",
+  "version": "4.0.1",
+  "description": "NativeScript plugin to expose AirBnB Lottie library",
+  "main": "nativescript-lottie",
+  "typings": "index.d.ts",
+  "nativescript": {
+    "platforms": {
+      "android": "6.0.0",
+      "ios": "6.0.1"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/farfromrefug/nativescript-lottie.git"
+  },
+  "keywords": [
+    "NativeScript",
+    "nativescript-lottie",
+    "Lottie",
+    "Android",
+    "Animation",
+    "iOS",
+    "TypeScript",
+    "bradmartin"
+  ],
+  "author": {
+    "name": "Brad Martin",
+    "email": "bradwaynemartin@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Nathan Walker",
+      "email": "walkerrunpdx@gmail.com"
+    },
+    {
+      "name": "JB",
+      "url": "https://github.com/rhanb"
+    },
+    {
+      "name": "Dirk Rudolph",
+      "url": "https://github.com/Buuhuu"
+    },
+    {
+      "name": "Hamdi Wanis",
+      "url": "https://github.com/hamdiwanis"
+    },
+    {
+      "name": "itstheceo",
+      "url": "https://github.com/itstheceo"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/farfromrefug/nativescript-lottie/issues"
+  },
+  "homepage": "https://github.com/farfromrefug/nativescript-lottie",
+  "readmeFilename": "README.md",
+  "dependencies": {}
+}
