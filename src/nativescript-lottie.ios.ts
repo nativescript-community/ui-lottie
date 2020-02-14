@@ -29,8 +29,8 @@ export class LottieView extends LottieViewBase {
         super.initNativeView();
         this.nativeView.translatesAutoresizingMaskIntoConstraints = true;
     }
-    
-    [srcProperty.setNative](src: string) { 
+
+    [srcProperty.setNative](src: string) {
         if (src.startsWith('{')) {
             this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithJson(src);
         } else {
@@ -46,7 +46,6 @@ export class LottieView extends LottieViewBase {
             }
         }
     }
-
 
     [loopProperty.setNative](loop: boolean) {
         this.setLoopAnimation(loop);
@@ -105,11 +104,15 @@ export class LottieView extends LottieViewBase {
 
     public playAnimation(): void {
         if (this.nativeView) {
-            this.nativeView.playWithCompletion((animationFinished: boolean) => {
-                if (this.completionBlock) {
-                    this.completionBlock(animationFinished);
-                }
-            });
+            if (this.completionBlock) {
+                this.nativeView.playWithCompletion((animationFinished: boolean) => {
+                    if (this.completionBlock) {
+                        this.completionBlock(animationFinished);
+                    }
+                });
+            } else {
+                this.nativeView.play();
+            }
         }
     }
 
@@ -117,11 +120,11 @@ export class LottieView extends LottieViewBase {
         if (this.nativeView) {
             startProgress = startProgress ? clamp(startProgress) : 0;
             endProgress = endProgress ? clamp(endProgress) : 1;
-            this.nativeView.playFromProgressToProgressCompletion(startProgress, endProgress, (animationFinished: boolean) => {
-                if (this.completionBlock) {
-                    this.completionBlock(animationFinished);
-                }
-            });
+            if (this.completionBlock) {
+                this.nativeView.playFromProgressToProgressCompletion(startProgress, endProgress, this.completionBlock);
+            } else {
+                this.nativeView.playFromProgressToProgressCompletion(startProgress, endProgress, null);
+            }
         }
     }
 
