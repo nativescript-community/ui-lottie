@@ -6,7 +6,7 @@
  **********************************************************************************/
 
 import { Color, View } from '@nativescript/core/ui/core/view';
-import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty } from './nativescript-lottie.common';
+import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty, progressProperty } from './nativescript-lottie.common';
 import { RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
 import { knownFolders, path } from '@nativescript/core/file-system';
 import { clamp } from './utils';
@@ -48,19 +48,11 @@ export class LottieView extends LottieViewBase {
     }
 
     [loopProperty.setNative](loop: boolean) {
-        this.setLoopAnimation(loop);
-    }
-
-    private setLoopAnimation(loop: boolean): void {
-        if (this.nativeView) {
-            this.nativeView.loopAnimationCount = loop ? -1 : 0;
-        }
+        this.nativeView.loopAnimationCount = loop ? -1 : 0;
     }
 
     [autoPlayProperty.setNative](autoPlay: boolean) {
         if (autoPlay) {
-            this.setLoopAnimation(this.loop);
-
             if (!this.isAnimating()) {
                 this.playAnimation();
             }
@@ -138,15 +130,20 @@ export class LottieView extends LottieViewBase {
         return this.nativeView ? this.nativeView.isAnimationPlaying : false;
     }
 
-    public set progress(value: number) {
-        if (this.nativeView && value) {
-            this.nativeView.currentProgress = value;
-        }
+
+    // public get progress(): number | undefined {
+    //     return this.nativeView ? this.nativeView.currentProgress : undefined;
+    // }
+
+    [progressProperty.setNative](value: number) {
+        this.nativeView.currentProgress = value;
     }
 
-    public get progress(): number | undefined {
-        return this.nativeView ? this.nativeView.currentProgress : undefined;
-    }
+    // public set progress(value: number) {
+    //     if (this.nativeView && value) {
+    //         this.nativeView.currentProgress = value;
+    //     }
+    // }
 
     public set speed(value: number) {
         if (this.nativeView && value) {
