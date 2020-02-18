@@ -8,38 +8,39 @@
 import { Property } from '@nativescript/core/ui/core/properties';
 import { booleanConverter, View } from '@nativescript/core/ui/core/view';
 
-
 export class LottieViewBase extends View {
-  public src: string;
-  public loop: boolean;
-  public autoPlay: boolean;
-  public completionBlock: (animationFinished: boolean) => void;
+    public src: string;
+    public loop: boolean;
+    public autoPlay: boolean;
+    public progress: number;
+    public completionBlock: (animationFinished: boolean) => void;
 }
 
 export const srcProperty = new Property<LottieViewBase, string>({
-  name: 'src'
+    name: 'src'
 });
-
 srcProperty.register(LottieViewBase);
 
 export const loopProperty = new Property<LottieViewBase, boolean>({
-  name: 'loop',
-  defaultValue: false,
-  valueConverter: booleanConverter
+    name: 'loop',
+    defaultValue: false,
+    valueConverter: booleanConverter
 });
-
 loopProperty.register(LottieViewBase);
 
 export const autoPlayProperty = new Property<LottieViewBase, boolean>({
-  name: 'autoPlay',
-  defaultValue: false,
-  valueConverter: booleanConverter
+    name: 'autoPlay',
+    defaultValue: false,
+    valueConverter: booleanConverter
 });
-
 autoPlayProperty.register(LottieViewBase);
 
 export const renderModeProperty = new Property<LottieViewBase, number>({
-  name: 'renderMode'
+    name: 'renderMode'
 });
-
 renderModeProperty.register(LottieViewBase);
+
+export const progressProperty = new Property<LottieViewBase, number>({
+    name: 'progress'
+});
+progressProperty.register(LottieViewBase);

@@ -6,7 +6,7 @@
  **********************************************************************************/
 
 import { Color, View } from '@nativescript/core/ui/core/view';
-import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty, renderModeProperty } from './nativescript-lottie.common';
+import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty, renderModeProperty, progressProperty } from './nativescript-lottie.common';
 import { RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
 import { knownFolders, path } from '@nativescript/core/file-system';
 import { clamp } from './utils';
@@ -56,7 +56,6 @@ export class LottieView extends LottieViewBase {
         initProps();
         return new LottieAnimationView(this._context);
     }
-    animatorListener;
     public initNativeView(): void {
         this.nativeView.addAnimatorListener(
             new android.animation.Animator.AnimatorListener({
@@ -116,32 +115,16 @@ export class LottieView extends LottieViewBase {
             }
         }
 
-        // if (this.loop) {
-        //   this.setLoopAnimation(this.loop);
-        // }
-
         if (this.autoPlay) {
             this.playAnimation();
         }
     }
 
-    // private setSrc(src: string) {
-    //   if (this.nativeView) {
-
-    //   }
-    // }
-
     [loopProperty.setNative](loop: boolean) {
-        this.setLoopAnimation(loop);
+        this.nativeView.loop(loop);
     }
     [renderModeProperty.setNative](renderMode) {
         this.nativeView.setRenderMode(renderMode);
-    }
-
-    private setLoopAnimation(loop: boolean): void {
-        if (this.nativeView) {
-            this.nativeView.loop(loop);
-        }
     }
 
     [autoPlayProperty.setNative](autoPlay: boolean) {
@@ -209,15 +192,18 @@ export class LottieView extends LottieViewBase {
         return this.nativeView ? this.nativeView.isAnimating() : false;
     }
 
-    public set progress(value: number) {
-        if (this.nativeView && value) {
-            this.nativeView.setProgress(value);
-        }
+    [progressProperty.setNative](value: number) {
+        this.nativeView.setProgress(value);
     }
+    // public set progress(value: number) {
+    //     if (this.nativeView && value) {
+    //         this.nativeView.setProgress(value);
+    //     }
+    // }
 
-    public get progress(): number | undefined {
-        return this.nativeView ? this.nativeView.getProgress() : undefined;
-    }
+    // public get progress(): number | undefined {
+    //     return this.nativeView ? this.nativeView.getProgress() : undefined;
+    // }
 
     public get speed(): number | undefined {
         return this.nativeView ? this.nativeView.getSpeed() : undefined;
