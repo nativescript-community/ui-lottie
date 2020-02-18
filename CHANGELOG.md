@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.5](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.4...v4.0.5) (2020-02-18)
+
+
+### Bug Fixes
+
+* make progress a property ([caf6d5c](https://github.com/bradmartin/nativescript-lottie/commit/caf6d5c7279211c75e49958d631720b4dcc7ffd4))
+
+
+
+
+
 ## [4.0.4](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.3...v4.0.4) (2020-02-14)
 
 
