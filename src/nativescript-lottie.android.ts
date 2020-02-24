@@ -133,9 +133,13 @@ export class LottieView extends LottieViewBase {
                 this.playAnimation();
             }
         } else {
-            if (this.isAnimating()) {
+            // disable check for now as isAnimating always returns false
+            // if (this.isAnimating()) {
                 this.cancelAnimation();
-            }
+                if (this.progress) {
+                    this.nativeView.setProgress(this.progress);
+                }
+            // }
         }
     }
 
