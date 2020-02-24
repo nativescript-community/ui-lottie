@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.6](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.5...v4.0.6) (2020-02-24)
+
+
+### Bug Fixes
+
+* **android:** for now isAnimating does not seem to work ([5fd9727](https://github.com/bradmartin/nativescript-lottie/commit/5fd97271a698c5e29e4b9e7a53c8a2d2fa6f34f4))
+
+
+
+
+
 ## [4.0.5](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.4...v4.0.5) (2020-02-18)
 
 
