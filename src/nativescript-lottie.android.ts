@@ -11,6 +11,7 @@ import { RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
 import { knownFolders, path } from '@nativescript/core/file-system';
 import { clamp } from './utils';
 import { File } from '@nativescript/core/file-system';
+import { profile } from '@nativescript/core/profiling';
 
 let LottieProperty;
 let LottieKeyPath;
@@ -29,23 +30,6 @@ export const RenderMode = {
     }
 };
 
-function initProps() {
-    if (!LottieProperty) {
-        LottieProperty = com.airbnb.lottie.LottieProperty;
-    }
-
-    if (!LottieKeyPath) {
-        LottieKeyPath = com.airbnb.lottie.model.KeyPath;
-    }
-
-    if (!LottieValueCallback) {
-        LottieValueCallback = com.airbnb.lottie.value.LottieValueCallback;
-    }
-    if (!LottieAnimationView) {
-        LottieAnimationView = com.airbnb.lottie.LottieAnimationView;
-    }
-}
-
 export class LottieView extends LottieViewBase {
     nativeView: com.airbnb.lottie.LottieAnimationView;
     get android(): any {
@@ -53,31 +37,54 @@ export class LottieView extends LottieViewBase {
     }
 
     public createNativeView(): View {
-        initProps();
+        if (!LottieAnimationView) {
+            LottieAnimationView = com.airbnb.lottie.LottieAnimationView;
+        }
         return new LottieAnimationView(this._context);
     }
-    public initNativeView(): void {
-        this.nativeView.addAnimatorListener(
-            new android.animation.Animator.AnimatorListener({
-                onAnimationCancel: _animator => {
-                    if (this.completionBlock) {
-                        this.completionBlock(false);
-                    }
-                },
-                onAnimationEnd: _animator => {
-                    if (this.completionBlock) {
-                        this.completionBlock(true);
-                    }
-                },
-                onAnimationRepeat: _animator => {
-                    // noop
-                },
-                onAnimationStart: _animator => {
-                    // noop
-                }
-            })
-        );
 
+    animatorListener;
+    _completionBlock;
+    get completionBlock() {
+        return this._completionBlock;
+    }
+    set completionBlock(block) {
+        this._completionBlock = block;
+        if (block) {
+            if (!this.animatorListener) {
+                this.animatorListener = new android.animation.Animator.AnimatorListener({
+                    onAnimationCancel: _animator => {
+                        if (this._completionBlock) {
+                            this._completionBlock(false);
+                        }
+                    },
+                    onAnimationEnd: _animator => {
+                        if (this._completionBlock) {
+                            this._completionBlock(true);
+                        }
+                    },
+                    onAnimationRepeat: _animator => {
+                        // noop
+                    },
+                    onAnimationStart: _animator => {
+                        // noop
+                    }
+                });
+                if (this.nativeView) {
+                    this.nativeView.addAnimatorListener(this.animatorListener);
+                }
+            }
+        } else if (this.animatorListener) {
+            if (this.nativeView) {
+                this.nativeView.removeAnimatorListener(this.animatorListener);
+            }
+            this.animatorListener = null;
+        }
+    }
+    public initNativeView(): void {
+        if (this.animatorListener) {
+            this.nativeView.addAnimatorListener(this.animatorListener);
+        }
         // if (this.src) {
         //   this[srcProperty.setNative](this.src);
         // }
@@ -92,13 +99,14 @@ export class LottieView extends LottieViewBase {
     }
 
     public disposeNativeView(): void {
-        this.nativeView.removeAllAnimatorListeners();
-
+        if (this.animatorListener) {
+            this.nativeView.removeAnimatorListener(this.animatorListener);
+        }
         super.disposeNativeView();
     }
 
-    [srcProperty.setNative](src: string) {
-
+    @profile
+    setSrc(src: string) {
         if (src.startsWith('{')) {
             this.nativeView.setAnimationFromJson(src);
         } else {
@@ -120,6 +128,10 @@ export class LottieView extends LottieViewBase {
         }
     }
 
+    [srcProperty.setNative](src: string) {
+        this.setSrc(src);
+    }
+
     [loopProperty.setNative](loop: boolean) {
         this.nativeView.loop(loop);
     }
@@ -135,10 +147,10 @@ export class LottieView extends LottieViewBase {
         } else {
             // disable check for now as isAnimating always returns false
             // if (this.isAnimating()) {
-                this.cancelAnimation();
-                if (this.progress) {
-                    this.nativeView.setProgress(this.progress);
-                }
+            this.cancelAnimation();
+            if (this.progress) {
+                this.nativeView.setProgress(this.progress);
+            }
             // }
         }
     }
@@ -155,6 +167,16 @@ export class LottieView extends LottieViewBase {
             keyPath.forEach((key, index) => {
                 nativeKeyPath[index] = new java.lang.String(key);
             });
+            if (!LottieProperty) {
+                LottieProperty = com.airbnb.lottie.LottieProperty;
+            }
+            if (!LottieValueCallback) {
+                LottieValueCallback = com.airbnb.lottie.value.LottieValueCallback;
+            }
+
+            if (!LottieKeyPath) {
+                LottieKeyPath = com.airbnb.lottie.model.KeyPath;
+            }
             this.nativeView.addValueCallback(new LottieKeyPath(nativeKeyPath), LottieProperty.COLOR, new LottieValueCallback(new java.lang.Integer(value.android)));
         }
     }
@@ -172,6 +194,16 @@ export class LottieView extends LottieViewBase {
                 nativeKeyPath[index] = new java.lang.String(key);
             });
             value = clamp(value);
+            if (!LottieProperty) {
+                LottieProperty = com.airbnb.lottie.LottieProperty;
+            }
+            if (!LottieValueCallback) {
+                LottieValueCallback = com.airbnb.lottie.value.LottieValueCallback;
+            }
+
+            if (!LottieKeyPath) {
+                LottieKeyPath = com.airbnb.lottie.model.KeyPath;
+            }
             this.nativeView.addValueCallback(new LottieKeyPath(nativeKeyPath), LottieProperty.OPACITY, new LottieValueCallback(new java.lang.Integer(value * 100)));
         }
     }
