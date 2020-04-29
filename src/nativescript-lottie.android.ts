@@ -107,7 +107,9 @@ export class LottieView extends LottieViewBase {
 
     @profile
     setSrc(src: string) {
-        if (src.startsWith('{')) {
+        if (!src)  {
+            this.nativeView.setAnimation(null);
+        } else if (src.startsWith('{')) {
             this.nativeView.setAnimationFromJson(src);
         } else {
             // allows passing the lottie json asset without the file extension

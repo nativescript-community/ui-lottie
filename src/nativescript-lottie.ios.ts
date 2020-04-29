@@ -31,7 +31,9 @@ export class LottieView extends LottieViewBase {
     }
 
     [srcProperty.setNative](src: string) {
-        if (src.startsWith('{')) {
+        if (!src)  {
+            this.nativeView.compatibleAnimation = null;
+        } else if (src.startsWith('{')) {
             this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithJson(src);
         } else {
             if (src.indexOf('~/') === 0) {
