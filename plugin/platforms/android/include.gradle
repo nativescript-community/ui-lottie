@@ -4,5 +4,6 @@ dependencies {
    implementation("androidx.appcompat:appcompat:$androidxVersion") {
     exclude group: 'androidx.fragment'
   }
-   implementation 'com.airbnb.android:lottie:3.+'
+	def lottieVersion =  project.hasProperty("lottieVersion") ? project.lottieVersion : "3.+"
+   implementation "com.airbnb.android:lottie:$lottieVersion"
 }
