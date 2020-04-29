@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.8](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.7...v4.0.8) (2020-04-29)
+
+
+### Bug Fixes
+
+* clear animation on null src ([1d908e9](https://github.com/bradmartin/nativescript-lottie/commit/1d908e9e07f3ba1ad472a67017a11b6a8d6fa7d5))
+
+
+
+
+
 ## [4.0.7](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.6...v4.0.7) (2020-02-26)
 
 
