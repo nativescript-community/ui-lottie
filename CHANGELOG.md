@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.9](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.8...v4.0.9) (2020-05-01)
+
+
+### Bug Fixes
+
+* src not being loaded ([dfd1c17](https://github.com/bradmartin/nativescript-lottie/commit/dfd1c175305dccdeb5e67674370f10fdc016229a))
+
+
+
+
+
 ## [4.0.8](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.7...v4.0.8) (2020-04-29)
 
 
