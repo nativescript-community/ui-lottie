@@ -12,6 +12,7 @@ import { knownFolders, path } from '@nativescript/core/file-system';
 import { clamp } from './utils';
 import { File } from '@nativescript/core/file-system';
 import { profile } from '@nativescript/core/profiling';
+const appPath = knownFolders.currentApp().path;
 
 let LottieProperty;
 let LottieKeyPath;
@@ -107,22 +108,23 @@ export class LottieView extends LottieViewBase {
 
     @profile
     setSrc(src: string) {
-        if (!src)  {
+        if (!src) {
             this.nativeView.setAnimation(null);
-        } else if (src.startsWith('{')) {
+        } else if (src[0] === '{') {
             this.nativeView.setAnimationFromJson(src);
+        } else if (src.startsWith(RESOURCE_PREFIX)) {
+            const resName = src.replace(RESOURCE_PREFIX, '');
+            this.nativeView.setAnimation(resName);
         } else {
-            // allows passing the lottie json asset without the file extension
-            // github issue: https://github.com/bradmartin/nativescript-lottie/issues/37
-            src = /.(json|zip)$/.test(src) ? src : `${src}.json`;
-
-            if (src.indexOf('~/') === 0) {
-                const file = File.fromPath(`${path.join(knownFolders.currentApp().path, src.replace('~/', ''))}`);
-                this.nativeView.setAnimationFromJson(file.readTextSync());
-            } else {
-                const resName = src.replace(RESOURCE_PREFIX, '');
-                this.nativeView.setAnimation(resName);
+            if (src[0] === '~') {
+                src = `${path.join(appPath, src.substring(2))}`;
             }
+            if (!/.(json|zip)$/.test(src)) {
+                src += '.json';
+            }
+
+            const file = File.fromPath(`${path.join(knownFolders.currentApp().path, src.replace('~/', ''))}`);
+            this.nativeView.setAnimationFromJson(file.readTextSync());
         }
 
         if (this.autoPlay) {
