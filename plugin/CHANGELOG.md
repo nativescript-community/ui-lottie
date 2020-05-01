@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.9](https://github.com/farfromrefug/nativescript-lottie/compare/v4.0.8...v4.0.9) (2020-05-01)
+
+**Note:** Version bump only for package nativescript-akylas-lottie
+
+
+
+
+
 ## [4.0.8](https://github.com/farfromrefug/nativescript-lottie/compare/v4.0.7...v4.0.8) (2020-04-29)
 
 **Note:** Version bump only for package nativescript-akylas-lottie
