@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.10](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.9...v4.0.10) (2020-05-01)
+
+
+### Bug Fixes
+
+* **android:** better loading ([1f49748](https://github.com/bradmartin/nativescript-lottie/commit/1f497489588a81d9592d2d1a163e5cfecd617ad3))
+
+
+
+
+
 ## [4.0.9](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.8...v4.0.9) (2020-05-01)
 
 
