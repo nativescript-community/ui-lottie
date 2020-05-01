@@ -19,6 +19,18 @@ let LottieKeyPath;
 let LottieValueCallback;
 let LottieAnimationView;
 
+const cache = new Map();
+function loadLottieJSON(iconSrc) {
+    if (!cache.has(iconSrc)) {
+        const file = File.fromPath(iconSrc);
+        return file.readText().then(r=>{
+            cache.set(iconSrc, r);
+            return r;
+        });
+    }
+    return Promise.resolve(cache.get(iconSrc));
+}
+
 export const RenderMode = {
     get AUTOMATIC() {
         return com.airbnb.lottie.RenderMode.AUTOMATIC;
@@ -123,8 +135,9 @@ export class LottieView extends LottieViewBase {
                 src += '.json';
             }
 
-            const file = File.fromPath(`${path.join(knownFolders.currentApp().path, src.replace('~/', ''))}`);
-            this.nativeView.setAnimationFromJson(file.readTextSync());
+            loadLottieJSON(src).then(r => {
+                this.nativeView.setAnimationFromJson(r);
+            });
         }
 
         if (this.autoPlay) {
