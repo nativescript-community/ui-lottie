@@ -11,6 +11,8 @@ import { RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
 import { knownFolders, path } from '@nativescript/core/file-system';
 import { clamp } from './utils';
 
+const appPath = knownFolders.currentApp().path;
+
 export class LottieView extends LottieViewBase {
     // private _contentMode: UIViewContentMode;
     nativeView: CompatibleAnimationView;
@@ -31,21 +33,21 @@ export class LottieView extends LottieViewBase {
     }
 
     [srcProperty.setNative](src: string) {
-        if (!src)  {
+        if (!src) {
             this.nativeView.compatibleAnimation = null;
-        } else if (src.startsWith('{')) {
+        } else if (src[0] === '{') {
             this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithJson(src);
+        } else if (src.startsWith(RESOURCE_PREFIX)) {
+            const resName = src.replace(RESOURCE_PREFIX, '');
+            this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(resName.replace('.json', ''), NSBundle.mainBundle);
         } else {
-            if (src.indexOf('~/') === 0) {
-                let filePath = `${path.join(knownFolders.currentApp().path, src.replace('~/', ''))}`;
-                if (!/.(json|zip)$/.test(filePath)) {
-                    filePath += '.json';
-                }
-                this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithFilepath(filePath);
-            } else {
-                const resName = src.replace(RESOURCE_PREFIX, '');
-                this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(resName.replace('.json', ''), NSBundle.mainBundle);
+            if (src[0] === '~') {
+                src = `${path.join(appPath, src.substring(2))}`;
             }
+            if (!/.(json|zip)$/.test(src)) {
+                src += '.json';
+            }
+            this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithFilepath(src);
         }
     }
 
@@ -131,7 +133,6 @@ export class LottieView extends LottieViewBase {
     public isAnimating(): boolean {
         return this.nativeView ? this.nativeView.isAnimationPlaying : false;
     }
-
 
     // public get progress(): number | undefined {
     //     return this.nativeView ? this.nativeView.currentProgress : undefined;
