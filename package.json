@@ -60,7 +60,7 @@
     "tsc": "cpy '**/*.d.ts' '../plugin' --parents --cwd=src && tsc -skipLibCheck -d",
     "clean": "rimraf ./plugin/**/*.d.ts ./plugin/**/*.js ./plugin/**/*.js.map plugin/node_modules plugin/package-lock.json",
     "build.plugin": "cp README.md plugin/ && rm -f .tsbuildinfo && npm run tsc && npm run build.plugin.esm && node ./build.esm.js",
-    "build.plugin.esm": "tsc -skipLibCheck --target es2015 --removeComments --outDir build/esm",
+    "build.plugin.esm": "tsc -skipLibCheck --target es2015 --module esnext --removeComments --outDir build/esm",
     "build.android": "bash src-native/android/build.sh",
     "build.ios": "bash src-native/ios/build.sh",
     "build.native": "npm run build.android && npm run build.ios",
