@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.11](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.10...v4.0.11) (2020-05-21)
+
+
+### Bug Fixes
+
+* full esm support ([73fdff0](https://github.com/bradmartin/nativescript-lottie/commit/73fdff026394911436bd71b0b8f237a5a4edbfba))
+
+
+
+
+
 ## [4.0.10](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.9...v4.0.10) (2020-05-01)
 
 
