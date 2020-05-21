@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.12](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.11...v4.0.12) (2020-05-21)
+
+
+### Bug Fixes
+
+* esm using import for tree shaking ([a9c6a5d](https://github.com/bradmartin/nativescript-lottie/commit/a9c6a5dbc766213be2fc459edbdd2c3ecf8696cf))
+
+
+
+
+
 ## [4.0.11](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.10...v4.0.11) (2020-05-21)
 
 
