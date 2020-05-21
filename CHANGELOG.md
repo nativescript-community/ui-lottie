@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.13](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.12...v4.0.13) (2020-05-21)
+
+
+### Bug Fixes
+
+* sideEffects for tree shacking ([d66adf8](https://github.com/bradmartin/nativescript-lottie/commit/d66adf866f805baf25e8b3060976ed74cdd5ad3a))
+
+
+
+
+
 ## [4.0.12](https://github.com/bradmartin/nativescript-lottie/compare/v4.0.11...v4.0.12) (2020-05-21)
 
 
