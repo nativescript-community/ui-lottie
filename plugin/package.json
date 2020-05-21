@@ -2,7 +2,8 @@
   "name": "nativescript-akylas-lottie",
   "version": "4.0.10",
   "description": "NativeScript plugin to expose AirBnB Lottie library",
-  "main": "nativescript-lottie",
+  "main": "lottie",
+  "module": "lottie.mjs",
   "typings": "index.d.ts",
   "nativescript": {
     "platforms": {

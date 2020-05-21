@@ -6,7 +6,7 @@
  **********************************************************************************/
 
 import { Color, View } from '@nativescript/core/ui/core/view';
-import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty, progressProperty } from './nativescript-lottie.common';
+import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty, progressProperty } from './lottie.common';
 import { RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
 import { knownFolders, path } from '@nativescript/core/file-system';
 import { clamp } from './utils';
