@@ -4,6 +4,7 @@
   "description": "NativeScript plugin to expose AirBnB Lottie library",
   "main": "lottie",
   "module": "lottie.mjs",
+    "sideEffects": false,
   "typings": "index.d.ts",
   "nativescript": {
     "platforms": {
