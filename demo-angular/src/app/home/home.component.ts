@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { registerElement } from 'nativescript-angular';
 import { LottieView } from 'nativescript-lottie';
-import { Color } from '@nativescript/core/color/color';
+import { Color } from '@nativescript/core/color';
 
 registerElement('LottieView', () => LottieView);
 
