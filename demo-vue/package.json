@@ -3,27 +3,36 @@
     "id": "org.nativescript.demovue",
     "tns-android": {
       "version": "6.0.0"
+    },
+    "tns-ios": {
+      "version": "6.5.0-beta.2-v8-2020-02-05-153040-01"
     }
   },
   "description": "NativeScript Application",
   "license": "SEE LICENSE IN <your-license-filename>",
   "repository": "<fill-your-repository-here>",
   "dependencies": {
-    "nativescript-lottie": "file:../src",
-    "nativescript-theme-core": "~1.0.4",
-    "nativescript-vue": "2.3.0",
-    "tns-core-modules": "6.0.1"
+    "@nativescript/theme": "2.3.0",
+    "@nativescript/core": "6.4.0",
+    "nativescript-akylas-lottie": "file:../plugin",
+    "nativescript-vue": "2.4.0"
   },
   "devDependencies": {
-    "@babel/core": "~7.1.0",
-    "@babel/preset-env": "~7.1.0",
-    "babel-loader": "~8.0.0",
-    "nativescript-dev-webpack": "1.0.1",
-    "nativescript-vue-template-compiler": "2.3.0",
-    "node-sass": "4.12.0",
-    "vue-loader": "~15.4.0",
-    "tslint": "~5.13.1",
-    "typescript": "3.4.5"
+    "@babel/core": "~7.8.4",
+    "@babel/preset-env": "~7.8.4",
+    "ansi-styles": "^4.2.1",
+    "babel-loader": "~8.0.6",
+    "chalk": "^2.3.0",
+    "del": "5.1.0",
+    "nativescript-akylas-webpack-template": "^1.0.15",
+    "nativescript-dev-webpack": "1.4.1",
+    "nativescript-vue-template-compiler": "2.4.0",
+    "node-sass": "4.13.1",
+    "tslint": "~6.0.0",
+    "typescript": "3.7.5",
+    "vue-loader": "~15.8.3",
+    "webpack": "4.41.5",
+    "webpack-cli": "3.3.10"
   },
   "scripts": {
     "build.plugin": "cd ../src && npm run build",

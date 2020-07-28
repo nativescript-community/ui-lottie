@@ -1,6 +1,0 @@
-dependencies {
-   implementation("androidx.appcompat:appcompat:1.1.0-alpha05") {
-    exclude group: 'androidx.fragment'
-  }
-   implementation 'com.airbnb.android:lottie:3.0.7'
-}

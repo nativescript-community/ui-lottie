@@ -1,6 +1,6 @@
-import { Observable } from 'tns-core-modules/data/observable';
+import { Observable } from '@nativescript/core/data/observable';
 import { LottieView } from 'nativescript-lottie';
-import { Color } from 'tns-core-modules/color/color';
+import { Color } from '@nativescript/core/color';
 
 const ANDROID_WAVE_KEYPATHS = [
   ['Shirt', 'Group 5', 'Fill 1'],
