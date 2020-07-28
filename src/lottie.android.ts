@@ -5,12 +5,12 @@
  * Version 1.0.0                                           bradwaynemartin@gmail.com
  **********************************************************************************/
 
-import { Color, View } from '@nativescript/core/ui/core/view';
+import { View } from '@nativescript/core/ui/core/view';
+import { Color } from '@nativescript/core/color';
 import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty, renderModeProperty, progressProperty } from './lottie.common';
 import { RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
-import { knownFolders, path } from '@nativescript/core/file-system';
+import { File, knownFolders, path } from '@nativescript/core/file-system';
 import { clamp } from './utils';
-import { File } from '@nativescript/core/file-system';
 import { profile } from '@nativescript/core/profiling';
 const appPath = knownFolders.currentApp().path;
 
@@ -23,7 +23,7 @@ const cache = new Map();
 function loadLottieJSON(iconSrc) {
     if (!cache.has(iconSrc)) {
         const file = File.fromPath(iconSrc);
-        return file.readText().then(r=>{
+        return file.readText().then(r => {
             cache.set(iconSrc, r);
             return r;
         });

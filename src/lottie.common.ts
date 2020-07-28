@@ -6,7 +6,8 @@
  **********************************************************************************/
 
 import { Property } from '@nativescript/core/ui/core/properties';
-import { booleanConverter, View } from '@nativescript/core/ui/core/view';
+import { View } from '@nativescript/core/ui/core/view';
+import { booleanConverter } from '@nativescript/core/ui/core/view-base';
 
 export class LottieViewBase extends View {
     public src: string;

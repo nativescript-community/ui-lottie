@@ -5,7 +5,9 @@
  * Version 1.0.0                                           walkerrunpdx@gmail.com
  **********************************************************************************/
 
-import { Color, View } from '@nativescript/core/ui/core/view';
+
+import { View } from '@nativescript/core/ui/core/view';
+import { Color } from '@nativescript/core/color';
 import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty, progressProperty } from './lottie.common';
 import { RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
 import { knownFolders, path } from '@nativescript/core/file-system';
