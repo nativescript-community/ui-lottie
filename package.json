@@ -93,8 +93,7 @@
   "dependencies": {},
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run tslint"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
