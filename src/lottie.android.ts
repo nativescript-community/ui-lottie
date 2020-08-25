@@ -5,13 +5,9 @@
  * Version 1.0.0                                           bradwaynemartin@gmail.com
  **********************************************************************************/
 
-import { View } from '@nativescript/core/ui/core/view';
-import { Color } from '@nativescript/core/color';
+import { View, Color, Utils, File, knownFolders, path, profile } from '@nativescript/core';
 import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty, renderModeProperty, progressProperty } from './lottie.common';
-import { RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
-import { File, knownFolders, path } from '@nativescript/core/file-system';
 import { clamp } from './utils';
-import { profile } from '@nativescript/core/profiling';
 const appPath = knownFolders.currentApp().path;
 
 let LottieProperty;
@@ -124,8 +120,8 @@ export class LottieView extends LottieViewBase {
             this.nativeView.setAnimation(null);
         } else if (src[0] === '{') {
             this.nativeView.setAnimationFromJson(src);
-        } else if (src.startsWith(RESOURCE_PREFIX)) {
-            const resName = src.replace(RESOURCE_PREFIX, '');
+        } else if (src.startsWith(Utils.RESOURCE_PREFIX)) {
+            const resName = src.replace(Utils.RESOURCE_PREFIX, '');
             this.nativeView.setAnimation(resName);
         } else {
             if (src[0] === '~') {

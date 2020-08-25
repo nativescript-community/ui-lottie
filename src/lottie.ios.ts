@@ -6,11 +6,8 @@
  **********************************************************************************/
 
 
-import { View } from '@nativescript/core/ui/core/view';
-import { Color } from '@nativescript/core/color';
+import { View, Color, Utils, knownFolders, path } from '@nativescript/core';
 import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty, progressProperty } from './lottie.common';
-import { RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
-import { knownFolders, path } from '@nativescript/core/file-system';
 import { clamp } from './utils';
 
 const appPath = knownFolders.currentApp().path;
@@ -39,8 +36,8 @@ export class LottieView extends LottieViewBase {
             this.nativeView.compatibleAnimation = null;
         } else if (src[0] === '{') {
             this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithJson(src);
-        } else if (src.startsWith(RESOURCE_PREFIX)) {
-            const resName = src.replace(RESOURCE_PREFIX, '');
+        } else if (src.startsWith(Utils.RESOURCE_PREFIX)) {
+            const resName = src.replace(Utils.RESOURCE_PREFIX, '');
             this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(resName.replace('.json', ''), NSBundle.mainBundle);
         } else {
             if (src[0] === '~') {
