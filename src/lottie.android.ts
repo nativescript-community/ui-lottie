@@ -7,7 +7,14 @@
 
 import { View } from '@nativescript/core/ui/core/view';
 import { Color } from '@nativescript/core/color';
-import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty, renderModeProperty, progressProperty } from './lottie.common';
+import {
+    LottieViewBase,
+    autoPlayProperty,
+    loopProperty,
+    progressProperty,
+    renderModeProperty,
+    srcProperty,
+} from './lottie.common';
 import { RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
 import { File, knownFolders, path } from '@nativescript/core/file-system';
 import { clamp } from './utils';
@@ -23,7 +30,7 @@ const cache = new Map();
 function loadLottieJSON(iconSrc) {
     if (!cache.has(iconSrc)) {
         const file = File.fromPath(iconSrc);
-        return file.readText().then(r => {
+        return file.readText().then((r) => {
             cache.set(iconSrc, r);
             return r;
         });
@@ -40,7 +47,7 @@ export const RenderMode = {
     },
     get SOFTWARE() {
         return com.airbnb.lottie.RenderMode.SOFTWARE;
-    }
+    },
 };
 
 export class LottieView extends LottieViewBase {
@@ -66,22 +73,22 @@ export class LottieView extends LottieViewBase {
         if (block) {
             if (!this.animatorListener) {
                 this.animatorListener = new android.animation.Animator.AnimatorListener({
-                    onAnimationCancel: _animator => {
+                    onAnimationCancel: (_animator) => {
                         if (this._completionBlock) {
                             this._completionBlock(false);
                         }
                     },
-                    onAnimationEnd: _animator => {
+                    onAnimationEnd: (_animator) => {
                         if (this._completionBlock) {
                             this._completionBlock(true);
                         }
                     },
-                    onAnimationRepeat: _animator => {
+                    onAnimationRepeat: (_animator) => {
                         // noop
                     },
-                    onAnimationStart: _animator => {
+                    onAnimationStart: (_animator) => {
                         // noop
-                    }
+                    },
                 });
                 if (this.nativeView) {
                     this.nativeView.addAnimatorListener(this.animatorListener);
@@ -135,7 +142,7 @@ export class LottieView extends LottieViewBase {
                 src += '.json';
             }
 
-            loadLottieJSON(src).then(r => {
+            loadLottieJSON(src).then((r) => {
                 this.nativeView.setAnimationFromJson(r);
             });
         }
@@ -194,7 +201,11 @@ export class LottieView extends LottieViewBase {
             if (!LottieKeyPath) {
                 LottieKeyPath = com.airbnb.lottie.model.KeyPath;
             }
-            this.nativeView.addValueCallback(new LottieKeyPath(nativeKeyPath), LottieProperty.COLOR, new LottieValueCallback(new java.lang.Integer(value.android)));
+            this.nativeView.addValueCallback(
+                new LottieKeyPath(nativeKeyPath),
+                LottieProperty.COLOR,
+                new LottieValueCallback(new java.lang.Integer(value.android))
+            );
         }
     }
 
@@ -221,7 +232,11 @@ export class LottieView extends LottieViewBase {
             if (!LottieKeyPath) {
                 LottieKeyPath = com.airbnb.lottie.model.KeyPath;
             }
-            this.nativeView.addValueCallback(new LottieKeyPath(nativeKeyPath), LottieProperty.OPACITY, new LottieValueCallback(new java.lang.Integer(value * 100)));
+            this.nativeView.addValueCallback(
+                new LottieKeyPath(nativeKeyPath),
+                LottieProperty.OPACITY,
+                new LottieValueCallback(new java.lang.Integer(value * 100))
+            );
         }
     }
 
