@@ -99,17 +99,5 @@
   },
   "dependencies": {
     "ts-node": "^9.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run tslint"
-    }
-  },
-  "lint-staged": {
-    "**/*.{js, css, ts, json, scss, html, xml, md}": [
-      "prettier --write",
-      "git add"
-    ]
   }
 }
