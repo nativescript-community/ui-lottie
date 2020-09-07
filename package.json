@@ -1,5 +1,5 @@
 {
-  "name": "nativescript-lottie",
+  "name": "@akylas/nativescript-lottie",
   "version": "4.0.1",
   "description": "NativeScript plugin to expose AirBnB Lottie library",
   "main": "nativescript-lottie",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bradmartin/nativescript-lottie.git"
+    "url": "https://github.com/farfromrefug/nativescript-lottie.git"
   },
   "keywords": [
     "NativeScript",
@@ -52,11 +52,12 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bradmartin/nativescript-lottie/issues"
+    "url": "https://github.com/farfromrefug/nativescript-lottie/issues"
   },
-  "homepage": "https://github.com/bradmartin/nativescript-lottie",
+  "homepage": "https://github.com/farfromrefug/nativescript-lottie",
   "readmeFilename": "README.md",
   "scripts": {
+    "setup": "ts-patch install",
     "tsc": "cpy '**/*.d.ts' '../plugin' --parents --cwd=src && tsc -skipLibCheck -d",
     "clean": "rimraf ./plugin/**/*.d.ts ./plugin/**/*.js ./plugin/**/*.js.map plugin/node_modules plugin/package-lock.json",
     "build.plugin": "cp README.md plugin/ && rm -f .tsbuildinfo && npm run tsc",
@@ -64,7 +65,7 @@
     "build.ios": "bash src-native/ios/build.sh",
     "build.native": "npm run build.android && npm run build.ios",
     "build": "npm run build.plugin",
-    "publish": "npm run build && lerna publish",
+    "publish": "npm run setup && npm run build && lerna publish",
     "demo.ios": "npm i && npm run tsc && cd demo && tns run ios",
     "demo.android": "npm i && npm run tsc && cd demo && tns run android",
     "clean.demo": "rimraf demo/hooks demo/node_modules demo/platforms",
@@ -77,22 +78,28 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "@nativescript/core": "^6.4.0",
-    "cpy-cli": "^3.1.0",
-    "tns-platform-declarations": "^6.4.0",
-    "lint-staged": "^10.0.7",
-    "husky": "^4.2.3",
-    "lerna": "^3.20.2",
-    "prettier": "~1.19.1",
-    "typescript": "~3.7.5",
-    "tslint": "6.0.0",
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
+    "@nativescript/core": "7.0.0",
+    "@nativescript/types-android": "7.0.2",
+    "@nativescript/types-ios": "7.0.1",
+    "@nativescript/webpack": "~3.0.2",
+    "@types/node": "^10.12.21",
+    "@typescript-eslint/eslint-plugin": "4.0.1",
+    "@typescript-eslint/parser": "4.0.1",
+    "cpy-cli": "3.1.1",
+    "eslint": "7.8.1",
+    "husky": "^4.3.0",
+    "lerna": "^3.22.1",
+    "npm-watch": "^0.7.0",
     "prompt": "^1.0.0",
-    "recursive-copy": "^2.0.10",
     "rimraf": "^3.0.2",
-    "through2": "^3.0.1",
-    "semver": "^7.1.3"
+    "ts-patch": "1.3.0",
+    "typescript": "~3.9.7"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ts-node": "^9.0.0"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",

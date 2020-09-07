@@ -17,7 +17,7 @@
   },
   "keywords": [
     "NativeScript",
-    "nativescript-lottie",
+    "@akylas/nativescript-lottie",
     "Lottie",
     "Android",
     "Animation",

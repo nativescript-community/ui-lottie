@@ -1,5 +1,5 @@
 import { Observable } from '@nativescript/core/data/observable';
-import { LottieView } from 'nativescript-lottie';
+import { LottieView } from '@akylas/nativescript-lottie';
 import { Color } from '@nativescript/core/color';
 
 const ANDROID_WAVE_KEYPATHS = [

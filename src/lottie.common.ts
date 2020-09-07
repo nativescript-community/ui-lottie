@@ -18,30 +18,30 @@ export class LottieViewBase extends View {
 }
 
 export const srcProperty = new Property<LottieViewBase, string>({
-    name: 'src'
+    name: 'src',
 });
 srcProperty.register(LottieViewBase);
 
 export const loopProperty = new Property<LottieViewBase, boolean>({
     name: 'loop',
     defaultValue: false,
-    valueConverter: booleanConverter
+    valueConverter: booleanConverter,
 });
 loopProperty.register(LottieViewBase);
 
 export const autoPlayProperty = new Property<LottieViewBase, boolean>({
     name: 'autoPlay',
     defaultValue: false,
-    valueConverter: booleanConverter
+    valueConverter: booleanConverter,
 });
 autoPlayProperty.register(LottieViewBase);
 
 export const renderModeProperty = new Property<LottieViewBase, number>({
-    name: 'renderMode'
+    name: 'renderMode',
 });
 renderModeProperty.register(LottieViewBase);
 
 export const progressProperty = new Property<LottieViewBase, number>({
-    name: 'progress'
+    name: 'progress',
 });
 progressProperty.register(LottieViewBase);

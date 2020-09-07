@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
+        "target": "es2017",
+        "module": "esnext",
         "moduleResolution": "node",
-        "removeComments": true,
+        "removeComments": false,
         "noLib": false,
         "emitDecoratorMetadata": false,
         "experimentalDecorators": true,
@@ -24,10 +24,13 @@
         "paths": {
             "tns-core-modules": ["./node_modules/@nativescript/core"],
             "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
-            "nativescript-lottie": ["src/lottie"],
-            "nativescript-lottie/*": ["src/*"],
+            "@akylas/nativescript-lottie": ["src/lottie"],
+            "@akylas/nativescript-lottie/*": ["src/*"],
             "*": ["node_modules/*"]
-        }
+        },
+        "plugins": [
+          { "transform": "@nativescript/webpack/transformers/ns-transform-native-classes", "type": "raw" }
+        ]
     },
     "include": ["src/**/*", "./references.d.ts"],
     "exclude": ["node_modules", "platforms"],

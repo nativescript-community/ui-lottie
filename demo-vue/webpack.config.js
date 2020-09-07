@@ -3,8 +3,8 @@ const { resolve } = require('path');
 
 module.exports = env => {
     const platform = env && ((env.android && 'android') || (env.ios && 'ios'));
-    let appComponents = [];
- 
+    const appComponents = [];
+
     const projectRoot = __dirname;
     const {
         development = false,
@@ -30,13 +30,13 @@ module.exports = env => {
         const srcFullPath = resolve(projectRoot, '..', 'src');
         aliases = Object.assign(aliases, {
             '#': srcFullPath,
-            'nativescript-lottie$': '#/nativescript-lottie.' + platform
+            '@akylas/nativescript-lottie$': '#/@akylas/nativescript-lottie.' + platform
         });
     }
 
     const config = WebpackTemplate(env, {
-        projectRoot: projectRoot,
-        appComponents: appComponents,
+        projectRoot,
+        appComponents,
         snapshotPlugin: {
             useLibs: true,
             targetArchs: ['arm', 'arm64', 'ia32']

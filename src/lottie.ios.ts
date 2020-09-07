@@ -5,10 +5,9 @@
  * Version 1.0.0                                           walkerrunpdx@gmail.com
  **********************************************************************************/
 
-
 import { View } from '@nativescript/core/ui/core/view';
 import { Color } from '@nativescript/core/color';
-import { autoPlayProperty, loopProperty, LottieViewBase, srcProperty, progressProperty } from './lottie.common';
+import { LottieViewBase, autoPlayProperty, loopProperty, progressProperty, srcProperty } from './lottie.common';
 import { RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
 import { knownFolders, path } from '@nativescript/core/file-system';
 import { clamp } from './utils';
@@ -41,7 +40,10 @@ export class LottieView extends LottieViewBase {
             this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithJson(src);
         } else if (src.startsWith(RESOURCE_PREFIX)) {
             const resName = src.replace(RESOURCE_PREFIX, '');
-            this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(resName.replace('.json', ''), NSBundle.mainBundle);
+            this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(
+                resName.replace('.json', ''),
+                NSBundle.mainBundle
+            );
         } else {
             if (src[0] === '~') {
                 src = `${path.join(appPath, src.substring(2))}`;
@@ -75,7 +77,10 @@ export class LottieView extends LottieViewBase {
                 keyPath.push('Color'); // ios expects the property as the last item in the keyPath
             }
 
-            this.nativeView.setColorValueForKeypath(value.ios, CompatibleAnimationKeypath.alloc().initWithKeypath(keyPath.join('.')));
+            this.nativeView.setColorValueForKeypath(
+                value.ios,
+                CompatibleAnimationKeypath.alloc().initWithKeypath(keyPath.join('.'))
+            );
         }
     }
 
