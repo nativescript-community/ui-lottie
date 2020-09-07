@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/farfromrefug/nativescript-lottie/compare/v4.0.14...v4.1.0) (2020-09-07)
+
+
+### Features
+
+* N 7 and new plugin name ([33c0f1c](https://github.com/farfromrefug/nativescript-lottie/commit/33c0f1cea3737e782f26d96cade311177e9b5d4b))
+
+
+
+
+
 ## [4.0.14](https://github.com/farfromrefug/nativescript-lottie/compare/v4.0.13...v4.0.14) (2020-05-21)
 
 **Note:** Version bump only for package nativescript-akylas-lottie
