@@ -1,42 +1,41 @@
 // Import the theme’s variables. If you’re using a color scheme
 // other than “light”, switch the path to the alternative scheme,
 // for example '~nativescript-theme-core/scss/dark'.
-@import "~@nativescript/theme/scss/variables";
+@import '~@nativescript/theme/scss/variables';
 
 // Custom colors
-$background-dark: #F8F8F8 !default;
-$background-light: #FFFFFF !default;
+$background-dark: #f8f8f8 !default;
+$background-light: #ffffff !default;
 
 $blue-dark: #022734 !default;
-$blue-light: #02556E !default;
+$blue-light: #02556e !default;
 $blue-50: rgba($blue-dark, 0.5) !default;
 $blue-20: rgba($blue-dark, 0.2) !default;
 $blue-10: rgba($blue-dark, 0.1) !default;
 
-$accent-dark: #3A53FF !default;
-$accent-light: #4781FE !default;
+$accent-dark: #3a53ff !default;
+$accent-light: #4781fe !default;
 
-$success-dark: #06CE6A !default;
-$success-light: #00E676 !default;
+$success-dark: #06ce6a !default;
+$success-light: #00e676 !default;
 
 $warning-dark: #f39c11 !default;
-$warning-light: #F2C112 !default;
+$warning-light: #f2c112 !default;
 
-$error-dark: #D84039 !default;
-$error-light: #ED473F !default;
+$error-dark: #d84039 !default;
+$error-light: #ed473f !default;
 
-$midnight-dark: #0F336D !default;
-$midnight-light: #14418B !default;
+$midnight-dark: #0f336d !default;
+$midnight-light: #14418b !default;
 
 $night-dark: #023141 !default;
-$night-light: #01526C !default;
+$night-light: #01526c !default;
 
 // Sizes
 $base-font-size: 11;
 
 $border-width: 1;
 $border-radius: 3;
-
 
 /**
  * Theme variables overrides
@@ -51,8 +50,8 @@ $accent: $accent-dark;
 $error: $error-light;
 
 // SideDrawer
-$item-color-android : #737373;
-$item-active-background: #F8F8F8;
+$item-color-android: #737373;
+$item-active-background: #f8f8f8;
 $item-active-color: $accent;
 $item-active-icon-color: $item-active-color;
 $item-color-ios: $blue-dark;
@@ -60,7 +59,7 @@ $item-color-android: $blue-dark;
 
 $side-drawer-header-background: #fafafa;
 $side-drawer-header-brand: #737373;
-$side-drawer-background: #FFFFFF;
+$side-drawer-background: #ffffff;
 
 // ActionBar
 $ab-background: $accent;

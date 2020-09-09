@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { registerElement } from 'nativescript-angular';
+import { registerElement } from '@nativescript/angular';
+import { Color } from '@nativescript/core';
 import { LottieView } from 'nativescript-lottie';
-import { Color } from '@nativescript/core/color';
 
 registerElement('LottieView', () => LottieView);
 
@@ -19,12 +19,12 @@ const ANDROID_WAVE_KEYPATHS = [
 export class HomeComponent {
   public animationIndex: number = 0;
   public animations: string[] = [
-    'Mobilo/B.json',
-    'Mobilo/A.json',
-    'Mobilo/D.json',
-    'Mobilo/N.json',
-    'Mobilo/R.json',
-    'Mobilo/S.json'
+    'res://Mobilo/B.json',
+    'res://Mobilo/A.json',
+    'res://Mobilo/D.json',
+    'res://Mobilo/N.json',
+    'res://Mobilo/R.json',
+    'res://Mobilo/S.json'
   ];
   public thirdLottieProgressTo: string = 'Try it!';
 
@@ -59,20 +59,20 @@ export class HomeComponent {
     this._lottieViewTwo = event.object as LottieView;
     this._lottieViewTwo.autoPlay = true;
     this._lottieViewTwo.loop = true;
-    this._lottieViewTwo.src = 'AndroidWave.json';
+    this._lottieViewTwo.src = 'res://AndroidWave.json';
   }
 
   public thirdLottieLoaded(event) {
     this._lottieViewThree = event.object as LottieView;
     this._lottieViewThree.autoPlay = true;
     this._lottieViewThree.loop = false;
-    this._lottieViewThree.src = 'Mobilo/N.json';
+    this._lottieViewThree.src = 'res://Mobilo/N.json';
   }
 
   public fourthLottieLoaded(event) {
     this._lottieViewFour = event.object as LottieView;
     this._lottieViewFour.autoPlay = false;
-    this._lottieViewFour.src = 'doughnut.json';
+    this._lottieViewFour.src = 'res://doughnut.json';
 
     this.setFourthLottieToLoadingState();
   }

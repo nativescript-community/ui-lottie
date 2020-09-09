@@ -1,19 +1,16 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "skipLibCheck": true,
-    "noImplicitAny": false,
-    "removeComments": true,
-    "preserveConstEnums": true,
-    "declaration": false,
-    "noLib": false,
-    "noEmitHelpers": true,
+    "module": "esnext",
+    "target": "es2017",
+    "moduleResolution": "node",
     "experimentalDecorators": true,
-    "lib": ["es6", "dom"],
+    "emitDecoratorMetadata": true,
+    "noEmitHelpers": true,
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "lib": ["es2017", "dom", "es6"],
     "baseUrl": ".",
     "paths": {
-      "*": ["./node_modules/@nativescript/core/*", "./node_modules/*"],
       "~/*": ["app/*"]
     }
   },

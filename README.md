@@ -4,20 +4,14 @@
 <h4 align="center">NativeScript plugin to expose Airbnb Lottie for awesome animations.</h4>
 
 <p align="center">
- <a href="https://www.npmjs.com/package/nativescript-lottie">
+     <a href="https://github.com/bradmartin/nativescript-lottie/actions">
+        <img src="https://github.com/bradmartin/nativescript-lottie/workflows/Build%20CI/badge.svg" alt="Action Build">
+    </a>
+    <a href="https://www.npmjs.com/package/nativescript-lottie">
         <img src="https://img.shields.io/npm/v/nativescript-lottie.svg" alt="npm">
     </a>
     <a href="https://www.npmjs.com/package/nativescript-lottie">
         <img src="https://img.shields.io/npm/dt/nativescript-lottie.svg?label=npm%20downloads" alt="npm">
-    </a>
-     <a href="https://github.com/bradmartin/nativescript-lottie/actions">
-        <img src="https://github.com/bradmartin/nativescript-lottie/workflows/Build%20CI/badge.svg" alt="Action Build">
-    </a>
-    <a href="https://github.com/bradmartin/nativescript-lottie/stargazers">
-        <img src="https://img.shields.io/github/stars/bradmartin/nativescript-lottie.svg" alt="stars">
-    </a>
-    <a href="https://paypal.me/bradwayne88">
-        <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="donate">
     </a>
 </p>
 
@@ -35,8 +29,16 @@ _The .gif does not do the fluid animations justice_
 
 To install execute:
 
+NativeScript Version 7+:
+
 ```
 tns plugin add nativescript-lottie
+```
+
+NativeScript Version prior to 7:
+
+```
+tns plugin add nativescript-lottie@4.0.1
 ```
 
 ## Usage
@@ -88,7 +90,7 @@ registerElement('LottieView', () => LottieView);
 
 @Component({
   templateUrl: 'home.component.html',
-  moduleId: module.id
+  moduleId: module.id,
 })
 export class HomeComponent {
   public loop: boolean = true;
@@ -103,7 +105,7 @@ export class HomeComponent {
       'Mobilo/A.json',
       'Mobilo/D.json',
       'Mobilo/N.json',
-      'Mobilo/S.json'
+      'Mobilo/S.json',
     ];
     this.src = this.animations[0];
   }

@@ -1,6 +1,5 @@
-import { Observable } from '@nativescript/core/data/observable';
+import { Color, Observable } from '@nativescript/core';
 import { LottieView } from 'nativescript-lottie';
-import { Color } from '@nativescript/core/color';
 
 const ANDROID_WAVE_KEYPATHS = [
   ['Shirt', 'Group 5', 'Fill 1'],
@@ -11,12 +10,12 @@ const ANDROID_WAVE_KEYPATHS = [
 export class DemoViewModel extends Observable {
   public animationIndex: number = 0;
   public animations: string[] = [
-    'Mobilo/B',
-    'Mobilo/A.json',
-    'Mobilo/D.json',
-    'Mobilo/N',
-    'Mobilo/R',
-    'Mobilo/S.json'
+    'res://Mobilo/B.json',
+    'res://Mobilo/R.json',
+    'res://Mobilo/A',
+    'res://Mobilo/D.json',
+    'res://Mobilo/N.json',
+    'res://Mobilo/S.json'
   ];
   public thirdLottieProgressTo: string = 'Try it!';
 
@@ -54,21 +53,20 @@ export class DemoViewModel extends Observable {
     this._lottieViewTwo = event.object as LottieView;
     this._lottieViewTwo.autoPlay = true;
     this._lottieViewTwo.loop = true;
-    this._lottieViewTwo.src = 'AndroidWave.json';
+    this._lottieViewTwo.src = 'res://AndroidWave';
   }
 
   public thirdLottieLoaded(event) {
     this._lottieViewThree = event.object as LottieView;
     this._lottieViewThree.autoPlay = false;
     this._lottieViewThree.loop = false;
-    this._lottieViewThree.src = 'Mobilo/N';
+    this._lottieViewThree.src = 'res://Mobilo/N';
   }
 
   public fourthLottieLoaded(event) {
     this._lottieViewFour = event.object as LottieView;
     this._lottieViewFour.autoPlay = false;
-    this._lottieViewFour.src = 'doughnut';
-
+    this._lottieViewFour.src = 'res://doughnut.json';
     this.setFourthLottieToLoadingState();
   }
 
@@ -97,7 +95,7 @@ export class DemoViewModel extends Observable {
     ANDROID_WAVE_KEYPATHS.forEach(keyPath => {
       this._lottieViewTwo.setColorValueDelegateForKeyPath(color, [...keyPath]);
     });
-  };
+  }
 
   public setSecondLottieRandomOpacity() {
     const opacity = getRandomWithPrecision(2);

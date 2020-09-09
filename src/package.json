@@ -1,0 +1,71 @@
+{
+  "name": "nativescript-lottie",
+  "version": "5.0.0",
+  "description": "NativeScript plugin to expose AirBnB Lottie library",
+  "main": "lottie",
+  "sideEffects": false,
+  "typings": "index.d.ts",
+  "nativescript": {
+    "platforms": {
+      "android": "7.0.0",
+      "ios": "7.0.0"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bradmartin/nativescript-lottie.git"
+  },
+  "keywords": [
+    "NativeScript",
+    "nativescript-lottie",
+    "Lottie",
+    "Android",
+    "Animation",
+    "iOS",
+    "TypeScript",
+    "bradmartin"
+  ],
+  "author": {
+    "name": "Brad Martin",
+    "email": "bradwaynemartin@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bradmartin/nativescript-lottie/issues"
+  },
+  "scripts": {
+    "tsc": "tsc -skipLibCheck",
+    "build": "npm i && tsc",
+    "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\" --exclude \"*demo*/platforms/**\" --exclude \"**/typings/**\"",
+    "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
+    "demo.ios": "npm run setup && cd ../demo && tns run ios",
+    "demo.android": "npm run setup && cd ../demo && tns run android",
+    "setup": "npm i && tsc",
+    "generate.typings.ios": "cd ../demo && TNS_DEBUG_METADATA_PATH=\"$(pwd)/metadata\" tns build ios && TNS_TYPESCRIPT_DECLARATIONS_PATH=\"$(pwd)/typings\" tns build ios && echo 'Now look for your library typings in demo/typings!'",
+    "make-changelog": "cd ../ && github_changelog_generator -u bradmartin -p nativescript-lottie"
+  },
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.13",
+    "prettier": "^2.1.1",
+    "@nativescript/core": "^7.0.0",
+    "@nativescript/types": "^7.0.1",
+    "rimraf": "^3.0.2",
+    "tslint": "~6.1.3",
+    "typescript": "~3.9.0"
+  },
+  "lint-staged": {
+    "**/*.{js, css, ts, json, scss, html, xml, md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run tslint"
+    }
+  },
+  "homepage": "https://github.com/bradmartin/nativescript-lottie",
+  "readmeFilename": "README.md"
+}

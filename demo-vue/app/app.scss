@@ -2,7 +2,7 @@
 @import 'app-variables';
 
 // Import the theme’s main ruleset - both index and platform specific.
-@import "~@nativescript/theme/core";
-@import "~@nativescript/theme/default";
+@import '~@nativescript/theme/core';
+@import '~@nativescript/theme/default';
 // Import common styles
 @import 'app-common';

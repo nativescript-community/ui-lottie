@@ -4,12 +4,12 @@
   "repository": "<fill-your-repository-here>",
   "dependencies": {
     "@nativescript/theme": "2.3.0",
-    "@nativescript/core": "~7.0.0",
+    "@nativescript/core": "7.0.0",
     "nativescript-lottie": "file:../src",
     "nativescript-vue": "2.8.0"
   },
   "devDependencies": {
-    "@nativescript/webpack": "~3.0.0",
+    "@nativescript/webpack": "3.0.0",
     "@babel/core": "~7.8.4",
     "@babel/preset-env": "~7.8.4",
     "ansi-styles": "^4.2.1",

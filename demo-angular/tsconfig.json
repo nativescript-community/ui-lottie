@@ -1,25 +1,20 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
+    "module": "ESNext",
+    "target": "es2015",
+    "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "noEmitHelpers": true,
     "noEmitOnError": true,
-    "lib": ["es6", "dom", "es2015.iterable"],
+    "skipLibCheck": true,
+    "lib": ["es2018", "es2017", "dom", "es6"],
     "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"],
-      "*": ["./node_modules/@nativescript/core/*", "./node_modules/*"]
+      "~/*": ["app/*"]
     }
-  },"files": [
-    "./src/main.ts"
-  ],
-  "include": ["../src", "**/*"],
-  "exclude": [
-    "node_modules",
-    "platforms",
-    "../src/node_modules",
-    "**/*.spec.ts"
-  ]
+  },
+  "include": ["src/tests/**/*.ts", "src/**/*.ios.ts", "src/**/*.android.ts"],
+  "files": ["./references.d.ts", "./src/main.ts"],
+  "exclude": ["node_modules", "platforms", "e2e"]
 }

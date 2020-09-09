@@ -68,6 +68,8 @@ plugin/*.d.ts
 /pnpm-lock.yaml
 *.aar
 /demo-vue/platforms
+/demo-angular/platforms
+
 
 plugin/**/*js.map
 plugin/**/*js
