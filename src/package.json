@@ -1,6 +1,6 @@
 {
   "name": "nativescript-lottie",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "NativeScript plugin to expose AirBnB Lottie library",
   "main": "lottie",
   "sideEffects": false,
