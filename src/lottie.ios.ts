@@ -44,16 +44,31 @@ export class LottieView extends LottieViewBase {
         resName.replace('.json', ''),
         NSBundle.mainBundle
       );
-    } else {
-      if (src[0] === '~') {
-        src = `${path.join(appPath, src.substring(2))}`;
-      }
+    } else if (src[0] === '~') {
+      src = `${path.join(appPath, src.substring(2))}`;
       if (!/.(json|zip)$/.test(src)) {
         src += '.json';
       }
-      this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithFilepath(
-        src
-      );
+      try {
+        this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithFilepath(
+          src
+        );
+      } catch (error) {
+        console.log(`Error initializing LottieView with src: ${src}`, error);
+      }
+    } else {
+      // make one last effort to just find the file in app_resources without checking the prefix in case the user forgot to pass it
+      try {
+        this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(
+          src,
+          NSBundle.mainBundle
+        );
+      } catch (error) {
+        console.log(
+          `Error trying to set the iOS Lottie animation to LottieView with src: ${src}`,
+          error
+        );
+      }
     }
   }
 
@@ -62,10 +77,12 @@ export class LottieView extends LottieViewBase {
   }
 
   [autoPlayProperty.setNative](autoPlay: boolean) {
+    console.log('setting autoplay...');
     if (autoPlay) {
-      if (!this.isAnimating()) {
-        this.playAnimation();
-      }
+      debugger;
+      // if (!this.isAnimating()) {
+      this.playAnimation();
+      // }
     } else {
       if (this.isAnimating()) {
         this.cancelAnimation();
@@ -125,6 +142,7 @@ export class LottieView extends LottieViewBase {
           }
         });
       } else {
+        console.log('trying to play ios lottie');
         this.nativeView.play();
       }
     }
