@@ -49,9 +49,8 @@ export const RenderMode = {
 
 export class LottieView extends LottieViewBase {
   nativeView: com.airbnb.lottie.LottieAnimationView;
-  get android(): any {
-    return this.nativeView;
-  }
+  animatorListener;
+  _completionBlock;
 
   public createNativeView(): View {
     if (!LottieAnimationView) {
@@ -60,11 +59,11 @@ export class LottieView extends LottieViewBase {
     return new LottieAnimationView(this._context);
   }
 
-  animatorListener;
-  _completionBlock;
+  // @ts-ignore
   get completionBlock() {
     return this._completionBlock;
   }
+
   set completionBlock(block) {
     this._completionBlock = block;
     if (block) {
@@ -100,21 +99,11 @@ export class LottieView extends LottieViewBase {
       this.animatorListener = null;
     }
   }
+
   public initNativeView(): void {
     if (this.animatorListener) {
       this.nativeView.addAnimatorListener(this.animatorListener);
     }
-    // if (this.src) {
-    //   this[srcProperty.setNative](this.src);
-    // }
-
-    // if (this.loop) {
-    //   this.nativeView.loop(this.loop);
-    // }
-
-    // if (this.autoPlay) {
-    //   this.playAnimation();
-    // }
   }
 
   public disposeNativeView(): void {
@@ -126,10 +115,15 @@ export class LottieView extends LottieViewBase {
 
   @profile
   setSrc(src: string) {
+    // if no src null the view and return
     if (!src) {
       this.nativeView.setAnimation(null);
-    } else if (src[0] === '{') {
-      this.nativeView.setAnimationFromJson(src);
+      return;
+    }
+
+    // should be direct JSON being fed into it
+    if (src[0] === '{') {
+      this.nativeView.setAnimation(src);
     } else if (src.startsWith(Utils.RESOURCE_PREFIX)) {
       let resName = src.replace(Utils.RESOURCE_PREFIX, '');
       // replace resName to end with json if user did not pass .json
@@ -137,17 +131,37 @@ export class LottieView extends LottieViewBase {
         resName += '.json';
       }
       this.nativeView.setAnimation(resName);
-    } else {
-      if (src[0] === '~') {
-        src = `${path.join(appPath, src.substring(2))}`;
-      }
+    } else if (src[0] === '~') {
+      src = `${path.join(appPath, src.substring(2))}`;
       if (!/.(json|zip)$/.test(src)) {
         src += '.json';
       }
 
-      loadLottieJSON(src).then(r => {
-        this.nativeView.setAnimationFromJson(r);
-      });
+      loadLottieJSON(src)
+        .then(r => {
+          this.nativeView.setAnimation(r);
+        })
+        .catch(err => {
+          console.log(
+            'Lottie File not found, please be sure to use the correct file path for where your lottie json files are stored.',
+            `Error: ${err}`
+          );
+        });
+    } else {
+      // at this point we have not found the file with the res:// prefix, direct JSON, or relative file path
+      // make one last effort to load it from app_resources directly
+      let resName = src.replace(Utils.RESOURCE_PREFIX, '');
+      // replace resName to end with json if user did not pass .json
+      if (!/.(json|zip)$/.test(resName)) {
+        resName += '.json';
+      }
+      try {
+        this.nativeView.setAnimation(resName);
+      } catch (error) {
+        console.log(
+          `Error trying to load the lottie file. The src value: ${src} was not able to load into the LottieView.`
+        );
+      }
     }
 
     if (this.autoPlay) {
