@@ -10,7 +10,7 @@ const ANDROID_WAVE_KEYPATHS = [
 export class DemoViewModel extends Observable {
   public animationIndex: number = 0;
   public animations: string[] = [
-    'res://Mobilo/B.json',
+    'Mobilo/B',
     'res://Mobilo/R.json',
     'res://Mobilo/A',
     'res://Mobilo/D.json',
@@ -95,7 +95,7 @@ export class DemoViewModel extends Observable {
     ANDROID_WAVE_KEYPATHS.forEach(keyPath => {
       this._lottieViewTwo.setColorValueDelegateForKeyPath(color, [...keyPath]);
     });
-  }
+  };
 
   public setSecondLottieRandomOpacity() {
     const opacity = getRandomWithPrecision(2);
