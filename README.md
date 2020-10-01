@@ -32,7 +32,7 @@ To install execute:
 NativeScript Version 7+:
 
 ```
-tns plugin add nativescript-lottie
+ns plugin add nativescript-lottie
 ```
 
 NativeScript Version prior to 7:
@@ -75,7 +75,7 @@ public yourLoadedEvent(args) {
 
 ```xml
 <StackLayout>
-    <LottieView width="100" height="150" [src]="src" [loop]="loop" [autoPlay]="autoPlay" (loaded)="lottieViewLoaded($event)">     </LottieView>
+    <LottieView width="100" height="150" [src]="src" [loop]="loop" [autoPlay]="autoPlay" (loaded)="lottieViewLoaded($event)"></LottieView>
 </StackLayout>
 ```
 
@@ -83,14 +83,14 @@ public yourLoadedEvent(args) {
 
 ```typescript
 import { Component } from '@angular/core';
-import { registerElement } from 'nativescript-angular';
+import { registerElement } from '@nativescript/angular';
 import { LottieView } from 'nativescript-lottie';
 
 registerElement('LottieView', () => LottieView);
 
 @Component({
   templateUrl: 'home.component.html',
-  moduleId: module.id,
+  moduleId: module.id
 })
 export class HomeComponent {
   public loop: boolean = true;
@@ -105,7 +105,7 @@ export class HomeComponent {
       'Mobilo/A.json',
       'Mobilo/D.json',
       'Mobilo/N.json',
-      'Mobilo/S.json',
+      'Mobilo/S.json'
     ];
     this.src = this.animations[0];
   }
