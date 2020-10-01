@@ -36,7 +36,7 @@
   "scripts": {
     "tsc": "tsc -skipLibCheck",
     "build": "npm i && tsc",
-    "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\" --exclude \"*demo*/platforms/**\" --exclude \"**/typings/**\"",
+    "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\" --exclude \"*demo*/platforms/**\" --exclude \"*demo*/app/**\" --exclude \"**/typings/**\"",
     "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
     "demo.ios": "npm run setup && cd ../demo && tns run ios",
     "demo.android": "npm run setup && cd ../demo && tns run android",

@@ -79,10 +79,9 @@ export class LottieView extends LottieViewBase {
   [autoPlayProperty.setNative](autoPlay: boolean) {
     console.log('setting autoplay...');
     if (autoPlay) {
-      debugger;
-      // if (!this.isAnimating()) {
-      this.playAnimation();
-      // }
+      if (!this.isAnimating()) {
+        this.playAnimation();
+      }
     } else {
       if (this.isAnimating()) {
         this.cancelAnimation();
