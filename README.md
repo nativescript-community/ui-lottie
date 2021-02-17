@@ -209,3 +209,11 @@ Place your animations files in your `app/App_Resources/iOS/` folder.
 | [<img alt="itstheceo" src="https://avatars2.githubusercontent.com/u/5218201?s=460&v=4" width="117">](https://github.com/itstheceo) | [<img alt="itstheceo" src="https://avatars2.githubusercontent.com/u/32623552?s=460&v=4" width="117">](https://github.com/mudlabs) |
 | :--------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: |
 |                                             [itstheceo](https://github.com/itstheceo)                                              |                                               [mudlabs](https://github.com/mudlabs)                                               |
+
+
+## Contributing
+
+1. Fork and clone the repository
+2. `cd nativescript-lottie && npm run demo.android` (or demo.ios)
+3. Changes in the `src` directory of the plugin will sync to the demo app for testing changes.
+4. Create a PR with proposed changes.
