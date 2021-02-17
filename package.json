@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "ci.base.setup": "npm i -g typescript && echo no | npm i -g nativescript && ns usage-reporting disable && ns error-reporting disable && cd src && npm i && tsc",
+    "ci.pip.install": "sudo pip install --upgrade pip && sudo pip install six",
+    "ci.tslint": "cd src && npm run ci.tslint && cd ../demo && npm run ci.tslint",
+    "ci.vanilla.android.build": "cd demo && ns build android --env.uglify",
+    "ci.vanilla.ios.build": "cd demo && ns build ios --env.uglify",
+    "ci.ng.android.build": "cd demo-angular && ns build android --env.uglify",
+    "ci.ng.ios.build": "cd demo-angular && ns build ios --env.uglify",
+    "ci.vue.android.build": "cd demo-vue && ns build android --env.uglify",
+    "ci.vue.ios.build": "cd demo-vue && ns build ios --env.uglify",
+    "demo.ios": "cd src && npm run setup && cd ../demo && tns run ios",
+    "demo.android": "cd src && npm run setup && cd ../demo && tns run android",
+    "demo.ng.ios": "cd src && npm run setup && cd ../demo-angular && tns run ios",
+    "demo.ng.android": "cd src && npm run setup && cd ../demo-angular && tns run android",
+    "demo.vue.ios": "cd src && npm run setup && cd ../demo-vue && tns run ios",
+    "demo.vue.android": "cd src && npm run setup && cd ../demo-vue && tns run android"
+  }
+}

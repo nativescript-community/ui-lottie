@@ -1,48 +1,50 @@
 name: Build CI
 
-# Trigger the workflow on push or pull request
+# Trigger the workflow on push
 on: [push]
 
 jobs:
-  build:
-    name: Build
+  job1:
+    name: Android Builds
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
 
+      - name: Base Setup
+        run: npm run ci.base.setup
+
+      - name: Lint
+        run: npm run ci.tslint
+
+      - name: Build Vanilla Android Demo App
+        run: npm run ci.vanilla.android.build
+
+      # - name: Install Android sdkmanager
+      #   run: |
+      #     wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-darwin-4333796.zip
+      #     sudo unzip -d $ANDROID_HOME android-sdk.zip > /dev/null
+      # - name: Install required Android tools
+      #   run: |
+      #     echo "y" | sudo $ANDROID_HOME/tools/bin/sdkmanager "ndk;${ANDROID_NDK}" > /dev/null
+      # - name: Android Test
+      #   run: |
+      #     echo no | android create avd --force -n test -b armeabi-v7a
+      #     emulator -avd test -no-audio -no-window &
+      #     android-wait-for-emulator
+      #     cd src && npm i && npm run tsc && cd ../demo && tns build android
+      #     tns test android --justlaunch
+
+  job2:
+    name: iOS Builds
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
 
-      - name: Set Node.js 10.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: "10.x"
+      - name: Base Setup
+        run: npm run ci.base.setup && npm run ci.pip.install
 
-      - name: Build Plugin Source
-        run: cd src && npm i && npm i -g typescript@3.9.7 && tsc
-
-      - name: Lint
-        run: cd src && npm run tslint
-
-      - name: Setup JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-
-      - name: Install PIP
-        run: |
-          sudo pip install --upgrade pip
-          sudo pip install six
-
-      - name: Setup NativeScript CLI
-        run: |
-          echo no | npm i -g nativescript
-          tns usage-reporting disable
-          tns error-reporting disable
-
-      - name: Build Android Demo App
-        run: |
-          cd demo
-          tns build android --env.uglify
-      - name: Build iOS Demo App
-        run: |
-          cd demo
-          tns build ios --env.uglify
+      - name: Build Vanilla iOS Demo App
+        run: npm run ci.vanilla.ios.build

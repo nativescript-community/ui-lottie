@@ -40,6 +40,10 @@
     "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
     "demo.ios": "npm run setup && cd ../demo && tns run ios",
     "demo.android": "npm run setup && cd ../demo && tns run android",
+    "demo.ng.ios": "npm run setup && cd ../demo-angular && tns run ios",
+    "demo.ng.android": "npm run setup && cd ../demo-angular && tns run android",
+    "demo.vue.ios": "npm run setup && cd ../demo-vue && tns run ios",
+    "demo.vue.android": "npm run setup && cd ../demo-vue && tns run android",
     "setup": "npm i && tsc",
     "generate.typings.ios": "cd ../demo && TNS_DEBUG_METADATA_PATH=\"$(pwd)/metadata\" tns build ios && TNS_TYPESCRIPT_DECLARATIONS_PATH=\"$(pwd)/typings\" tns build ios && echo 'Now look for your library typings in demo/typings!'",
     "make-changelog": "cd ../ && github_changelog_generator -u bradmartin -p nativescript-lottie"

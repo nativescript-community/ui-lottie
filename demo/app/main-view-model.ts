@@ -95,7 +95,7 @@ export class DemoViewModel extends Observable {
     ANDROID_WAVE_KEYPATHS.forEach(keyPath => {
       this._lottieViewTwo.setColorValueDelegateForKeyPath(color, [...keyPath]);
     });
-  };
+  }
 
   setSecondLottieRandomOpacity() {
     const opacity = getRandomWithPrecision(2);

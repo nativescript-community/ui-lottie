@@ -1,5 +1,16 @@
 {
   "extends": ["tslint:recommended"],
+  "linterOptions": {
+    "exclude": [
+      "node_modules",
+      "hooks",
+      "platforms",
+      "src/index.d.ts",
+      "src/typings/",
+      "src/typings/android.d.ts",
+      "src/typings/ios.d.ts"
+    ]
+  },
   "rules": {
     "align": [true, "parameters", "statements"],
     "ban": false,
