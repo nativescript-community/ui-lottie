@@ -77,7 +77,6 @@ export class LottieView extends LottieViewBase {
   }
 
   [autoPlayProperty.setNative](autoPlay: boolean) {
-    console.log('setting autoplay...');
     if (autoPlay) {
       if (!this.isAnimating()) {
         this.playAnimation();
@@ -133,18 +132,20 @@ export class LottieView extends LottieViewBase {
   }
 
   public playAnimation(): void {
-    if (this.nativeView) {
-      if (this.completionBlock) {
-        this.nativeView.playWithCompletion((animationFinished: boolean) => {
-          if (this.completionBlock) {
-            this.completionBlock(animationFinished);
-          }
-        });
-      } else {
-        console.log('trying to play ios lottie');
-        this.nativeView.play();
+    // adding timeout: see https://github.com/bradmartin/nativescript-lottie/issues/68
+    setTimeout(() => {
+      if (this.nativeView) {
+        if (this.completionBlock) {
+          this.nativeView.playWithCompletion((animationFinished: boolean) => {
+            if (this.completionBlock) {
+              this.completionBlock(animationFinished);
+            }
+          });
+        } else {
+          this.nativeView.play();
+        }
       }
-    }
+    }, 0);
   }
 
   public playAnimationFromProgressToProgress(
