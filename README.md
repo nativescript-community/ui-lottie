@@ -64,6 +64,10 @@ import { LottieView } from "nativescript-lottie";
 
 public yourLoadedEvent(args) {
     this._myLottie = args.object as LottieView; /// this is the instance of the LottieAnimationView
+    this._myLottie.loop = false; // to get the completionBlock to fire the animation can not be looping because then it will never "complete"
+    this._myLottie.completionBlock = (bool) => {
+        console.log('lottie animaton complete', bool);
+    }
 }
 ```
 
@@ -112,6 +116,10 @@ export class HomeComponent {
 
   lottieViewLoaded(event) {
     this._lottieView = <LottieView>event.object;
+    this._myLottie.loop = false; // to get the completionBlock to fire the animation can not be looping because then it will never "complete"
+    this._myLottie.completionBlock = bool => {
+      console.log('lottie animaton complete', bool);
+    };
   }
 }
 ```
@@ -209,7 +217,6 @@ Place your animations files in your `app/App_Resources/iOS/` folder.
 | [<img alt="itstheceo" src="https://avatars2.githubusercontent.com/u/5218201?s=460&v=4" width="117">](https://github.com/itstheceo) | [<img alt="itstheceo" src="https://avatars2.githubusercontent.com/u/32623552?s=460&v=4" width="117">](https://github.com/mudlabs) |
 | :--------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: |
 |                                             [itstheceo](https://github.com/itstheceo)                                              |                                               [mudlabs](https://github.com/mudlabs)                                               |
-
 
 ## Contributing
 
