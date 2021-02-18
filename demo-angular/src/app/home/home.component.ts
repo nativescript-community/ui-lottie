@@ -51,8 +51,11 @@ export class HomeComponent {
   public firstLottieLoaded(event) {
     this._lottieViewOne = event.object as LottieView;
     this._lottieViewOne.autoPlay = true;
-    this._lottieViewOne.loop = true;
+    this._lottieViewOne.loop = false;
     this._lottieViewOne.src = this.animations[this.animationIndex];
+    this._lottieViewOne.completionBlock = bool => {
+      console.log('completed? ', bool);
+    };
   }
 
   public secondLottieLoaded(event) {
@@ -131,7 +134,7 @@ export class HomeComponent {
       );
 
       this._lottieViewFour.playAnimationFromProgressToProgress(0.5, 0.85);
-      this._lottieViewFour.completionBlock = null;
+      // this._lottieViewFour.completionBlock = null;
     };
 
     // Trigger the completion block by disabling looping and allowing the final loop to lapse.

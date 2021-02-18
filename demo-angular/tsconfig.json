@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "target": "es2015",
+    "module": "esnext",
+    "target": "es2017",
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -14,7 +14,7 @@
       "~/*": ["app/*"]
     }
   },
-  "include": ["src/tests/**/*.ts", "src/**/*.ios.ts", "src/**/*.android.ts"],
+  "include": ["src/**/*.ios.ts", "src/**/*.android.ts", "../src/**/*.ts"],
   "files": ["./references.d.ts", "./src/main.ts"],
   "exclude": ["node_modules", "platforms", "e2e"]
 }

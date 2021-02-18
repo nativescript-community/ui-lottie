@@ -42,7 +42,7 @@ export class DemoViewModel extends Observable {
   firstLottieLoaded(event) {
     this._lottieViewOne = event.object as LottieView;
     this._lottieViewOne.autoPlay = true;
-    this._lottieViewOne.loop = true;
+    this._lottieViewOne.loop = false;
     this._lottieViewOne.src = this.animations[this.animationIndex];
     this._lottieViewOne.completionBlock = (animationFinished: boolean) => {
       console.log(`completionBlock animationFinished: ${animationFinished}`);
