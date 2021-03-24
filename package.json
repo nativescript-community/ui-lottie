@@ -9,11 +9,11 @@
     "ci.ng.ios.build": "cd demo-angular && ns build ios --env.uglify",
     "ci.vue.android.build": "cd demo-vue && ns build android --env.uglify",
     "ci.vue.ios.build": "cd demo-vue && ns build ios --env.uglify",
-    "demo.ios": "cd src && npm run setup && cd ../demo && tns run ios",
-    "demo.android": "cd src && npm run setup && cd ../demo && tns run android",
-    "demo.ng.ios": "cd src && npm run setup && cd ../demo-angular && tns run ios",
-    "demo.ng.android": "cd src && npm run setup && cd ../demo-angular && tns run android",
-    "demo.vue.ios": "cd src && npm run setup && cd ../demo-vue && tns run ios",
-    "demo.vue.android": "cd src && npm run setup && cd ../demo-vue && tns run android"
+    "demo.ios": "cd src && npm run setup && cd ../demo && ns run ios",
+    "demo.android": "cd src && npm run setup && cd ../demo && ns run android",
+    "demo.ng.ios": "cd src && npm run setup && cd ../demo-angular && ns run ios",
+    "demo.ng.android": "cd src && npm run setup && cd ../demo-angular && ns run android",
+    "demo.vue.ios": "cd src && npm run setup && cd ../demo-vue && ns run ios",
+    "demo.vue.android": "cd src && npm run setup && cd ../demo-vue && ns run android"
   }
 }

@@ -19,7 +19,7 @@
     "reflect-metadata": "~0.1.12",
     "rxjs": "^6.6.0",
     "zone.js": "~0.11.1",
-    "nativescript-lottie": "file:../src"
+    "@nativescript-community/ui-lottie": "file:../src"
   },
   "devDependencies": {
     "@angular/compiler-cli": "~10.1.0",

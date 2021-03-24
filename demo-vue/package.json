@@ -5,7 +5,7 @@
   "dependencies": {
     "@nativescript/theme": "2.3.0",
     "@nativescript/core": "~7.0.0",
-    "nativescript-lottie": "file:../src",
+    "@nativescript-community/ui-lottie": "file:../src",
     "nativescript-vue": "2.8.0"
   },
   "devDependencies": {

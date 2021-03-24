@@ -1,5 +1,5 @@
 import { Color, Observable } from '@nativescript/core';
-import { LottieView } from 'nativescript-lottie';
+import { LottieView } from '@nativescript-community/ui-lottie';
 
 const ANDROID_WAVE_KEYPATHS = [
   ['Shirt', 'Group 5', 'Fill 1'],

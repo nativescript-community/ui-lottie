@@ -3,14 +3,14 @@
   "license": "SEE LICENSE IN <your-license-filename>",
   "readme": "NativeScript Application",
   "dependencies": {
-    "nativescript-lottie": "file:../src",
+    "@nativescript-community/ui-lottie": "file:../src",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-unit-test-runner": "0.7.0",
     "@nativescript/core": "^7.0.8"
   },
   "devDependencies": {
-    "@nativescript/android": "7.0.0",
-    "@nativescript/ios": "7.0.0",
+    "@nativescript/android": "7.0.1",
+    "@nativescript/ios": "7.2.0",
     "@nativescript/types": "~7.0.4",
     "@nativescript/webpack": "~3.0.5",
     "jasmine-core": "3.3.0",

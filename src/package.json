@@ -1,6 +1,6 @@
 {
   "name": "nativescript-lottie",
-  "version": "5.0.4",
+  "version": "1.0.0",
   "description": "NativeScript plugin to expose AirBnB Lottie library",
   "main": "lottie",
   "sideEffects": false,
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bradmartin/nativescript-lottie.git"
+    "url": "https://github.com/nativescript-community/ui-lottie.git"
   },
   "keywords": [
     "NativeScript",
@@ -31,27 +31,27 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bradmartin/nativescript-lottie/issues"
+    "url": "https://github.com/nativescript-community/ui-lottie/issues"
   },
   "scripts": {
     "tsc": "tsc -skipLibCheck",
     "build": "npm i && tsc",
     "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\" --exclude \"*demo*/platforms/**\" --exclude \"*demo*/app/**\" --exclude \"**/typings/**\"",
     "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
-    "demo.ios": "npm run setup && cd ../demo && tns run ios",
-    "demo.android": "npm run setup && cd ../demo && tns run android",
-    "demo.ng.ios": "npm run setup && cd ../demo-angular && tns run ios",
-    "demo.ng.android": "npm run setup && cd ../demo-angular && tns run android",
-    "demo.vue.ios": "npm run setup && cd ../demo-vue && tns run ios",
-    "demo.vue.android": "npm run setup && cd ../demo-vue && tns run android",
+    "demo.ios": "npm run setup && cd ../demo && ns run ios",
+    "demo.android": "npm run setup && cd ../demo && ns run android",
+    "demo.ng.ios": "npm run setup && cd ../demo-angular && ns run ios",
+    "demo.ng.android": "npm run setup && cd ../demo-angular && ns run android",
+    "demo.vue.ios": "npm run setup && cd ../demo-vue && ns run ios",
+    "demo.vue.android": "npm run setup && cd ../demo-vue && ns run android",
     "setup": "npm i && tsc",
-    "generate.typings.ios": "cd ../demo && TNS_DEBUG_METADATA_PATH=\"$(pwd)/metadata\" tns build ios && TNS_TYPESCRIPT_DECLARATIONS_PATH=\"$(pwd)/typings\" tns build ios && echo 'Now look for your library typings in demo/typings!'",
+    "generate.typings.ios": "cd ../demo && TNS_DEBUG_METADATA_PATH=\"$(pwd)/metadata\" ns build ios && TNS_TYPESCRIPT_DECLARATIONS_PATH=\"$(pwd)/typings\" ns build ios && echo 'Now look for your library typings in demo/typings!'",
     "make-changelog": "cd ../ && github_changelog_generator -u bradmartin -p nativescript-lottie"
   },
   "devDependencies": {
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
-    "prettier": "^2.1.2",
+    "prettier": "^2.2.1",
     "@nativescript/core": "^7.0.8",
     "@nativescript/types": "^7.0.4",
     "rimraf": "^3.0.2",
@@ -70,6 +70,6 @@
       "pre-push": "npm run tslint"
     }
   },
-  "homepage": "https://github.com/bradmartin/nativescript-lottie",
+  "homepage": "https://github.com/nativescript-community/ui-lottie",
   "readmeFilename": "README.md"
 }
