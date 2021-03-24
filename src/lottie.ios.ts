@@ -60,7 +60,7 @@ export class LottieView extends LottieViewBase {
       // make one last effort to just find the file in app_resources without checking the prefix in case the user forgot to pass it
       try {
         this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(
-          src,
+          src.replace('.json', ''),
           NSBundle.mainBundle
         );
       } catch (error) {
