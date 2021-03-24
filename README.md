@@ -1,17 +1,17 @@
-<a align="center" href="https://www.npmjs.com/package/nativescript-lottie">
+<a align="center" href="https://www.npmjs.com/package/@nativescript-community/ui-lottie">
     <h2 align="center">NativeScript-Lottie</h2>
 </a>
 <h4 align="center">NativeScript plugin to expose Airbnb Lottie for awesome animations.</h4>
 
 <p align="center">
-     <a href="https://github.com/bradmartin/nativescript-lottie/actions">
-        <img src="https://github.com/bradmartin/nativescript-lottie/workflows/Build%20CI/badge.svg" alt="Action Build">
+     <a href="https://github.com/nativescript-community/ui-lottie/actions">
+        <img src="https://github.com/nativescript-community/ui-lottie/workflows/Build%20CI/badge.svg" alt="Action Build">
     </a>
-    <a href="https://www.npmjs.com/package/nativescript-lottie">
-        <img src="https://img.shields.io/npm/v/nativescript-lottie.svg" alt="npm">
+    <a href="https://www.npmjs.com/package/@nativescript-community/ui-lottie">
+        <img src="https://img.shields.io/npm/v/@nativescript-community/ui-lottie.svg" alt="npm">
     </a>
-    <a href="https://www.npmjs.com/package/nativescript-lottie">
-        <img src="https://img.shields.io/npm/dt/nativescript-lottie.svg?label=npm%20downloads" alt="npm">
+    <a href="https://www.npmjs.com/package@nativescript-community/ui-lottie">
+        <img src="https://img.shields.io/npm/dt/@nativescript-community/ui-lottie.svg?label=npm%20downloads" alt="npm">
     </a>
 </p>
 
@@ -32,7 +32,7 @@ To install execute:
 NativeScript Version 7+:
 
 ```
-ns plugin add nativescript-lottie
+ns plugin add @nativescript-community/ui-lottie
 ```
 
 NativeScript Version prior to 7:
@@ -50,7 +50,7 @@ tns plugin add nativescript-lottie@4.0.1
 ```xml
 <Page
     xmlns="http://schemas.nativescript.org/tns.xsd"
-    xmlns:Lottie="nativescript-lottie" navigatingTo="navigatingTo" class="page">
+    xmlns:Lottie="@nativescript-community/ui-lottie" navigatingTo="navigatingTo" class="page">
     <StackLayout>
         <Lottie:LottieView src="PinJump.json" height="130" loop="true" autoPlay="true" loaded="yourLoadedEvent" />
     </StackLayout>
@@ -60,7 +60,7 @@ tns plugin add nativescript-lottie@4.0.1
 #### TS
 
 ```typescript
-import { LottieView } from "nativescript-lottie";
+import { LottieView } from "@nativescript-community/ui-lottie";
 
 public yourLoadedEvent(args) {
     this._myLottie = args.object as LottieView; /// this is the instance of the LottieAnimationView
@@ -88,7 +88,7 @@ public yourLoadedEvent(args) {
 ```typescript
 import { Component } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
-import { LottieView } from 'nativescript-lottie';
+import { LottieView } from '@nativescript-community/ui-lottie';
 
 registerElement('LottieView', () => LottieView);
 
@@ -133,7 +133,7 @@ export class HomeComponent {
 ```typescript
 Vue.registerElement(
   'LottieView',
-  () => require('nativescript-lottie').LottieView
+  () => require('@nativescript-community/ui-lottie').LottieView
 );
 ```
 
