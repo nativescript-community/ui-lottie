@@ -24,8 +24,8 @@
         "paths": {
             "tns-core-modules": ["./node_modules/@nativescript/core"],
             "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
-            "@akylas/nativescript-lottie": ["src/lottie"],
-            "@akylas/nativescript-lottie/*": ["src/*"],
+            "@nativescript-community/ui-lottie": ["src/lottie"],
+            "@nativescript-community/ui-lottie/*": ["src/*"],
             "*": ["node_modules/*"]
         },
         "plugins": [

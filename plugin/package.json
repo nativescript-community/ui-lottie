@@ -1,5 +1,5 @@
 {
-  "name": "@akylas/nativescript-lottie",
+  "name": "@nativescript-community/ui-lottie",
   "version": "4.1.0",
   "description": "NativeScript plugin to expose AirBnB Lottie library",
   "main": "lottie",
@@ -17,7 +17,7 @@
   },
   "keywords": [
     "NativeScript",
-    "@akylas/nativescript-lottie",
+    "@nativescript-community/ui-lottie",
     "Lottie",
     "Android",
     "Animation",

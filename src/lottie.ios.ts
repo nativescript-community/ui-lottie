@@ -18,6 +18,7 @@ export class LottieView extends LottieViewBase {
     // private _contentMode: UIViewContentMode;
     nativeView: CompatibleAnimationView;
     /// LOTAnimationView
+    //@ts-ignore
     get ios(): any {
         return this.nativeView;
     }

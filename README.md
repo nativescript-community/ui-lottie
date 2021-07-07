@@ -1,20 +1,20 @@
-<a align="center" href="https://www.npmjs.com/package/nativescript-lottie">
-    <h2 align="center">NativeScript-Lottie</h2>
+<a align="center" href="https://www.npmjs.com/package/nativescript-community/ui-lottie">
+    <h2 align="center">nativescript-community/ui-lottie</h2>
 </a>
 <h4 align="center">NativeScript plugin to expose Airbnb Lottie for awesome animations.</h4>
 
 <p align="center">
- <a href="https://www.npmjs.com/package/nativescript-lottie">
-        <img src="https://img.shields.io/npm/v/nativescript-lottie.svg" alt="npm">
+ <a href="https://www.npmjs.com/package/nativescript-community/ui-lottie">
+        <img src="https://img.shields.io/npm/v/nativescript-community/ui-lottie.svg" alt="npm">
     </a>
-    <a href="https://www.npmjs.com/package/nativescript-lottie">
-        <img src="https://img.shields.io/npm/dt/nativescript-lottie.svg?label=npm%20downloads" alt="npm">
+    <a href="https://www.npmjs.com/package/nativescript-community/ui-lottie">
+        <img src="https://img.shields.io/npm/dt/nativescript-community/ui-lottie.svg?label=npm%20downloads" alt="npm">
     </a>
-     <a href="https://github.com/farfromrefug/nativescript-lottie/actions">
-        <img src="https://github.com/farfromrefug/nativescript-lottie/workflows/Build%20CI/badge.svg" alt="Action Build">
+     <a href="https://github.com/nativescript-community/ui-lottie/actions">
+        <img src="https://github.com/nativescript-community/ui-lottie/workflows/Build%20CI/badge.svg" alt="Action Build">
     </a>
-    <a href="https://github.com/farfromrefug/nativescript-lottie/stargazers">
-        <img src="https://img.shields.io/github/stars/farfromrefug/nativescript-lottie.svg" alt="stars">
+    <a href="https://github.com/nativescript-community/ui-lottie/stargazers">
+        <img src="https://img.shields.io/github/stars/nativescript-community/ui-lottie.svg" alt="stars">
     </a>
     <a href="https://paypal.me/bradwayne88">
         <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="donate">
@@ -36,7 +36,7 @@ _The .gif does not do the fluid animations justice_
 To install execute:
 
 ```
-tns plugin add nativescript-lottie
+tns plugin add @nativescript-community/ui-lottie
 ```
 
 ## Usage
@@ -48,7 +48,7 @@ tns plugin add nativescript-lottie
 ```xml
 <Page
     xmlns="http://schemas.nativescript.org/tns.xsd"
-    xmlns:Lottie="nativescript-lottie" navigatingTo="navigatingTo" class="page">
+    xmlns:Lottie="@nativescript-community/ui-lottie" navigatingTo="navigatingTo" class="page">
     <StackLayout>
         <Lottie:LottieView src="PinJump.json" height="130" loop="true" autoPlay="true" loaded="yourLoadedEvent" />
     </StackLayout>
@@ -58,7 +58,7 @@ tns plugin add nativescript-lottie
 #### TS
 
 ```typescript
-import { LottieView } from "nativescript-lottie";
+import { LottieView } from "@nativescript-community/ui-lottie";
 
 public yourLoadedEvent(args) {
     this._myLottie = args.object as LottieView; /// this is the instance of the LottieAnimationView
@@ -82,7 +82,7 @@ public yourLoadedEvent(args) {
 ```typescript
 import { Component } from '@angular/core';
 import { registerElement } from 'nativescript-angular';
-import { LottieView } from 'nativescript-lottie';
+import { LottieView } from '@nativescript-community/ui-lottie';
 
 registerElement('LottieView', () => LottieView);
 
@@ -123,7 +123,7 @@ export class HomeComponent {
 ```typescript
 Vue.registerElement(
   'LottieView',
-  () => require('nativescript-lottie').LottieView
+  () => require('@nativescript-community/ui-lottie').LottieView
 );
 ```
 

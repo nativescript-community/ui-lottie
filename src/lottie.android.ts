@@ -52,6 +52,7 @@ export const RenderMode = {
 
 export class LottieView extends LottieViewBase {
     nativeView: com.airbnb.lottie.LottieAnimationView;
+    //@ts-ignore
     get android(): any {
         return this.nativeView;
     }
@@ -65,6 +66,7 @@ export class LottieView extends LottieViewBase {
 
     animatorListener;
     _completionBlock;
+    //@ts-ignore
     get completionBlock() {
         return this._completionBlock;
     }
