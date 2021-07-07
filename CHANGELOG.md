@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.2](https://github.com/farfromrefug/nativescript-lottie/compare/v4.1.1...v4.1.2) (2021-07-07)
+
+
+### Bug Fixes
+
+* quick fix after merge ([d84ad97](https://github.com/farfromrefug/nativescript-lottie/commit/d84ad9735c79adf45f13baf0a850253fc805849e))
+
+
+
+
+
 ## [4.1.1](https://github.com/farfromrefug/nativescript-lottie/compare/v4.1.0...v4.1.1) (2021-07-07)
 
 **Note:** Version bump only for package @nativescript-community/ui-lottie
