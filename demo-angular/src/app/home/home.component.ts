@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { registerElement } from 'nativescript-angular';
-import { LottieView } from '@akylas/nativescript-lottie';
+import { LottieView } from '@nativescript-community/ui-lottie';
 import { Color } from '@nativescript/core/color';
 
 registerElement('LottieView', () => LottieView);

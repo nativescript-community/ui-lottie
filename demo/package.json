@@ -13,7 +13,7 @@
     }
   },
   "dependencies": {
-    "nativescript-akylas-lottie": "file:../plugin",
+    "@nativescript-community/ui-lottie": "file:../plugin",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-unit-test-runner": "0.7.0",
     "@nativescript/core": "^6.3.2"

@@ -14,7 +14,7 @@
   "dependencies": {
     "@nativescript/theme": "2.3.0",
     "@nativescript/core": "6.4.0",
-    "nativescript-akylas-lottie": "file:../plugin",
+    "@nativescript-community/ui-lottie": "file:../plugin",
     "nativescript-vue": "2.4.0"
   },
   "devDependencies": {

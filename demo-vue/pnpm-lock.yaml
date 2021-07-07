@@ -1,7 +1,7 @@
 dependencies:
   '@nativescript/core': 6.4.0
   '@nativescript/theme': 2.3.0
-  nativescript-akylas-lottie: 'link:../plugin'
+  @nativescript-community/ui-lottie: 'link:../plugin'
   nativescript-vue: 2.4.0
 devDependencies:
   '@babel/core': 7.8.4
@@ -7810,7 +7810,7 @@ specifiers:
   babel-loader: ~8.0.6
   chalk: ^2.3.0
   del: 5.1.0
-  nativescript-akylas-lottie: 'file:../plugin'
+  @nativescript-community/ui-lottie: 'file:../plugin'
   nativescript-akylas-webpack-template: ^1.0.15
   nativescript-dev-webpack: 1.4.1
   nativescript-vue: 2.4.0

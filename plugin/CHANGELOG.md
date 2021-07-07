@@ -16,7 +16,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.14](https://github.com/farfromrefug/nativescript-lottie/compare/v4.0.13...v4.0.14) (2020-05-21)
 
-**Note:** Version bump only for package nativescript-akylas-lottie
+**Note:** Version bump only for package @nativescript-community/ui-lottie
 
 
 
@@ -35,7 +35,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.12](https://github.com/farfromrefug/nativescript-lottie/compare/v4.0.11...v4.0.12) (2020-05-21)
 
-**Note:** Version bump only for package nativescript-akylas-lottie
+**Note:** Version bump only for package @nativescript-community/ui-lottie
 
 
 
@@ -54,7 +54,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.10](https://github.com/farfromrefug/nativescript-lottie/compare/v4.0.9...v4.0.10) (2020-05-01)
 
-**Note:** Version bump only for package nativescript-akylas-lottie
+**Note:** Version bump only for package @nativescript-community/ui-lottie
 
 
 
@@ -62,7 +62,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.9](https://github.com/farfromrefug/nativescript-lottie/compare/v4.0.8...v4.0.9) (2020-05-01)
 
-**Note:** Version bump only for package nativescript-akylas-lottie
+**Note:** Version bump only for package @nativescript-community/ui-lottie
 
 
 
@@ -70,7 +70,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.8](https://github.com/farfromrefug/nativescript-lottie/compare/v4.0.7...v4.0.8) (2020-04-29)
 
-**Note:** Version bump only for package nativescript-akylas-lottie
+**Note:** Version bump only for package @nativescript-community/ui-lottie
 
 
 
@@ -78,7 +78,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.7](https://github.com/farfromrefug/nativescript-lottie/compare/v4.0.6...v4.0.7) (2020-02-26)
 
-**Note:** Version bump only for package nativescript-akylas-lottie
+**Note:** Version bump only for package @nativescript-community/ui-lottie
 
 
 
@@ -86,7 +86,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.6](https://github.com/farfromrefug/nativescript-lottie/compare/v4.0.5...v4.0.6) (2020-02-24)
 
-**Note:** Version bump only for package nativescript-akylas-lottie
+**Note:** Version bump only for package @nativescript-community/ui-lottie
 
 
 
@@ -94,7 +94,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.5](https://github.com/farfromrefug/nativescript-lottie/compare/v4.0.4...v4.0.5) (2020-02-18)
 
-**Note:** Version bump only for package nativescript-akylas-lottie
+**Note:** Version bump only for package @nativescript-community/ui-lottie
 
 
 
@@ -102,7 +102,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.4](https://github.com/farfromrefug/nativescript-lottie/compare/v4.0.3...v4.0.4) (2020-02-14)
 
-**Note:** Version bump only for package nativescript-akylas-lottie
+**Note:** Version bump only for package @nativescript-community/ui-lottie
 
 
 
@@ -110,7 +110,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [4.0.3](https://github.com/farfromrefug/nativescript-lottie/compare/v4.0.2...v4.0.3) (2020-02-13)
 
-**Note:** Version bump only for package nativescript-akylas-lottie
+**Note:** Version bump only for package @nativescript-community/ui-lottie
 
 
 
@@ -118,4 +118,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## 4.0.2 (2020-02-13)
 
-**Note:** Version bump only for package nativescript-akylas-lottie
+**Note:** Version bump only for package @nativescript-community/ui-lottie

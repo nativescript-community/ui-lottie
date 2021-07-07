@@ -30,7 +30,7 @@ module.exports = env => {
         const srcFullPath = resolve(projectRoot, '..', 'src');
         aliases = Object.assign(aliases, {
             '#': srcFullPath,
-            '@akylas/nativescript-lottie$': '#/@akylas/nativescript-lottie.' + platform
+            '@nativescript-community/ui-lottie$': '#/@nativescript-community/ui-lottie.' + platform
         });
     }
 

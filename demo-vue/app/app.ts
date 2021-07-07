@@ -5,7 +5,7 @@ import Home from './components/Home.vue';
 // register LottieView component for the plugin
 Vue.registerElement(
   'lottie-view',
-  () => require('@akylas/nativescript-lottie').LottieView
+  () => require('@nativescript-community/ui-lottie').LottieView
 );
 
 new Vue({
