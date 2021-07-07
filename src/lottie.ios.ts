@@ -107,17 +107,19 @@ export class LottieView extends LottieViewBase {
     }
 
     public playAnimation(): void {
-        if (this.nativeView) {
-            if (this.completionBlock) {
-                this.nativeView.playWithCompletion((animationFinished: boolean) => {
-                    if (this.completionBlock) {
-                        this.completionBlock(animationFinished);
-                    }
-                });
-            } else {
-                this.nativeView.play();
+        setTimeout(() => {
+            if (this.nativeView) {
+                if (this.completionBlock) {
+                    this.nativeView.playWithCompletion((animationFinished: boolean) => {
+                        if (this.completionBlock) {
+                            this.completionBlock(animationFinished);
+                        }
+                    });
+                } else {
+                    this.nativeView.play();
+                }
             }
-        }
+        }, 0);
     }
 
     public playAnimationFromProgressToProgress(startProgress: number, endProgress: number): void {
