@@ -7,8 +7,8 @@
  <a href="https://www.npmjs.com/package/nativescript-community/ui-lottie">
         <img src="https://img.shields.io/npm/v/nativescript-community/ui-lottie.svg" alt="npm">
     </a>
-    <a href="https://www.npmjs.com/package/nativescript-community/ui-lottie">
-        <img src="https://img.shields.io/npm/dt/nativescript-community/ui-lottie.svg?label=npm%20downloads" alt="npm">
+    <a href="https://www.npmjs.com/package/@nativescript-community/ui-lottie">
+        <img src="https://img.shields.io/npm/dt/@nativescript-community/ui-lottie.svg?label=npm%20downloads" alt="npm">
     </a>
      <a href="https://github.com/nativescript-community/ui-lottie/actions">
         <img src="https://github.com/nativescript-community/ui-lottie/workflows/Build%20CI/badge.svg" alt="Action Build">
