@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.3](https://github.com/farfromrefug/nativescript-lottie/compare/v4.1.2...v4.1.3) (2021-10-02)
+
+
+### Bug Fixes
+
+* **android:** correctly allow override of appcompat version ([5675f09](https://github.com/farfromrefug/nativescript-lottie/commit/5675f09c48f578602291b4fbc03f4f4c7ed18da8))
+
+
+
+
+
 ## [4.1.2](https://github.com/farfromrefug/nativescript-lottie/compare/v4.1.1...v4.1.2) (2021-07-07)
 
 
