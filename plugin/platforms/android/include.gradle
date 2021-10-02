@@ -1,7 +1,7 @@
 
 dependencies {
-	def androidxVersion =  project.hasProperty("androidxVersion") ? project.androidxVersion : "1.1.0"
-   implementation("androidx.appcompat:appcompat:$androidxVersion") {
+	def androidXAppCompat =  project.hasProperty("androidXAppCompat") ? project.androidXAppCompat : "1.1.0"
+   implementation("androidx.appcompat:appcompat:$androidXAppCompat") {
     exclude group: 'androidx.fragment'
   }
 	def lottieVersion =  project.hasProperty("lottieVersion") ? project.lottieVersion : "3.+"
