@@ -12,6 +12,7 @@ graphics/
 .settings/
 .vscode/
 node_modules/
+pnpm-global/
 .tscache/
 
 .gitignore
