@@ -49,7 +49,7 @@ export class LottieView extends LottieViewBase {
             if (src[0] === '~') {
                 src = `${path.join(appPath, src.substring(2))}`;
             }
-            if (!/.(json|zip)$/.test(src)) {
+            if (!/.(json|zip|lottie)$/.test(src)) {
                 src += '.json';
             }
             this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithFilepath(src);
