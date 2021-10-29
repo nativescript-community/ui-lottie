@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/farfromrefug/nativescript-lottie/compare/v4.1.0...v4.3.0) (2021-10-29)
+
+
+### Bug Fixes
+
+* **android:** correctly allow override of appcompat version ([0f866ac](https://github.com/farfromrefug/nativescript-lottie/commit/0f866ac84366f2b98382b7a494db2c48d5609bc4))
+* **ios:** working dotLottie files ([c4d7871](https://github.com/farfromrefug/nativescript-lottie/commit/c4d787110a9c02eced3e655472f5ddfc8900db00))
+* quick fix after merge ([d560f81](https://github.com/farfromrefug/nativescript-lottie/commit/d560f81139379b20b1048b3f411cfd453d67603d))
+* update deps and support dotLottie files ([749210e](https://github.com/farfromrefug/nativescript-lottie/commit/749210e16698b863df928deb531243f7e75a2aeb))
+
+
+### Features
+
+* **android:** native-api-usage ([50d4019](https://github.com/farfromrefug/nativescript-lottie/commit/50d40197c799baa3906754a970329af094ed77fb))
+
+
+
+
+
 # [4.2.0](https://github.com/farfromrefug/nativescript-lottie/compare/v4.1.3...v4.2.0) (2021-10-21)
 
 
