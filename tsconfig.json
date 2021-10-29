@@ -22,14 +22,11 @@
         "baseUrl": ".",
         "outDir": "./plugin",
         "paths": {
-            "tns-core-modules": ["./node_modules/@nativescript/core"],
-            "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
             "@nativescript-community/ui-lottie": ["src/lottie"],
-            "@nativescript-community/ui-lottie/*": ["src/*"],
-            "*": ["node_modules/*"]
+            "@nativescript-community/ui-lottie/*": ["src/*"]
         },
         "plugins": [
-          { "transform": "@nativescript/webpack/transformers/ns-transform-native-classes", "type": "raw" }
+          { "transform": "@nativescript/webpack/dist/transformers/NativeClass", "type": "raw" }
         ]
     },
     "include": ["src/**/*", "./references.d.ts"],
