@@ -5,7 +5,6 @@
  * Version 1.0.0                                           walkerrunpdx@gmail.com
  **********************************************************************************/
 
-import { View } from '@nativescript/core/ui/core/view';
 import { Color } from '@nativescript/core/color';
 import { LottieViewBase, autoPlayProperty, loopProperty, progressProperty, srcProperty } from './lottie.common';
 import { RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
@@ -41,10 +40,16 @@ export class LottieView extends LottieViewBase {
             this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithJson(src);
         } else if (src.startsWith(RESOURCE_PREFIX)) {
             const resName = src.replace(RESOURCE_PREFIX, '');
-            this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(
-                resName.replace('.json', ''),
-                NSBundle.mainBundle
-            );
+            if (resName.endsWith('.lottie')) {
+                DotLottie.objcLoadWithNameShouldCacheCompletion(resName.replace('.lottie', ''), true, (animation) => {
+                    this.nativeView.animation = animation;
+                });
+            } else {
+                this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(
+                    resName.replace('.json', ''),
+                    NSBundle.mainBundle
+                );
+            }
         } else {
             if (src[0] === '~') {
                 src = `${path.join(appPath, src.substring(2))}`;
@@ -52,7 +57,13 @@ export class LottieView extends LottieViewBase {
             if (!/.(json|zip|lottie)$/.test(src)) {
                 src += '.json';
             }
-            this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithFilepath(src);
+            if (src.endsWith('.lottie')) {
+                DotLottie.objcLoadFromShouldCacheCompletion(NSURL.URLWithString(src), true, (animation) => {
+                    this.nativeView.animation = animation;
+                });
+            } else {
+                this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithFilepath(src);
+            }
         }
     }
 
