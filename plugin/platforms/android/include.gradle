@@ -1,9 +1,5 @@
 
 dependencies {
-	def androidXAppCompat =  project.hasProperty("androidXAppCompat") ? project.androidXAppCompat : "1.1.0"
-   implementation("androidx.appcompat:appcompat:$androidXAppCompat") {
-    exclude group: 'androidx.fragment'
-  }
-	def lottieVersion =  project.hasProperty("lottieVersion") ? project.lottieVersion : "3.+"
+	def lottieVersion =  project.hasProperty("lottieVersion") ? project.lottieVersion : "4.1.+"
    implementation "com.airbnb.android:lottie:$lottieVersion"
 }

@@ -132,20 +132,20 @@ export class LottieView extends LottieViewBase {
         if (!src) {
             this.nativeView.setAnimation(null);
         } else if (src[0] === '{') {
-            this.nativeView.setAnimationFromJson(src);
+            this.nativeView.setAnimationFromJson(src, null);
         } else if (src.startsWith(RESOURCE_PREFIX)) {
             const resName = src.replace(RESOURCE_PREFIX, '');
             this.nativeView.setAnimation(resName);
         } else {
-            if (src[0] === '~') {
-                src = `${path.join(appPath, src.substring(2))}`;
-            }
-            if (!/.(json|zip)$/.test(src)) {
+            if (!/.(json|zip|lottie)$/.test(src)) {
                 src += '.json';
             }
-
+            if (src[0] === '~') {
+                this.nativeView.setAnimation('app/' + src.substring(2));
+                return;
+            }
             loadLottieJSON(src).then((r) => {
-                this.nativeView.setAnimationFromJson(r);
+                this.nativeView.setAnimationFromJson(r, null);
             });
         }
 
