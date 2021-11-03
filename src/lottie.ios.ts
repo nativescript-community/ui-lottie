@@ -57,7 +57,13 @@ export class LottieView extends LottieViewBase {
             if (!/.(json|zip|lottie)$/.test(src)) {
                 src += '.json';
             }
-            if (src.endsWith('.lottie')) {
+            if (!src.startsWith('file:/') && src[0] !== '/') {
+                // seen as res
+                this.nativeView.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(
+                    src.replace('.json', '').replace('.lottie', ''),
+                    NSBundle.mainBundle
+                );
+            } else if (src.endsWith('.lottie')) {
                 DotLottie.objcLoadFromShouldCacheCompletion(NSURL.URLWithString(src), true, (animation) => {
                     this.nativeView.animation = animation;
                 });
