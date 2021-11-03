@@ -27,7 +27,7 @@ function generateItems(count, offset = 0) {
     return new Array(count).fill().map((_, i) => ({
         name: `Item ${i}`,
         description: `Item ${i} description`,
-        lottie: '~/assets/4803-weather-storm.json'
+        lottie: '~/assets/LottieLogo1.json'
     }));
 }
 
@@ -52,7 +52,7 @@ export default {
 
 // Custom styles
 .fa {
-    color: $accent-dark;
+    color: blue;
 }
 
 .info {

@@ -1,23 +1,32 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "es5",
+        "target": "es2017",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "declaration": false,
+        "removeComments": false,
+        "emitDecoratorMetadata": false,
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
+        "sourceMap": true,
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
         "noEmitHelpers": true,
-        "noEmitOnError": true,
-        "preserveSymlinks": true,
-        "esModuleInterop": false,
-        "importHelpers": false,
-        "lib": ["es6", "dom", "es2015.iterable"],
+        "noEmitOnError": false,
+        "noImplicitAny": false,
+        "noImplicitReturns": false,
+        "noImplicitUseStrict": false,
+        "noFallthroughCasesInSwitch": true,
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+        "lib": ["esnext", "es2017", "dom"],
         "baseUrl": ".",
+        "types": ["node", "vue"],
         "paths": {
-            "~/*": ["app/*"],
-            "tns-core-modules": ["./node_modules/@nativescript/core"],
-            "tns-core-modules/*": ["./node_modules/@nativescript/core/*"],
-            "*": ["./node_modules/*"]
+            "~/*": ["app/*"]
         }
     },
     "include": ["app/**/*"],
-    "exclude": ["**/angular", "node_modules", "platforms"]
+    "exclude": ["node_modules", "platforms", "**/angular"]
 }
