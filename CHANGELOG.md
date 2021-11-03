@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.1](https://github.com/farfromrefug/nativescript-lottie/compare/v4.3.0...v4.3.1) (2021-11-03)
+
+
+### Bug Fixes
+
+* loading files like `MyFile.json` should be seen as res ([b1f892b](https://github.com/farfromrefug/nativescript-lottie/commit/b1f892b6a17bb96c263c9d93fe49e6e224eab342))
+
+
+
+
+
 # [4.3.0](https://github.com/farfromrefug/nativescript-lottie/compare/v4.1.0...v4.3.0) (2021-10-29)
 
 
