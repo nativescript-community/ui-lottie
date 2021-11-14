@@ -4,11 +4,8 @@ declare module com {
 			export class BuildConfig extends java.lang.Object {
 				public static class: java.lang.Class<com.airbnb.lottie.BuildConfig>;
 				public static DEBUG: boolean;
-				public static APPLICATION_ID: string;
+				public static LIBRARY_PACKAGE_NAME: string;
 				public static BUILD_TYPE: string;
-				public static FLAVOR: string;
-				public static VERSION_CODE: number;
-				public static VERSION_NAME: string;
 				public constructor();
 			}
 		}
@@ -71,10 +68,13 @@ declare module com {
 				public static class: java.lang.Class<com.airbnb.lottie.L>;
 				public static DBG: boolean;
 				public static TAG: string;
+				public static networkCache(param0: globalAndroid.content.Context): com.airbnb.lottie.network.NetworkCache;
+				public static networkFetcher(param0: globalAndroid.content.Context): com.airbnb.lottie.network.NetworkFetcher;
 				public static endSection(param0: string): number;
+				public static setCacheProvider(param0: com.airbnb.lottie.network.LottieNetworkCacheProvider): void;
+				public static setFetcher(param0: com.airbnb.lottie.network.LottieNetworkFetcher): void;
 				public static setTraceEnabled(param0: boolean): void;
 				public static beginSection(param0: string): void;
-				public constructor();
 			}
 		}
 	}
@@ -83,95 +83,126 @@ declare module com {
 declare module com {
 	export module airbnb {
 		export module lottie {
-			export class LottieAnimationView {
+			export class Lottie extends java.lang.Object {
+				public static class: java.lang.Class<com.airbnb.lottie.Lottie>;
+				public static initialize(param0: com.airbnb.lottie.LottieConfig): void;
+			}
+		}
+	}
+}
+
+declare module com {
+	export module airbnb {
+		export module lottie {
+			export class LottieAnimationView extends androidx.appcompat.widget.AppCompatImageView {
 				public static class: java.lang.Class<com.airbnb.lottie.LottieAnimationView>;
-				public onVisibilityChanged(param0: globalAndroid.view.View, param1: number): void;
 				public enableMergePathsForKitKatAndAbove(param0: boolean): void;
 				public getMinFrame(): number;
 				public updateBitmap(param0: string, param1: globalAndroid.graphics.Bitmap): globalAndroid.graphics.Bitmap;
 				public getMaxFrame(): number;
-				public setAnimationFromJson(param0: string, param1: string): void;
-				public removeAllUpdateListeners(): void;
-				public setImageAssetDelegate(param0: com.airbnb.lottie.ImageAssetDelegate): void;
-				public isAnimating(): boolean;
-				public setMinAndMaxFrame(param0: string): void;
-				public hasMatte(): boolean;
-				public onRestoreInstanceState(param0: globalAndroid.os.Parcelable): void;
+				public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number, param3: number);
+				public sendAccessibilityEvent(param0: number): void;
+				public onKeyUp(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+				public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable): void;
 				public removeLottieOnCompositionLoadedListener(param0: com.airbnb.lottie.LottieOnCompositionLoadedListener): boolean;
-				public reverseAnimationSpeed(): void;
 				public getPerformanceTracker(): com.airbnb.lottie.PerformanceTracker;
-				public setAnimationFromUrl(param0: string): void;
-				public addLottieOnCompositionLoadedListener(param0: com.airbnb.lottie.LottieOnCompositionLoadedListener): boolean;
-				public setAnimation(param0: java.io.InputStream, param1: string): void;
 				public hasMasks(): boolean;
-				public getRepeatCount(): number;
 				public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet);
-				public isMergePathsEnabledForKitKatAndAbove(): boolean;
 				public removeUpdateListener(param0: globalAndroid.animation.ValueAnimator.AnimatorUpdateListener): void;
-				public setFailureListener(param0: com.airbnb.lottie.LottieListener<java.lang.Throwable>): void;
 				public setImageBitmap(param0: globalAndroid.graphics.Bitmap): void;
-				public getComposition(): com.airbnb.lottie.LottieComposition;
-				public setMinAndMaxFrame(param0: number, param1: number): void;
-				public setMinAndMaxFrame(param0: string, param1: string, param2: boolean): void;
 				public setFallbackResource(param0: number): void;
+				public setOutlineMasksAndMattes(param0: boolean): void;
 				public setComposition(param0: com.airbnb.lottie.LottieComposition): void;
-				public setProgress(param0: number): void;
-				public setRepeatMode(param0: number): void;
 				public addAnimatorListener(param0: globalAndroid.animation.Animator.AnimatorListener): void;
 				public pauseAnimation(): void;
 				public getProgress(): number;
-				public setImageResource(param0: number): void;
-				public onDetachedFromWindow(): void;
 				public setRenderMode(param0: com.airbnb.lottie.RenderMode): void;
 				public setMinFrame(param0: string): void;
 				/** @deprecated */
 				public setAnimationFromJson(param0: string): void;
-				public setTextDelegate(param0: com.airbnb.lottie.TextDelegate): void;
-				public addValueCallback(param0: com.airbnb.lottie.model.KeyPath, param1: any, param2: com.airbnb.lottie.value.SimpleLottieValueCallback<any>): void;
-				public getScale(): number;
 				public getFrame(): number;
 				public constructor(param0: globalAndroid.content.Context, param1: globalAndroid.util.AttributeSet, param2: number);
 				public removeAnimatorListener(param0: globalAndroid.animation.Animator.AnimatorListener): void;
 				public getDuration(): number;
-				public setImageDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
-				public setAnimation(param0: number): void;
 				public setMinFrame(param0: number): void;
-				public setMaxFrame(param0: string): void;
-				public setScaleType(param0: globalAndroid.widget.ImageView.ScaleType): void;
 				public setMaxProgress(param0: number): void;
 				public getImageAssetsFolder(): string;
+				public setAnimationFromUrl(param0: string, param1: string): void;
 				public setImageAssetsFolder(param0: string): void;
-				public setSafeMode(param0: boolean): void;
-				public constructor(param0: globalAndroid.content.Context);
 				public cancelAnimation(): void;
 				public disableExtraScaleModeInFitXY(): void;
-				public setSpeed(param0: number): void;
+				public unscheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
 				public setFrame(param0: number): void;
 				public setMinAndMaxProgress(param0: number, param1: number): void;
 				/** @deprecated */
 				public loop(param0: boolean): void;
-				public addAnimatorUpdateListener(param0: globalAndroid.animation.ValueAnimator.AnimatorUpdateListener): void;
 				public resolveKeyPath(param0: com.airbnb.lottie.model.KeyPath): java.util.List<com.airbnb.lottie.model.KeyPath>;
+				public setScale(param0: number): void;
+				public setMinProgress(param0: number): void;
+				public setFontAssetDelegate(param0: com.airbnb.lottie.FontAssetDelegate): void;
+				public removeAllLottieOnCompositionLoadedListener(): void;
+				public addValueCallback(param0: com.airbnb.lottie.model.KeyPath, param1: any, param2: com.airbnb.lottie.value.LottieValueCallback<any>): void;
+				public setPerformanceTrackingEnabled(param0: boolean): void;
+				public setRepeatCount(param0: number): void;
+				public onAttachedToWindow(): void;
+				public onVisibilityChanged(param0: globalAndroid.view.View, param1: number): void;
+				/** @deprecated */
+				public buildDrawingCache(): void;
+				public onKeyDown(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+				public setAnimationFromJson(param0: string, param1: string): void;
+				public removeAllUpdateListeners(): void;
+				/** @deprecated */
+				public buildDrawingCache(param0: boolean): void;
+				public setImageAssetDelegate(param0: com.airbnb.lottie.ImageAssetDelegate): void;
+				public isAnimating(): boolean;
+				public setMinAndMaxFrame(param0: string): void;
+				public removeAnimatorPauseListener(param0: globalAndroid.animation.Animator.AnimatorPauseListener): void;
+				public hasMatte(): boolean;
+				public onKeyMultiple(param0: number, param1: number, param2: globalAndroid.view.KeyEvent): boolean;
+				public onRestoreInstanceState(param0: globalAndroid.os.Parcelable): void;
+				public reverseAnimationSpeed(): void;
+				public setAnimationFromUrl(param0: string): void;
+				public addLottieOnCompositionLoadedListener(param0: com.airbnb.lottie.LottieOnCompositionLoadedListener): boolean;
+				public setAnimation(param0: java.io.InputStream, param1: string): void;
+				public setFrame(param0: number, param1: number, param2: number, param3: number): boolean;
+				public getRepeatCount(): number;
+				public isMergePathsEnabledForKitKatAndAbove(): boolean;
+				public setFailureListener(param0: com.airbnb.lottie.LottieListener<java.lang.Throwable>): void;
+				public getComposition(): com.airbnb.lottie.LottieComposition;
+				public setMinAndMaxFrame(param0: number, param1: number): void;
+				public setMinAndMaxFrame(param0: string, param1: string, param2: boolean): void;
+				public setProgress(param0: number): void;
+				public setRepeatMode(param0: number): void;
+				public setImageResource(param0: number): void;
+				public onDetachedFromWindow(): void;
+				public addAnimatorPauseListener(param0: globalAndroid.animation.Animator.AnimatorPauseListener): void;
+				public setTextDelegate(param0: com.airbnb.lottie.TextDelegate): void;
+				public addValueCallback(param0: com.airbnb.lottie.model.KeyPath, param1: any, param2: com.airbnb.lottie.value.SimpleLottieValueCallback<any>): void;
+				public getScale(): number;
+				public setImageDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
+				public setAnimation(param0: number): void;
+				public setMaxFrame(param0: string): void;
+				public setSafeMode(param0: boolean): void;
+				public onKeyLongPress(param0: number, param1: globalAndroid.view.KeyEvent): boolean;
+				public constructor(param0: globalAndroid.content.Context);
+				public setSpeed(param0: number): void;
+				public setAnimation(param0: globalAndroid.view.animation.Animation): void;
+				public addAnimatorUpdateListener(param0: globalAndroid.animation.ValueAnimator.AnimatorUpdateListener): void;
 				public onSaveInstanceState(): globalAndroid.os.Parcelable;
 				public setAnimation(param0: string): void;
 				public setMaxFrame(param0: number): void;
-				public setScale(param0: number): void;
-				public setMinProgress(param0: number): void;
 				public getRepeatMode(): number;
 				public removeAllAnimatorListeners(): void;
-				public setFontAssetDelegate(param0: com.airbnb.lottie.FontAssetDelegate): void;
-				public removeAllLottieOnCompositionLoadedListener(): void;
 				public setCacheComposition(param0: boolean): void;
 				public buildDrawingCache(param0: boolean): void;
 				public invalidateDrawable(param0: globalAndroid.graphics.drawable.Drawable): void;
-				public addValueCallback(param0: com.airbnb.lottie.model.KeyPath, param1: any, param2: com.airbnb.lottie.value.LottieValueCallback<any>): void;
-				public setPerformanceTrackingEnabled(param0: boolean): void;
+				public sendAccessibilityEventUnchecked(param0: globalAndroid.view.accessibility.AccessibilityEvent): void;
 				public setApplyingOpacityToLayersEnabled(param0: boolean): void;
+				public setIgnoreDisabledSystemAnimations(param0: boolean): void;
+				public scheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable, param2: number): void;
 				public getSpeed(): number;
 				public playAnimation(): void;
 				public resumeAnimation(): void;
-				public setRepeatCount(param0: number): void;
-				public onAttachedToWindow(): void;
 			}
 			export module LottieAnimationView {
 				export class SavedState extends globalAndroid.view.View.BaseSavedState {
@@ -208,11 +239,13 @@ declare module com {
 				public getMarker(param0: string): com.airbnb.lottie.model.Marker;
 				public getLayers(): java.util.List<com.airbnb.lottie.model.layer.Layer>;
 				public getFrameRate(): number;
+				public getProgressForFrame(param0: number): number;
 				public hasImages(): boolean;
 				public toString(): string;
 				public getCharacters(): androidx.collection.SparseArrayCompat<com.airbnb.lottie.model.FontCharacter>;
 				public getEndFrame(): number;
 				public layerModelForId(param0: number): com.airbnb.lottie.model.layer.Layer;
+				public getFrameForProgress(param0: number): number;
 				public setPerformanceTrackingEnabled(param0: boolean): void;
 				public getFonts(): java.util.Map<string,com.airbnb.lottie.model.Font>;
 				public addWarning(param0: string): void;
@@ -270,8 +303,10 @@ declare module com {
 				public static fromAssetSync(param0: globalAndroid.content.Context, param1: string): com.airbnb.lottie.LottieResult<com.airbnb.lottie.LottieComposition>;
 				public static fromRawRes(param0: globalAndroid.content.Context, param1: number): com.airbnb.lottie.LottieTask<com.airbnb.lottie.LottieComposition>;
 				public static fromJsonReaderSync(param0: com.airbnb.lottie.parser.moshi.JsonReader, param1: string): com.airbnb.lottie.LottieResult<com.airbnb.lottie.LottieComposition>;
+				public static clearCache(param0: globalAndroid.content.Context): void;
 				public static fromAsset(param0: globalAndroid.content.Context, param1: string, param2: string): com.airbnb.lottie.LottieTask<com.airbnb.lottie.LottieComposition>;
 				public static fromRawResSync(param0: globalAndroid.content.Context, param1: number): com.airbnb.lottie.LottieResult<com.airbnb.lottie.LottieComposition>;
+				public static fromUrlSync(param0: globalAndroid.content.Context, param1: string, param2: string): com.airbnb.lottie.LottieResult<com.airbnb.lottie.LottieComposition>;
 				public static fromAsset(param0: globalAndroid.content.Context, param1: string): com.airbnb.lottie.LottieTask<com.airbnb.lottie.LottieComposition>;
 				public static fromJsonInputStreamSync(param0: java.io.InputStream, param1: string): com.airbnb.lottie.LottieResult<com.airbnb.lottie.LottieComposition>;
 				public static fromRawRes(param0: globalAndroid.content.Context, param1: number, param2: string): com.airbnb.lottie.LottieTask<com.airbnb.lottie.LottieComposition>;
@@ -285,6 +320,27 @@ declare module com {
 				public static fromZipStream(param0: java.util.zip.ZipInputStream, param1: string): com.airbnb.lottie.LottieTask<com.airbnb.lottie.LottieComposition>;
 				public static fromUrl(param0: globalAndroid.content.Context, param1: string): com.airbnb.lottie.LottieTask<com.airbnb.lottie.LottieComposition>;
 				public static fromJsonInputStream(param0: java.io.InputStream, param1: string): com.airbnb.lottie.LottieTask<com.airbnb.lottie.LottieComposition>;
+			}
+		}
+	}
+}
+
+declare module com {
+	export module airbnb {
+		export module lottie {
+			export class LottieConfig extends java.lang.Object {
+				public static class: java.lang.Class<com.airbnb.lottie.LottieConfig>;
+			}
+			export module LottieConfig {
+				export class Builder extends java.lang.Object {
+					public static class: java.lang.Class<com.airbnb.lottie.LottieConfig.Builder>;
+					public setNetworkCacheProvider(param0: com.airbnb.lottie.network.LottieNetworkCacheProvider): com.airbnb.lottie.LottieConfig.Builder;
+					public build(): com.airbnb.lottie.LottieConfig;
+					public setEnableSystraceMarkers(param0: boolean): com.airbnb.lottie.LottieConfig.Builder;
+					public constructor();
+					public setNetworkFetcher(param0: com.airbnb.lottie.network.LottieNetworkFetcher): com.airbnb.lottie.LottieConfig.Builder;
+					public setNetworkCacheDir(param0: java.io.File): com.airbnb.lottie.LottieConfig.Builder;
+				}
 			}
 		}
 	}
@@ -312,6 +368,7 @@ declare module com {
 				public setImageAssetDelegate(param0: com.airbnb.lottie.ImageAssetDelegate): void;
 				public isAnimating(): boolean;
 				public setMinAndMaxFrame(param0: string): void;
+				public removeAnimatorPauseListener(param0: globalAndroid.animation.Animator.AnimatorPauseListener): void;
 				public hasMatte(): boolean;
 				public isRunning(): boolean;
 				public useTextGlyphs(): boolean;
@@ -327,7 +384,10 @@ declare module com {
 				public setMinAndMaxFrame(param0: number, param1: number): void;
 				public getComposition(): com.airbnb.lottie.LottieComposition;
 				public setMinAndMaxFrame(param0: string, param1: string, param2: boolean): void;
+				/** @deprecated */
+				public setColorFilter(param0: number, param1: globalAndroid.graphics.PorterDuff.Mode): void;
 				public enableMergePathsForKitKatAndAbove(): boolean;
+				public setOutlineMasksAndMattes(param0: boolean): void;
 				public setProgress(param0: number): void;
 				public setRepeatMode(param0: number): void;
 				public isLooping(): boolean;
@@ -337,6 +397,7 @@ declare module com {
 				public getProgress(): number;
 				public setMinFrame(param0: string): void;
 				public getOpacity(): number;
+				public addAnimatorPauseListener(param0: globalAndroid.animation.Animator.AnimatorPauseListener): void;
 				public setTextDelegate(param0: com.airbnb.lottie.TextDelegate): void;
 				public isApplyingOpacityToLayersEnabled(): boolean;
 				public addValueCallback(param0: com.airbnb.lottie.model.KeyPath, param1: any, param2: com.airbnb.lottie.value.SimpleLottieValueCallback<any>): void;
@@ -344,7 +405,6 @@ declare module com {
 				public getScale(): number;
 				public removeAnimatorListener(param0: globalAndroid.animation.Animator.AnimatorListener): void;
 				public draw(param0: globalAndroid.graphics.Canvas): void;
-				public setColorFilter(param0: number, param1: globalAndroid.graphics.PorterDuff.Mode): void;
 				public setMinFrame(param0: number): void;
 				public setMaxFrame(param0: string): void;
 				public getImageAssetsFolder(): string;
@@ -357,6 +417,8 @@ declare module com {
 				public disableExtraScaleModeInFitXY(): void;
 				public setSpeed(param0: number): void;
 				public setFrame(param0: number): void;
+				/** @deprecated */
+				public getOpacity(): number;
 				public setMinAndMaxProgress(param0: number, param1: number): void;
 				/** @deprecated */
 				public loop(param0: boolean): void;
@@ -364,6 +426,7 @@ declare module com {
 				public resolveKeyPath(param0: com.airbnb.lottie.model.KeyPath): java.util.List<com.airbnb.lottie.model.KeyPath>;
 				public setMaxFrame(param0: number): void;
 				public setScale(param0: number): void;
+				public draw(param0: globalAndroid.graphics.Canvas, param1: globalAndroid.graphics.Matrix): void;
 				public setAlpha(param0: number): void;
 				public setMinProgress(param0: number): void;
 				public getRepeatMode(): number;
@@ -376,6 +439,7 @@ declare module com {
 				public addValueCallback(param0: com.airbnb.lottie.model.KeyPath, param1: any, param2: com.airbnb.lottie.value.LottieValueCallback<any>): void;
 				public setPerformanceTrackingEnabled(param0: boolean): void;
 				public setApplyingOpacityToLayersEnabled(param0: boolean): void;
+				public setIgnoreDisabledSystemAnimations(param0: boolean): void;
 				public scheduleDrawable(param0: globalAndroid.graphics.drawable.Drawable, param1: java.lang.Runnable, param2: number): void;
 				public getSpeed(): number;
 				public playAnimation(): void;
@@ -383,11 +447,6 @@ declare module com {
 				public setRepeatCount(param0: number): void;
 			}
 			export module LottieDrawable {
-				export class ColorFilterData extends java.lang.Object {
-					public static class: java.lang.Class<com.airbnb.lottie.LottieDrawable.ColorFilterData>;
-					public equals(param0: any): boolean;
-					public hashCode(): number;
-				}
 				export class LazyCompositionTask extends java.lang.Object {
 					public static class: java.lang.Class<com.airbnb.lottie.LottieDrawable.LazyCompositionTask>;
 					/**
@@ -426,6 +485,7 @@ declare module com {
 		export module lottie {
 			export class LottieImageAsset extends java.lang.Object {
 				public static class: java.lang.Class<com.airbnb.lottie.LottieImageAsset>;
+				public hasBitmap(): boolean;
 				public getWidth(): number;
 				public getHeight(): number;
 				public getId(): string;
@@ -516,18 +576,25 @@ declare module com {
 				public static STROKE_COLOR: java.lang.Integer;
 				public static TRANSFORM_SCALE: com.airbnb.lottie.value.ScaleXY;
 				public static POLYSTAR_POINTS: java.lang.Float;
+				public static IMAGE: globalAndroid.graphics.Bitmap;
 				public static TRANSFORM_END_OPACITY: java.lang.Float;
 				public static RECTANGLE_SIZE: globalAndroid.graphics.PointF;
 				public static REPEATER_OFFSET: java.lang.Float;
 				public static POLYSTAR_OUTER_ROUNDEDNESS: java.lang.Float;
 				public static COLOR_FILTER: globalAndroid.graphics.ColorFilter;
+				public static DROP_SHADOW_DISTANCE: java.lang.Float;
+				public static DROP_SHADOW_COLOR: java.lang.Integer;
 				public static POLYSTAR_OUTER_RADIUS: java.lang.Float;
 				public static COLOR: java.lang.Integer;
 				public static POLYSTAR_INNER_ROUNDEDNESS: java.lang.Float;
 				public static TRANSFORM_ROTATION: java.lang.Float;
 				public static POLYSTAR_ROTATION: java.lang.Float;
-				public static GRADIENT_COLOR: native.Array<java.lang.Integer>;
+				public static TRANSFORM_POSITION_X: java.lang.Float;
+				public static TRANSFORM_POSITION_Y: java.lang.Float;
+				public static GRADIENT_COLOR: androidNative.Array<java.lang.Integer>;
 				public static CORNER_RADIUS: java.lang.Float;
+				public static DROP_SHADOW_DIRECTION: java.lang.Float;
+				public static DROP_SHADOW_OPACITY: java.lang.Float;
 				public static OPACITY: java.lang.Integer;
 				public static TEXT_SIZE: java.lang.Float;
 				public static TEXT_TRACKING: java.lang.Float;
@@ -540,6 +607,9 @@ declare module com {
 				public static REPEATER_COPIES: java.lang.Float;
 				public static POLYSTAR_INNER_RADIUS: java.lang.Float;
 				public static TRANSFORM_SKEW_ANGLE: java.lang.Float;
+				public static TYPEFACE: globalAndroid.graphics.Typeface;
+				public static BLUR_RADIUS: java.lang.Float;
+				public static DROP_SHADOW_RADIUS: java.lang.Float;
 				public static POSITION: globalAndroid.graphics.PointF;
 				public static TRANSFORM_POSITION: globalAndroid.graphics.PointF;
 				public static TRANSFORM_START_OPACITY: java.lang.Float;
@@ -643,9 +713,9 @@ declare module com {
 				public static AUTOMATIC: com.airbnb.lottie.RenderMode;
 				public static HARDWARE: com.airbnb.lottie.RenderMode;
 				public static SOFTWARE: com.airbnb.lottie.RenderMode;
+				public static values(): androidNative.Array<com.airbnb.lottie.RenderMode>;
 				public static valueOf(param0: string): com.airbnb.lottie.RenderMode;
-				public static values(): native.Array<com.airbnb.lottie.RenderMode>;
-				public static valueOf(param0: java.lang.Class<com.airbnb.lottie.RenderMode>, param1: string): java.lang.Enum<com.airbnb.lottie.RenderMode>;
+				public static valueOf(param0: java.lang.Class, param1: string): java.lang.Enum;
 			}
 		}
 	}
@@ -674,6 +744,7 @@ declare module com {
 				public invalidateAllText(): void;
 				public setCacheText(param0: boolean): void;
 				public invalidateText(param0: string): void;
+				public getText(param0: string): string;
 				public getTextInternal(param0: string): string;
 				public constructor(param0: com.airbnb.lottie.LottieAnimationView);
 				public constructor(param0: com.airbnb.lottie.LottieDrawable);
@@ -1153,9 +1224,11 @@ declare module com {
 				export module keyframe {
 					export abstract class BaseKeyframeAnimation<K, A>  extends java.lang.Object {
 						public static class: java.lang.Class<com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation<any,any>>;
+						public progress: number;
 						public valueCallback: com.airbnb.lottie.value.LottieValueCallback<A>;
 						public setProgress(param0: number): void;
 						public getCurrentKeyframe(): com.airbnb.lottie.value.Keyframe<K>;
+						public getValue(param0: com.airbnb.lottie.value.Keyframe<K>, param1: number, param2: number, param3: number): A;
 						public setIsDiscrete(): void;
 						public addUpdateListener(param0: com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation.AnimationListener): void;
 						public notifyListeners(): void;
@@ -1253,6 +1326,28 @@ declare module com {
 		export module lottie {
 			export module animation {
 				export module keyframe {
+					export class DropShadowKeyframeAnimation extends java.lang.Object implements com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation.AnimationListener {
+						public static class: java.lang.Class<com.airbnb.lottie.animation.keyframe.DropShadowKeyframeAnimation>;
+						public onValueChanged(): void;
+						public setDistanceCallback(param0: com.airbnb.lottie.value.LottieValueCallback<java.lang.Float>): void;
+						public setColorCallback(param0: com.airbnb.lottie.value.LottieValueCallback<java.lang.Integer>): void;
+						public setDirectionCallback(param0: com.airbnb.lottie.value.LottieValueCallback<java.lang.Float>): void;
+						public constructor(param0: com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation.AnimationListener, param1: com.airbnb.lottie.model.layer.BaseLayer, param2: com.airbnb.lottie.parser.DropShadowEffect);
+						public setOpacityCallback(param0: com.airbnb.lottie.value.LottieValueCallback<java.lang.Float>): void;
+						public setRadiusCallback(param0: com.airbnb.lottie.value.LottieValueCallback<java.lang.Float>): void;
+						public applyTo(param0: globalAndroid.graphics.Paint): void;
+					}
+				}
+			}
+		}
+	}
+}
+
+declare module com {
+	export module airbnb {
+		export module lottie {
+			export module animation {
+				export module keyframe {
 					export class FloatKeyframeAnimation extends com.airbnb.lottie.animation.keyframe.KeyframeAnimation<java.lang.Float> {
 						public static class: java.lang.Class<com.airbnb.lottie.animation.keyframe.FloatKeyframeAnimation>;
 						public constructor(param0: java.util.List<com.airbnb.lottie.value.Keyframe<java.lang.Float>>);
@@ -1336,7 +1431,9 @@ declare module com {
 						public static class: java.lang.Class<com.airbnb.lottie.animation.keyframe.PathKeyframe>;
 						public constructor(param0: com.airbnb.lottie.LottieComposition, param1: any, param2: any, param3: globalAndroid.view.animation.Interpolator, param4: number, param5: java.lang.Float);
 						public constructor(param0: com.airbnb.lottie.LottieComposition, param1: com.airbnb.lottie.value.Keyframe<globalAndroid.graphics.PointF>);
+						public constructor(param0: com.airbnb.lottie.LottieComposition, param1: any, param2: any, param3: globalAndroid.view.animation.Interpolator, param4: globalAndroid.view.animation.Interpolator, param5: globalAndroid.view.animation.Interpolator, param6: number, param7: java.lang.Float);
 						public createPath(): void;
+						public constructor(param0: com.airbnb.lottie.LottieComposition, param1: any, param2: any, param3: globalAndroid.view.animation.Interpolator, param4: globalAndroid.view.animation.Interpolator, param5: number, param6: java.lang.Float);
 						public constructor(param0: any);
 					}
 				}
@@ -1355,6 +1452,7 @@ declare module com {
 						public constructor(param0: java.util.List<any>);
 						public getValue(): any;
 						public getValue(param0: com.airbnb.lottie.value.Keyframe<globalAndroid.graphics.PointF>, param1: number): globalAndroid.graphics.PointF;
+						public getValue(param0: com.airbnb.lottie.value.Keyframe<any>, param1: number, param2: number, param3: number): any;
 					}
 				}
 			}
@@ -1372,6 +1470,8 @@ declare module com {
 						public getValue(): any;
 						public getValue(param0: com.airbnb.lottie.value.Keyframe<globalAndroid.graphics.PointF>, param1: number): globalAndroid.graphics.PointF;
 						public constructor(param0: java.util.List<com.airbnb.lottie.value.Keyframe<globalAndroid.graphics.PointF>>);
+						public getValue(param0: com.airbnb.lottie.value.Keyframe<any>, param1: number, param2: number, param3: number): any;
+						public getValue(param0: com.airbnb.lottie.value.Keyframe<globalAndroid.graphics.PointF>, param1: number, param2: number, param3: number): globalAndroid.graphics.PointF;
 					}
 				}
 			}
@@ -1389,6 +1489,7 @@ declare module com {
 						public getValue(): any;
 						public getValue(param0: com.airbnb.lottie.value.Keyframe<com.airbnb.lottie.value.ScaleXY>, param1: number): com.airbnb.lottie.value.ScaleXY;
 						public constructor(param0: java.util.List<com.airbnb.lottie.value.Keyframe<com.airbnb.lottie.value.ScaleXY>>);
+						public getValue(param0: com.airbnb.lottie.value.Keyframe<any>, param1: number, param2: number, param3: number): any;
 					}
 				}
 			}
@@ -1406,6 +1507,7 @@ declare module com {
 						public getValue(param0: com.airbnb.lottie.value.Keyframe<com.airbnb.lottie.model.content.ShapeData>, param1: number): globalAndroid.graphics.Path;
 						public getValue(): any;
 						public constructor(param0: java.util.List<com.airbnb.lottie.value.Keyframe<com.airbnb.lottie.model.content.ShapeData>>);
+						public getValue(param0: com.airbnb.lottie.value.Keyframe<any>, param1: number, param2: number, param3: number): any;
 					}
 				}
 			}
@@ -1420,10 +1522,15 @@ declare module com {
 				export module keyframe {
 					export class SplitDimensionPathKeyframeAnimation extends com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation<globalAndroid.graphics.PointF,globalAndroid.graphics.PointF> {
 						public static class: java.lang.Class<com.airbnb.lottie.animation.keyframe.SplitDimensionPathKeyframeAnimation>;
+						public xValueCallback: com.airbnb.lottie.value.LottieValueCallback<java.lang.Float>;
+						public yValueCallback: com.airbnb.lottie.value.LottieValueCallback<java.lang.Float>;
 						public setProgress(param0: number): void;
 						public getValue(): globalAndroid.graphics.PointF;
 						public getValue(): any;
+						public setYValueCallback(param0: com.airbnb.lottie.value.LottieValueCallback<java.lang.Float>): void;
 						public constructor(param0: com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation<java.lang.Float,java.lang.Float>, param1: com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation<java.lang.Float,java.lang.Float>);
+						public setXValueCallback(param0: com.airbnb.lottie.value.LottieValueCallback<java.lang.Float>): void;
+						public getValue(param0: com.airbnb.lottie.value.Keyframe<any>, param1: number, param2: number, param3: number): any;
 					}
 				}
 			}
@@ -1477,10 +1584,12 @@ declare module com {
 				export module keyframe {
 					export class ValueCallbackKeyframeAnimation<K, A>  extends com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation<any,any> {
 						public static class: java.lang.Class<com.airbnb.lottie.animation.keyframe.ValueCallbackKeyframeAnimation<any,any>>;
+						public setProgress(param0: number): void;
 						public constructor(param0: com.airbnb.lottie.value.LottieValueCallback<any>, param1: any);
 						public notifyListeners(): void;
 						public getValue(): any;
 						public constructor(param0: com.airbnb.lottie.value.LottieValueCallback<any>);
+						public getValue(param0: com.airbnb.lottie.value.Keyframe<any>, param1: number, param2: number, param3: number): any;
 					}
 				}
 			}
@@ -1570,9 +1679,9 @@ declare module com {
 						public static LEFT_ALIGN: com.airbnb.lottie.model.DocumentData.Justification;
 						public static RIGHT_ALIGN: com.airbnb.lottie.model.DocumentData.Justification;
 						public static CENTER: com.airbnb.lottie.model.DocumentData.Justification;
-						public static valueOf(param0: java.lang.Class<com.airbnb.lottie.model.DocumentData.Justification>, param1: string): java.lang.Enum<com.airbnb.lottie.model.DocumentData.Justification>;
-						public static values(): native.Array<com.airbnb.lottie.model.DocumentData.Justification>;
+						public static valueOf(param0: java.lang.Class, param1: string): java.lang.Enum;
 						public static valueOf(param0: string): com.airbnb.lottie.model.DocumentData.Justification;
+						public static values(): androidNative.Array<com.airbnb.lottie.model.DocumentData.Justification>;
 					}
 				}
 			}
@@ -1587,9 +1696,11 @@ declare module com {
 				export class Font extends java.lang.Object {
 					public static class: java.lang.Class<com.airbnb.lottie.model.Font>;
 					public getName(): string;
+					public setTypeface(param0: globalAndroid.graphics.Typeface): void;
 					public getFamily(): string;
 					public constructor(param0: string, param1: string, param2: string, param3: number);
 					public getStyle(): string;
+					public getTypeface(): globalAndroid.graphics.Typeface;
 				}
 			}
 		}
@@ -1619,15 +1730,16 @@ declare module com {
 			export module model {
 				export class KeyPath extends java.lang.Object {
 					public static class: java.lang.Class<com.airbnb.lottie.model.KeyPath>;
+					public static COMPOSITION: com.airbnb.lottie.model.KeyPath;
 					public fullyResolvesTo(param0: string, param1: number): boolean;
 					public incrementDepthBy(param0: string, param1: number): number;
 					public matches(param0: string, param1: number): boolean;
 					public propagateToChildren(param0: string, param1: number): boolean;
 					public toString(): string;
+					public constructor(param0: androidNative.Array<string>);
 					public resolve(param0: com.airbnb.lottie.model.KeyPathElement): com.airbnb.lottie.model.KeyPath;
 					public getResolvedElement(): com.airbnb.lottie.model.KeyPathElement;
 					public addKey(param0: string): com.airbnb.lottie.model.KeyPath;
-					public constructor(param0: native.Array<string>);
 					public keysToString(): string;
 				}
 			}
@@ -1998,6 +2110,22 @@ declare module com {
 		export module lottie {
 			export module model {
 				export module content {
+					export class BlurEffect extends java.lang.Object {
+						public static class: java.lang.Class<com.airbnb.lottie.model.content.BlurEffect>;
+						public getBlurriness(): com.airbnb.lottie.model.animatable.AnimatableFloatValue;
+						public constructor(param0: com.airbnb.lottie.model.animatable.AnimatableFloatValue);
+					}
+				}
+			}
+		}
+	}
+}
+
+declare module com {
+	export module airbnb {
+		export module lottie {
+			export module model {
+				export module content {
 					export class CircleShape extends java.lang.Object implements com.airbnb.lottie.model.content.ContentModel {
 						public static class: java.lang.Class<com.airbnb.lottie.model.content.CircleShape>;
 						public toContent(param0: com.airbnb.lottie.LottieDrawable, param1: com.airbnb.lottie.model.layer.BaseLayer): com.airbnb.lottie.animation.content.Content;
@@ -2043,11 +2171,11 @@ declare module com {
 				export module content {
 					export class GradientColor extends java.lang.Object {
 						public static class: java.lang.Class<com.airbnb.lottie.model.content.GradientColor>;
+						public constructor(param0: androidNative.Array<number>, param1: androidNative.Array<number>);
+						public getColors(): androidNative.Array<number>;
 						public getSize(): number;
-						public constructor(param0: native.Array<number>, param1: native.Array<number>);
-						public getColors(): native.Array<number>;
+						public getPositions(): androidNative.Array<number>;
 						public lerp(param0: com.airbnb.lottie.model.content.GradientColor, param1: com.airbnb.lottie.model.content.GradientColor, param2: number): void;
-						public getPositions(): native.Array<number>;
 					}
 				}
 			}
@@ -2118,8 +2246,8 @@ declare module com {
 						public static LINEAR: com.airbnb.lottie.model.content.GradientType;
 						public static RADIAL: com.airbnb.lottie.model.content.GradientType;
 						public static valueOf(param0: string): com.airbnb.lottie.model.content.GradientType;
-						public static valueOf(param0: java.lang.Class<any>, param1: string): java.lang.Enum<any>;
-						public static values(): native.Array<com.airbnb.lottie.model.content.GradientType>;
+						public static values(): androidNative.Array<com.airbnb.lottie.model.content.GradientType>;
+						public static valueOf(param0: java.lang.Class, param1: string): java.lang.Enum;
 					}
 				}
 			}
@@ -2147,9 +2275,9 @@ declare module com {
 							public static MASK_MODE_SUBTRACT: com.airbnb.lottie.model.content.Mask.MaskMode;
 							public static MASK_MODE_INTERSECT: com.airbnb.lottie.model.content.Mask.MaskMode;
 							public static MASK_MODE_NONE: com.airbnb.lottie.model.content.Mask.MaskMode;
-							public static valueOf(param0: java.lang.Class<any>, param1: string): java.lang.Enum<any>;
+							public static valueOf(param0: java.lang.Class, param1: string): java.lang.Enum;
+							public static values(): androidNative.Array<com.airbnb.lottie.model.content.Mask.MaskMode>;
 							public static valueOf(param0: string): com.airbnb.lottie.model.content.Mask.MaskMode;
-							public static values(): native.Array<com.airbnb.lottie.model.content.Mask.MaskMode>;
 						}
 					}
 				}
@@ -2180,9 +2308,9 @@ declare module com {
 							public static SUBTRACT: com.airbnb.lottie.model.content.MergePaths.MergePathsMode;
 							public static INTERSECT: com.airbnb.lottie.model.content.MergePaths.MergePathsMode;
 							public static EXCLUDE_INTERSECTIONS: com.airbnb.lottie.model.content.MergePaths.MergePathsMode;
-							public static valueOf(param0: java.lang.Class<any>, param1: string): java.lang.Enum<any>;
+							public static values(): androidNative.Array<com.airbnb.lottie.model.content.MergePaths.MergePathsMode>;
+							public static valueOf(param0: java.lang.Class, param1: string): java.lang.Enum;
 							public static valueOf(param0: string): com.airbnb.lottie.model.content.MergePaths.MergePathsMode;
-							public static values(): native.Array<com.airbnb.lottie.model.content.MergePaths.MergePathsMode>;
 							public static forId(param0: number): com.airbnb.lottie.model.content.MergePaths.MergePathsMode;
 						}
 					}
@@ -2217,8 +2345,8 @@ declare module com {
 							public static class: java.lang.Class<com.airbnb.lottie.model.content.PolystarShape.Type>;
 							public static STAR: com.airbnb.lottie.model.content.PolystarShape.Type;
 							public static POLYGON: com.airbnb.lottie.model.content.PolystarShape.Type;
-							public static values(): native.Array<com.airbnb.lottie.model.content.PolystarShape.Type>;
-							public static valueOf(param0: java.lang.Class<any>, param1: string): java.lang.Enum<any>;
+							public static values(): androidNative.Array<com.airbnb.lottie.model.content.PolystarShape.Type>;
+							public static valueOf(param0: java.lang.Class, param1: string): java.lang.Enum;
 							public static valueOf(param0: string): com.airbnb.lottie.model.content.PolystarShape.Type;
 							public static forValue(param0: number): com.airbnb.lottie.model.content.PolystarShape.Type;
 						}
@@ -2236,14 +2364,14 @@ declare module com {
 				export module content {
 					export class RectangleShape extends java.lang.Object implements com.airbnb.lottie.model.content.ContentModel {
 						public static class: java.lang.Class<com.airbnb.lottie.model.content.RectangleShape>;
+						public constructor(param0: string, param1: com.airbnb.lottie.model.animatable.AnimatableValue<globalAndroid.graphics.PointF,globalAndroid.graphics.PointF>, param2: com.airbnb.lottie.model.animatable.AnimatableValue<globalAndroid.graphics.PointF,globalAndroid.graphics.PointF>, param3: com.airbnb.lottie.model.animatable.AnimatableFloatValue, param4: boolean);
 						public toContent(param0: com.airbnb.lottie.LottieDrawable, param1: com.airbnb.lottie.model.layer.BaseLayer): com.airbnb.lottie.animation.content.Content;
-						public constructor(param0: string, param1: com.airbnb.lottie.model.animatable.AnimatableValue<globalAndroid.graphics.PointF,globalAndroid.graphics.PointF>, param2: com.airbnb.lottie.model.animatable.AnimatablePointValue, param3: com.airbnb.lottie.model.animatable.AnimatableFloatValue, param4: boolean);
-						public getSize(): com.airbnb.lottie.model.animatable.AnimatablePointValue;
 						public isHidden(): boolean;
 						public getCornerRadius(): com.airbnb.lottie.model.animatable.AnimatableFloatValue;
 						public getName(): string;
 						public getPosition(): com.airbnb.lottie.model.animatable.AnimatableValue<globalAndroid.graphics.PointF,globalAndroid.graphics.PointF>;
 						public toString(): string;
+						public getSize(): com.airbnb.lottie.model.animatable.AnimatableValue<globalAndroid.graphics.PointF,globalAndroid.graphics.PointF>;
 					}
 				}
 			}
@@ -2381,9 +2509,9 @@ declare module com {
 							public static BUTT: com.airbnb.lottie.model.content.ShapeStroke.LineCapType;
 							public static ROUND: com.airbnb.lottie.model.content.ShapeStroke.LineCapType;
 							public static UNKNOWN: com.airbnb.lottie.model.content.ShapeStroke.LineCapType;
-							public static values(): native.Array<com.airbnb.lottie.model.content.ShapeStroke.LineCapType>;
-							public static valueOf(param0: java.lang.Class<any>, param1: string): java.lang.Enum<any>;
+							public static valueOf(param0: java.lang.Class, param1: string): java.lang.Enum;
 							public toPaintCap(): globalAndroid.graphics.Paint.Cap;
+							public static values(): androidNative.Array<com.airbnb.lottie.model.content.ShapeStroke.LineCapType>;
 							public static valueOf(param0: string): com.airbnb.lottie.model.content.ShapeStroke.LineCapType;
 						}
 						export class LineJoinType {
@@ -2391,10 +2519,10 @@ declare module com {
 							public static MITER: com.airbnb.lottie.model.content.ShapeStroke.LineJoinType;
 							public static ROUND: com.airbnb.lottie.model.content.ShapeStroke.LineJoinType;
 							public static BEVEL: com.airbnb.lottie.model.content.ShapeStroke.LineJoinType;
-							public static valueOf(param0: java.lang.Class<any>, param1: string): java.lang.Enum<any>;
+							public static valueOf(param0: java.lang.Class, param1: string): java.lang.Enum;
 							public toPaintJoin(): globalAndroid.graphics.Paint.Join;
 							public static valueOf(param0: string): com.airbnb.lottie.model.content.ShapeStroke.LineJoinType;
-							public static values(): native.Array<com.airbnb.lottie.model.content.ShapeStroke.LineJoinType>;
+							public static values(): androidNative.Array<com.airbnb.lottie.model.content.ShapeStroke.LineJoinType>;
 						}
 					}
 				}
@@ -2425,10 +2553,10 @@ declare module com {
 							public static class: java.lang.Class<com.airbnb.lottie.model.content.ShapeTrimPath.Type>;
 							public static SIMULTANEOUSLY: com.airbnb.lottie.model.content.ShapeTrimPath.Type;
 							public static INDIVIDUALLY: com.airbnb.lottie.model.content.ShapeTrimPath.Type;
-							public static valueOf(param0: java.lang.Class<any>, param1: string): java.lang.Enum<any>;
-							public static values(): native.Array<com.airbnb.lottie.model.content.ShapeTrimPath.Type>;
+							public static valueOf(param0: java.lang.Class, param1: string): java.lang.Enum;
 							public static valueOf(param0: string): com.airbnb.lottie.model.content.ShapeTrimPath.Type;
 							public static forId(param0: number): com.airbnb.lottie.model.content.ShapeTrimPath.Type;
+							public static values(): androidNative.Array<com.airbnb.lottie.model.content.ShapeTrimPath.Type>;
 						}
 					}
 				}
@@ -2447,11 +2575,14 @@ declare module com {
 						public static class: java.lang.Class<com.airbnb.lottie.model.layer.BaseLayer>;
 						public onValueChanged(): void;
 						public getBounds(param0: globalAndroid.graphics.RectF, param1: globalAndroid.graphics.Matrix, param2: boolean): void;
+						public getBlurEffect(): com.airbnb.lottie.model.content.BlurEffect;
 						public resolveKeyPath(param0: com.airbnb.lottie.model.KeyPath, param1: number, param2: java.util.List<com.airbnb.lottie.model.KeyPath>, param3: com.airbnb.lottie.model.KeyPath): void;
 						public setContents(param0: java.util.List<com.airbnb.lottie.animation.content.Content>, param1: java.util.List<com.airbnb.lottie.animation.content.Content>): void;
 						public addValueCallback(param0: any, param1: com.airbnb.lottie.value.LottieValueCallback<any>): void;
 						public removeAnimation(param0: com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation<any,any>): void;
+						public getDropShadowEffect(): com.airbnb.lottie.parser.DropShadowEffect;
 						public getName(): string;
+						public getBlurMaskFilter(param0: number): globalAndroid.graphics.BlurMaskFilter;
 						public addAnimation(param0: com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation<any,any>): void;
 						public draw(param0: globalAndroid.graphics.Canvas, param1: globalAndroid.graphics.Matrix, param2: number): void;
 					}
@@ -2473,6 +2604,7 @@ declare module com {
 						public onValueChanged(): void;
 						public constructor(param0: com.airbnb.lottie.LottieDrawable, param1: com.airbnb.lottie.model.layer.Layer, param2: java.util.List<com.airbnb.lottie.model.layer.Layer>, param3: com.airbnb.lottie.LottieComposition);
 						public getBounds(param0: globalAndroid.graphics.RectF, param1: globalAndroid.graphics.Matrix, param2: boolean): void;
+						public setOutlineMasksAndMattes(param0: boolean): void;
 						public hasMasks(): boolean;
 						public resolveKeyPath(param0: com.airbnb.lottie.model.KeyPath, param1: number, param2: java.util.List<com.airbnb.lottie.model.KeyPath>, param3: com.airbnb.lottie.model.KeyPath): void;
 						public addValueCallback(param0: any, param1: com.airbnb.lottie.value.LottieValueCallback<any>): void;
@@ -2512,10 +2644,12 @@ declare module com {
 				export module layer {
 					export class Layer extends java.lang.Object {
 						public static class: java.lang.Class<com.airbnb.lottie.model.layer.Layer>;
+						public constructor(param0: java.util.List<com.airbnb.lottie.model.content.ContentModel>, param1: com.airbnb.lottie.LottieComposition, param2: string, param3: number, param4: com.airbnb.lottie.model.layer.Layer.LayerType, param5: number, param6: string, param7: java.util.List<com.airbnb.lottie.model.content.Mask>, param8: com.airbnb.lottie.model.animatable.AnimatableTransform, param9: number, param10: number, param11: number, param12: number, param13: number, param14: number, param15: number, param16: com.airbnb.lottie.model.animatable.AnimatableTextFrame, param17: com.airbnb.lottie.model.animatable.AnimatableTextProperties, param18: java.util.List<com.airbnb.lottie.value.Keyframe<java.lang.Float>>, param19: com.airbnb.lottie.model.layer.Layer.MatteType, param20: com.airbnb.lottie.model.animatable.AnimatableFloatValue, param21: boolean, param22: com.airbnb.lottie.model.content.BlurEffect, param23: com.airbnb.lottie.parser.DropShadowEffect);
 						public getLayerType(): com.airbnb.lottie.model.layer.Layer.LayerType;
 						public toString(param0: string): string;
-						public constructor(param0: java.util.List<com.airbnb.lottie.model.content.ContentModel>, param1: com.airbnb.lottie.LottieComposition, param2: string, param3: number, param4: com.airbnb.lottie.model.layer.Layer.LayerType, param5: number, param6: string, param7: java.util.List<com.airbnb.lottie.model.content.Mask>, param8: com.airbnb.lottie.model.animatable.AnimatableTransform, param9: number, param10: number, param11: number, param12: number, param13: number, param14: number, param15: number, param16: com.airbnb.lottie.model.animatable.AnimatableTextFrame, param17: com.airbnb.lottie.model.animatable.AnimatableTextProperties, param18: java.util.List<com.airbnb.lottie.value.Keyframe<java.lang.Float>>, param19: com.airbnb.lottie.model.layer.Layer.MatteType, param20: com.airbnb.lottie.model.animatable.AnimatableFloatValue, param21: boolean);
+						public getBlurEffect(): com.airbnb.lottie.model.content.BlurEffect;
 						public isHidden(): boolean;
+						public getDropShadowEffect(): com.airbnb.lottie.parser.DropShadowEffect;
 						public toString(): string;
 						public getId(): number;
 					}
@@ -2529,19 +2663,21 @@ declare module com {
 							public static SHAPE: com.airbnb.lottie.model.layer.Layer.LayerType;
 							public static TEXT: com.airbnb.lottie.model.layer.Layer.LayerType;
 							public static UNKNOWN: com.airbnb.lottie.model.layer.Layer.LayerType;
-							public static valueOf(param0: java.lang.Class<any>, param1: string): java.lang.Enum<any>;
+							public static values(): androidNative.Array<com.airbnb.lottie.model.layer.Layer.LayerType>;
+							public static valueOf(param0: java.lang.Class, param1: string): java.lang.Enum;
 							public static valueOf(param0: string): com.airbnb.lottie.model.layer.Layer.LayerType;
-							public static values(): native.Array<com.airbnb.lottie.model.layer.Layer.LayerType>;
 						}
 						export class MatteType {
 							public static class: java.lang.Class<com.airbnb.lottie.model.layer.Layer.MatteType>;
 							public static NONE: com.airbnb.lottie.model.layer.Layer.MatteType;
 							public static ADD: com.airbnb.lottie.model.layer.Layer.MatteType;
 							public static INVERT: com.airbnb.lottie.model.layer.Layer.MatteType;
+							public static LUMA: com.airbnb.lottie.model.layer.Layer.MatteType;
+							public static LUMA_INVERTED: com.airbnb.lottie.model.layer.Layer.MatteType;
 							public static UNKNOWN: com.airbnb.lottie.model.layer.Layer.MatteType;
-							public static values(): native.Array<com.airbnb.lottie.model.layer.Layer.MatteType>;
 							public static valueOf(param0: string): com.airbnb.lottie.model.layer.Layer.MatteType;
-							public static valueOf(param0: java.lang.Class<any>, param1: string): java.lang.Enum<any>;
+							public static values(): androidNative.Array<com.airbnb.lottie.model.layer.Layer.MatteType>;
+							public static valueOf(param0: java.lang.Class, param1: string): java.lang.Enum;
 						}
 					}
 				}
@@ -2579,8 +2715,10 @@ declare module com {
 						public resolveChildKeyPath(param0: com.airbnb.lottie.model.KeyPath, param1: number, param2: java.util.List<com.airbnb.lottie.model.KeyPath>, param3: com.airbnb.lottie.model.KeyPath): void;
 						public onValueChanged(): void;
 						public getBounds(param0: globalAndroid.graphics.RectF, param1: globalAndroid.graphics.Matrix, param2: boolean): void;
+						public getBlurEffect(): com.airbnb.lottie.model.content.BlurEffect;
 						public resolveKeyPath(param0: com.airbnb.lottie.model.KeyPath, param1: number, param2: java.util.List<com.airbnb.lottie.model.KeyPath>, param3: com.airbnb.lottie.model.KeyPath): void;
 						public addValueCallback(param0: any, param1: com.airbnb.lottie.value.LottieValueCallback<any>): void;
+						public getDropShadowEffect(): com.airbnb.lottie.parser.DropShadowEffect;
 						public draw(param0: globalAndroid.graphics.Canvas, param1: globalAndroid.graphics.Matrix, param2: number): void;
 					}
 				}
@@ -2633,17 +2771,118 @@ declare module com {
 	export module airbnb {
 		export module lottie {
 			export module network {
+				export class DefaultLottieFetchResult extends java.lang.Object implements com.airbnb.lottie.network.LottieFetchResult {
+					public static class: java.lang.Class<com.airbnb.lottie.network.DefaultLottieFetchResult>;
+					public bodyByteStream(): java.io.InputStream;
+					public constructor(param0: java.net.HttpURLConnection);
+					public contentType(): string;
+					public isSuccessful(): boolean;
+					public close(): void;
+					public error(): string;
+				}
+			}
+		}
+	}
+}
+
+declare module com {
+	export module airbnb {
+		export module lottie {
+			export module network {
+				export class DefaultLottieNetworkFetcher extends java.lang.Object implements com.airbnb.lottie.network.LottieNetworkFetcher {
+					public static class: java.lang.Class<com.airbnb.lottie.network.DefaultLottieNetworkFetcher>;
+					public fetchSync(param0: string): com.airbnb.lottie.network.LottieFetchResult;
+					public constructor();
+				}
+			}
+		}
+	}
+}
+
+declare module com {
+	export module airbnb {
+		export module lottie {
+			export module network {
 				export class FileExtension {
 					public static class: java.lang.Class<com.airbnb.lottie.network.FileExtension>;
 					public static JSON: com.airbnb.lottie.network.FileExtension;
 					public static ZIP: com.airbnb.lottie.network.FileExtension;
 					public extension: string;
 					public toString(): string;
-					public static values(): native.Array<com.airbnb.lottie.network.FileExtension>;
+					public static values(): androidNative.Array<com.airbnb.lottie.network.FileExtension>;
 					public static forFile(param0: string): com.airbnb.lottie.network.FileExtension;
 					public static valueOf(param0: string): com.airbnb.lottie.network.FileExtension;
 					public tempExtension(): string;
-					public static valueOf(param0: java.lang.Class<any>, param1: string): java.lang.Enum<any>;
+					public static valueOf(param0: java.lang.Class, param1: string): java.lang.Enum;
+				}
+			}
+		}
+	}
+}
+
+declare module com {
+	export module airbnb {
+		export module lottie {
+			export module network {
+				export class LottieFetchResult extends java.lang.Object implements java.io.Closeable {
+					public static class: java.lang.Class<com.airbnb.lottie.network.LottieFetchResult>;
+					/**
+					 * Constructs a new instance of the com.airbnb.lottie.network.LottieFetchResult interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+					 */
+					public constructor(implementation: {
+						isSuccessful(): boolean;
+						bodyByteStream(): java.io.InputStream;
+						contentType(): string;
+						error(): string;
+						close(): void;
+						close(): void;
+					});
+					public constructor();
+					public bodyByteStream(): java.io.InputStream;
+					public contentType(): string;
+					public isSuccessful(): boolean;
+					public close(): void;
+					public error(): string;
+				}
+			}
+		}
+	}
+}
+
+declare module com {
+	export module airbnb {
+		export module lottie {
+			export module network {
+				export class LottieNetworkCacheProvider extends java.lang.Object {
+					public static class: java.lang.Class<com.airbnb.lottie.network.LottieNetworkCacheProvider>;
+					/**
+					 * Constructs a new instance of the com.airbnb.lottie.network.LottieNetworkCacheProvider interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+					 */
+					public constructor(implementation: {
+						getCacheDir(): java.io.File;
+					});
+					public constructor();
+					public getCacheDir(): java.io.File;
+				}
+			}
+		}
+	}
+}
+
+declare module com {
+	export module airbnb {
+		export module lottie {
+			export module network {
+				export class LottieNetworkFetcher extends java.lang.Object {
+					public static class: java.lang.Class<com.airbnb.lottie.network.LottieNetworkFetcher>;
+					/**
+					 * Constructs a new instance of the com.airbnb.lottie.network.LottieNetworkFetcher interface with the provided implementation. An empty constructor exists calling super() when extending the interface class.
+					 */
+					public constructor(implementation: {
+						fetchSync(param0: string): com.airbnb.lottie.network.LottieFetchResult;
+					});
+					public constructor();
+					public fetchSync(param0: string): com.airbnb.lottie.network.LottieFetchResult;
 				}
 			}
 		}
@@ -2656,6 +2895,8 @@ declare module com {
 			export module network {
 				export class NetworkCache extends java.lang.Object {
 					public static class: java.lang.Class<com.airbnb.lottie.network.NetworkCache>;
+					public clear(): void;
+					public constructor(param0: com.airbnb.lottie.network.LottieNetworkCacheProvider);
 				}
 			}
 		}
@@ -2668,8 +2909,8 @@ declare module com {
 			export module network {
 				export class NetworkFetcher extends java.lang.Object {
 					public static class: java.lang.Class<com.airbnb.lottie.network.NetworkFetcher>;
-					public fetchSync(): com.airbnb.lottie.LottieResult<com.airbnb.lottie.LottieComposition>;
-					public static fetchSync(param0: globalAndroid.content.Context, param1: string): com.airbnb.lottie.LottieResult<com.airbnb.lottie.LottieComposition>;
+					public constructor(param0: com.airbnb.lottie.network.NetworkCache, param1: com.airbnb.lottie.network.LottieNetworkFetcher);
+					public fetchSync(param0: string, param1: string): com.airbnb.lottie.LottieResult<com.airbnb.lottie.LottieComposition>;
 				}
 			}
 		}
@@ -2734,6 +2975,18 @@ declare module com {
 	export module airbnb {
 		export module lottie {
 			export module parser {
+				export class BlurEffectParser extends java.lang.Object {
+					public static class: java.lang.Class<com.airbnb.lottie.parser.BlurEffectParser>;
+				}
+			}
+		}
+	}
+}
+
+declare module com {
+	export module airbnb {
+		export module lottie {
+			export module parser {
 				export class CircleShapeParser extends java.lang.Object {
 					public static class: java.lang.Class<com.airbnb.lottie.parser.CircleShapeParser>;
 				}
@@ -2778,6 +3031,36 @@ declare module com {
 					public static INSTANCE: com.airbnb.lottie.parser.DocumentDataParser;
 					public parse(param0: com.airbnb.lottie.parser.moshi.JsonReader, param1: number): any;
 					public parse(param0: com.airbnb.lottie.parser.moshi.JsonReader, param1: number): com.airbnb.lottie.model.DocumentData;
+				}
+			}
+		}
+	}
+}
+
+declare module com {
+	export module airbnb {
+		export module lottie {
+			export module parser {
+				export class DropShadowEffect extends java.lang.Object {
+					public static class: java.lang.Class<com.airbnb.lottie.parser.DropShadowEffect>;
+					public getOpacity(): com.airbnb.lottie.model.animatable.AnimatableFloatValue;
+					public getColor(): com.airbnb.lottie.model.animatable.AnimatableColorValue;
+					public getDirection(): com.airbnb.lottie.model.animatable.AnimatableFloatValue;
+					public getRadius(): com.airbnb.lottie.model.animatable.AnimatableFloatValue;
+					public getDistance(): com.airbnb.lottie.model.animatable.AnimatableFloatValue;
+				}
+			}
+		}
+	}
+}
+
+declare module com {
+	export module airbnb {
+		export module lottie {
+			export module parser {
+				export class DropShadowEffectParser extends java.lang.Object {
+					public static class: java.lang.Class<com.airbnb.lottie.parser.DropShadowEffectParser>;
+					public constructor();
 				}
 			}
 		}
@@ -2907,7 +3190,7 @@ declare module com {
 			export module parser {
 				export class KeyframesParser extends java.lang.Object {
 					public static class: java.lang.Class<com.airbnb.lottie.parser.KeyframesParser>;
-					public static setEndFrames(param0: java.util.List<any>): void;
+					public static setEndFrames(param0: java.util.List): void;
 				}
 			}
 		}
@@ -3209,7 +3492,7 @@ declare module com {
 						public peek(): com.airbnb.lottie.parser.moshi.JsonReader.Token;
 						public close(): void;
 						public skipName(): void;
-						public static of(param0: any): com.airbnb.lottie.parser.moshi.JsonReader;
+						public static of(param0: okio.BufferedSource): com.airbnb.lottie.parser.moshi.JsonReader;
 						public endArray(): void;
 						public getPath(): string;
 						public beginArray(): void;
@@ -3224,7 +3507,7 @@ declare module com {
 					export module JsonReader {
 						export class Options extends java.lang.Object {
 							public static class: java.lang.Class<com.airbnb.lottie.parser.moshi.JsonReader.Options>;
-							public static of(param0: native.Array<string>): com.airbnb.lottie.parser.moshi.JsonReader.Options;
+							public static of(param0: androidNative.Array<string>): com.airbnb.lottie.parser.moshi.JsonReader.Options;
 						}
 						export class Token {
 							public static class: java.lang.Class<com.airbnb.lottie.parser.moshi.JsonReader.Token>;
@@ -3238,9 +3521,9 @@ declare module com {
 							public static BOOLEAN: com.airbnb.lottie.parser.moshi.JsonReader.Token;
 							public static NULL: com.airbnb.lottie.parser.moshi.JsonReader.Token;
 							public static END_DOCUMENT: com.airbnb.lottie.parser.moshi.JsonReader.Token;
-							public static valueOf(param0: java.lang.Class<any>, param1: string): java.lang.Enum<any>;
+							public static values(): androidNative.Array<com.airbnb.lottie.parser.moshi.JsonReader.Token>;
+							public static valueOf(param0: java.lang.Class, param1: string): java.lang.Enum;
 							public static valueOf(param0: string): com.airbnb.lottie.parser.moshi.JsonReader.Token;
-							public static values(): native.Array<com.airbnb.lottie.parser.moshi.JsonReader.Token>;
 						}
 					}
 				}
@@ -3300,6 +3583,7 @@ declare module com {
 				export module moshi {
 					export class LinkedHashTreeMap<K, V>  extends java.util.AbstractMap<any,any> implements java.io.Serializable  {
 						public static class: java.lang.Class<com.airbnb.lottie.parser.moshi.LinkedHashTreeMap<any,any>>;
+						public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any, param7: any, param8: any, param9: any, param10: any, param11: any, param12: any, param13: any, param14: any, param15: any): java.util.Map;
 						public put(param0: any, param1: any): any;
 						public remove(param0: any): any;
 						public entrySet(): java.util.Set<java.util.Map.Entry<any,any>>;
@@ -3308,22 +3592,34 @@ declare module com {
 						public hashCode(): number;
 						public getOrDefault(param0: any, param1: any): any;
 						public values(): java.util.Collection<any>;
+						public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any, param7: any, param8: any, param9: any, param10: any, param11: any, param12: any, param13: any): java.util.Map;
+						public static ofEntries(param0: androidNative.Array<java.util.Map.Entry>): java.util.Map;
 						public putAll(param0: java.util.Map<any,any>): void;
+						public static of(param0: any, param1: any, param2: any, param3: any): java.util.Map;
 						public isEmpty(): boolean;
+						public static entry(param0: any, param1: any): java.util.Map.Entry;
 						public remove(param0: any, param1: any): boolean;
 						public size(): number;
 						public putIfAbsent(param0: any, param1: any): any;
 						public merge(param0: any, param1: any, param2: any /* any<any,any,any>*/): any;
+						public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any, param7: any, param8: any, param9: any): java.util.Map;
 						public forEach(param0: any /* any<any,any>*/): void;
 						public computeIfAbsent(param0: any, param1: any /* any<any,any>*/): any;
 						public get(param0: any): any;
 						public computeIfPresent(param0: any, param1: any /* any<any,any,any>*/): any;
 						public containsValue(param0: any): boolean;
 						public containsKey(param0: any): boolean;
+						public static of(param0: any, param1: any): java.util.Map;
+						public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any, param7: any, param8: any, param9: any, param10: any, param11: any, param12: any, param13: any, param14: any, param15: any, param16: any, param17: any): java.util.Map;
+						public static of(): java.util.Map;
+						public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any, param7: any, param8: any, param9: any, param10: any, param11: any): java.util.Map;
+						public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any): java.util.Map;
 						public compute(param0: any, param1: any /* any<any,any,any>*/): any;
 						public replaceAll(param0: any /* any<any,any,any>*/): void;
+						public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any, param7: any): java.util.Map;
 						public clear(): void;
 						public replace(param0: any, param1: any, param2: any): boolean;
+						public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any, param7: any, param8: any, param9: any, param10: any, param11: any, param12: any, param13: any, param14: any, param15: any, param16: any, param17: any, param18: any, param19: any): java.util.Map;
 						public keySet(): java.util.Set<any>;
 					}
 					export module LinkedHashTreeMap {
@@ -3336,47 +3632,71 @@ declare module com {
 						}
 						export class EntrySet extends java.util.AbstractSet<java.util.Map.Entry<any,any>> {
 							public static class: java.lang.Class<com.airbnb.lottie.parser.moshi.LinkedHashTreeMap.EntrySet>;
+							public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any, param7: any): java.util.Set;
 							public contains(param0: any): boolean;
+							public static of(param0: any): java.util.Set;
 							public size(): number;
-							public iterator(): java.util.Iterator<any>;
-							public containsAll(param0: java.util.Collection<any>): boolean;
+							public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any): java.util.Set;
 							public hashCode(): number;
 							public spliterator(): java.util.Spliterator<any>;
-							public remove(param0: any): boolean;
-							public clear(): void;
-							public toArray(): native.Array<any>;
-							public removeIf(param0: any /* any*/): boolean;
+							public toArray(): androidNative.Array<any>;
 							public stream(): java.util.stream.Stream<any>;
+							public static of(param0: any, param1: any): java.util.Set;
 							public addAll(param0: java.util.Collection<any>): boolean;
+							public static of(param0: any, param1: any, param2: any, param3: any): java.util.Set;
+							public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any): java.util.Set;
 							public add(param0: any): boolean;
 							public removeAll(param0: java.util.Collection<any>): boolean;
-							public toArray(param0: native.Array<any>): native.Array<any>;
-							public isEmpty(): boolean;
-							public equals(param0: any): boolean;
+							public static of(): java.util.Set;
+							public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any, param7: any, param8: any): java.util.Set;
 							public iterator(): java.util.Iterator<java.util.Map.Entry<any,any>>;
 							public retainAll(param0: java.util.Collection<any>): boolean;
+							public iterator(): java.util.Iterator<any>;
+							public containsAll(param0: java.util.Collection<any>): boolean;
+							public remove(param0: any): boolean;
+							public static of(param0: androidNative.Array<any>): java.util.Set;
+							public clear(): void;
+							public removeIf(param0: any /* any*/): boolean;
+							public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any, param7: any, param8: any, param9: any): java.util.Set;
+							public static of(param0: any, param1: any, param2: any): java.util.Set;
+							public static of(param0: any, param1: any, param2: any, param3: any, param4: any): java.util.Set;
+							public isEmpty(): boolean;
+							public toArray(param0: androidNative.Array<any>): androidNative.Array<any>;
+							public equals(param0: any): boolean;
 							public parallelStream(): java.util.stream.Stream<any>;
 						}
 						export class KeySet extends java.util.AbstractSet<any> {
 							public static class: java.lang.Class<com.airbnb.lottie.parser.moshi.LinkedHashTreeMap.KeySet>;
+							public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any, param7: any): java.util.Set;
 							public contains(param0: any): boolean;
+							public static of(param0: any): java.util.Set;
 							public size(): number;
-							public iterator(): java.util.Iterator<any>;
-							public containsAll(param0: java.util.Collection<any>): boolean;
+							public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any): java.util.Set;
 							public hashCode(): number;
 							public spliterator(): java.util.Spliterator<any>;
-							public remove(param0: any): boolean;
-							public clear(): void;
-							public toArray(): native.Array<any>;
-							public removeIf(param0: any /* any*/): boolean;
+							public toArray(): androidNative.Array<any>;
 							public stream(): java.util.stream.Stream<any>;
+							public static of(param0: any, param1: any): java.util.Set;
 							public addAll(param0: java.util.Collection<any>): boolean;
+							public static of(param0: any, param1: any, param2: any, param3: any): java.util.Set;
+							public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any): java.util.Set;
 							public add(param0: any): boolean;
 							public removeAll(param0: java.util.Collection<any>): boolean;
-							public toArray(param0: native.Array<any>): native.Array<any>;
-							public isEmpty(): boolean;
-							public equals(param0: any): boolean;
+							public static of(): java.util.Set;
+							public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any, param7: any, param8: any): java.util.Set;
 							public retainAll(param0: java.util.Collection<any>): boolean;
+							public iterator(): java.util.Iterator<any>;
+							public containsAll(param0: java.util.Collection<any>): boolean;
+							public remove(param0: any): boolean;
+							public static of(param0: androidNative.Array<any>): java.util.Set;
+							public clear(): void;
+							public removeIf(param0: any /* any*/): boolean;
+							public static of(param0: any, param1: any, param2: any, param3: any, param4: any, param5: any, param6: any, param7: any, param8: any, param9: any): java.util.Set;
+							public static of(param0: any, param1: any, param2: any): java.util.Set;
+							public static of(param0: any, param1: any, param2: any, param3: any, param4: any): java.util.Set;
+							public isEmpty(): boolean;
+							public toArray(param0: androidNative.Array<any>): androidNative.Array<any>;
+							public equals(param0: any): boolean;
 							public parallelStream(): java.util.stream.Stream<any>;
 						}
 						export abstract class LinkedTreeMapIterator<T>  extends java.util.Iterator<any> {
@@ -3391,13 +3711,13 @@ declare module com {
 							public hashCode(): number;
 							public getKey(): any;
 							public first(): com.airbnb.lottie.parser.moshi.LinkedHashTreeMap.Node<any,any>;
-							public static comparingByValue(param0: java.util.Comparator<any>): java.util.Comparator<any>;
+							public static comparingByValue(param0: java.util.Comparator): java.util.Comparator;
 							public toString(): string;
 							public setValue(param0: any): any;
 							public equals(param0: any): boolean;
-							public static comparingByKey(param0: java.util.Comparator<any>): java.util.Comparator<any>;
-							public static comparingByKey(): java.util.Comparator<any>;
-							public static comparingByValue(): java.util.Comparator<any>;
+							public static comparingByKey(param0: java.util.Comparator): java.util.Comparator;
+							public static comparingByKey(): java.util.Comparator;
+							public static comparingByValue(): java.util.Comparator;
 						}
 					}
 				}
@@ -3597,21 +3917,25 @@ declare module com {
 					public startValue: T;
 					public endValue: T;
 					public interpolator: globalAndroid.view.animation.Interpolator;
+					public xInterpolator: globalAndroid.view.animation.Interpolator;
+					public yInterpolator: globalAndroid.view.animation.Interpolator;
 					public startFrame: number;
 					public endFrame: java.lang.Float;
 					public pathCp1: globalAndroid.graphics.PointF;
 					public pathCp2: globalAndroid.graphics.PointF;
-					public toString(): string;
 					public isStatic(): boolean;
 					public constructor(param0: com.airbnb.lottie.LottieComposition, param1: T, param2: T, param3: globalAndroid.view.animation.Interpolator, param4: number, param5: java.lang.Float);
+					public constructor(param0: com.airbnb.lottie.LottieComposition, param1: T, param2: T, param3: globalAndroid.view.animation.Interpolator, param4: globalAndroid.view.animation.Interpolator, param5: number, param6: java.lang.Float);
+					public getEndValueInt(): number;
+					public toString(): string;
 					public containsProgress(param0: number): boolean;
 					public getStartValueInt(): number;
-					public getEndValueInt(): number;
 					public getEndValueFloat(): number;
 					public constructor(param0: T);
 					public getStartProgress(): number;
 					public getEndProgress(): number;
 					public getStartValueFloat(): number;
+					public constructor(param0: com.airbnb.lottie.LottieComposition, param1: T, param2: T, param3: globalAndroid.view.animation.Interpolator, param4: globalAndroid.view.animation.Interpolator, param5: globalAndroid.view.animation.Interpolator, param6: number, param7: java.lang.Float);
 				}
 			}
 		}
@@ -3812,29 +4136,14 @@ declare module com {
 	}
 }
 
-//Generics information:
-//com.airbnb.lottie.LottieListener:1
-//com.airbnb.lottie.LottieResult:1
-//com.airbnb.lottie.LottieTask:1
-//com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation:2
-//com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation.EmptyKeyframeWrapper:1
-//com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation.KeyframesWrapper:1
-//com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation.KeyframesWrapperImpl:1
-//com.airbnb.lottie.animation.keyframe.BaseKeyframeAnimation.SingleKeyframeWrapper:1
-//com.airbnb.lottie.animation.keyframe.KeyframeAnimation:1
-//com.airbnb.lottie.animation.keyframe.ValueCallbackKeyframeAnimation:2
-//com.airbnb.lottie.model.MutablePair:1
-//com.airbnb.lottie.model.animatable.AnimatableValue:2
-//com.airbnb.lottie.model.animatable.BaseAnimatableValue:2
-//com.airbnb.lottie.parser.ValueParser:1
-//com.airbnb.lottie.parser.moshi.LinkedHashTreeMap:2
-//com.airbnb.lottie.parser.moshi.LinkedHashTreeMap.AvlBuilder:2
-//com.airbnb.lottie.parser.moshi.LinkedHashTreeMap.AvlIterator:2
-//com.airbnb.lottie.parser.moshi.LinkedHashTreeMap.LinkedTreeMapIterator:1
-//com.airbnb.lottie.parser.moshi.LinkedHashTreeMap.Node:2
-//com.airbnb.lottie.value.Keyframe:1
-//com.airbnb.lottie.value.LottieFrameInfo:1
-//com.airbnb.lottie.value.LottieInterpolatedValue:1
-//com.airbnb.lottie.value.LottieValueCallback:1
-//com.airbnb.lottie.value.SimpleLottieValueCallback:1
-
+declare module com {
+	export module nativescript {
+		export module lottie {
+			export class LottieAnimationView extends com.airbnb.lottie.LottieAnimationView {
+				public static class: java.lang.Class<com.nativescript.lottie.LottieAnimationView>;
+				public constructor(param0: globalAndroid.content.Context);
+				public onMeasure(param0: number, param1: number): void;
+			}
+		}
+	}
+}

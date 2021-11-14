@@ -5,11 +5,13 @@
  * Version 1.0.0                                           walkerrunpdx@gmail.com
  **********************************************************************************/
 
+import { CoreTypes } from '@nativescript/core/core-types';
 import { Property } from '@nativescript/core/ui/core/properties';
 import { View } from '@nativescript/core/ui/core/view';
 import { booleanConverter } from '@nativescript/core/ui/core/view-base';
 
 export class LottieViewBase extends View {
+    public stretch: CoreTypes.ImageStretchType;
     public src: string;
     public loop: boolean;
     public autoPlay: boolean;
@@ -45,3 +47,10 @@ export const progressProperty = new Property<LottieViewBase, number>({
     name: 'progress',
 });
 progressProperty.register(LottieViewBase);
+
+export const stretchProperty = new Property<LottieViewBase, CoreTypes.ImageStretchType>({
+    name: 'stretch',
+    defaultValue: 'aspectFit',
+    affectsLayout: global.isIOS,
+});
+stretchProperty.register(LottieViewBase);
