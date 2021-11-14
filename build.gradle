@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+// Use maven repository
+repositories {
+    mavenCentral()
+    google()
+}
+
+apply from: 'plugin/platforms/android/include.gradle'
+dependencies {
+    implementation files('/Volumes/dev/androidSDK/platforms/android-28/android.jar')
+}
+sourceSets {
+    main {
+        java {
+            srcDirs = ["plugin/platforms/android/java"]
+        }
+    }
+}
