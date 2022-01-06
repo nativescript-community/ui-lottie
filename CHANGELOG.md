@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.3](https://github.com/farfromrefug/nativescript-lottie/compare/v4.3.2...v4.3.3) (2022-01-06)
+
+
+### Bug Fixes
+
+* **android:** bump native lib version to fix build issue with bintray ([7a55d70](https://github.com/farfromrefug/nativescript-lottie/commit/7a55d70d665f7ea4e52bd64b2cd9c743167c2afe))
+
+
+
+
+
 ## [4.3.2](https://github.com/farfromrefug/nativescript-lottie/compare/v4.3.1...v4.3.2) (2021-11-14)
 
 
