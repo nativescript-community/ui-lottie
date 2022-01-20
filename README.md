@@ -69,6 +69,21 @@ public yourLoadedEvent(args) {
 
 ### NativeScript Angular
 
+#### Module
+
+First you need to include the `NativeScriptLottieModule` in your `app.module.ts`
+
+```typescript
+import { NativeScriptLottieModule} from '@nativescript-community/ui-lottie/angular';
+
+@NgModule({
+    imports: [
+        NativeScriptLottieModule
+    ],
+    ...
+})
+```
+
 #### XML
 
 ```xml
@@ -81,10 +96,7 @@ public yourLoadedEvent(args) {
 
 ```typescript
 import { Component } from '@angular/core';
-import { registerElement } from 'nativescript-angular';
 import { LottieView } from '@nativescript-community/ui-lottie';
-
-registerElement('LottieView', () => LottieView);
 
 @Component({
   templateUrl: 'home.component.html',
@@ -118,14 +130,17 @@ export class HomeComponent {
 
 ## NativeScript Vue
 
-### Bootstrap (probably in app.js)
+### Bootstrap
 
-```typescript
-Vue.registerElement(
-  'LottieView',
-  () => require('@nativescript-community/ui-lottie').LottieView
-);
+If you want to use this plugin with Vue, do this in your `app.js` or `main.js`:
+
+```javascript
+import LottieView from '@nativescript-community/ui-lottie/vue';
+
+Vue.use(LottieView);
 ```
+
+This will install and register `LottieView` component to your `Vue` instance and now you can use the plugin.
 
 ### Component
 
