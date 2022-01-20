@@ -1,0 +1,13 @@
+{
+  "name": "@nativescript-community/ui-lottie-angular",
+  "main": "index.js",
+  "ngPackage": {
+    "dest": "../../../plugin/angular",
+    "lib": {
+      "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+      "."
+    ]
+  }
+}
