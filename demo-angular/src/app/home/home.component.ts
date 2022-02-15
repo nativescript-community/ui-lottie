@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import { registerElement } from 'nativescript-angular';
 import { LottieView } from '@nativescript-community/ui-lottie';
 import { Color } from '@nativescript/core/color';
-
-registerElement('LottieView', () => LottieView);
 
 const ANDROID_WAVE_KEYPATHS = [
     ['Shirt', 'Group 5', 'Fill 1'],
