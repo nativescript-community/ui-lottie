@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/farfromrefug/nativescript-lottie/compare/v4.3.3...v4.4.0) (2022-02-15)
+
+
+### Bug Fixes
+
+* **android:** dont include appCompat to try and prevent users issues ([c8e6963](https://github.com/farfromrefug/nativescript-lottie/commit/c8e696351440d1cf3e4bcfd538ce86cc3936f2a3))
+
+
+### Features
+
+* angular module & vue element ([1b6d0cf](https://github.com/farfromrefug/nativescript-lottie/commit/1b6d0cfdb37df9056e7b70b1da456db20e9c5b3f))
+
+
+
+
+
 ## [4.3.3](https://github.com/farfromrefug/nativescript-lottie/compare/v4.3.2...v4.3.3) (2022-01-06)
 
 
