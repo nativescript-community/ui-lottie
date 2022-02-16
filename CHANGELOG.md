@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.1](https://github.com/farfromrefug/nativescript-lottie/compare/v4.4.0...v4.4.1) (2022-02-16)
+
+
+### Bug Fixes
+
+* **android:** revert broken change ([ee1da5b](https://github.com/farfromrefug/nativescript-lottie/commit/ee1da5b77a603cc5957b39d4632f3f38d3660427))
+
+
+
+
+
 # [4.4.0](https://github.com/farfromrefug/nativescript-lottie/compare/v4.3.3...v4.4.0) (2022-02-15)
 
 
