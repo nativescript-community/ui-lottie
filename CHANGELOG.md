@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.3](https://github.com/farfromrefug/nativescript-lottie/compare/v4.4.2...v4.4.3) (2022-08-14)
+
+
+### Bug Fixes
+
+* **android:** upgrade native lib version ([3ac5059](https://github.com/farfromrefug/nativescript-lottie/commit/3ac50592b3ae997579e2f6235bfb53f77da5bb76))
+* **ios:** use branch for pod repo to prevent future errors ([1ffbc38](https://github.com/farfromrefug/nativescript-lottie/commit/1ffbc38a68d38692a6cade0049553606e05f6a2c))
+
+
+
+
+
 ## [4.4.2](https://github.com/farfromrefug/nativescript-lottie/compare/v4.4.1...v4.4.2) (2022-08-14)
 
 **Note:** Version bump only for package @nativescript-community/ui-lottie
