@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.4](https://github.com/farfromrefug/nativescript-lottie/compare/v4.4.3...v4.4.4) (2022-08-15)
+
+
+### Bug Fixes
+
+* **ios:** wrong podfile ([f17dc1f](https://github.com/farfromrefug/nativescript-lottie/commit/f17dc1fd0bfe26b9e4f715ec259c147c78812649))
+
+
+
+
+
 ## [4.4.3](https://github.com/farfromrefug/nativescript-lottie/compare/v4.4.2...v4.4.3) (2022-08-14)
 
 
