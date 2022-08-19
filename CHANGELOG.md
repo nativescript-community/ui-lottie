@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.5](https://github.com/farfromrefug/nativescript-lottie/compare/v4.4.4...v4.4.5) (2022-08-19)
+
+
+### Bug Fixes
+
+* **ios:** for now rollback to old lottie which supports ios < 12 ([54f318b](https://github.com/farfromrefug/nativescript-lottie/commit/54f318b273bb04183d381fd8c53d63fb23ef9a20))
+
+
+
+
+
 ## [4.4.4](https://github.com/farfromrefug/nativescript-lottie/compare/v4.4.3...v4.4.4) (2022-08-15)
 
 
