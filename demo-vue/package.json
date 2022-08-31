@@ -3,16 +3,16 @@
   "license": "SEE LICENSE IN <your-license-filename>",
   "repository": "<fill-your-repository-here>",
   "dependencies": {
-    "@nativescript-community/ui-lottie": "file:../plugin",
-    "@nativescript/core": "~8.1.5",
-    "nativescript-vue": "~2.9.0"
+    "@nativescript-community/ui-lottie": "link:../plugin",
+    "@nativescript/core": "~8.3.3",
+    "nativescript-vue": "~2.9.3"
   },
   "devDependencies": {
-    "@nativescript/android": "8.1.1",
-    "@nativescript/ios": "8.1.0",
-    "@nativescript/webpack": "5.0.0",
-    "nativescript-vue-template-compiler": "~2.9.0",
-    "typescript": "~4.4.4",
+    "@nativescript/android": "8.3.1",
+    "@nativescript/ios": "8.3.3",
+    "@nativescript/webpack": "5.0.8",
+    "nativescript-vue-template-compiler": "~2.9.3",
+    "typescript": "~4.7.4",
     "vue": "2.6.14"
   },
   "scripts": {
