@@ -5,10 +5,8 @@
  * Version 1.0.0                                           bradwaynemartin@gmail.com
  **********************************************************************************/
 
-import { Color } from '@nativescript/core/color';
-import { File } from '@nativescript/core/file-system';
-import { View } from '@nativescript/core/ui/core/view';
-import { RESOURCE_PREFIX } from '@nativescript/core/utils/utils';
+import { Color, File } from '@nativescript/core';
+import { Utils } from '@nativescript/core';
 import {
     LottieViewBase,
     autoPlayProperty,
@@ -124,8 +122,8 @@ export class LottieView extends LottieViewBase {
             view.setAnimation(null);
         } else if (src[0] === '{') {
             view.setAnimationFromJson(src, null);
-        } else if (src.startsWith(RESOURCE_PREFIX)) {
-            const resName = src.replace(RESOURCE_PREFIX, '');
+        } else if (src.startsWith(Utils.RESOURCE_PREFIX)) {
+            const resName = src.replace(Utils.RESOURCE_PREFIX, '');
             view.setAnimation(resName);
         } else {
             if (!/.(json|zip|lottie)$/.test(src)) {
