@@ -1,13 +1,13 @@
 {
     "compilerOptions": {
-        "target": "es2017",
+        "target": "es2020",
         "module": "esnext",
         "moduleResolution": "node",
         "removeComments": false,
         "noLib": false,
         "emitDecoratorMetadata": false,
         "experimentalDecorators": true,
-        "lib": ["es6", "dom"],
+        "lib": ["esnext", "dom"],
         "sourceMap": true,
         "pretty": true,
         "allowUnreachableCode": false,
