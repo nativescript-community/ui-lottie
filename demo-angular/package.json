@@ -3,44 +3,36 @@
   "license": "SEE LICENSE IN <your-license-filename>",
   "readme": "NativeScript Application",
   "repository": "<fill-your-repository-here>",
-  "nativescript": {
-    "id": "org.nativescript.demotemp",
-    "tns-android": {
-      "version": "6.5.0"
-    }
-  },
   "dependencies": {
-    "@angular/animations": "8.0.0",
-    "@angular/common": "8.0.0",
-    "@angular/compiler": "8.0.0",
-    "@angular/core": "8.0.0",
-    "@angular/forms": "8.0.0",
-    "@angular/http": "8.0.0-beta.10",
-    "@angular/platform-browser": "8.0.0",
-    "@angular/platform-browser-dynamic": "8.0.0",
-    "@angular/router": "8.0.0",
-    "nativescript-angular": "8.0.2",
+    "@angular/animations": "~14.2.0",
+    "@angular/common": "~14.2.0",
+    "@angular/compiler": "~14.2.0",
+    "@angular/core": "~14.2.0",
+    "@angular/forms": "~14.2.0",
+    "@angular/platform-browser": "~14.2.0",
+    "@angular/platform-browser-dynamic": "~14.2.0",
+    "@angular/router": "~14.2.0",
     "@nativescript-community/ui-lottie": "file:../plugin",
     "nativescript-theme-core": "~1.0.4",
-    "reflect-metadata": "~0.1.8",
-    "rxjs": "~6.4.0",
-    "@nativescript/core": "6.5.0",
-    "zone.js": "0.10.2"
+    "rxjs": "~7.5.0",
+    "@nativescript/core": "~8.4.0",
+    "zone.js": "~0.11.5",
+    "@nativescript/angular": "~14.2.0"
   },
   "devDependencies": {
     "jasmine-core": "3.3.0",
     "karma": "4.0.1",
     "karma-jasmine": "1.1.2",
     "karma-nativescript-launcher": "0.4.0",
-    "@angular/compiler-cli": "8.0.0",
-    "@nativescript/schematics": "~0.5.1",
-    "@ngtools/webpack": "8.0.0",
-    "nativescript-dev-webpack": "1.0.1",
+    "@angular/compiler-cli": "~14.2.0",
+    "@ngtools/webpack": "~14.2.0",
     "tslint": "~5.13.1",
-    "typescript": "3.4.5"
+    "typescript": "~4.8.4",
+    "@nativescript/webpack": "~5.0.0"
   },
   "scripts": {
     "build.plugin": "cd ../src && npm run build",
     "ci.tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**' --exclude '**/platforms/**'"
-  }
+  },
+  "main": "./src/main.ts"
 }

@@ -3,34 +3,25 @@
   "license": "SEE LICENSE IN <your-license-filename>",
   "readme": "NativeScript Application",
   "repository": "<fill-your-repository-here>",
-  "nativescript": {
-    "id": "org.nativescript.demo",
-    "tns-android": {
-      "version": "6.3.1"
-    },
-    "tns-ios": {
-      "version": "6.3.0"
-    }
-  },
   "dependencies": {
     "@nativescript-community/ui-lottie": "file:../plugin",
     "nativescript-theme-core": "~1.0.4",
-    "nativescript-unit-test-runner": "0.7.0",
-    "@nativescript/core": "^6.3.2"
+    "@nativescript/core": "~8.4.0",
+    "@nativescript/unit-test-runner": "~3.0.0"
   },
   "devDependencies": {
     "jasmine-core": "3.3.0",
-    "karma": "4.1.0",
-    "karma-jasmine": "2.0.1",
+    "karma": "~6.3.4",
+    "karma-jasmine": "~4.0.1",
     "karma-nativescript-launcher": "0.4.0",
-    "nativescript-dev-webpack": "1.4.1",
-    "tns-platform-declarations": "^6.3.2",
     "tslint": "~5.20.1",
-    "typescript": "3.7.4",
-    "karma-webpack": "3.0.5"
+    "typescript": "~4.8.4",
+    "@nativescript/types": "~8.4.0",
+    "@nativescript/webpack": "~5.0.0"
   },
   "scripts": {
     "build.plugin": "cd ../src && npm run build",
     "ci.tslint": "npm i && tslint --config '../tslint.json' 'app/**/*.ts' --exclude '**/node_modules/**' --exclude '**/platforms/**'"
-  }
+  },
+  "main": "./app/app.ts"
 }

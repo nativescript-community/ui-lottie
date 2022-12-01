@@ -1,5 +1,4 @@
-import { EventData } from '@nativescript/core/data/observable';
-import { Page } from '@nativescript/core/ui/page';
+import { EventData, Page } from '@nativescript/core';
 import { DemoViewModel } from './main-view-model';
 
 export function navigatingTo(args: EventData) {

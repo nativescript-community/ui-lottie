@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LottieView } from '@nativescript-community/ui-lottie';
-import { Color } from '@nativescript/core/color';
+import { Color } from '@nativescript/core';
 
 const ANDROID_WAVE_KEYPATHS = [
     ['Shirt', 'Group 5', 'Fill 1'],
