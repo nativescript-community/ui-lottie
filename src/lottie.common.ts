@@ -5,10 +5,7 @@
  * Version 1.0.0                                           walkerrunpdx@gmail.com
  **********************************************************************************/
 
-import { CoreTypes } from '@nativescript/core/core-types';
-import { Property } from '@nativescript/core/ui/core/properties';
-import { View } from '@nativescript/core/ui/core/view';
-import { booleanConverter } from '@nativescript/core/ui/core/view-base';
+import { CoreTypes, Property, View, booleanConverter } from '@nativescript/core';
 
 export class LottieViewBase extends View {
     public stretch: CoreTypes.ImageStretchType;
