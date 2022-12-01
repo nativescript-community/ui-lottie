@@ -1,6 +1,6 @@
 import { Directive, NgModule } from '@angular/core';
 import { registerElement } from '@nativescript/angular';
-import { LottieView } from '..';
+import { LottieView } from '@nativescript-community/ui-lottie';
 
 @Directive({ selector: 'LottieView' })
 export class LottieViewDirective {}
