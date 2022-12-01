@@ -1,11 +1,9 @@
 {
-  "packages": [
-    "plugin"
-  ],
-  "version": "5.0.0",
-  "command": {
-    "publish": {
-      "conventionalCommits": true
+    "packages": ["plugin"],
+    "version": "5.0.1",
+    "command": {
+        "publish": {
+            "conventionalCommits": true
+        }
     }
-  }
 }
