@@ -20,13 +20,28 @@
         "noFallthroughCasesInSwitch": true,
         "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
-        "lib": ["esnext", "es2017", "dom"],
+        "lib": [
+            "esnext",
+            "es2017",
+            "dom"
+        ],
         "baseUrl": ".",
-        "types": ["node", "vue"],
+        "types": [
+            "node",
+            "vue"
+        ],
         "paths": {
-            "~/*": ["app/*"]
+            "~/*": [
+                "app/*"
+            ]
         }
     },
-    "include": ["app/**/*"],
-    "exclude": ["node_modules", "platforms", "**/angular"]
+    "include": [
+        "app/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "platforms",
+        "**/angular"
+    ]
 }
