@@ -1,0 +1,14 @@
+{
+	"name": "migration",
+	"paths": [
+		"webpack.config.js",
+		"package.json",
+		"tsconfig.tns.json",
+		"karma.conf.js",
+		"app/package.json",
+		"webpack.config.js",
+		"package.json",
+		"karma.conf.js",
+		"app/package.json"
+	]
+}
