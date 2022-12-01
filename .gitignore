@@ -71,3 +71,4 @@ plugin/*.d.ts
 
 plugin/**/*js.map
 plugin/**/*js
+.gradle
