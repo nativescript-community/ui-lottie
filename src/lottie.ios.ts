@@ -5,12 +5,9 @@
  * Version 1.0.0                                           walkerrunpdx@gmail.com
  **********************************************************************************/
 
-import { Color } from '@nativescript/core/color';
+import { Color, Utils, knownFolders, path, View } from '@nativescript/core';
 import { LottieViewBase, autoPlayProperty, loopProperty, progressProperty, srcProperty, stretchProperty } from './lottie.common';
-import { RESOURCE_PREFIX, layout } from '@nativescript/core/utils/utils';
-import { knownFolders, path } from '@nativescript/core/file-system';
 import { clamp } from './utils';
-import { View } from '@nativescript/core/ui/core/view';
 
 const appPath = knownFolders.currentApp().path;
 
@@ -32,8 +29,8 @@ export class LottieView extends LottieViewBase {
             this.nativeViewProtected.compatibleAnimation = null;
         } else if (src[0] === '{') {
             this.nativeViewProtected.compatibleAnimation = CompatibleAnimation.alloc().initWithJson(src);
-        } else if (src.startsWith(RESOURCE_PREFIX)) {
-            const resName = src.replace(RESOURCE_PREFIX, '');
+        } else if (src.startsWith(Utils.RESOURCE_PREFIX)) {
+            const resName = src.replace(Utils.RESOURCE_PREFIX, '');
             if (resName.endsWith('.lottie')) {
                 DotLottie.objcLoadWithNameShouldCacheCompletion(resName.replace('.lottie', ''), true, (animation) => {
                     this.nativeViewProtected.animation = animation;
@@ -200,22 +197,22 @@ export class LottieView extends LottieViewBase {
     public onMeasure(widthMeasureSpec: number, heightMeasureSpec: number): void {
         const intrinsicContentSize = this.nativeViewProtected.intrinsicContentSize;
         // We don't call super because we measure native view with specific size.
-        const width = layout.getMeasureSpecSize(widthMeasureSpec);
-        const widthMode = layout.getMeasureSpecMode(widthMeasureSpec);
+        const width = Utils.layout.getMeasureSpecSize(widthMeasureSpec);
+        const widthMode = Utils.layout.getMeasureSpecMode(widthMeasureSpec);
 
-        const height = layout.getMeasureSpecSize(heightMeasureSpec);
-        const heightMode = layout.getMeasureSpecMode(heightMeasureSpec);
+        const height = Utils.layout.getMeasureSpecSize(heightMeasureSpec);
+        const heightMode = Utils.layout.getMeasureSpecMode(heightMeasureSpec);
 
-        const nativeWidth = intrinsicContentSize ? layout.toDevicePixels(intrinsicContentSize.width) : 0;
-        const nativeHeight = intrinsicContentSize ? layout.toDevicePixels(intrinsicContentSize.height) : 0;
+        const nativeWidth = intrinsicContentSize ? Utils.layout.toDevicePixels(intrinsicContentSize.width) : 0;
+        const nativeHeight = intrinsicContentSize ? Utils.layout.toDevicePixels(intrinsicContentSize.height) : 0;
 
         let measureWidth = Math.max(nativeWidth, this.effectiveMinWidth);
         let measureHeight = Math.max(nativeHeight, this.effectiveMinHeight);
 
-        const finiteWidth: boolean = widthMode !== layout.UNSPECIFIED;
-        const finiteHeight: boolean = heightMode !== layout.UNSPECIFIED;
+        const finiteWidth: boolean = widthMode !== Utils.layout.UNSPECIFIED;
+        const finiteHeight: boolean = heightMode !== Utils.layout.UNSPECIFIED;
 
-        this._imageSourceAffectsLayout = widthMode !== layout.EXACTLY || heightMode !== layout.EXACTLY;
+        this._imageSourceAffectsLayout = widthMode !== Utils.layout.EXACTLY || heightMode !== Utils.layout.EXACTLY;
 
         if (nativeWidth !== 0 && nativeHeight !== 0 && (finiteWidth || finiteHeight)) {
             const scale = LottieView.computeScaleFactor(
