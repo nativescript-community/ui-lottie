@@ -1,60 +1,60 @@
 {
-  "name": "@nativescript-community/ui-lottie",
-  "version": "5.0.0",
-  "description": "NativeScript plugin to expose AirBnB Lottie library",
-  "main": "lottie",
-  "sideEffects": false,
-  "typings": "index.d.ts",
-  "nativescript": {
-    "platforms": {
-      "android": "6.0.0",
-      "ios": "6.0.1"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/farfromrefug/nativescript-lottie.git"
-  },
-  "keywords": [
-    "NativeScript",
-    "@nativescript-community/ui-lottie",
-    "Lottie",
-    "Android",
-    "Animation",
-    "iOS",
-    "TypeScript",
-    "bradmartin"
-  ],
-  "author": {
-    "name": "Brad Martin",
-    "email": "bradwaynemartin@gmail.com"
-  },
-  "contributors": [
-    {
-      "name": "Nathan Walker",
-      "email": "walkerrunpdx@gmail.com"
+    "name": "@nativescript-community/ui-lottie",
+    "version": "5.0.1",
+    "description": "NativeScript plugin to expose AirBnB Lottie library",
+    "main": "lottie",
+    "sideEffects": false,
+    "typings": "index.d.ts",
+    "nativescript": {
+        "platforms": {
+            "android": "6.0.0",
+            "ios": "6.0.1"
+        }
     },
-    {
-      "name": "JB",
-      "url": "https://github.com/rhanb"
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/farfromrefug/nativescript-lottie.git"
     },
-    {
-      "name": "Dirk Rudolph",
-      "url": "https://github.com/Buuhuu"
+    "keywords": [
+        "NativeScript",
+        "@nativescript-community/ui-lottie",
+        "Lottie",
+        "Android",
+        "Animation",
+        "iOS",
+        "TypeScript",
+        "bradmartin"
+    ],
+    "author": {
+        "name": "Brad Martin",
+        "email": "bradwaynemartin@gmail.com"
     },
-    {
-      "name": "Hamdi Wanis",
-      "url": "https://github.com/hamdiwanis"
+    "contributors": [
+        {
+            "name": "Nathan Walker",
+            "email": "walkerrunpdx@gmail.com"
+        },
+        {
+            "name": "JB",
+            "url": "https://github.com/rhanb"
+        },
+        {
+            "name": "Dirk Rudolph",
+            "url": "https://github.com/Buuhuu"
+        },
+        {
+            "name": "Hamdi Wanis",
+            "url": "https://github.com/hamdiwanis"
+        },
+        {
+            "name": "itstheceo",
+            "url": "https://github.com/itstheceo"
+        }
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/farfromrefug/nativescript-lottie/issues"
     },
-    {
-      "name": "itstheceo",
-      "url": "https://github.com/itstheceo"
-    }
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/farfromrefug/nativescript-lottie/issues"
-  },
-  "homepage": "https://github.com/farfromrefug/nativescript-lottie",
-  "readmeFilename": "README.md"
+    "homepage": "https://github.com/farfromrefug/nativescript-lottie",
+    "readmeFilename": "README.md"
 }
