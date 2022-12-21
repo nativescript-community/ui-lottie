@@ -5,7 +5,7 @@
  * Version 1.0.0                                           walkerrunpdx@gmail.com
  **********************************************************************************/
 
-import { Color, Utils, knownFolders, path, View } from '@nativescript/core';
+import { Color, Utils, View, knownFolders, path } from '@nativescript/core';
 import { LottieViewBase, autoPlayProperty, loopProperty, progressProperty, srcProperty, stretchProperty } from './lottie.common';
 import { clamp } from './utils';
 
