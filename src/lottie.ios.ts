@@ -24,6 +24,13 @@ export class LottieView extends LottieViewBase {
         this.nativeViewProtected.translatesAutoresizingMaskIntoConstraints = true;
     }
 
+    public onLoaded() {
+        super.onLoaded();
+        if (this.autoPlay && !this.isAnimating()) {
+            this.playAnimation();
+        }
+    }
+
     [srcProperty.setNative](src: string) {
         if (!src) {
             this.nativeViewProtected.compatibleAnimation = null;
