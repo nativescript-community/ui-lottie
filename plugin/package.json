@@ -1,6 +1,6 @@
 {
     "name": "@nativescript-community/ui-lottie",
-    "version": "5.0.2",
+    "version": "5.0.3",
     "description": "NativeScript plugin to expose AirBnB Lottie library",
     "main": "lottie",
     "sideEffects": false,
@@ -56,5 +56,6 @@
         "url": "https://github.com/farfromrefug/nativescript-lottie/issues"
     },
     "homepage": "https://github.com/farfromrefug/nativescript-lottie",
-    "readmeFilename": "README.md"
+    "readmeFilename": "README.md",
+    "gitHead": "bb14c9536defaecdd768efcfc91e911282430d76"
 }
