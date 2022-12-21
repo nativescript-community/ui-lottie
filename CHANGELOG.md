@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.2](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.1...v5.0.2) (2022-12-21)
+
+### Bug Fixes
+
+-   **ios:** try to fix animation not playing after navigation ([bbed469](https://github.com/farfromrefug/nativescript-lottie/commit/bbed4690b957174d0b850bc4800c799c1b17d3b1))
+
 ## [5.0.1](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.0...v5.0.1) (2022-12-01)
 
 **Note:** Version bump only for package @nativescript-community/ui-lottie
