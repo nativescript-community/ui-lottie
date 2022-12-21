@@ -5,8 +5,7 @@
  * Version 1.0.0                                           bradwaynemartin@gmail.com
  **********************************************************************************/
 
-import { Color, File } from '@nativescript/core';
-import { Utils } from '@nativescript/core';
+import { Color, File, Utils } from '@nativescript/core';
 import {
     LottieViewBase,
     autoPlayProperty,
@@ -14,7 +13,7 @@ import {
     progressProperty,
     renderModeProperty,
     srcProperty,
-    stretchProperty,
+    stretchProperty
 } from './lottie.common';
 import { clamp } from './utils';
 
@@ -43,7 +42,7 @@ export const RenderMode = {
     },
     get SOFTWARE() {
         return com.airbnb.lottie.RenderMode.SOFTWARE;
-    },
+    }
 };
 
 export class LottieView extends LottieViewBase {
@@ -79,7 +78,7 @@ export class LottieView extends LottieViewBase {
                     },
                     onAnimationStart: (_animator) => {
                         // noop
-                    },
+                    }
                 });
                 if (this.nativeViewProtected) {
                     this.nativeViewProtected.addAnimatorListener(this.animatorListener);
