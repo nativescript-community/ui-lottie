@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.4](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.3...v5.0.4) (2023-01-13)
+
+### Bug Fixes
+
+-   **android:** lottie does not support clearing animation (src=null) ([024b7d5](https://github.com/farfromrefug/nativescript-lottie/commit/024b7d5a9de23bcc2fd0a754188cf5026fe3e031))
+
 ## [5.0.3](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.2...v5.0.3) (2022-12-21)
 
 **Note:** Version bump only for package @nativescript-community/ui-lottie
