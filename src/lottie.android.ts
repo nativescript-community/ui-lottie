@@ -118,7 +118,8 @@ export class LottieView extends LottieViewBase {
     [srcProperty.setNative](src: string) {
         const view = this.nativeViewProtected;
         if (!src) {
-            view.setAnimation(null);
+            // lottie does not support "clearing the animation"
+            // view.setAnimation(null);
         } else if (src[0] === '{') {
             view.setAnimationFromJson(src, null);
         } else if (src.startsWith(Utils.RESOURCE_PREFIX)) {
