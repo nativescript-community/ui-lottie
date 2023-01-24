@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.5](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.4...v5.0.5) (2023-01-24)
+
+### Bug Fixes
+
+-   **android:** native-api-usage fix ([ad3a299](https://github.com/farfromrefug/nativescript-lottie/commit/ad3a29994b033b9cb0786d7ff99e5c218a51603f))
+
 ## [5.0.4](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.3...v5.0.4) (2023-01-13)
 
 **Note:** Version bump only for package @nativescript-community/ui-lottie
