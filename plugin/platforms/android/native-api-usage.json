@@ -1,11 +1,11 @@
 {
     "uses": [
-        "com.airbnb.lottie:LottieAnimationView*",
-        "com.airbnb.lottie.model:KeyPath*",
-        "com.airbnb.lottie.value:LottieValueCallback*",
-        "com.airbnb.lottie:LottieProperty*",
-        "com.airbnb.lottie:RenderMode*",
+        "com.airbnb.lottie:LottieAnimationView",
+        "com.airbnb.lottie.model:KeyPath",
+        "com.airbnb.lottie.value:LottieValueCallback",
+        "com.airbnb.lottie:LottieProperty",
+        "com.airbnb.lottie:RenderMode",
         "android.animation:Animator",
-        "android.animation.Animator:AnimatorListener*"
+        "android.animation:Animator.AnimatorListener"
     ]
 }
