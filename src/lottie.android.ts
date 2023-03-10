@@ -17,9 +17,9 @@ import {
 } from './lottie.common';
 import { clamp } from './utils';
 
-let LottieProperty;
-let LottieKeyPath;
-let LottieValueCallback;
+let LottieProperty: typeof com.airbnb.lottie.LottieProperty;
+let LottieKeyPath: typeof com.airbnb.lottie.model.KeyPath;
+let LottieValueCallback: typeof com.airbnb.lottie.value.LottieValueCallback;
 
 const cache = new Map();
 function loadLottieJSON(iconSrc) {
@@ -190,10 +190,12 @@ export class LottieView extends LottieViewBase {
             if (!LottieKeyPath) {
                 LottieKeyPath = com.airbnb.lottie.model.KeyPath;
             }
+            // by using color filter we change all colors (STROKE_COLOR and COLOR)
+            const colorFilter = new com.airbnb.lottie.SimpleColorFilter(value.android);
             this.nativeViewProtected.addValueCallback(
-                new LottieKeyPath(nativeKeyPath),
-                LottieProperty.COLOR,
-                new LottieValueCallback(new java.lang.Integer(value.android))
+                new LottieKeyPath(nativeKeyPath as any),
+                LottieProperty.COLOR_FILTER,
+                new LottieValueCallback(colorFilter)
             );
         }
     }
@@ -222,7 +224,7 @@ export class LottieView extends LottieViewBase {
                 LottieKeyPath = com.airbnb.lottie.model.KeyPath;
             }
             this.nativeViewProtected.addValueCallback(
-                new LottieKeyPath(nativeKeyPath),
+                new LottieKeyPath(nativeKeyPath as any),
                 LottieProperty.OPACITY,
                 new LottieValueCallback(new java.lang.Integer(value * 100))
             );
