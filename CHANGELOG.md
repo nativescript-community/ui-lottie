@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.6](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.5...v5.0.6) (2023-03-11)
+
+### Bug Fixes
+
+-   use color filter to set color on android ([af275e4](https://github.com/farfromrefug/nativescript-lottie/commit/af275e4f6e51a98845a7bc85d2dcf1201218f16c))
+
 ## [5.0.5](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.4...v5.0.5) (2023-01-24)
 
 ### Bug Fixes
