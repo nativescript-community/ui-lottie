@@ -97,14 +97,14 @@ export class HomeComponent {
     public setTheme(value) {
         const color = new Color(value);
         ANDROID_WAVE_KEYPATHS.forEach(keyPath => {
-            this._lottieViewTwo.setColorValueDelegateForKeyPath(color, [...keyPath]);
+            this._lottieViewTwo.setColor(color, [...keyPath]);
         });
     }
 
     public setSecondLottieRandomOpacity() {
         const opacity = getRandomWithPrecision(2);
         ANDROID_WAVE_KEYPATHS.forEach(keyPath => {
-            this._lottieViewTwo.setOpacityValueDelegateForKeyPath(opacity, [
+            this._lottieViewTwo.setOpacity(opacity, [
                 ...keyPath
             ]);
         });

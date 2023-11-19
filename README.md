@@ -210,8 +210,8 @@ Place your animations files in your `app/App_Resources/iOS/` folder.
 | `isAnimating`                         | `boolean` | None                       | Returns true if the LottieView is animating, else false.                                                                |
 | `playAnimation`                       | `void`    | None                       | Plays the animation for the LottieView instance.                                                                        |
 | `playAnimationFromProgressToProgress` | `void`    | startProgress, endProgress | Plays the animation for the LottieView instance from the specified start and end progress values (between 0 and 1).     |
-| `setColorValueDelegateForKeyPath`     | `void`    | value, keyPath             | Sets the provided color value on each property that matches the specified keyPath in the LottieView instance.           |
-| `setOpacityValueDelegateForKeyPath`   | `void`    | value, keyPath             | Sets the provided opacity value (0 - 1) on each property that matches the specified keyPath in the LottieView instance. |
+| `setColor`     | `void`    | value, keyPath             | Sets the provided color value on each property that matches the specified keyPath in the LottieView instance.           |
+| `setOpacity`   | `void`    | value, keyPath             | Sets the provided opacity value (0 - 1) on each property that matches the specified keyPath in the LottieView instance. |
 
 ## Contributors
 
