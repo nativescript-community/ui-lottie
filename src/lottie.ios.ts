@@ -91,9 +91,10 @@ export class LottieView extends LottieViewBase {
         }
     }
 
-    public setColorValueDelegateForKeyPath(value: Color, keyPath: string[]): void {
+    public setColor(value: Color, keyPath: string[]): void {
         if (this.nativeView && value && keyPath && keyPath.length) {
             if (keyPath[keyPath.length - 1].toLowerCase() !== 'color') {
+                keyPath = [...keyPath];
                 keyPath.push('Color'); // ios expects the property as the last item in the keyPath
             }
 
@@ -104,7 +105,7 @@ export class LottieView extends LottieViewBase {
         }
     }
 
-    public setOpacityValueDelegateForKeyPath(value: number, keyPath: string[]): void {
+    public setOpacity(value: number, keyPath: string[]): void {
         if (this.nativeView && value && keyPath && keyPath.length) {
             if (keyPath[keyPath.length - 1].toLowerCase() !== 'opacity') {
                 keyPath.push('Opacity'); // ios expects the property as the last item in the keyPath

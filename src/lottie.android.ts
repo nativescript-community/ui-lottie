@@ -168,18 +168,20 @@ export class LottieView extends LottieViewBase {
         }
     }
 
-    public setColorValueDelegateForKeyPath(value: Color, keyPath: string[]): void {
-        if (this.nativeViewProtected && value && keyPath && keyPath.length) {
+    public setColor(value: Color, keyPath: string[]): void {
+        const nativeView = this.nativeViewProtected;
+        if (nativeView && value && keyPath && keyPath.length) {
             if (keyPath[keyPath.length - 1].toLowerCase() === 'color') {
+                keyPath = [...keyPath];
                 keyPath.pop(); // android specifies the property as an enum parameter.
                 if (keyPath.length === 0) {
                     return;
                 }
             }
-            const nativeKeyPath: java.lang.String[] = Array.create(java.lang.String, keyPath.length);
-            keyPath.forEach((key, index) => {
-                nativeKeyPath[index] = new java.lang.String(key);
-            });
+            const nativeKeyPath: any[] = Array.create(java.lang.String, keyPath.length);
+            for (let index = 0; index < keyPath.length; index++) {
+                nativeKeyPath[index] = keyPath[index];
+            }
             if (!LottieProperty) {
                 LottieProperty = com.airbnb.lottie.LottieProperty;
             }
@@ -191,16 +193,27 @@ export class LottieView extends LottieViewBase {
                 LottieKeyPath = com.airbnb.lottie.model.KeyPath;
             }
             // by using color filter we change all colors (STROKE_COLOR and COLOR)
+            // const colorFilter = new android.graphics.PorterDuffColorFilter(value.android, 	android.graphics.PorterDuff.Mode.SRC_ATOP) ;
             const colorFilter = new com.airbnb.lottie.SimpleColorFilter(value.android);
-            this.nativeViewProtected.addValueCallback(
+            nativeView.addValueCallback(
                 new LottieKeyPath(nativeKeyPath as any),
                 LottieProperty.COLOR_FILTER,
                 new LottieValueCallback(colorFilter)
             );
+            // nativeView.addValueCallback(
+            //     new LottieKeyPath(nativeKeyPath as any),
+            //     LottieProperty.COLOR,
+            //     new LottieValueCallback(java.lang.Integer.valueOf(value.android))
+            // );
+            nativeView.addValueCallback(
+                new LottieKeyPath(nativeKeyPath as any),
+                LottieProperty.COLOR,
+                new LottieValueCallback(java.lang.Integer.valueOf(value.android))
+            );
         }
     }
 
-    public setOpacityValueDelegateForKeyPath(value: number, keyPath: string[]): void {
+    public setOpacity(value: number, keyPath: string[]): void {
         if (this.nativeViewProtected && value && keyPath && keyPath.length) {
             if (keyPath[keyPath.length - 1].toLowerCase() === 'opacity') {
                 keyPath.pop();
