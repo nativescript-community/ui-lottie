@@ -75,12 +75,12 @@ export class LottieView extends View {
     /**
      * Sets the provided color value on each property that matches the specified keyPath.
      */
-    setColorValueDelegateForKeyPath(value: Color, keyPath: string[]): void;
+    setColor(value: Color, keyPath: string[]): void;
 
     /**
      * Sets the provided opacity value on each property that matches the specified keyPath.
      */
-    setOpacityValueDelegateForKeyPath(value: number, keyPath: string[]): void;
+    setOpacity(value: number, keyPath: string[]): void;
 
     /**
      * Plays the animation from the beginning.
