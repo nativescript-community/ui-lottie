@@ -20,17 +20,26 @@ import { clamp } from './utils';
 let LottieProperty: typeof com.airbnb.lottie.LottieProperty;
 let LottieKeyPath: typeof com.airbnb.lottie.model.KeyPath;
 let LottieValueCallback: typeof com.airbnb.lottie.value.LottieValueCallback;
+let LottieCompositionFactory: typeof com.airbnb.lottie.LottieCompositionFactory;
 
 const cache = new Map();
-function loadLottieJSON(iconSrc) {
+async function loadLottieJSON(iconSrc) {
     if (!cache.has(iconSrc)) {
         const file = File.fromPath(iconSrc);
-        return file.readText().then((r) => {
-            cache.set(iconSrc, r);
-            return r;
-        });
+        const r = await file.readText();
+        cache.set(iconSrc, r);
+        return r;
     }
-    return Promise.resolve(cache.get(iconSrc));
+    return cache.get(iconSrc);
+}
+function loadLottieJSONSync(iconSrc) {
+    if (!cache.has(iconSrc)) {
+        const file = File.fromPath(iconSrc);
+        const r = file.readTextSync();
+        cache.set(iconSrc, r);
+        return r;
+    }
+    return cache.get(iconSrc);
 }
 
 export const RenderMode = {
@@ -52,7 +61,8 @@ export class LottieView extends LottieViewBase {
         return new com.nativescript.lottie.LottieAnimationView(this._context);
     }
 
-    animatorListener;
+    animatorListener: android.animation.Animator.AnimatorListener;
+    loadedListener: com.airbnb.lottie.LottieOnCompositionLoadedListener;
     _completionBlock;
     //@ts-ignore
     get completionBlock() {
@@ -95,58 +105,104 @@ export class LottieView extends LottieViewBase {
         if (this.animatorListener) {
             this.nativeViewProtected.addAnimatorListener(this.animatorListener);
         }
-        // if (this.src) {
-        //   this[srcProperty.setNative](this.src);
-        // }
+        if (!this.loadedListener) {
+            this.loadedListener = new com.airbnb.lottie.LottieOnCompositionLoadedListener({
+                onCompositionLoaded: (composition) => {
+                    this.notify({ eventName: 'compositionLoaded', composition });
+                }
+            });
+        }
+        this.nativeViewProtected.addLottieOnCompositionLoadedListener(this.loadedListener);
 
-        // if (this.loop) {
-        //   this.nativeView.loop(this.loop);
-        // }
-
-        // if (this.autoPlay) {
-        //   this.playAnimation();
-        // }
     }
 
     public disposeNativeView(): void {
         if (this.animatorListener) {
             this.nativeViewProtected.removeAnimatorListener(this.animatorListener);
         }
+        if (this.loadedListener) {
+            this.nativeViewProtected.removeLottieOnCompositionLoadedListener(this.loadedListener);
+        }
         super.disposeNativeView();
     }
 
     [srcProperty.setNative](src: string) {
-        const view = this.nativeViewProtected;
-        if (!src) {
-            // lottie does not support "clearing the animation"
-            // view.setAnimation(null);
-        } else if (src[0] === '{') {
-            view.setAnimationFromJson(src, null);
-        } else if (src.startsWith(Utils.RESOURCE_PREFIX)) {
-            const resName = src.replace(Utils.RESOURCE_PREFIX, '');
-            view.setAnimation(resName);
-        } else {
-            if (!/.(json|zip|lottie)$/.test(src)) {
-                src += '.json';
+        try {
+            if (LottieCompositionFactory) {
+                LottieCompositionFactory = com.airbnb.lottie.LottieCompositionFactory;
             }
-            if (src[0] === '~') {
-                this.nativeView.setAnimation('app/' + src.substring(2));
-            } else if (!src.startsWith('file:/') && src[0] !== '/') {
-                this.nativeView.setAnimation(src);
+            const view = this.nativeViewProtected;
+            let result: com.airbnb.lottie.LottieResult<com.airbnb.lottie.LottieComposition>;
+            if (!src) {
+                // lottie does not support "clearing the animation"
+                // view.setAnimation(null);
+            } else if (src[0] === '{') {
+                if (this.async) {
+                    view.setAnimationFromJson(src, null);
+                } else {
+                    result = LottieCompositionFactory.fromJsonStringSync(this._context, src);
+                }
+            } else if (src.startsWith(Utils.RESOURCE_PREFIX)) {
+                const resName = src.replace(Utils.RESOURCE_PREFIX, '');
+                if (this.async) {
+                    view.setAnimation(resName);
+                } else {
+                    result = com.airbnb.lottie.LottieCompositionFactory.fromAssetSync(this._context, resName);
+                }
             } else {
-                loadLottieJSON(src).then((r) => {
-                    this.nativeView.setAnimationFromJson(r, null);
-                });
+                if (!/.(json|zip|lottie)$/.test(src)) {
+                    src += '.json';
+                }
+                if (src[0] === '~') {
+                    if (this.async) {
+                        view.setAnimation('app/' + src.substring(2));
+                    } else {
+                        result = com.airbnb.lottie.LottieCompositionFactory.fromAssetSync(
+                            this._context,
+                            'app/' + src.substring(2)
+                        );
+                    }
+                } else if (!src.startsWith('file:/') && src[0] !== '/') {
+                    if (this.async) {
+                        view.setAnimation('app/' + src);
+                    } else {
+                        result = com.airbnb.lottie.LottieCompositionFactory.fromAssetSync(this._context, src);
+                    }
+                } else {
+                    if (this.async) {
+                        loadLottieJSON(src).then((result) => {
+                            if (this.nativeViewProtected) {
+                                this.nativeViewProtected.setAnimationFromJson(result, null);
+                            }
+                        });
+                    } else {
+                        result = LottieCompositionFactory.fromJsonStringSync(this._context, loadLottieJSONSync(src));
+                    }
+                }
             }
-        }
-
-        if (this.autoPlay) {
-            this.playAnimation();
+            if (result) {
+                if (result.getException()) {
+                    console.error(result.getException());
+                    // view.setComposition(null);
+                } else {
+                    view.setComposition(result.getValue());
+                    //in sync loading we need to fire it ourselves
+                    // if we dont differ it from now it wont be received
+                    setTimeout(() => {
+                        this.notify({ eventName: 'compositionLoaded', composition: result.getValue() });
+                    }, 0);
+                }
+            }
+            if (this.autoPlay) {
+                this.playAnimation();
+            }
+        } catch (error) {
+            console.error(error);
         }
     }
 
     [loopProperty.setNative](loop: boolean) {
-        this.nativeViewProtected.loop(loop);
+        this.nativeViewProtected.setRepeatCount(loop ? -1 /* android.animation.ValueAnimator.INFINITE */ : 0);
     }
     [renderModeProperty.setNative](renderMode) {
         this.nativeViewProtected.setRenderMode(renderMode);
@@ -205,11 +261,6 @@ export class LottieView extends LottieViewBase {
             //     LottieProperty.COLOR,
             //     new LottieValueCallback(java.lang.Integer.valueOf(value.android))
             // );
-            nativeView.addValueCallback(
-                new LottieKeyPath(nativeKeyPath as any),
-                LottieProperty.COLOR,
-                new LottieValueCallback(java.lang.Integer.valueOf(value.android))
-            );
         }
     }
 

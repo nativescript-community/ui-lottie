@@ -4,8 +4,13 @@
         "com.airbnb.lottie.model:KeyPath",
         "com.airbnb.lottie.value:LottieValueCallback",
         "com.airbnb.lottie:LottieProperty",
+        "com.airbnb.lottie:SimpleColorFilter",
         "com.airbnb.lottie:RenderMode",
         "android.animation:Animator",
-        "android.animation:Animator.AnimatorListener"
+        "android.animation:Animator.AnimatorListener",
+        "com.airbnb.lottie:LottieResult",
+        "com.airbnb.lottie:LottieOnCompositionLoadedListener",
+        "com.airbnb.lottie:LottieComposition",
+        "com.airbnb.lottie:LottieCompositionFactory"
     ]
 }

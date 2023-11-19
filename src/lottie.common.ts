@@ -9,6 +9,7 @@ import { CoreTypes, Property, View, booleanConverter } from '@nativescript/core'
 
 export class LottieViewBase extends View {
     public stretch: CoreTypes.ImageStretchType;
+    public async: boolean;
     public src: string;
     public loop: boolean;
     public autoPlay: boolean;
@@ -21,6 +22,12 @@ export const srcProperty = new Property<LottieViewBase, string>({
 });
 srcProperty.register(LottieViewBase);
 
+export const asyncProperty = new Property<LottieViewBase, boolean>({
+    name: 'async',
+    defaultValue: false,
+    valueConverter: booleanConverter
+});
+asyncProperty.register(LottieViewBase);
 export const loopProperty = new Property<LottieViewBase, boolean>({
     name: 'loop',
     defaultValue: false,
