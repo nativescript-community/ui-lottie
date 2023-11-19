@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.7](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.6...v5.0.7) (2023-11-19)
+
+### Bug Fixes
+
+-   **android:** src is now loaded sync. You can change the behavior with the new `async` property ([7b28195](https://github.com/farfromrefug/nativescript-lottie/commit/7b281956afc0d31702ae12f8eada54796c09c798))
+
 ## [5.0.6](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.5...v5.0.6) (2023-03-11)
 
 **Note:** Version bump only for package @nativescript-community/ui-lottie
