@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.8](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.7...v5.0.8) (2023-11-20)
+
+### Features
+
+-   keyPathColors property (`setColor` as a property) ([fed5025](https://github.com/farfromrefug/nativescript-lottie/commit/fed50251d67f217900b796882edb34eb6d509dcf))
+
 ## [5.0.7](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.6...v5.0.7) (2023-11-19)
 
 ### Bug Fixes
