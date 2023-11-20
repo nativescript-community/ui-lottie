@@ -9,6 +9,7 @@ import { Color, File, Utils } from '@nativescript/core';
 import {
     LottieViewBase,
     autoPlayProperty,
+    keyPathColorsProperty,
     loopProperty,
     progressProperty,
     renderModeProperty,
@@ -108,12 +109,14 @@ export class LottieView extends LottieViewBase {
         if (!this.loadedListener) {
             this.loadedListener = new com.airbnb.lottie.LottieOnCompositionLoadedListener({
                 onCompositionLoaded: (composition) => {
-                    this.notify({ eventName: 'compositionLoaded', composition });
+                    // delay just a bit so that it get received in sync load
+                    setTimeout(() => {
+                        this.notify({ eventName: 'compositionLoaded', composition });
+                    }, 0);
                 }
             });
         }
         this.nativeViewProtected.addLottieOnCompositionLoadedListener(this.loadedListener);
-
     }
 
     public disposeNativeView(): void {
@@ -186,11 +189,12 @@ export class LottieView extends LottieViewBase {
                     // view.setComposition(null);
                 } else {
                     view.setComposition(result.getValue());
+
                     //in sync loading we need to fire it ourselves
                     // if we dont differ it from now it wont be received
-                    setTimeout(() => {
-                        this.notify({ eventName: 'compositionLoaded', composition: result.getValue() });
-                    }, 0);
+                    // setTimeout(() => {
+                    //     this.notify({ eventName: 'compositionLoaded', composition: result.getValue() });
+                    // }, 0);
                 }
             }
             if (this.autoPlay) {
@@ -206,6 +210,9 @@ export class LottieView extends LottieViewBase {
     }
     [renderModeProperty.setNative](renderMode) {
         this.nativeViewProtected.setRenderMode(renderMode);
+    }
+    [keyPathColorsProperty.setNative](value) {
+        Object.keys(value).forEach((k) => this.setColor(value[k], k.split('|')));
     }
 
     [autoPlayProperty.setNative](autoPlay: boolean) {
@@ -224,7 +231,7 @@ export class LottieView extends LottieViewBase {
         }
     }
 
-    public setColor(value: Color, keyPath: string[]): void {
+    public setColor(value: Color | string, keyPath: string[]): void {
         const nativeView = this.nativeViewProtected;
         if (nativeView && value && keyPath && keyPath.length) {
             if (keyPath[keyPath.length - 1].toLowerCase() === 'color') {
@@ -249,8 +256,9 @@ export class LottieView extends LottieViewBase {
                 LottieKeyPath = com.airbnb.lottie.model.KeyPath;
             }
             // by using color filter we change all colors (STROKE_COLOR and COLOR)
+            const color = value instanceof Color ? value : new Color(value);
             // const colorFilter = new android.graphics.PorterDuffColorFilter(value.android, 	android.graphics.PorterDuff.Mode.SRC_ATOP) ;
-            const colorFilter = new com.airbnb.lottie.SimpleColorFilter(value.android);
+            const colorFilter = new com.airbnb.lottie.SimpleColorFilter(color.android);
             nativeView.addValueCallback(
                 new LottieKeyPath(nativeKeyPath as any),
                 LottieProperty.COLOR_FILTER,

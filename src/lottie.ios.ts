@@ -6,7 +6,15 @@
  **********************************************************************************/
 
 import { Color, Utils, View, knownFolders, path } from '@nativescript/core';
-import { LottieViewBase, autoPlayProperty, loopProperty, progressProperty, srcProperty, stretchProperty } from './lottie.common';
+import {
+    LottieViewBase,
+    autoPlayProperty,
+    keyPathColorsProperty,
+    loopProperty,
+    progressProperty,
+    srcProperty,
+    stretchProperty
+} from './lottie.common';
 import { clamp } from './utils';
 
 const appPath = knownFolders.currentApp().path;
@@ -98,8 +106,9 @@ export class LottieView extends LottieViewBase {
                 keyPath.push('Color'); // ios expects the property as the last item in the keyPath
             }
 
+            const color = value instanceof Color ? value : new Color(value);
             this.nativeViewProtected.setColorValueForKeypath(
-                value.ios,
+                color.ios,
                 CompatibleAnimationKeypath.alloc().initWithKeypath(keyPath.join('.'))
             );
         }
@@ -305,5 +314,9 @@ export class LottieView extends LottieViewBase {
                 this.nativeViewProtected.contentMode = UIViewContentMode.TopLeft;
                 break;
         }
+    }
+
+    [keyPathColorsProperty.setNative](value) {
+        Object.keys(value).forEach((k) => this.setColor(value[k], k.split('|')));
     }
 }
