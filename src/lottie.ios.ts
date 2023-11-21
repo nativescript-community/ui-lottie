@@ -19,6 +19,9 @@ import { clamp } from './utils';
 
 const appPath = knownFolders.currentApp().path;
 
+// this remove assert for lottie allowing sync .lottie files loading on main thread
+CompatibleLottieLogger.overrideLottieLogger();
+
 export class LottieView extends LottieViewBase {
     nativeViewProtected: CompatibleAnimationView;
     private _imageSourceAffectsLayout = true;
@@ -69,7 +72,9 @@ export class LottieView extends LottieViewBase {
                 this.nativeViewProtected.compatibleAnimation = CompatibleAnimation.alloc().initWithFilepath(src);
             }
         }
-
+        if (this.keyPathColors) {
+            this[keyPathColorsProperty.setNative](this.keyPathColors);
+        }
         if (this._imageSourceAffectsLayout) {
             this.requestLayout();
         }

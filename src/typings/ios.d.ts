@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unified-signatures */
 declare class AnimatedButton extends AnimatedControl {
     static alloc(): AnimatedButton; // inherited from NSObject
 
@@ -290,6 +291,14 @@ declare class CompatibleDictionaryTextProvider extends NSObject {
     constructor(o: { values: NSDictionary<string, string> });
 
     initWithValues(values: NSDictionary<string, string>): this;
+}
+
+declare class CompatibleLottieLogger extends NSObject {
+    static alloc(): CompatibleLottieLogger; // inherited from NSObject
+
+    static new(): CompatibleLottieLogger; // inherited from NSObject
+
+    static overrideLottieLogger(): void;
 }
 
 declare const enum CompatibleRenderingEngineOption {
