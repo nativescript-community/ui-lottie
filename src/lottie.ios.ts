@@ -46,16 +46,11 @@ export class LottieView extends LottieViewBase {
             this.nativeViewProtected.compatibleAnimation = CompatibleAnimation.alloc().initWithJson(src);
         } else if (src.startsWith(Utils.RESOURCE_PREFIX)) {
             const resName = src.replace(Utils.RESOURCE_PREFIX, '');
-            if (resName.endsWith('.lottie')) {
-                DotLottie.objcLoadWithNameShouldCacheCompletion(resName.replace('.lottie', ''), true, (animation) => {
-                    this.nativeViewProtected.animation = animation;
-                });
-            } else {
-                this.nativeViewProtected.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(
-                    resName.replace('.json', ''),
-                    NSBundle.mainBundle
-                );
-            }
+
+            this.nativeViewProtected.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(
+                resName.replace('.json', '').replace('.lottie', ''),
+                NSBundle.mainBundle
+            );
         } else {
             if (src[0] === '~') {
                 src = `${path.join(appPath, src.substring(2))}`;
@@ -65,14 +60,11 @@ export class LottieView extends LottieViewBase {
             }
             if (!src.startsWith('file:/') && src[0] !== '/') {
                 // seen as res
-                this.nativeViewProtected.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(
+                this.nativeViewProtected.compatibleAnimation = CompatibleAnimation.alloc().initWithNameSubdirectoryBundle(
                     src.replace('.json', '').replace('.lottie', ''),
+                    null,
                     NSBundle.mainBundle
                 );
-            } else if (src.endsWith('.lottie')) {
-                DotLottie.objcLoadFromShouldCacheCompletion(NSURL.URLWithString(src), true, (animation) => {
-                    this.nativeViewProtected.animation = animation;
-                });
             } else {
                 this.nativeViewProtected.compatibleAnimation = CompatibleAnimation.alloc().initWithFilepath(src);
             }
