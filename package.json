@@ -84,6 +84,7 @@
     "@commitlint/config-conventional": "^17.3.0",
     "@nativescript/angular": "^14.2.7",
     "@nativescript/core": "~8.4.1",
+    "@nativescript/ios": "8.6.3",
     "@nativescript/types-android": "~8.4.0",
     "@nativescript/types-ios": "~8.4.0",
     "@nativescript/webpack": "~5.0.12",
