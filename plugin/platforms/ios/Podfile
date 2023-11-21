@@ -1,2 +1,2 @@
 pod 'lottie-ios', :git => 'https://github.com/farfromrefug/lottie-ios.git', :branch => "4.3.3"
-# pod 'dotLottie', :git => 'https://github.com/farfromrefug/dotlottie-ios.git', :branch => "2.1.0"
+# pod 'lottie-ios', :path => '/Volumes/dev/ios/lottie-ios'
