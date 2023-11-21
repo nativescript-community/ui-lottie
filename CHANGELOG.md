@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.10](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.9...v5.0.10) (2023-11-21)
+
+### Bug Fixes
+
+-   **ios:** multiple iOS fixes ([c0fcda6](https://github.com/farfromrefug/nativescript-lottie/commit/c0fcda6acffd03c7c97c2c033f20c14adc8e190e))
+
 ## [5.0.9](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.8...v5.0.9) (2023-11-21)
 
 ### Bug Fixes
