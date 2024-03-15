@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.11](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.10...v5.0.11) (2024-03-15)
+
+### Bug Fixes
+
+-   **ios:** ensure animation start playing on src change with autoPlay ([80ea818](https://github.com/farfromrefug/nativescript-lottie/commit/80ea81853d8ac225a37c623809c7383498ea68ee))
+
 ## [5.0.10](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.9...v5.0.10) (2023-11-21)
 
 ### Bug Fixes
