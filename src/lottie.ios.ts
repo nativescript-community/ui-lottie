@@ -78,6 +78,10 @@ export class LottieView extends LottieViewBase {
         if (this._imageSourceAffectsLayout) {
             this.requestLayout();
         }
+
+        if (this.autoPlay && !this.isAnimating()) {
+            this.playAnimation();
+        }
     }
 
     [loopProperty.setNative](loop: boolean) {
