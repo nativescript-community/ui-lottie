@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.11...v6.0.0) (2024-03-21)
+
+### Bug Fixes
+
+-   **ios:** updated native SDK ([b1d9f73](https://github.com/farfromrefug/nativescript-lottie/commit/b1d9f734988658a30838944923563bcac16a78ab))
+
+### BREAKING CHANGES
+
+-   **ios:** min deployment target has been raised to 13.0
+
 ## [5.0.11](https://github.com/farfromrefug/nativescript-lottie/compare/v5.0.10...v5.0.11) (2024-03-15)
 
 **Note:** Version bump only for package @nativescript-community/ui-lottie
