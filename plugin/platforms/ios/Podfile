@@ -1,2 +1,2 @@
-pod 'lottie-ios', :git => 'https://github.com/farfromrefug/lottie-ios.git', :branch => "4.3.3"
+pod 'lottie-ios', :git => 'https://github.com/farfromrefug/lottie-ios.git', :branch => "4.4.1"
 # pod 'lottie-ios', :path => '/Volumes/dev/ios/lottie-ios'
