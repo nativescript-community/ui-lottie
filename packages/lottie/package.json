@@ -13,6 +13,7 @@
     },
     "scripts": {
         "tsc": "cpy ../../src/lottie/index.d.ts ./ && tsc -d",
+        "readme": "readme generate -c ../../tools/readme/blueprint.json",
         "build": "npm run tsc",
         "build.watch": "npm run tsc -- -w",
         "build.win": "npm run tsc-win",

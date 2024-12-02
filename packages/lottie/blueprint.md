@@ -3,7 +3,7 @@
 {{ template:badges }}
 {{ template:description }}
 
-| <img src="https://raw.githubusercontent.com/nativescript-community/ui-label/master/images/demo-ios.gif" height="500" /> | <img src="https://raw.githubusercontent.com/nativescript-community/ui-label/master/images/demo-android.gif" height="500" /> |
+| <img src="https://raw.githubusercontent.com/nativescript-community/ui-lottie/master/screens/lottieDemo.gif" height="500" /> |
 | --- | ----------- |
 | iOS Demo | Android Demo |
 
