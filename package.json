@@ -78,7 +78,7 @@
         "doc": "node tools/builddoc.js",
         "commit_readme_doc_changes": "git add docs/** *.md ; git commit -m \"readme/doc\" ; echo \"commit readme doc done\"",
         "postinstall": "npm run setup",
-        "readme": "lerna run readme && node ./tools/readme.js",
+        "readme": "lerna run readme && node ./tools/readme.mjs",
         "start": "./node_modules/.bin/ntl -A -s 15 -o",
         "submodules": "git submodule update --init",
         "update": "node ./tools/update.js",
