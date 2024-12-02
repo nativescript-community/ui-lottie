@@ -3313,7 +3313,7 @@ __metadata:
 
 "@nativescript-community/plugin-seed-tools@file:tools::locator=root-workspace-0b6124%40workspace%3A.":
   version: 1.0.0
-  resolution: "@nativescript-community/plugin-seed-tools@file:tools#tools::hash=757a79&locator=root-workspace-0b6124%40workspace%3A."
+  resolution: "@nativescript-community/plugin-seed-tools@file:tools#tools::hash=77c385&locator=root-workspace-0b6124%40workspace%3A."
   dependencies:
     "@angular/animations": "npm:~18.2.13"
     "@angular/common": "npm:~18.2.13"
@@ -3378,7 +3378,7 @@ __metadata:
     vue: "npm:^2.7.16"
     yargs: "npm:^17.7.2"
     zone.js: "npm:~0.15.0"
-  checksum: f42df5f00062f097e71d03224f9c54260e54dc1004aca8bee79a50e947827eb8686c6b9c32bc05202e1cd86e48526a91c8b6da8be42b8dc4d85e4b68b5db6de4
+  checksum: 09ca8f6ed64a633aa618044b9b794e9b38bd3759169d513ba38d2a7f19ba5ee29bc20aed7e65d3e1e689659479edcaa3edd252be88174e91a85a48af0968ce58
   languageName: node
   linkType: hard
 
