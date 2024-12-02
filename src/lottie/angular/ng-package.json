@@ -1,0 +1,9 @@
+{
+    "dest": "../../../packages/lottie/angular",
+    "lib": {
+      "entryFile": "index.ts"
+    },
+    "allowedNonPeerDependencies": [
+      "."
+    ]
+}

@@ -5,11 +5,8 @@
  * Version 1.0.0                                           walkerrunpdx@gmail.com
  **********************************************************************************/
 
-import { Color, CoreTypes, Property, View, booleanConverter } from '@nativescript/core';
-
-export interface KeyPathColors {
-    [k: string]: Color | string;
-}
+import { CoreTypes, Property, View, booleanConverter } from '@nativescript/core';
+import { KeyPathColors } from '.';
 
 export class LottieViewBase extends View {
     public stretch: CoreTypes.ImageStretchType;
@@ -20,11 +17,6 @@ export class LottieViewBase extends View {
     public progress: number;
     public keyPathColors: KeyPathColors;
     public completionBlock: (animationFinished: boolean) => void;
-    // public abstract setColor(value: Color, keyPath: string[]): void;
-
-    // [keyPathColorsProperty.setNative](value) {
-    //     Object.keys(value).forEach((k) => this.setColor(value[k], k.split('|')));
-    // }
 }
 
 export const srcProperty = new Property<LottieViewBase, string>({

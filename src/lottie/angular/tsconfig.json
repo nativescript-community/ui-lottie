@@ -1,0 +1,12 @@
+{
+    "extends": "../../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "./",
+        "plugins": [],
+        "paths": {
+            "@nativescript-community/ui-lottie": ["packages/lottie"]
+        }
+    },
+    "include": ["./**/*.ts"],
+    "exclude": ["../node_modules"]
+}

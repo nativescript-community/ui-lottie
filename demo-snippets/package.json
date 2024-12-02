@@ -1,0 +1,12 @@
+{
+    "name": "@nativescript-community/template-snippet",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "@nativescript-community/ui-collectionview": "*",
+        "@nativescript-community/ui-collectionview-alignedflowlayout": "*",
+        "@nativescript-community/ui-collectionview-swipemenu": "*",
+        "@nativescript-community/ui-collectionview-waterfall": "*",
+        "@nativescript-community/ui-pulltorefresh": "*"
+    }
+}

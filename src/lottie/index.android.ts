@@ -6,16 +6,7 @@
  **********************************************************************************/
 
 import { Color, File, Utils } from '@nativescript/core';
-import {
-    LottieViewBase,
-    autoPlayProperty,
-    keyPathColorsProperty,
-    loopProperty,
-    progressProperty,
-    renderModeProperty,
-    srcProperty,
-    stretchProperty
-} from './lottie.common';
+import { LottieViewBase, autoPlayProperty, keyPathColorsProperty, loopProperty, progressProperty, renderModeProperty, srcProperty, stretchProperty } from './index.common';
 import { clamp } from './utils';
 
 let LottieProperty: typeof com.airbnb.lottie.LottieProperty;
@@ -129,6 +120,110 @@ export class LottieView extends LottieViewBase {
         super.disposeNativeView();
     }
 
+    public setColor(value: Color | string, keyPath: string[]): void {
+        const nativeView = this.nativeViewProtected;
+        if (nativeView && value && keyPath && keyPath.length) {
+            if (keyPath[keyPath.length - 1].toLowerCase() === 'color') {
+                keyPath = [...keyPath];
+                keyPath.pop(); // android specifies the property as an enum parameter.
+                if (keyPath.length === 0) {
+                    return;
+                }
+            }
+            const nativeKeyPath: any[] = Array.create(java.lang.String, keyPath.length);
+            for (let index = 0; index < keyPath.length; index++) {
+                nativeKeyPath[index] = keyPath[index];
+            }
+            if (!LottieProperty) {
+                LottieProperty = com.airbnb.lottie.LottieProperty;
+            }
+            if (!LottieValueCallback) {
+                LottieValueCallback = com.airbnb.lottie.value.LottieValueCallback;
+            }
+
+            if (!LottieKeyPath) {
+                LottieKeyPath = com.airbnb.lottie.model.KeyPath;
+            }
+            // by using color filter we change all colors (STROKE_COLOR and COLOR)
+            const color = value instanceof Color ? value : new Color(value);
+            // const colorFilter = new android.graphics.PorterDuffColorFilter(value.android, 	android.graphics.PorterDuff.Mode.SRC_ATOP) ;
+            const colorFilter = new com.airbnb.lottie.SimpleColorFilter(color.android);
+            nativeView.addValueCallback(new LottieKeyPath(nativeKeyPath as any), LottieProperty.COLOR_FILTER, new LottieValueCallback(colorFilter));
+            // nativeView.addValueCallback(
+            //     new LottieKeyPath(nativeKeyPath as any),
+            //     LottieProperty.COLOR,
+            //     new LottieValueCallback(java.lang.Integer.valueOf(value.android))
+            // );
+        }
+    }
+
+    public setOpacity(value: number, keyPath: string[]): void {
+        if (this.nativeViewProtected && value && keyPath && keyPath.length) {
+            if (keyPath[keyPath.length - 1].toLowerCase() === 'opacity') {
+                keyPath.pop();
+                if (keyPath.length === 0) {
+                    return;
+                }
+            }
+            const nativeKeyPath: java.lang.String[] = Array.create(java.lang.String, keyPath.length);
+            keyPath.forEach((key, index) => {
+                nativeKeyPath[index] = new java.lang.String(key);
+            });
+            value = clamp(value);
+            if (!LottieProperty) {
+                LottieProperty = com.airbnb.lottie.LottieProperty;
+            }
+            if (!LottieValueCallback) {
+                LottieValueCallback = com.airbnb.lottie.value.LottieValueCallback;
+            }
+
+            if (!LottieKeyPath) {
+                LottieKeyPath = com.airbnb.lottie.model.KeyPath;
+            }
+            this.nativeViewProtected.addValueCallback(new LottieKeyPath(nativeKeyPath as any), LottieProperty.OPACITY, new LottieValueCallback(new java.lang.Integer(value * 100)));
+        }
+    }
+
+    public playAnimation(): void {
+        if (this.nativeViewProtected) {
+            this.nativeViewProtected.setMinAndMaxProgress(0, 1);
+            this.nativeViewProtected.playAnimation();
+        }
+    }
+
+    public playAnimationFromProgressToProgress(startProgress: number, endProgress: number): void {
+        if (this.nativeViewProtected) {
+            startProgress = startProgress ? clamp(startProgress) : 0;
+            endProgress = endProgress ? clamp(endProgress) : 1;
+            this.nativeViewProtected.setMinAndMaxProgress(startProgress, endProgress);
+            this.nativeViewProtected.playAnimation();
+        }
+    }
+
+    public isAnimating(): boolean {
+        return this.nativeViewProtected ? this.nativeViewProtected.isAnimating() : false;
+    }
+
+    public get speed(): number | undefined {
+        return this.nativeViewProtected ? this.nativeViewProtected.getSpeed() : undefined;
+    }
+
+    public set speed(value: number) {
+        if (this.nativeViewProtected && value) {
+            this.nativeViewProtected.setSpeed(value);
+        }
+    }
+
+    public get duration(): number | undefined {
+        return this.nativeViewProtected ? this.nativeViewProtected.getDuration() : undefined;
+    }
+
+    public cancelAnimation(): void {
+        if (this.nativeViewProtected) {
+            this.nativeViewProtected.cancelAnimation();
+        }
+    }
+
     [srcProperty.setNative](src: string) {
         try {
             if (LottieCompositionFactory) {
@@ -160,10 +255,7 @@ export class LottieView extends LottieViewBase {
                     if (this.async) {
                         view.setAnimation('app/' + src.substring(2));
                     } else {
-                        result = com.airbnb.lottie.LottieCompositionFactory.fromAssetSync(
-                            this._context,
-                            'app/' + src.substring(2)
-                        );
+                        result = com.airbnb.lottie.LottieCompositionFactory.fromAssetSync(this._context, 'app/' + src.substring(2));
                     }
                 } else if (!src.startsWith('file:/') && src[0] !== '/') {
                     if (this.async) {
@@ -208,6 +300,10 @@ export class LottieView extends LottieViewBase {
     [loopProperty.setNative](loop: boolean) {
         this.nativeViewProtected.setRepeatCount(loop ? -1 /* android.animation.ValueAnimator.INFINITE */ : 0);
     }
+
+    [progressProperty.setNative](value: number) {
+        this.nativeViewProtected.setProgress(value);
+    }
     [renderModeProperty.setNative](renderMode) {
         this.nativeViewProtected.setRenderMode(renderMode);
     }
@@ -228,131 +324,6 @@ export class LottieView extends LottieViewBase {
                 this.nativeViewProtected.setProgress(this.progress);
             }
             // }
-        }
-    }
-
-    public setColor(value: Color | string, keyPath: string[]): void {
-        const nativeView = this.nativeViewProtected;
-        if (nativeView && value && keyPath && keyPath.length) {
-            if (keyPath[keyPath.length - 1].toLowerCase() === 'color') {
-                keyPath = [...keyPath];
-                keyPath.pop(); // android specifies the property as an enum parameter.
-                if (keyPath.length === 0) {
-                    return;
-                }
-            }
-            const nativeKeyPath: any[] = Array.create(java.lang.String, keyPath.length);
-            for (let index = 0; index < keyPath.length; index++) {
-                nativeKeyPath[index] = keyPath[index];
-            }
-            if (!LottieProperty) {
-                LottieProperty = com.airbnb.lottie.LottieProperty;
-            }
-            if (!LottieValueCallback) {
-                LottieValueCallback = com.airbnb.lottie.value.LottieValueCallback;
-            }
-
-            if (!LottieKeyPath) {
-                LottieKeyPath = com.airbnb.lottie.model.KeyPath;
-            }
-            // by using color filter we change all colors (STROKE_COLOR and COLOR)
-            const color = value instanceof Color ? value : new Color(value);
-            // const colorFilter = new android.graphics.PorterDuffColorFilter(value.android, 	android.graphics.PorterDuff.Mode.SRC_ATOP) ;
-            const colorFilter = new com.airbnb.lottie.SimpleColorFilter(color.android);
-            nativeView.addValueCallback(
-                new LottieKeyPath(nativeKeyPath as any),
-                LottieProperty.COLOR_FILTER,
-                new LottieValueCallback(colorFilter)
-            );
-            // nativeView.addValueCallback(
-            //     new LottieKeyPath(nativeKeyPath as any),
-            //     LottieProperty.COLOR,
-            //     new LottieValueCallback(java.lang.Integer.valueOf(value.android))
-            // );
-        }
-    }
-
-    public setOpacity(value: number, keyPath: string[]): void {
-        if (this.nativeViewProtected && value && keyPath && keyPath.length) {
-            if (keyPath[keyPath.length - 1].toLowerCase() === 'opacity') {
-                keyPath.pop();
-                if (keyPath.length === 0) {
-                    return;
-                }
-            }
-            const nativeKeyPath: java.lang.String[] = Array.create(java.lang.String, keyPath.length);
-            keyPath.forEach((key, index) => {
-                nativeKeyPath[index] = new java.lang.String(key);
-            });
-            value = clamp(value);
-            if (!LottieProperty) {
-                LottieProperty = com.airbnb.lottie.LottieProperty;
-            }
-            if (!LottieValueCallback) {
-                LottieValueCallback = com.airbnb.lottie.value.LottieValueCallback;
-            }
-
-            if (!LottieKeyPath) {
-                LottieKeyPath = com.airbnb.lottie.model.KeyPath;
-            }
-            this.nativeViewProtected.addValueCallback(
-                new LottieKeyPath(nativeKeyPath as any),
-                LottieProperty.OPACITY,
-                new LottieValueCallback(new java.lang.Integer(value * 100))
-            );
-        }
-    }
-
-    public playAnimation(): void {
-        if (this.nativeViewProtected) {
-            this.nativeViewProtected.setMinAndMaxProgress(0, 1);
-            this.nativeViewProtected.playAnimation();
-        }
-    }
-
-    public playAnimationFromProgressToProgress(startProgress: number, endProgress: number): void {
-        if (this.nativeViewProtected) {
-            startProgress = startProgress ? clamp(startProgress) : 0;
-            endProgress = endProgress ? clamp(endProgress) : 1;
-            this.nativeViewProtected.setMinAndMaxProgress(startProgress, endProgress);
-            this.nativeViewProtected.playAnimation();
-        }
-    }
-
-    public isAnimating(): boolean {
-        return this.nativeViewProtected ? this.nativeViewProtected.isAnimating() : false;
-    }
-
-    [progressProperty.setNative](value: number) {
-        this.nativeViewProtected.setProgress(value);
-    }
-    // public set progress(value: number) {
-    //     if (this.nativeView && value) {
-    //         this.nativeView.setProgress(value);
-    //     }
-    // }
-
-    // public get progress(): number | undefined {
-    //     return this.nativeView ? this.nativeView.getProgress() : undefined;
-    // }
-
-    public get speed(): number | undefined {
-        return this.nativeViewProtected ? this.nativeViewProtected.getSpeed() : undefined;
-    }
-
-    public set speed(value: number) {
-        if (this.nativeViewProtected && value) {
-            this.nativeViewProtected.setSpeed(value);
-        }
-    }
-
-    public get duration(): number | undefined {
-        return this.nativeViewProtected ? this.nativeViewProtected.getDuration() : undefined;
-    }
-
-    public cancelAnimation(): void {
-        if (this.nativeViewProtected) {
-            this.nativeViewProtected.cancelAnimation();
         }
     }
 

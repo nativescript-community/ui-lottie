@@ -6,15 +6,7 @@
  **********************************************************************************/
 
 import { Color, Utils, View, knownFolders, path } from '@nativescript/core';
-import {
-    LottieViewBase,
-    autoPlayProperty,
-    keyPathColorsProperty,
-    loopProperty,
-    progressProperty,
-    srcProperty,
-    stretchProperty
-} from './lottie.common';
+import { LottieViewBase, autoPlayProperty, keyPathColorsProperty, loopProperty, progressProperty, srcProperty, stretchProperty } from './index.common';
 import { clamp } from './utils';
 
 const appPath = knownFolders.currentApp().path;
@@ -42,6 +34,10 @@ export class LottieView extends LottieViewBase {
         }
     }
 
+    [keyPathColorsProperty.setNative](value) {
+        Object.keys(value).forEach((k) => this.setColor(value[k], k.split('|')));
+    }
+
     [srcProperty.setNative](src: string) {
         if (!src) {
             this.nativeViewProtected.compatibleAnimation = null;
@@ -50,10 +46,7 @@ export class LottieView extends LottieViewBase {
         } else if (src.startsWith(Utils.RESOURCE_PREFIX)) {
             const resName = src.replace(Utils.RESOURCE_PREFIX, '');
 
-            this.nativeViewProtected.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(
-                resName.replace('.json', '').replace('.lottie', ''),
-                NSBundle.mainBundle
-            );
+            this.nativeViewProtected.compatibleAnimation = CompatibleAnimation.alloc().initWithNameBundle(resName.replace('.json', '').replace('.lottie', ''), NSBundle.mainBundle);
         } else {
             if (src[0] === '~') {
                 src = `${path.join(appPath, src.substring(2))}`;
@@ -63,11 +56,7 @@ export class LottieView extends LottieViewBase {
             }
             if (!src.startsWith('file:/') && src[0] !== '/') {
                 // seen as res
-                this.nativeViewProtected.compatibleAnimation = CompatibleAnimation.alloc().initWithNameSubdirectoryBundle(
-                    src.replace('.json', '').replace('.lottie', ''),
-                    null,
-                    NSBundle.mainBundle
-                );
+                this.nativeViewProtected.compatibleAnimation = CompatibleAnimation.alloc().initWithNameSubdirectoryBundle(src.replace('.json', '').replace('.lottie', ''), null, NSBundle.mainBundle);
             } else {
                 this.nativeViewProtected.compatibleAnimation = CompatibleAnimation.alloc().initWithFilepath(src);
             }
@@ -108,10 +97,7 @@ export class LottieView extends LottieViewBase {
             }
 
             const color = value instanceof Color ? value : new Color(value);
-            this.nativeViewProtected.setColorValueForKeypath(
-                color.ios,
-                CompatibleAnimationKeypath.alloc().initWithKeypath(keyPath.join('.'))
-            );
+            this.nativeViewProtected.setColorValueForKeypath(color.ios, CompatibleAnimationKeypath.alloc().initWithKeypath(keyPath.join('.')));
         }
     }
 
@@ -121,10 +107,7 @@ export class LottieView extends LottieViewBase {
                 keyPath.push('Opacity'); // ios expects the property as the last item in the keyPath
             }
 
-            this.nativeViewProtected.setFloatValueForKeypath(
-                value,
-                CompatibleAnimationKeypath.alloc().initWithKeypath(keyPath.join('.'))
-            );
+            this.nativeViewProtected.setFloatValueForKeypath(value, CompatibleAnimationKeypath.alloc().initWithKeypath(keyPath.join('.')));
         }
         // TODO: not working
         // if (this.nativeView && value && keyPath && keyPath.length) {
@@ -177,19 +160,9 @@ export class LottieView extends LottieViewBase {
         return this.nativeView ? this.nativeViewProtected.isAnimationPlaying : false;
     }
 
-    // public get progress(): number | undefined {
-    //     return this.nativeView ? this.nativeViewProtected.currentProgress : undefined;
-    // }
-
     [progressProperty.setNative](value: number) {
         this.nativeViewProtected.currentProgress = value;
     }
-
-    // public set progress(value: number) {
-    //     if (this.nativeView && value) {
-    //         this.nativeViewProtected.currentProgress = value;
-    //     }
-    // }
 
     public set speed(value: number) {
         if (this.nativeView && value) {
@@ -233,15 +206,7 @@ export class LottieView extends LottieViewBase {
         this._imageSourceAffectsLayout = widthMode !== Utils.layout.EXACTLY || heightMode !== Utils.layout.EXACTLY;
 
         if (nativeWidth !== 0 && nativeHeight !== 0 && (finiteWidth || finiteHeight)) {
-            const scale = LottieView.computeScaleFactor(
-                width,
-                height,
-                finiteWidth,
-                finiteHeight,
-                nativeWidth,
-                nativeHeight,
-                this.stretch
-            );
+            const scale = LottieView.computeScaleFactor(width, height, finiteWidth, finiteHeight, nativeWidth, nativeHeight, this.stretch);
             const resultW = Math.round(nativeWidth * scale.width);
             const resultH = Math.round(nativeHeight * scale.height);
 
@@ -267,10 +232,7 @@ export class LottieView extends LottieViewBase {
         let scaleW = 1;
         let scaleH = 1;
 
-        if (
-            (imageStretch === 'aspectFill' || imageStretch === 'aspectFit' || imageStretch === 'fill') &&
-            (widthIsFinite || heightIsFinite)
-        ) {
+        if ((imageStretch === 'aspectFill' || imageStretch === 'aspectFit' || imageStretch === 'fill') && (widthIsFinite || heightIsFinite)) {
             scaleW = nativeWidth > 0 ? measureWidth / nativeWidth : 0;
             scaleH = nativeHeight > 0 ? measureHeight / nativeHeight : 0;
 
@@ -315,9 +277,5 @@ export class LottieView extends LottieViewBase {
                 this.nativeViewProtected.contentMode = UIViewContentMode.TopLeft;
                 break;
         }
-    }
-
-    [keyPathColorsProperty.setNative](value) {
-        Object.keys(value).forEach((k) => this.setColor(value[k], k.split('|')));
     }
 }

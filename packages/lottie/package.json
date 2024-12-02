@@ -2,7 +2,7 @@
     "name": "@nativescript-community/ui-lottie",
     "version": "6.0.0",
     "description": "NativeScript plugin to expose AirBnB Lottie library",
-    "main": "lottie",
+    "main": "index",
     "sideEffects": false,
     "typings": "index.d.ts",
     "nativescript": {
@@ -10,6 +10,15 @@
             "android": "6.0.0",
             "ios": "6.0.1"
         }
+    },
+    "scripts": {
+        "tsc": "cpy ../../src/lottie/index.d.ts ./ && tsc -d",
+        "build": "npm run tsc",
+        "build.watch": "npm run tsc -- -w",
+        "build.win": "npm run tsc-win",
+        "build.all": "npm run build && npm run build.angular",
+        "build.angular": "ng-packagr -p ../../src/lottie/angular/ng-package.json -c ../../src/lottie/angular/tsconfig.json && rm angular/.npmignore",
+        "clean": "rimraf ./*.d.ts ./*.js ./*.js.map"
     },
     "repository": {
         "type": "git",

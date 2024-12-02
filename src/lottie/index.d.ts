@@ -6,6 +6,10 @@ export enum RenderMode {
     SOFTWARE
 }
 
+export interface KeyPathColors {
+    [k: string]: Color | string;
+}
+
 export class LottieView extends View {
     /**
      * LottieAnimationView

@@ -1,38 +1,15 @@
 {
+    "extends": "./tools/tsconfig",
     "compilerOptions": {
-        "target": "es2020",
-        "module": "esnext",
-        "moduleResolution": "node",
-        "removeComments": false,
-        "noLib": false,
-        "emitDecoratorMetadata": false,
-        "experimentalDecorators": true,
-        "lib": ["esnext", "dom"],
-        "sourceMap": true,
-        "pretty": true,
-        "allowUnreachableCode": false,
-        "allowUnusedLabels": false,
-        "noEmitHelpers": true,
-        "noEmitOnError": false,
-        "noImplicitAny": false,
-        "noImplicitReturns": true,
-        "noImplicitUseStrict": true,
-        "noFallthroughCasesInSwitch": true,
-        "sourceRoot": "../src",
-        "baseUrl": ".",
-        "outDir": "./plugin",
         "paths": {
-            "@nativescript-community/ui-lottie": ["src/lottie"],
-            "@nativescript-community/ui-lottie/*": ["src/*"]
-        },
-        "plugins": [
-          { "transform": "@nativescript/webpack/dist/transformers/NativeClass", "type": "raw" }
-        ]
+            "@nativescript-community/ui-lottie": ["src/lottie/index"],
+            "@nativescript-community/ui-lottie/*": ["src/lottie/*"]
+        }
     },
-    "include": ["src/**/*", "./references.d.ts"],
-    "exclude": ["node_modules", "platforms"],
-    "compileOnSave": false,
-    "angularCompilerOptions": {
-        "skipTemplateCodegen": true
-    }
+    "references": [
+        {
+            //Need for IDE
+            "path": "./tsconfig.vue3.json"
+        }
+    ]
 }
