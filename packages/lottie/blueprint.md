@@ -1,55 +1,18 @@
-<!-- ⚠️ This README has been generated from the file(s) "blueprint.md" ⚠️--><a align="center" href="https://www.npmjs.com/package/nativescript-community/ui-lottie">
-    <h2 align="center">nativescript-community/ui-lottie</h2>
-</a>
-<h4 align="center">NativeScript plugin to expose Airbnb Lottie for awesome animations.</h4>
+{{ load:../../tools/readme/edit-warning.md }}
+{{ template:title }}
+{{ template:badges }}
+{{ template:description }}
 
-<p align="center">
- <a href="https://www.npmjs.com/package/nativescript-community/ui-lottie">
-        <img src="https://img.shields.io/npm/v/nativescript-community/ui-lottie.svg" alt="npm">
-    </a>
-    <a href="https://www.npmjs.com/package/@nativescript-community/ui-lottie">
-        <img src="https://img.shields.io/npm/dt/@nativescript-community/ui-lottie.svg?label=npm%20downloads" alt="npm">
-    </a>
-     <a href="https://github.com/nativescript-community/ui-lottie/actions">
-        <img src="https://github.com/nativescript-community/ui-lottie/workflows/Build%20CI/badge.svg" alt="Action Build">
-    </a>
-    <a href="https://github.com/nativescript-community/ui-lottie/stargazers">
-        <img src="https://img.shields.io/github/stars/nativescript-community/ui-lottie.svg" alt="stars">
-    </a>
-    <a href="https://paypal.me/bradwayne88">
-        <img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="donate">
-    </a>
-</p>
+| <img src="https://raw.githubusercontent.com/nativescript-community/ui-label/master/images/demo-ios.gif" height="500" /> | <img src="https://raw.githubusercontent.com/nativescript-community/ui-label/master/images/demo-android.gif" height="500" /> |
+| --- | ----------- |
+| iOS Demo | Android Demo |
 
-
-[](#changelog)
-
-## Changelog
-
-All notable changes to this project will be documented in the [changelog](CHANGELOG.md).
-
-
-[](#demo-screen)
-
-## Demo Screen
-
-_The .gif does not do the fluid animations justice_
-
-![LottieView](screens/lottieDemo.gif)
-
-
-[](#installation)
+{{ template:toc }}
 
 ## Installation
+Run the following command from the root of your project:
 
-To install execute:
-
-```
-tns plugin add @nativescript-community/ui-lottie
-```
-
-
-[](#usage)
+`ns plugin add {{ pkg.name }}`
 
 ## Usage
 
@@ -140,9 +103,6 @@ export class HomeComponent {
 
 ---
 
-
-[](#nativescript-vue)
-
 ## NativeScript Vue
 
 ### Bootstrap
@@ -186,9 +146,6 @@ This will install and register `LottieView` component to your `Vue` instance and
 
 ---
 
-
-[](#assets)
-
 ## Assets
 
 :fire: You can find animations in the `sample-effects` folder.
@@ -203,9 +160,6 @@ Note: In a nativescript-vue project the above folder may not exist. Place the fi
 
 Place your animations files in your `app/App_Resources/iOS/` folder.
 
-
-[](#properties-bindable)
-
 ## Properties (bindable)
 
 | Property   | Type      | Default | Description                                   |
@@ -213,9 +167,6 @@ Place your animations files in your `app/App_Resources/iOS/` folder.
 | `autoPlay` | `boolean` | `false` | Start LottieView animation on load if `true`. |
 | `loop`     | `boolean` | `false` | Loop continuously animation if `true`.        |
 | `src`      | `string`  | `null`  | Animation path to `.json` file.               |
-
-
-[](#properties)
 
 ## Properties
 
@@ -225,9 +176,6 @@ Place your animations files in your `app/App_Resources/iOS/` folder.
 | `duration`        | `number`            | `null`  | Get the duration of the animation.                                                                                                                        |
 | `progress`        | `number`            | `0`     | Get/set the progress of the animation.                                                                                                                    |
 | `speed`           | `number`            | `1`     | Get/set the speed of the animation.                                                                                                                       |
-
-
-[](#methods)
 
 ## Methods
 
@@ -240,9 +188,6 @@ Place your animations files in your `app/App_Resources/iOS/` folder.
 | `setColor`     | `void`    | value, keyPath             | Sets the provided color value on each property that matches the specified keyPath in the LottieView instance.           |
 | `setOpacity`   | `void`    | value, keyPath             | Sets the provided opacity value (0 - 1) on each property that matches the specified keyPath in the LottieView instance. |
 
-
-[](#contributors)
-
 ## Contributors
 
 | [<img alt="Brad Martin" src="https://avatars0.githubusercontent.com/u/6006148?s=400&v=4" width="117">](https://github.com/bradmartin) | [<img alt="Nathan Walker" src="https://avatars0.githubusercontent.com/u/457187?s=400&v=4" width="117">](https://github.com/NathanWalker/) | [<img alt="Jean-Baptiste Aniel" src="https://avatars3.githubusercontent.com/u/9477179?s=460&v=4" width="117">](https://github.com/rhanb) | [<img alt="HamdiWanis" src="https://avatars3.githubusercontent.com/u/11708544?s=460&v=4" width="117">](https://github.com/hamdiwanis) |
@@ -254,99 +199,5 @@ Place your animations files in your `app/App_Resources/iOS/` folder.
 |                                             [itstheceo](https://github.com/itstheceo)                                              |                                               [mudlabs](https://github.com/mudlabs)                                               |
 
 
-[](#demos-and-development)
-
-## Demos and Development
-
-
-### Repo Setup
-
-The repo uses submodules. If you did not clone with ` --recursive` then you need to call
-```
-git submodule update --init
-```
-
-The package manager used to install and link dependencies must be `pnpm` or `yarn`. `npm` wont work.
-
-To develop and test:
-if you use `yarn` then run `yarn`
-if you use `pnpm` then run `pnpm i`
-
-**Interactive Menu:**
-
-To start the interactive menu, run `npm start` (or `yarn start` or `pnpm start`). This will list all of the commonly used scripts.
-
-### Build
-
-```bash
-npm run build.all
-```
-WARNING: it seems `yarn build.all` wont always work (not finding binaries in `node_modules/.bin`) which is why the doc explicitly uses `npm run`
-
-### Demos
-
-```bash
-npm run demo.[ng|react|svelte|vue].[ios|android]
-
-npm run demo.svelte.ios # Example
-```
-
-Demo setup is a bit special in the sense that if you want to modify/add demos you dont work directly in `demo-[ng|react|svelte|vue]`
-Instead you work in `demo-snippets/[ng|react|svelte|vue]`
-You can start from the `install.ts` of each flavor to see how to register new demos 
-
-
-[](#contributing)
-
-## Contributing
-
-### Update repo 
-
-You can update the repo files quite easily
-
-First update the submodules
-
-```bash
-npm run update
-```
-
-Then commit the changes
-Then update common files
-
-```bash
-npm run sync
-```
-Then you can run `yarn|pnpm`, commit changed files if any
-
-### Update readme 
-```bash
-npm run readme
-```
-
-### Update doc 
-```bash
-npm run doc
-```
-
-### Publish
-
-The publishing is completely handled by `lerna` (you can add `-- --bump major` to force a major release)
-Simply run 
-```shell
-npm run publish
-```
-
-### modifying submodules
-
-The repo uses https:// for submodules which means you won't be able to push directly into the submodules.
-One easy solution is t modify `~/.gitconfig` and add
-```
-[url "ssh://git@github.com/"]
-	pushInsteadOf = https://github.com/
-```
-
-[](#questions)
-
-## Questions
-
-If you have any questions/issues/comments please feel free to create an issue or start a conversation in the [NativeScript Community Discord](https://nativescript.org/discord).
+{{ load:../../tools/readme/demos-and-development.md }}
+{{ load:../../tools/readme/questions.md }}
