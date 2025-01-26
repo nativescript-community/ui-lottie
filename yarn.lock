@@ -3281,39 +3281,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nativescript-community/arraybuffers@npm:^1.1.5":
-  version: 1.1.5
-  resolution: "@nativescript-community/arraybuffers@npm:1.1.5"
-  checksum: b6d0aca5cfdba26048f543095d1ebba4bfcaa2407e9c17e3ff2da5d0ee25f5c4b959a9483ccb63ea89b5e868954116cad7e31aa93dd57a430d1d9585e65a4035
-  languageName: node
-  linkType: hard
-
-"@nativescript-community/class-mixins@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@nativescript-community/class-mixins@npm:1.0.0"
-  checksum: 4af53424f890b66a9292f141fcbb9e0582733d2012bfb42f7e76f3ed58940b9dbeac1e7cae7c0e26c7900244eb078162df9fd0e5bee562ec34b02ce65856de9b
-  languageName: node
-  linkType: hard
-
-"@nativescript-community/gesturehandler@npm:^2.0.8":
-  version: 2.0.32
-  resolution: "@nativescript-community/gesturehandler@npm:2.0.32"
-  dependencies:
-    "@nativescript-community/observable": "npm:^2.0.10"
-  checksum: 6744779b1a56bb0f8985d8b2fd5d066e8aada2a2ac1baa29b19a1c20f9205bed87901bf6c428c27693bc4e1a28f38672ca69ed0ee9b6e26c8aa3b744405c821e
-  languageName: node
-  linkType: hard
-
-"@nativescript-community/observable@npm:^2.0.10":
-  version: 2.0.11
-  resolution: "@nativescript-community/observable@npm:2.0.11"
-  checksum: 3f8fcba495af0265ab08b8f86f692ce85595b26ea6dc7e4909462fa587f4c9235664b318ea850b3e4858d5a3d7bb0863cb48a1a3c94bae67fa9cf75f47f10492
-  languageName: node
-  linkType: hard
-
 "@nativescript-community/plugin-seed-tools@file:tools::locator=root-workspace-0b6124%40workspace%3A.":
   version: 1.0.0
-  resolution: "@nativescript-community/plugin-seed-tools@file:tools#tools::hash=757a79&locator=root-workspace-0b6124%40workspace%3A."
+  resolution: "@nativescript-community/plugin-seed-tools@file:tools#tools::hash=77c385&locator=root-workspace-0b6124%40workspace%3A."
   dependencies:
     "@angular/animations": "npm:~18.2.13"
     "@angular/common": "npm:~18.2.13"
@@ -3378,7 +3348,7 @@ __metadata:
     vue: "npm:^2.7.16"
     yargs: "npm:^17.7.2"
     zone.js: "npm:~0.15.0"
-  checksum: f42df5f00062f097e71d03224f9c54260e54dc1004aca8bee79a50e947827eb8686c6b9c32bc05202e1cd86e48526a91c8b6da8be42b8dc4d85e4b68b5db6de4
+  checksum: 09ca8f6ed64a633aa618044b9b794e9b38bd3759169d513ba38d2a7f19ba5ee29bc20aed7e65d3e1e689659479edcaa3edd252be88174e91a85a48af0968ce58
   languageName: node
   linkType: hard
 
@@ -3386,73 +3356,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@nativescript-community/template-snippet@workspace:demo-snippets"
   dependencies:
-    "@nativescript-community/ui-collectionview": "npm:*"
-    "@nativescript-community/ui-collectionview-alignedflowlayout": "npm:*"
-    "@nativescript-community/ui-collectionview-swipemenu": "npm:*"
-    "@nativescript-community/ui-collectionview-waterfall": "npm:*"
-    "@nativescript-community/ui-pulltorefresh": "npm:*"
+    "@nativescript-community/ui-lottie": "npm:*"
   languageName: unknown
   linkType: soft
 
-"@nativescript-community/ui-collectionview-alignedflowlayout@npm:*":
-  version: 6.0.2
-  resolution: "@nativescript-community/ui-collectionview-alignedflowlayout@npm:6.0.2"
-  dependencies:
-    "@nativescript-community/ui-collectionview": "npm:^6.0.2"
-  checksum: 127fe473e1e976132eb2ee3c56d3b966f182e08f62c3e17cc568011e882f92edd699150138194f4a9dc81926b280e42a68c4c171d4a08d321fa17fbd26add387
-  languageName: node
-  linkType: hard
-
-"@nativescript-community/ui-collectionview-swipemenu@npm:*":
-  version: 6.0.2
-  resolution: "@nativescript-community/ui-collectionview-swipemenu@npm:6.0.2"
-  dependencies:
-    "@nativescript-community/class-mixins": "npm:^1.0.0"
-    "@nativescript-community/ui-collectionview": "npm:^6.0.2"
-    "@nativescript-community/ui-drawer": "npm:^0.1.27"
-  checksum: 516869774ea8a65d2c4701f2f2eb4045fdb0cd4344ca86bb0d54e9b383e9d1a91f77bde0c575432a46936e9d0fd93bf1e5545149cb57f7fb11eb3bd773d5548b
-  languageName: node
-  linkType: hard
-
-"@nativescript-community/ui-collectionview-waterfall@npm:*":
-  version: 6.0.2
-  resolution: "@nativescript-community/ui-collectionview-waterfall@npm:6.0.2"
-  dependencies:
-    "@nativescript-community/ui-collectionview": "npm:^6.0.2"
-  checksum: 15ccd965175a346bbe7e844473775a75fe065843654ddaa2daca6dd72dd44233829a968a80e0ce1ae581ec5bd79e56d21bfacd402f055fd089a43ba6cea13730
-  languageName: node
-  linkType: hard
-
-"@nativescript-community/ui-collectionview@npm:*, @nativescript-community/ui-collectionview@npm:^6.0.2":
-  version: 6.0.2
-  resolution: "@nativescript-community/ui-collectionview@npm:6.0.2"
-  dependencies:
-    "@nativescript-community/arraybuffers": "npm:^1.1.5"
-  checksum: 431b862c2eb551fbff45197b82088f73e0f3c9b756f92b0a21938823c48802ffd2d36febc582e8c1c164a93db7865cab254b483620b3787fea4059ac04c58a18
-  languageName: node
-  linkType: hard
-
-"@nativescript-community/ui-drawer@npm:^0.1.27":
-  version: 0.1.28
-  resolution: "@nativescript-community/ui-drawer@npm:0.1.28"
-  dependencies:
-    "@nativescript-community/gesturehandler": "npm:^2.0.8"
-  checksum: 5b843d18da348a7a9381efdd468160d4587b1d9f86d7211040b7a0b60c61cbed453db289c3edd2090fa2f8800e67f7bab0763dba807660d5026d494a6f157849
-  languageName: node
-  linkType: hard
-
-"@nativescript-community/ui-lottie@workspace:packages/lottie":
+"@nativescript-community/ui-lottie@npm:*, @nativescript-community/ui-lottie@workspace:packages/lottie":
   version: 0.0.0-use.local
   resolution: "@nativescript-community/ui-lottie@workspace:packages/lottie"
   languageName: unknown
   linkType: soft
-
-"@nativescript-community/ui-pulltorefresh@npm:*":
-  version: 2.5.3
-  resolution: "@nativescript-community/ui-pulltorefresh@npm:2.5.3"
-  checksum: 3e565ab2458ee080011b371de404f654ee2a669b2bddfae2649600196758abff5ceacaf8593032ab00d1c1b01e13d2be032f37a43f907d73debd8ce785b954f6
-  languageName: node
-  linkType: hard
 
 "@nativescript/android@npm:~8.7.0":
   version: 8.7.2

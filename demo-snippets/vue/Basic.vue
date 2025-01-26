@@ -4,13 +4,10 @@
             <Label class="action-bar-title" text="Home"></Label>
         </ActionBar>
 
-        <StackLayout>
-            <Label class="info" horizontalAlignment="center" verticalAlignment="center">
-                <Span class="fa" text.decode="&#xf135;" />
-                <Span :text="message" />
-            </Label>
-            <LottieView src="AndroidWave.json" loop="true" autoPlay="true" backgroundColor="red" horizontalAlignment="center"></LottieView>
-            <ListView :items="items">
+        <GridLayout rows="auto, auto, *">
+            <Label class="info" horizontalAlignment="center" verticalAlignment="center"  :text="message" />
+            <LottieView row="1" src="~/assets/LottieLogo1.json" loop="true" autoPlay="true" backgroundColor="red" horizontalAlignment="center"></LottieView>
+            <ListView row="2" :items="items">
                 <v-template>
                     <StackLayout orientation="horizontal" borderRadius="4" backgroundColor="yellow">
                         <Label :text="item.name" />
@@ -18,7 +15,7 @@
                     </StackLayout>
                 </v-template>
             </ListView>
-        </StackLayout>
+        </GridLayout>
     </Page>
 </template>
 
@@ -27,7 +24,7 @@ function generateItems(count, offset = 0) {
     return new Array(count).fill().map((_, i) => ({
         name: `Item ${i}`,
         description: `Item ${i} description`,
-        lottie: '~/assets/Mobilo/A.lottie'
+        lottie: '~/assets/Mobilo/A.json'
     }));
 }
 
@@ -47,7 +44,7 @@ export default {
 
 <style scoped lang="scss">
 // Start custom common variables
-@import '../app-variables';
+//@import '../app-variables';
 // End custom common variables
 
 // Custom styles
