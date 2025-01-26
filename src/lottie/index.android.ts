@@ -64,15 +64,18 @@ export class LottieView extends LottieViewBase {
         this._completionBlock = block;
         if (block) {
             if (!this.animatorListener) {
+                const that = new WeakRef(this);
                 this.animatorListener = new android.animation.Animator.AnimatorListener({
                     onAnimationCancel: (_animator) => {
-                        if (this._completionBlock) {
-                            this._completionBlock(false);
+                        const owner = that?.get();
+                        if (owner?._completionBlock) {
+                            owner._completionBlock(false);
                         }
                     },
                     onAnimationEnd: (_animator) => {
-                        if (this._completionBlock) {
-                            this._completionBlock(true);
+                        const owner = that?.get();
+                        if (owner?._completionBlock) {
+                            owner._completionBlock(true);
                         }
                     },
                     onAnimationRepeat: (_animator) => {
@@ -98,12 +101,16 @@ export class LottieView extends LottieViewBase {
             this.nativeViewProtected.addAnimatorListener(this.animatorListener);
         }
         if (!this.loadedListener) {
+            const that = new WeakRef(this);
             this.loadedListener = new com.airbnb.lottie.LottieOnCompositionLoadedListener({
                 onCompositionLoaded: (composition) => {
-                    // delay just a bit so that it get received in sync load
-                    setTimeout(() => {
-                        this.notify({ eventName: 'compositionLoaded', composition });
-                    }, 0);
+                    const owner = that?.get();
+                    if (owner) {
+                        // delay just a bit so that it get received in sync load
+                        setTimeout(() => {
+                            this.notify({ eventName: 'compositionLoaded', composition });
+                        }, 0);
+                    }
                 }
             });
         }
