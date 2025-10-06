@@ -85,7 +85,7 @@
         "build.angular": "lerna run build.angular"
     },
     "dependencies": {
-        "@nativescript-community/plugin-seed-tools": "file:tools"
+        "@nativescript-community/plugin-seed-tools": "portal:tools"
     },
     "ntl": {
         "descriptions": {
@@ -109,5 +109,6 @@
         "yarn": ">=1.19.1",
         "pnpm": ">=7.0.0",
         "node": "^14.20.0 || ^16.13.0 || >=18.10.0"
-    }
+    },
+    "packageManager": "yarn@4.10.2"
 }
